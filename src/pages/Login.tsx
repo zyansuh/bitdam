@@ -34,7 +34,7 @@ function LoginHeroContent({ compact = false }: { compact?: boolean }) {
         }`}
       >
         가장 자연스럽고 편안한 맛과 향의 주류브랜드.
-        전통 막걸리 브랜드 빛담에서 만나보세요.
+        전통 막걸리 브랜드 빚담에서 만나보세요.
       </p>
     </>
   )
@@ -59,7 +59,7 @@ function LoginHeroPanelDesktop() {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gold/90">
             <span className="font-serif text-[11px] font-bold text-white">술</span>
           </div>
-          <span className="font-serif text-base font-semibold text-white/90">빛담</span>
+          <span className="font-serif text-base font-semibold text-white/90">빚담</span>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@ function LoginHeroPanelMobile() {
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gold/90">
             <span className="font-serif text-[10px] font-bold text-white">술</span>
           </div>
-          <span className="font-serif text-sm font-semibold text-white/90">빛담</span>
+          <span className="font-serif text-sm font-semibold text-white/90">빚담</span>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@ function LoginForm() {
       <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
         <LoginBrandBadge />
         <h2 className="mt-5 font-serif text-xl font-bold leading-tight text-charcoal sm:mt-6 sm:text-[1.625rem]">
-          반갑습니다, 빛담입니다
+          반갑습니다, 빚담입니다
         </h2>
         <p className="mt-3 text-xs leading-relaxed text-muted sm:text-[0.8125rem]">
           본인인증 후 술추천 서비스를

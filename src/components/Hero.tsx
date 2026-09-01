@@ -17,7 +17,7 @@ export default function Hero() {
             한 병에 모이다.
           </h1>
           <p className="max-w-md text-sm leading-relaxed text-muted sm:text-base">
-            전국 31개 양조장의 장인들이 정성껏 빚어낸 빛담의 전통주.
+            전국 31개 양조장의 장인들이 정성껏 빚어낸 빚담의 전통주.
             시간이 깊어질수록 더욱 풍부해지는 우리 고유의 맛과 향을 한 병에 담았습니다.
           </p>
           <div className="flex flex-col gap-2.5 pt-1 sm:flex-row sm:flex-wrap sm:gap-3 sm:pt-2">
@@ -41,7 +41,7 @@ export default function Hero() {
             <div className="aspect-4/5 overflow-hidden rounded-sm bg-cream-dark">
               <img
                 src="https://images.unsplash.com/photo-1569529465841-df988a64df86?w=600&h=750&fit=crop&q=80"
-                alt="빛담 전통주"
+                alt="빚담 전통주"
                 className="h-full w-full object-cover"
               />
             </div>

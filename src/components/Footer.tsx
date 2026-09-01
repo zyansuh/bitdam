@@ -31,9 +31,9 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <div className="mb-4 flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gold">
-                <span className="font-serif text-xs font-bold text-white">빛</span>
+                <span className="font-serif text-xs font-bold text-white">빚</span>
               </div>
-              <span className="font-serif text-xl font-bold text-white">빛담</span>
+              <span className="font-serif text-xl font-bold text-white">빚담</span>
             </div>
             <p className="text-sm leading-relaxed">
               전국 양조장의 장인 정신을 담은
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
-          <p className="text-xs">© 2026 빛담 Bitdam. All rights reserved.</p>
+          <p className="text-xs">© 2026 빚담 Bitdam. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a href="#" aria-label="Instagram" className="transition-colors hover:text-gold">
               <InstagramIcon />

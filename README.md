@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍶 빛담
+# 🍶 빚담
 
 **Bitdam** — 전국 양조장의 장인 정신을 담은 프리미엄 전통주 플랫폼
 
@@ -42,7 +42,7 @@
 
 ## 📖 이 프로젝트는?
 
-**빛담(Bitdam)** 은 전통주 브랜드 웹사이트를 위한 **React SPA 프론트엔드**입니다.  
+**빚담(Bitdam)** 은 전통주 브랜드 웹사이트를 위한 **React SPA 프론트엔드**입니다.  
 디자인 시안(`pc-home-landing`, `pc-onboarding-login`)을 기준으로 홈 랜딩·로그인 화면을 구현했으며, 모바일·태블릿·데스크톱 전 구간에서 동일한 UX를 제공합니다.
 
 | 구분 | 설명 |
@@ -105,7 +105,7 @@ flowchart LR
 | 통계 | `Stats` | 31곳 · 9개 권역 · 5개 · 100+ 명 |
 | 급상승 술 | `InfiniteProductFeed` | 8개씩 paginate · Intersection Observer 무한 스크롤 |
 | 프로모션 | `PromoBanner` | 성수동 삼해소주 가옥 · 투어 예약 CTA |
-| 스토리 | `InfiniteStoryFeed` | 빛담 이야기 카드 · 4개씩 추가 로드 |
+| 스토리 | `InfiniteStoryFeed` | 빚담 이야기 카드 · 4개씩 추가 로드 |
 | 푸터 | `Footer` | 서비스·고객지원·법적 고지 링크 · SNS |
 
 ### 🔐 로그인 (`/login`)
@@ -478,7 +478,7 @@ import { getProductsPage } from '../data/products';
 
 **Made with React · TypeScript · Vite · Tailwind CSS**
 
-🍶 **빛담 Bitdam** — 전통주, 시간이 깊어질수록
+🍶 **빚담 Bitdam** — 전통주, 시간이 깊어질수록
 
 [github.com/zyansuh/bitdam](https://github.com/zyansuh/bitdam)
 

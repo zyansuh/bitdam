@@ -52,7 +52,7 @@ export default function InfiniteStoryFeed({ className = '' }: InfiniteStoryFeedP
     <section className={`border-t border-cream-dark bg-white py-10 sm:py-12 ${className}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 font-serif text-lg font-bold text-charcoal sm:mb-8 sm:text-xl">
-          빛담 이야기
+          빚담 이야기
         </h2>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">

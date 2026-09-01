@@ -12,9 +12,9 @@ export default function Navbar() {
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gold sm:h-8 sm:w-8">
-            <span className="font-serif text-[10px] font-bold text-white sm:text-xs">빛</span>
+            <span className="font-serif text-[10px] font-bold text-white sm:text-xs">빚</span>
           </div>
-          <span className="font-serif text-lg font-bold tracking-tight sm:text-xl">빛담</span>
+          <span className="font-serif text-lg font-bold tracking-tight sm:text-xl">빚담</span>
         </Link>
 
         <nav className="hidden items-center gap-8 min-[1000px]:flex lg:gap-10">
