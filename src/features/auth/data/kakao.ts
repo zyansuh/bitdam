@@ -3,6 +3,7 @@ export const KAKAO_TOKEN_PATH = '/kakao-oauth/oauth/token'
 export const KAKAO_ME_PATH = '/kakao-api/v2/user/me'
 export const KAKAO_CALLBACK_PATH = '/login/kakao/callback'
 export const KAKAO_REDIRECT_URI_KEY = 'kakao.redirect_uri'
+export const KAKAO_OAUTH_STATE_KEY = 'kakao.oauth.state'
 export const KAKAO_LOGIN_SCOPE = 'profile_nickname,profile_image'
 
 export function getKakaoRedirectUri(): string {
