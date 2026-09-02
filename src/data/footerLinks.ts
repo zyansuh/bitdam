@@ -15,7 +15,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
   ],
   '법적 고지': [
     { label: '이용약관', to: '/terms' },
-    { label: '개인정보처리방침', to: '/terms#privacy' },
+    { label: '개인정보처리방침', to: '/privacy' },
     { label: '사업자 정보', to: '/terms#business' },
   ],
 }
