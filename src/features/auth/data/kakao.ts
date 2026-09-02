@@ -14,8 +14,16 @@ export function getKakaoRedirectUri(): string {
   return `${window.location.origin}${KAKAO_CALLBACK_PATH}`
 }
 
+function readViteEnv(value: string | undefined): string {
+  return (value ?? '').trim()
+}
+
 export function getKakaoRestApiKey(): string {
-  return (import.meta.env.VITE_KAKAO_REST_API_KEY ?? '').trim()
+  return (
+    readViteEnv(import.meta.env.VITE_KAKAO_REST_API_KEY) ||
+    readViteEnv(import.meta.env.VITE_KAKAO_API_KEY) ||
+    readViteEnv(import.meta.env.VITE_KAKO_API_KEY)
+  )
 }
 
 export function getKakaoJavascriptKey(): string {
