@@ -1,4 +1,5 @@
 import type { AuthUser } from '../../../shared/types/auth'
+import { readStoredTheme, resolveTheme } from '../../../shared/utils/themeStorage'
 import {
   getKakaoClientSecret,
   getKakaoRedirectUri,
@@ -6,6 +7,7 @@ import {
   KAKAO_AUTHORIZE_URL,
   KAKAO_LOGIN_SCOPE,
   KAKAO_ME_PATH,
+  KAKAO_OAUTH_STATE_KEY,
   KAKAO_REDIRECT_URI_KEY,
   KAKAO_TOKEN_PATH,
 } from '../data/kakao'
@@ -24,11 +26,16 @@ export function buildKakaoAuthorizeUrl(): string {
   const redirectUri = getKakaoRedirectUri()
   sessionStorage.setItem(KAKAO_REDIRECT_URI_KEY, redirectUri)
 
+  const theme = resolveTheme(readStoredTheme())
+  const nonce = crypto.randomUUID()
+  sessionStorage.setItem(KAKAO_OAUTH_STATE_KEY, nonce)
+
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,
     response_type: 'code',
     scope: KAKAO_LOGIN_SCOPE,
+    state: `${nonce}.${theme}`,
   })
 
   return `${KAKAO_AUTHORIZE_URL}?${params.toString()}`
