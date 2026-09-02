@@ -29,4 +29,5 @@
 @import './features/membership/styles/membership.css';
 @import './features/brewery/styles/brewery-map.css';
 @import 'maplibre-gl/dist/maplibre-gl.css';
+@import './features/brewery/styles/brewery-detail.css';
 @import './features/review/styles/review.css';

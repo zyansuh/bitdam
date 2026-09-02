@@ -15,6 +15,7 @@ import WishlistPage from '../features/wishlist/pages/WishlistPage'
 import MembershipPage from '../features/membership/pages/MembershipPage'
 import WriteReviewPage from '../features/review/pages/WriteReviewPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
+import BreweryDetailPage from '../features/brewery/pages/BreweryDetailPage'
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
 export function AppRoutes() {
@@ -41,6 +42,7 @@ export function AppRoutes() {
           </Suspense>
         }
       />
+      <Route path="/breweries/:id" element={<BreweryDetailPage />} />
       <Route path="/compare" element={<ComparePage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
     </Routes>
