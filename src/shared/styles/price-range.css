@@ -1,0 +1,26 @@
+input.price-range {
+  pointer-events: none;
+}
+
+input.price-range::-webkit-slider-thumb {
+  pointer-events: auto;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--color-gold);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--color-gold);
+  cursor: pointer;
+}
+
+input.price-range::-moz-range-thumb {
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--color-gold);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--color-gold);
+  cursor: pointer;
+}
