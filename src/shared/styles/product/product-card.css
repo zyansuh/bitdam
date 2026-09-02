@@ -2,6 +2,10 @@
   @apply cursor-pointer;
 }
 
+.product-card__link {
+  @apply block;
+}
+
 .product-card__media {
   @apply relative mb-4 aspect-[3/4] overflow-hidden rounded-sm bg-cream-dark;
 }
@@ -19,7 +23,7 @@
 }
 
 .product-card__name {
-  @apply mb-2 text-sm font-medium text-charcoal transition-colors;
+  @apply mb-2 text-lg font-semibold text-charcoal transition-colors;
 }
 
 .product-card:hover .product-card__name {

@@ -1,5 +1,5 @@
 .story-feed {
-  @apply border-t border-cream-dark bg-white py-10 sm:py-12;
+  @apply border-t border-cream-dark bg-surface py-10 sm:py-12;
 }
 
 .story-feed__inner {

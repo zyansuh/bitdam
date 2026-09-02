@@ -9,7 +9,7 @@ input.price-range::-webkit-slider-thumb {
   height: 16px;
   border-radius: 9999px;
   background: var(--color-gold);
-  border: 2px solid white;
+  border: 2px solid var(--color-surface);
   box-shadow: 0 0 0 1px var(--color-gold);
   cursor: pointer;
 }
@@ -20,7 +20,7 @@ input.price-range::-moz-range-thumb {
   height: 16px;
   border-radius: 9999px;
   background: var(--color-gold);
-  border: 2px solid white;
+  border: 2px solid var(--color-surface);
   box-shadow: 0 0 0 1px var(--color-gold);
   cursor: pointer;
 }

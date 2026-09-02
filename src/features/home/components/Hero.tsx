@@ -7,6 +7,7 @@ export default function Hero() {
       <div className="hero__backdrop" />
       <div className="hero__inner">
         <div className="hero__copy">
+          <p className="hero__en">{heroContent.english}</p>
           <h1 className="hero__title">
             다섯 개의 손이
             <br />
@@ -17,9 +18,9 @@ export default function Hero() {
             시간이 깊어질수록 더욱 풍부해지는 우리 고유의 맛과 향을 한 병에 담았습니다.
           </p>
           <div className="hero__actions">
-            <button type="button" className="hero__cta-primary">
+            <Link to="/story" className="hero__cta-primary">
               브랜드 이야기
-            </button>
+            </Link>
             <Link to="/products" className="hero__cta-secondary">
               브랜드 스토어
             </Link>

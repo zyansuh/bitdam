@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Menu, Search, ShoppingCart, X } from 'lucide-react'
 import BrandLogo from '../../../shared/components/brand/BrandLogo'
+import ThemeToggle from '../../../shared/components/navigation/ThemeToggle'
 import LoginLink from '../../../shared/components/navigation/LoginLink'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { useMobileMenu } from '../../../shared/hooks/useMobileMenu'
@@ -58,6 +59,7 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
           ) : (
             <LoginLink className="catalog-header__login">로그인</LoginLink>
           )}
+          <ThemeToggle className={`theme-toggle catalog-header__icon--${tone}`} />
           <button
             type="button"
             aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
