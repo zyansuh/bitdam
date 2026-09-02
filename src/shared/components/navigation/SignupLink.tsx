@@ -1,17 +1,17 @@
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-interface LoginLinkProps {
+interface SignupLinkProps {
   className?: string
   children: ReactNode
   'aria-label'?: string
 }
 
-export default function LoginLink({ className, children, 'aria-label': ariaLabel }: LoginLinkProps) {
+export default function SignupLink({ className, children, 'aria-label': ariaLabel }: SignupLinkProps) {
   const location = useLocation()
   const from = `${location.pathname}${location.search}`
   const onAuth = from.startsWith('/login') || from.startsWith('/signup')
-  const to = onAuth ? '/login' : `/login?from=${encodeURIComponent(from)}`
+  const to = onAuth ? '/signup' : `/signup?from=${encodeURIComponent(from)}`
 
   return (
     <Link to={to} className={className} aria-label={ariaLabel}>

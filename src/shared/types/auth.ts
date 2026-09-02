@@ -3,5 +3,5 @@ export interface AuthUser {
   nickname: string
   profileImage?: string
   email?: string
-  provider: 'kakao'
+  provider: 'kakao' | 'email'
 }

@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/`(홈), `/products`(목록), `/category/:slug`(카테고리), `/login`(로그인) |
+| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/login` · `/signup` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -69,9 +69,11 @@
 | 경로 | 페이지 | 설명 |
 |------|--------|------|
 | `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 스토리 피드 |
+| `/story` | `BrandStoryPage` | 빚담 브랜드 이야기 · 챕터형 소개 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
+| `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
 
 ### 이용자 흐름
@@ -81,6 +83,9 @@ flowchart LR
     A[방문자] --> B{진입}
     B -->|홈| C[/ HomeLanding /]
     B -->|로그인| D[/ Login /]
+    B -->|회원가입| S[/ SignupPage /]
+    D -->|회원 가입| S
+    S -->|가입 완료| C
     C -->|전통주 / 브랜드 스토어| H[/ ProductListPage /]
     C -->|Navbar 프로필| D
     H -->|카테고리·상품 카드| I[/ CategoryPage /]
@@ -99,6 +104,7 @@ flowchart LR
 | **목록** | 필터 토글 · 상품 2열 | 필터 토글 · 상품 2열 | 좌측 sticky 필터 + 상품 3열 |
 | **카테고리** | 남색 헤더 · 필터 토글 · 대표 상품 | 동일 + 넓은 캐러셀 | 남색 헤더 · 좌측 필터 + 캐러셀 |
 | **로그인** | 상단 히어로 배너 + 폼 | 폼 중앙 · 피드 3열 | 좌측 sticky 히어로 + 우측 스크롤 |
+| **회원가입** | 로그인과 동일 레이아웃 | 동일 | 동일 |
 
 ---
 
@@ -146,7 +152,17 @@ flowchart LR
 |------|------|
 | **히어로 패널** | 데스크톱 좌측 50% sticky · 모바일 상단 배너 |
 | **소셜 로그인** | 카카오 공식 버튼 이미지 · OAuth 코드 플로우 (`/login/kakao/callback`) |
-| **이메일 로그인** | 이메일·비밀번호 · 약관 동의 체크박스 (폼 UI) |
+| **이메일 로그인** | 가입한 계정으로 localStorage 데모 로그인 |
+
+### 🧾 회원가입 (`/signup`)
+
+로그인과 같은 히어로 레이아웃. 계정은 브라우저 `localStorage` 데모입니다.
+
+| 기능 | 설명 |
+|------|------|
+| **필드** | 닉네임 · 이메일 · 비밀번호(8자+) · 비밀번호 확인 |
+| **검증** | 중복 이메일 · 확인 불일치 · 약관 미동의 |
+| **이후** | 바로 로그인 처리 후 `from` 경로 또는 홈으로 이동 |
 | **기타 소셜 UI** | 네이버 · Apple 버튼 (OAuth **미연동**) |
 | **하단 피드** | `InfiniteProductFeed` + `InfiniteStoryFeed` (스크롤 탐색) |
 
@@ -404,6 +420,7 @@ npm run dev          # http://localhost:5173
 | http://localhost:5173/products | 상품 목록 (검색·필터) |
 | http://localhost:5173/category/takju | 카테고리 상세 (막걸리) |
 | http://localhost:5173/login | 로그인 |
+| http://localhost:5173/signup | 회원가입 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
 
 ---
@@ -499,7 +516,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
-| **2026-09-02** | 카카오 로그인 OAuth · 공식 ko/en 버튼 에셋 |
+| **2026-09-02** | 일반 회원가입(`/signup`) · 이메일 로그인 데모 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |
 | **2026-09-02** | 홈 랜딩 · 로그인 · 반응형 · 무한 스크롤 초기 구현 |

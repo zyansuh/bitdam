@@ -162,6 +162,10 @@
   @apply text-xs leading-relaxed text-muted;
 }
 
+.login-form__error {
+  @apply text-xs font-medium text-gold-dark;
+}
+
 .login-form__submit {
   @apply mt-1 w-full rounded-md bg-gold py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
 }
