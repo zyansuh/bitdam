@@ -22,6 +22,10 @@
   @apply mt-5 flex flex-col gap-1 text-sm text-white/70 sm:flex-row sm:gap-6;
 }
 
+.policy-intro {
+  @apply mx-auto flex max-w-3xl flex-col gap-3 px-4 pt-8 sm:px-6 lg:px-8;
+}
+
 .policy-toc {
   @apply mx-auto flex max-w-3xl flex-wrap gap-2 px-4 py-6 sm:px-6 lg:px-8;
 }
