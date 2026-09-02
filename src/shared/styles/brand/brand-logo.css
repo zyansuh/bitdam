@@ -1,0 +1,47 @@
+.brand-logo {
+  @apply flex items-center gap-2;
+}
+
+.brand-logo__mark {
+  @apply flex items-center justify-center rounded-full bg-gold;
+}
+
+.brand-logo__mark--sm {
+  @apply h-7 w-7 sm:h-8 sm:w-8;
+}
+
+.brand-logo__mark--md {
+  @apply h-8 w-8;
+}
+
+.brand-logo__glyph {
+  @apply font-serif font-bold text-white;
+}
+
+.brand-logo__glyph--sm {
+  @apply text-[10px] sm:text-xs;
+}
+
+.brand-logo__glyph--md {
+  @apply text-xs;
+}
+
+.brand-logo__name {
+  @apply font-serif font-bold tracking-tight;
+}
+
+.brand-logo__name--sm {
+  @apply text-lg sm:text-xl;
+}
+
+.brand-logo__name--md {
+  @apply text-xl;
+}
+
+.brand-logo__name--navy {
+  @apply text-white;
+}
+
+.brand-logo__name--light {
+  @apply text-white;
+}

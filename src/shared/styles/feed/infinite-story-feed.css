@@ -1,0 +1,35 @@
+.story-feed {
+  @apply border-t border-cream-dark bg-white py-10 sm:py-12;
+}
+
+.story-feed__inner {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.story-feed__title {
+  @apply mb-6 font-serif text-lg font-bold text-charcoal sm:mb-8 sm:text-xl;
+}
+
+.story-feed__grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2;
+}
+
+.story-card {
+  @apply rounded-md border border-cream-dark bg-cream/50 p-5 transition-colors hover:border-gold/40 sm:p-6;
+}
+
+.story-card__tag {
+  @apply text-[11px] font-medium text-gold;
+}
+
+.story-card__title {
+  @apply mt-2 text-sm leading-relaxed font-medium text-charcoal sm:text-base;
+}
+
+.story-card__region {
+  @apply mt-2 text-xs text-muted;
+}
+
+.story-feed__sentinel {
+  @apply flex justify-center py-8;
+}

@@ -1,37 +1,14 @@
 @import 'tailwindcss';
-
-@theme {
-  --color-cream: #faf7f4;
-  --color-cream-dark: #f0ebe4;
-  --color-gold: #c5994c;
-  --color-gold-dark: #a87d3a;
-  --color-navy: #1a2332;
-  --color-navy-light: #243044;
-  --color-charcoal: #2c2c2c;
-  --color-muted: #888888;
-  --font-serif: 'Nanum Myeongjo', 'Batang', serif;
-  --font-sans: 'Noto Sans KR', sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-sans);
-  color: var(--color-charcoal);
-  background-color: var(--color-cream);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-#root {
-  min-height: 100dvh;
-}
+@import './shared/styles/tokens.css';
+@import './shared/styles/global.css';
+@import './shared/styles/layout/page-layout.css';
+@import './shared/styles/layout/footer.css';
+@import './shared/styles/brand/brand-logo.css';
+@import './shared/styles/navigation/navbar.css';
+@import './shared/styles/product/product-card.css';
+@import './shared/styles/feed/infinite-product-feed.css';
+@import './shared/styles/feed/infinite-story-feed.css';
+@import './features/home/styles/hero.css';
+@import './features/home/styles/stats.css';
+@import './features/home/styles/promo-banner.css';
+@import './features/auth/styles/login.css';
