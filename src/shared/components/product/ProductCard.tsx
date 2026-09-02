@@ -9,7 +9,15 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card">
       <div className="product-card__media">
-        <img src={product.image} alt={product.name} className="product-card__image" />
+        <img
+          src={product.image}
+          alt={product.name}
+          className="product-card__image"
+          width={400}
+          height={520}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <p className="product-card__category">{product.category}</p>
       <h3 className="product-card__name">{product.name}</h3>
