@@ -24,5 +24,7 @@
 @import './features/cart/styles/cart.css';
 @import './features/coupon/styles/coupon.css';
 @import './features/order/styles/order-complete.css';
+@import './features/claim/styles/claim.css';
 @import './features/wishlist/styles/wishlist.css';
+@import './features/membership/styles/membership.css';
 @import './features/review/styles/review.css';
