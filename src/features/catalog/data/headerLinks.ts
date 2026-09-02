@@ -16,4 +16,5 @@ export const catalogNavyLinks: NavLinkItem[] = [
     label: category.shortLabel,
     to: `/category/${category.slug}`,
   })),
+  { label: '멤버십', to: '/membership' },
 ]
