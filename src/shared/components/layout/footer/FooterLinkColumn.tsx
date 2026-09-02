@@ -1,6 +1,9 @@
+import { Link } from 'react-router-dom'
+import type { FooterNavLink } from '../../../types/footer'
+
 interface FooterLinkColumnProps {
   title: string
-  links: string[]
+  links: FooterNavLink[]
 }
 
 export default function FooterLinkColumn({ title, links }: FooterLinkColumnProps) {
@@ -9,10 +12,16 @@ export default function FooterLinkColumn({ title, links }: FooterLinkColumnProps
       <h4 className="footer__heading">{title}</h4>
       <ul className="footer__list">
         {links.map((link) => (
-          <li key={link}>
-            <a href="#" className="footer__link">
-              {link}
-            </a>
+          <li key={link.label}>
+            {link.to ? (
+              <Link to={link.to} className="footer__link">
+                {link.label}
+              </Link>
+            ) : (
+              <a href="#" className="footer__link">
+                {link.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>
