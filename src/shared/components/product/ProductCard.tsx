@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
+import WishHeartButton from './WishHeartButton'
 
 interface ProductCardProps {
   product: Product
@@ -10,6 +11,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card">
       <div className="product-card__media">
+        <WishHeartButton productId={product.id} overlay />
         <Link to={`/products/${product.id}`}>
           <img src={product.image} alt={product.name} className="product-card__image" />
         </Link>
