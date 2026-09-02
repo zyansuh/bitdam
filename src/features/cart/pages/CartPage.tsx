@@ -1,19 +1,24 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
+import { useAuth } from '../../../shared/hooks/useAuth'
 import { useCart } from '../../../shared/hooks/useCart'
 import { useCoupons } from '../../../shared/hooks/useCoupons'
 import type { Coupon } from '../../../shared/types/coupon'
 import { calcCartTotals } from '../../../shared/utils/cartTotals'
 import { couponEffect } from '../../../shared/utils/couponEffect'
+import { createOrderNo, writeLastOrder } from '../../../shared/utils/orderStorage'
 import CatalogHeader from '../../catalog/components/CatalogHeader'
 import CartCoupon from '../components/CartCoupon'
 import CartItemRow from '../components/CartItemRow'
 import CartSummary from '../components/CartSummary'
 
 export default function CartPage() {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const { items, setQuantity, removeItem, clearCart } = useCart()
+  const { user } = useAuth()
   const { findAvailable, registerCode, markUsed } = useCoupons()
   const [couponInput, setCouponInput] = useState('')
   const [applied, setApplied] = useState<Coupon | null>(null)
@@ -60,7 +65,22 @@ export default function CartPage() {
   }, [searchParams])
 
   function checkout() {
+    writeLastOrder({
+      orderNo: createOrderNo(),
+      recipient: user?.nickname?.trim() || '빚담 회원',
+      phone: '010-1234-5678',
+      address: '서울시 성동구 연무장길 5, 빚담 라운지',
+      payment,
+      payAmount: totals.payAmount,
+      couponTitle: applied?.title ?? null,
+      productId: items[0].product.id,
+      quantity: items[0].quantity,
+    })
+    if (applied) {
+      markUsed(applied.id)
+    }
     clearCart()
+    navigate('/order/complete')
   }
 
   return (
