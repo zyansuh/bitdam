@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { promoBanner } from '../data/promo'
 
 export default function PromoBanner() {
@@ -13,9 +14,9 @@ export default function PromoBanner() {
             <br className="promo-banner__break" />
             {promoBanner.titleTail}
           </h3>
-          <button type="button" className="promo-banner__cta">
+          <Link to="/classes?brewery=samhae" className="promo-banner__cta">
             {promoBanner.cta}
-          </button>
+          </Link>
         </div>
       </div>
     </section>
