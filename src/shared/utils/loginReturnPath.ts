@@ -3,7 +3,7 @@ const RETURN_PATH_KEY = 'bitdam.auth.return_to'
 export function isSafeReturnPath(path: string): boolean {
   if (!path.startsWith('/')) return false
   if (path.startsWith('//')) return false
-  if (path.startsWith('/login')) return false
+  if (path.startsWith('/login') || path.startsWith('/signup')) return false
   return true
 }
 
