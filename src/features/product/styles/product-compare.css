@@ -1,0 +1,73 @@
+.compare-page {
+  @apply mx-auto max-w-7xl py-8 sm:py-10;
+}
+
+.compare-page__head {
+  @apply mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between;
+}
+
+.compare-page__title {
+  @apply font-serif text-2xl font-bold text-charcoal sm:text-3xl;
+}
+
+.compare-page__lead {
+  @apply mt-2 max-w-xl text-sm text-muted;
+}
+
+.compare-page__add {
+  @apply inline-flex rounded-sm border border-gold px-4 py-2 text-sm font-medium text-gold transition-colors hover:bg-gold hover:text-white;
+}
+
+.compare-table-wrap {
+  @apply overflow-x-auto border border-cream-dark bg-surface;
+}
+
+.compare-table {
+  @apply w-full min-w-[44rem] border-collapse text-sm;
+}
+
+.compare-table th,
+.compare-table td {
+  @apply border-b border-cream-dark px-4 py-3 align-top text-charcoal;
+}
+
+.compare-table__stub,
+.compare-table tbody th {
+  @apply w-28 bg-cream text-left text-xs font-medium text-muted;
+}
+
+.compare-table__head {
+  @apply relative w-48 bg-cream text-left;
+}
+
+.compare-table__media {
+  @apply mb-2 block overflow-hidden rounded-sm bg-cream-dark;
+}
+
+.compare-table__image {
+  @apply aspect-[3/4] w-full object-cover;
+}
+
+.compare-table__name {
+  @apply block pr-6 text-sm font-medium text-charcoal hover:text-gold;
+}
+
+.compare-table__remove {
+  @apply absolute top-3 right-3 rounded-full bg-cream p-1 text-muted hover:text-charcoal;
+}
+
+.compare-table__rating {
+  @apply inline-flex items-center gap-1;
+}
+
+.compare-table__star {
+  @apply fill-gold text-gold;
+}
+
+.compare-empty {
+  @apply flex min-h-48 flex-col items-start justify-center gap-3 rounded-sm border border-dashed border-cream-dark bg-surface px-6 py-12 text-sm text-muted;
+}
+
+.compare-empty__link {
+  @apply font-medium text-gold;
+}
