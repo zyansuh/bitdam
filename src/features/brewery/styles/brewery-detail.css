@@ -1,0 +1,127 @@
+.brewery-detail-missing {
+  @apply mx-auto max-w-7xl py-16 text-sm text-muted;
+}
+
+.brewery-detail-missing a {
+  @apply mt-3 inline-block font-semibold text-gold;
+}
+
+.brewery-detail {
+  @apply mx-auto max-w-7xl pb-10;
+}
+
+.brewery-detail-hero {
+  @apply relative overflow-hidden rounded-2xl;
+}
+
+.brewery-detail-hero__image {
+  @apply h-56 w-full object-cover sm:h-72 min-[1000px]:h-80;
+}
+
+.brewery-detail-hero__copy {
+  @apply absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-navy/80 via-navy/25 to-transparent px-6 py-8 text-white sm:px-10 sm:py-10;
+}
+
+.brewery-detail-hero__kicker {
+  @apply text-xs tracking-wide text-white/85 sm:text-sm;
+}
+
+.brewery-detail-hero__title {
+  @apply mt-2 max-w-2xl font-serif text-2xl font-semibold sm:text-4xl;
+}
+
+.brewery-detail__grid {
+  @apply mt-10 grid gap-10 min-[1000px]:grid-cols-[1.15fr_0.85fr] min-[1000px]:items-start;
+}
+
+.brewery-detail__main {
+  @apply flex flex-col gap-8;
+}
+
+.brewery-detail__aside {
+  @apply flex flex-col gap-6;
+}
+
+.brewery-detail__heading {
+  @apply font-serif text-xl font-semibold text-charcoal;
+}
+
+.brewery-detail__prose {
+  @apply mt-3 text-sm leading-relaxed text-charcoal/80;
+}
+
+.brewery-detail__muted {
+  @apply mt-2 text-sm text-muted;
+}
+
+.brewery-master {
+  @apply flex gap-4 rounded-2xl border border-cream-dark bg-surface p-4;
+}
+
+.brewery-master__photo {
+  @apply h-20 w-20 shrink-0 rounded-full object-cover;
+}
+
+.brewery-master__role {
+  @apply font-semibold text-charcoal;
+}
+
+.brewery-master__quote {
+  @apply mt-2 text-sm leading-relaxed text-charcoal/75;
+}
+
+.brewery-awards {
+  @apply flex flex-wrap gap-2;
+}
+
+.brewery-awards__item {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-cream-dark bg-surface px-3 py-1.5 text-xs text-charcoal;
+}
+
+.brewery-awards__icon {
+  @apply text-gold;
+}
+
+.brewery-side-products {
+  @apply mt-3 grid gap-4;
+}
+
+.brewery-program {
+  @apply rounded-2xl bg-gold/25 px-5 py-5;
+}
+
+.brewery-program__title {
+  @apply font-serif text-lg font-semibold text-charcoal;
+}
+
+.brewery-program__desc {
+  @apply mt-2 text-sm leading-relaxed text-charcoal/80;
+}
+
+.brewery-program__price {
+  @apply mt-3 text-lg font-semibold text-charcoal;
+}
+
+.brewery-visit {
+  @apply mt-3 flex flex-col gap-3 text-sm text-charcoal/80;
+}
+
+.brewery-visit li {
+  @apply flex items-start gap-2;
+}
+
+.brewery-visit svg {
+  @apply mt-0.5 shrink-0 text-gold;
+}
+
+.brewery-tour-bar {
+  @apply mt-12 flex flex-col items-start justify-between gap-4 rounded-2xl bg-cream-dark px-6 py-6 sm:flex-row sm:items-center;
+}
+
+.brewery-tour-bar__copy {
+  @apply font-serif text-lg font-semibold text-charcoal;
+}
+
+.brewery-tour-bar__btn {
+  @apply rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-white hover:bg-gold-dark;
+}

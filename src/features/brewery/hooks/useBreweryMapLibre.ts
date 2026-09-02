@@ -245,7 +245,7 @@ export function useBreweryMapLibre({
     popup
       .setLngLat([selected.lng, selected.lat])
       .setHTML(
-        `<strong>${escapeHtml(selected.name)}</strong><p>${escapeHtml(selected.address)}</p><p>${escapeHtml(selected.summary)}</p>`,
+        `<strong>${escapeHtml(selected.name)}</strong><p>${escapeHtml(selected.address)}</p><p>${escapeHtml(selected.summary)}</p><a href="/breweries/${escapeHtml(selected.id)}">양조장 이야기</a>`,
       )
       .addTo(map)
   }, [selected])

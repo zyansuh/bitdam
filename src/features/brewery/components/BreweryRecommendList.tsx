@@ -51,9 +51,14 @@ export default function BreweryRecommendList({
                     <p className="brewery-card__summary">{item.summary}</p>
                   </div>
                 </button>
-                <Link to={productPath(item.breweryKey)} className="brewery-card__link">
-                  이 집 술 보기
-                </Link>
+                <div className="brewery-card__links">
+                  <Link to={`/breweries/${item.id}`} className="brewery-card__link">
+                    양조장 이야기
+                  </Link>
+                  <Link to={productPath(item.breweryKey)} className="brewery-card__link">
+                    이 집 술 보기
+                  </Link>
+                </div>
               </article>
             </li>
           ))}
