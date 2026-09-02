@@ -16,7 +16,11 @@ export default function TermsPage() {
       <Navbar />
       <main className="policy-page">
         <PolicyHeader document={operatingPolicy} />
-        <PolicyToc chapters={operatingPolicy.chapters} />
+        <PolicyToc
+          chapters={operatingPolicy.chapters}
+          label="운영정책 목차"
+          extras={[{ id: 'business', label: '사업자 정보' }]}
+        />
         <div className="policy-body">
           {operatingPolicy.chapters.map((chapter) => (
             <PolicyChapterSection key={chapter.id} chapter={chapter} />
