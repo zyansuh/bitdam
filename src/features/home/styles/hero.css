@@ -4,7 +4,7 @@
 
 .hero__backdrop {
   @apply absolute inset-x-0 top-0 h-32 bg-cover bg-center opacity-30 sm:h-40 md:h-48;
-  background-image: url('https://images.unsplash.com/photo-1600607686527-3651a3070f8a?w=1600&h=400&fit=crop&q=80');
+  background-image: url('https://images.unsplash.com/photo-1600607686527-3651a3070f8a?w=800&h=200&fit=crop&q=60');
 }
 
 .hero__inner {
