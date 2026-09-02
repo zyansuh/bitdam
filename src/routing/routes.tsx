@@ -1,4 +1,4 @@
-import { Route, Routes, ScrollRestoration } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import BrandStoryPage from '../features/brand/pages/BrandStoryPage'
 import KakaoCallbackPage from '../features/auth/pages/KakaoCallbackPage'
 import Login from '../features/auth/pages/Login'
@@ -9,17 +9,14 @@ import HomeLanding from '../features/home/pages/HomeLanding'
 
 export function AppRoutes() {
   return (
-    <>
-      <ScrollRestoration />
-      <Routes>
-        <Route path="/" element={<HomeLanding />} />
-        <Route path="/story" element={<BrandStoryPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
-        <Route path="/products" element={<ProductListPage />} />
-        <Route path="/category/:slug" element={<CategoryPage />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<HomeLanding />} />
+      <Route path="/story" element={<BrandStoryPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
+      <Route path="/products" element={<ProductListPage />} />
+      <Route path="/category/:slug" element={<CategoryPage />} />
+    </Routes>
   )
 }
