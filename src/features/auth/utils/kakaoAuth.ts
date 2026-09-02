@@ -10,11 +10,15 @@ import {
   KAKAO_TOKEN_PATH,
 } from '../data/kakao'
 import type { KakaoProfileResponse, KakaoTokenResponse } from '../types/kakao'
+import { KakaoConfigError } from './kakaoConfigError'
 
 export function buildKakaoAuthorizeUrl(): string {
   const clientId = getKakaoRestApiKey()
   if (!clientId) {
-    throw new Error('VITE_KAKAO_REST_API_KEY가 설정되지 않았습니다.')
+    throw new KakaoConfigError(
+      '카카오 로그인을 시작할 수 없습니다',
+      '배포 환경에 카카오 REST API 키가 없습니다. Vercel 프로젝트 Settings → Environment Variables에 VITE_KAKAO_REST_API_KEY를 Production과 Preview에 넣은 뒤 다시 배포해 주세요. 카카오 개발자 콘솔 Redirect URI에는 https://<배포주소>/login/kakao/callback 도 등록해야 합니다.',
+    )
   }
 
   const redirectUri = getKakaoRedirectUri()
