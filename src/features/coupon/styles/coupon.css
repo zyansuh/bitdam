@@ -1,0 +1,83 @@
+.coupon-page {
+  @apply mx-auto max-w-5xl px-0 py-8 sm:py-10;
+}
+
+.coupon-page__head {
+  @apply flex flex-col gap-6 min-[1000px]:flex-row min-[1000px]:items-end min-[1000px]:justify-between;
+}
+
+.coupon-page__title {
+  @apply font-serif text-2xl font-semibold text-charcoal sm:text-3xl;
+}
+
+.coupon-page__lead {
+  @apply mt-2 text-sm text-muted;
+}
+
+.coupon-register {
+  @apply flex w-full flex-wrap gap-2 min-[1000px]:w-auto min-[1000px]:min-w-[22rem];
+}
+
+.coupon-register__input {
+  @apply min-w-0 flex-1 rounded-md border border-cream-dark bg-surface px-3 py-2.5 text-sm outline-none focus:border-gold;
+}
+
+.coupon-register__btn {
+  @apply rounded-md bg-navy px-4 py-2.5 text-sm font-semibold text-white hover:bg-navy-light;
+}
+
+.coupon-register__message {
+  @apply w-full text-xs text-muted;
+}
+
+.coupon-tabs {
+  @apply mt-8 flex gap-5 border-b border-cream-dark text-sm;
+}
+
+.coupon-tabs__item {
+  @apply border-b-2 border-transparent pb-2 text-muted;
+}
+
+.coupon-tabs__item--on {
+  @apply border-gold font-semibold text-charcoal;
+}
+
+.coupon-page__list {
+  @apply mt-6 flex flex-col gap-3;
+}
+
+.coupon-page__empty {
+  @apply rounded-xl border border-dashed border-cream-dark bg-surface px-6 py-12 text-sm text-muted;
+}
+
+.coupon-card {
+  @apply flex flex-col gap-4 rounded-xl border border-cream-dark border-l-4 border-l-gold bg-surface p-4 min-[600px]:flex-row min-[600px]:items-center;
+}
+
+.coupon-card--dim {
+  @apply opacity-60;
+}
+
+.coupon-card__benefit {
+  @apply shrink-0 font-serif text-2xl font-semibold text-gold min-[600px]:w-28;
+}
+
+.coupon-card__body {
+  @apply min-w-0 flex-1;
+}
+
+.coupon-card__title {
+  @apply font-serif text-base font-semibold text-charcoal;
+}
+
+.coupon-card__meta {
+  @apply mt-1 text-xs leading-relaxed text-muted;
+}
+
+.coupon-card__use {
+  @apply shrink-0 rounded-md bg-navy px-4 py-2 text-center text-xs font-semibold text-white hover:bg-navy-light;
+}
+
+.coupon-card__badge {
+  @apply shrink-0 text-xs font-medium text-muted;
+}
