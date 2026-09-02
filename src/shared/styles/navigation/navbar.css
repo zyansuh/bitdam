@@ -1,5 +1,5 @@
 .navbar {
-  @apply sticky top-0 z-50 border-b border-cream-dark bg-cream/95 backdrop-blur-sm;
+  @apply sticky top-0 z-50 border-b border-cream-dark bg-cream;
 }
 
 .navbar__inner {
