@@ -1,0 +1,158 @@
+.claim-page {
+  @apply mx-auto max-w-3xl px-0 py-8 sm:py-10;
+}
+
+.claim-page__title {
+  @apply mt-3 font-serif text-2xl font-semibold text-charcoal sm:text-3xl;
+}
+
+.claim-page__form {
+  @apply mt-8 flex flex-col gap-8;
+}
+
+.claim-bc {
+  @apply flex flex-wrap gap-1.5 text-xs text-muted;
+}
+
+.claim-bc a {
+  @apply hover:text-gold;
+}
+
+.claim-section__title {
+  @apply mb-3 font-serif text-base font-semibold text-charcoal;
+}
+
+.claim-product {
+  @apply flex gap-4 rounded-xl border border-cream-dark bg-surface p-4;
+}
+
+.claim-product__media {
+  @apply h-20 w-16 shrink-0 overflow-hidden rounded-md bg-cream-dark sm:h-24 sm:w-20;
+}
+
+.claim-product__image {
+  @apply h-full w-full object-cover;
+}
+
+.claim-product__name {
+  @apply font-semibold text-charcoal hover:text-gold;
+}
+
+.claim-product__meta {
+  @apply mt-1 text-xs text-muted;
+}
+
+.claim-steps {
+  @apply flex w-full items-start justify-between gap-2;
+}
+
+.claim-steps__item {
+  @apply relative flex flex-1 flex-col items-center gap-2 text-center;
+}
+
+.claim-steps__item:not(:last-child)::after {
+  content: '';
+  @apply absolute top-4 left-[calc(50%+1.1rem)] h-px w-[calc(100%-2.2rem)] bg-cream-dark;
+}
+
+.claim-steps__dot {
+  @apply relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-cream-dark bg-surface text-xs text-muted;
+}
+
+.claim-steps__dot--on {
+  @apply border-gold bg-gold text-white;
+}
+
+.claim-steps__label {
+  @apply text-[11px] text-muted sm:text-xs;
+}
+
+.claim-steps__item--on .claim-steps__label {
+  @apply font-semibold text-charcoal;
+}
+
+.claim-kind {
+  @apply flex flex-wrap gap-5;
+}
+
+.claim-kind label {
+  @apply flex items-center gap-2 text-sm text-charcoal;
+}
+
+.claim-field {
+  @apply flex flex-col;
+}
+
+.claim-field select,
+.claim-field textarea {
+  @apply w-full rounded-xl border border-cream-dark bg-surface px-3 py-3 text-sm outline-none focus:border-gold;
+}
+
+.claim-drop {
+  @apply flex w-full flex-col items-center gap-2 rounded-xl border border-dashed border-cream-dark bg-cream-dark/40 px-4 py-10 text-center text-sm text-muted;
+}
+
+.claim-drop--over {
+  @apply border-gold bg-gold/5;
+}
+
+.claim-thumbs {
+  @apply mt-3 flex flex-wrap gap-2;
+}
+
+.claim-thumbs__item {
+  @apply relative h-20 w-20 overflow-hidden rounded-md;
+}
+
+.claim-thumbs__media {
+  @apply h-full w-full object-cover;
+}
+
+.claim-thumbs__remove {
+  @apply absolute top-1 right-1 rounded-full bg-charcoal/70 p-0.5 text-white;
+}
+
+.claim-thumbs__add {
+  @apply flex h-20 w-20 items-center justify-center rounded-md border border-dashed border-cream-dark text-muted;
+}
+
+.claim-pickup {
+  @apply rounded-xl bg-cream-dark/70 p-5;
+}
+
+.claim-pickup dl {
+  @apply space-y-2 text-sm;
+}
+
+.claim-pickup dl > div {
+  @apply grid gap-1 min-[600px]:grid-cols-[5rem_1fr];
+}
+
+.claim-pickup dt {
+  @apply text-muted;
+}
+
+.claim-page__error {
+  @apply text-sm text-gold-dark;
+}
+
+.claim-page__done {
+  @apply mt-8 rounded-xl border border-cream-dark bg-surface px-6 py-12 text-sm text-muted;
+}
+
+.claim-page__actions {
+  @apply flex flex-col gap-3 min-[600px]:flex-row;
+}
+
+.claim-page__back,
+.claim-page__submit {
+  @apply flex-1 rounded-full px-6 py-3.5 text-sm font-semibold;
+}
+
+.claim-page__back {
+  @apply border border-cream-dark bg-surface text-charcoal hover:border-gold hover:text-gold;
+}
+
+.claim-page__submit {
+  @apply bg-gold text-white hover:bg-gold-dark;
+}
