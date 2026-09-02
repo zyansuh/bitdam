@@ -1,0 +1,115 @@
+.policy-page {
+  @apply bg-cream;
+}
+
+.policy-header {
+  @apply border-b border-cream-dark bg-navy px-4 py-12 text-white sm:px-6 sm:py-16 lg:px-8 lg:py-20;
+}
+
+.policy-header__inner {
+  @apply mx-auto max-w-3xl;
+}
+
+.policy-header__kicker {
+  @apply mb-3 text-[11px] font-medium tracking-[0.28em] text-gold uppercase sm:text-xs;
+}
+
+.policy-header__title {
+  @apply font-serif text-3xl font-bold leading-snug tracking-tight sm:text-4xl;
+}
+
+.policy-header__meta {
+  @apply mt-5 flex flex-col gap-1 text-sm text-white/70 sm:flex-row sm:gap-6;
+}
+
+.policy-toc {
+  @apply mx-auto flex max-w-3xl flex-wrap gap-2 px-4 py-6 sm:px-6 lg:px-8;
+}
+
+.policy-toc__link {
+  @apply rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-charcoal/80 transition-colors hover:border-gold hover:text-gold;
+}
+
+.policy-body {
+  @apply mx-auto flex max-w-3xl flex-col gap-16 px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8;
+}
+
+.policy-chapter {
+  @apply scroll-mt-24;
+}
+
+.policy-chapter__meta {
+  @apply mb-8 flex flex-col gap-2 border-b border-cream-dark pb-6;
+}
+
+.policy-chapter__number {
+  @apply font-serif text-sm tracking-[0.2em] text-gold;
+}
+
+.policy-chapter__title {
+  @apply font-serif text-2xl font-bold leading-snug text-charcoal sm:text-3xl;
+}
+
+.policy-article {
+  @apply mb-8 last:mb-0;
+}
+
+.policy-article__title {
+  @apply mb-3 font-serif text-lg font-bold text-charcoal sm:text-xl;
+}
+
+.policy-blocks {
+  @apply flex flex-col gap-3;
+}
+
+.policy-blocks__p {
+  @apply text-sm leading-relaxed text-charcoal/85 sm:text-[0.9375rem];
+}
+
+.policy-blocks__lead {
+  @apply mt-2 text-xs font-semibold tracking-wide text-gold;
+}
+
+.policy-blocks__ol {
+  @apply list-decimal space-y-2 pl-5 text-sm leading-relaxed text-charcoal/85;
+}
+
+.policy-blocks__ul {
+  @apply list-disc space-y-2 pl-5 text-sm leading-relaxed text-charcoal/85;
+}
+
+.policy-blocks__pair {
+  @apply grid grid-cols-[7.5rem_1fr] gap-2 text-sm text-charcoal/85 sm:grid-cols-[9rem_1fr];
+}
+
+.policy-blocks__pair-label {
+  @apply font-medium text-muted;
+}
+
+.policy-blocks__check {
+  @apply flex items-start gap-2.5 text-sm leading-relaxed text-charcoal/85;
+}
+
+.policy-blocks__checkbox {
+  @apply mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface;
+}
+
+.policy-company {
+  @apply scroll-mt-24 rounded-2xl border border-line bg-surface p-6 sm:p-8;
+}
+
+.policy-company__title {
+  @apply mb-5 font-serif text-2xl font-bold text-charcoal;
+}
+
+.policy-company__list {
+  @apply flex flex-col gap-3;
+}
+
+.policy-addendum {
+  @apply scroll-mt-24 border-t border-cream-dark pt-8 text-sm leading-relaxed text-muted;
+}
+
+.policy-addendum__title {
+  @apply mb-3 font-serif text-xl font-bold text-charcoal;
+}
