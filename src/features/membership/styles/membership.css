@@ -1,0 +1,115 @@
+.member-page {
+  @apply mx-auto max-w-6xl px-0 py-8 sm:py-10;
+}
+
+.member-page__title {
+  @apply mb-6 font-serif text-2xl font-semibold text-charcoal sm:text-3xl;
+}
+
+.member-hero {
+  @apply flex flex-col gap-6 rounded-2xl bg-navy p-6 text-white min-[1000px]:flex-row min-[1000px]:items-stretch min-[1000px]:justify-between min-[1000px]:p-8;
+}
+
+.member-hero__title {
+  @apply font-serif text-xl font-semibold sm:text-2xl;
+}
+
+.member-hero__title strong {
+  @apply text-gold;
+}
+
+.member-hero__login {
+  @apply mt-4 inline-flex rounded-full border border-gold px-4 py-2 text-sm font-semibold text-gold hover:bg-gold hover:text-navy;
+}
+
+.member-hero__status {
+  @apply min-w-0 flex-1;
+}
+
+.member-hero__points {
+  @apply flex min-w-[14rem] flex-col justify-center rounded-xl bg-navy-light px-5 py-5;
+}
+
+.member-hero__points p {
+  @apply text-xs text-white/70;
+}
+
+.member-hero__points strong {
+  @apply mt-1 font-serif text-3xl text-gold;
+}
+
+.member-hero__points span {
+  @apply mt-2 text-xs text-white/55;
+}
+
+.member-hero__coupon {
+  @apply mt-4 text-sm font-semibold text-gold hover:text-white;
+}
+
+.member-progress {
+  @apply mt-5;
+}
+
+.member-progress__track {
+  @apply h-2 overflow-hidden rounded-full bg-white/15;
+}
+
+.member-progress__fill {
+  @apply block h-full rounded-full bg-gold;
+}
+
+.member-progress__label {
+  @apply mt-2 text-sm text-white/75;
+}
+
+.member-page__grid {
+  @apply mt-8 grid gap-6 min-[1000px]:grid-cols-[1.2fr_0.8fr];
+}
+
+.member-page__side {
+  @apply flex flex-col gap-6;
+}
+
+.member-card {
+  @apply rounded-xl border border-cream-dark bg-surface p-5;
+}
+
+.member-card__title {
+  @apply font-serif text-lg font-semibold text-charcoal;
+}
+
+.member-history {
+  @apply mt-4 divide-y divide-cream-dark;
+}
+
+.member-history li {
+  @apply flex items-start justify-between gap-4 py-3 text-sm;
+}
+
+.member-history time {
+  @apply mt-1 block text-xs text-muted;
+}
+
+.member-history__plus {
+  @apply shrink-0 text-gold;
+}
+
+.member-history__minus {
+  @apply shrink-0 text-muted;
+}
+
+.member-benefits {
+  @apply mt-4 list-disc space-y-2 pl-5 text-sm text-charcoal/85;
+}
+
+.member-table {
+  @apply mt-4 w-full text-left text-sm;
+}
+
+.member-table th {
+  @apply border-b border-cream-dark pb-2 text-muted;
+}
+
+.member-table td {
+  @apply border-b border-cream-dark py-2.5 text-charcoal;
+}
