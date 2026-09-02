@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/login` · `/signup` |
+| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/login` · `/signup` · `/terms` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -75,6 +75,7 @@
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
+| `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 
 ### 이용자 흐름
 
@@ -93,6 +94,7 @@ flowchart LR
     I -->|전체상품| H
     D -->|홈으로 돌아가기| C
     C --> E[상품·스토리 무한 스크롤]
+    C -->|푸터 이용약관| T[/ TermsPage /]
     D --> F[술추천 맞춤 로그인]
     D --> G[소셜 로그인 UI]
 ```
@@ -106,6 +108,7 @@ flowchart LR
 | **카테고리** | 남색 헤더 · 필터 토글 · 대표 상품 | 동일 + 넓은 캐러셀 | 남색 헤더 · 좌측 필터 + 캐러셀 |
 | **로그인** | 상단 히어로 배너 + 폼 | 폼 중앙 · 피드 3열 | 좌측 sticky 히어로 + 우측 스크롤 |
 | **회원가입** | 로그인과 동일 레이아웃 | 동일 | 동일 |
+| **운영정책** | 남색 헤더 · 목차 칩 · 조문 스크롤 | 동일 | 동일 max-w-3xl |
 
 ---
 
@@ -252,7 +255,8 @@ BITDAM/
     ├── features/
     │   ├── home/                  # pages · components · data · styles
     │   ├── auth/                  # pages · components · data · styles
-    │   └── catalog/               # pages · components · hooks · data · styles · types
+    │   ├── catalog/               # pages · components · hooks · data · styles · types
+    │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
         ├── hooks/                 # useMobileMenu · usePaginated* · useFilterPanel …
@@ -298,6 +302,7 @@ BITDAM/
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
+| **legal** | `TermsPage` | `policy.css` | 운영정책 v1.0 · 푸터 이용약관 |
 
 ### `src/data/`
 
@@ -435,6 +440,7 @@ Vercel → Project → Settings → Environment Variables에서 Production / Pre
 | http://localhost:5173/category/takju | 카테고리 상세 (막걸리) |
 | http://localhost:5173/login | 로그인 |
 | http://localhost:5173/signup | 회원가입 |
+| http://localhost:5173/terms | 서비스 운영정책 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
 
 ---
@@ -532,7 +538,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
-| **2026-09-02** | 카카오 OAuth `state`·쿠키로 다크모드 복구 |
+| **2026-09-02** | 푸터 이용약관 → `/terms` 서비스 운영정책 페이지 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |
 | **2026-09-02** | 홈 랜딩 · 로그인 · 반응형 · 무한 스크롤 초기 구현 |
