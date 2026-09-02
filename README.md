@@ -410,7 +410,20 @@ npm run dev          # http://localhost:5173
 카카오 개발자 콘솔 **Redirect URI**에 아래를 등록해야 합니다.
 
 - `http://localhost:5173/login/kakao/callback`
-- (배포 시) `https://bitdam.vercel.app/login/kakao/callback`
+- (배포 시) `https://<배포 도메인>/login/kakao/callback` 예: `https://bitdam.vercel.app/login/kakao/callback`
+
+### Vercel 환경 변수 (카카오 로그인)
+
+Vite는 `VITE_*` 값을 **빌드 시점**에 넣습니다. 대시보드에 키를 넣은 뒤 **재배포**해야 배포 화면에서 카카오 로그인이 열립니다.
+
+| 변수 | 필수 | 설명 |
+|------|------|------|
+| `VITE_KAKAO_REST_API_KEY` | 예 | 카카오 REST API 키. OAuth `client_id` |
+| `VITE_KAKAO_JAVASCRIPT_KEY` | 아니오 | JS SDK용. 현재 REST 플로우에는 필수는 아님 |
+| `VITE_KAKAO_REDIRECT_URI` | 아니오 | 비우면 `window.location.origin` + `/login/kakao/callback` |
+| `VITE_KAKAO_CLIENT_SECRET` | 아니오 | 콘솔에서 Client Secret을 켠 경우에만 |
+
+Vercel → Project → Settings → Environment Variables에서 Production / Preview / Development에 추가한 뒤 Redeploy 합니다. 잘못된 이름(`VITE_KAKO_API_KEY` 등)만 있어도 빌드에 키가 안 들어갑니다. 코드는 `VITE_KAKAO_API_KEY`, `VITE_KAKO_API_KEY`를 보조로 읽지만 **정식 이름은 `VITE_KAKAO_REST_API_KEY`** 입니다.
 
 ### 확인할 URL
 
@@ -497,6 +510,7 @@ import { getProductsPage } from '../../../data/products';
 | 무한 스크롤 안 됨 | sentinel ref가 viewport에 진입하는지 · `hasMore` 상태 확인 |
 | 이미지 안 보임 | Unsplash URL placeholder — 네트워크·CORS 확인 |
 | 카카오 KOE101 | REST API 키가 맞는지 확인 · 카카오 로그인 활성화 ON · Redirect URI 등록 후 `npm run dev` 재시작 |
+| 배포에서 카카오 키 없음 | Vercel에 `VITE_KAKAO_REST_API_KEY` 추가 후 **Redeploy**. 로컬 `.env`는 배포에 포함되지 않음 |
 
 ---
 
@@ -516,7 +530,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
-| **2026-09-02** | 일반 회원가입(`/signup`) · 이메일 로그인 데모 |
+| **2026-09-02** | 카카오 로그인 안내 모달 · Vercel REST 키 배포 안내 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |
 | **2026-09-02** | 홈 랜딩 · 로그인 · 반응형 · 무한 스크롤 초기 구현 |
