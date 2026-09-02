@@ -2,12 +2,14 @@ import InfiniteProductFeed from '../../../shared/components/feed/InfiniteProduct
 import InfiniteStoryFeed from '../../../shared/components/feed/InfiniteStoryFeed'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import { useLoginReturnPath } from '../../../shared/hooks/useLoginReturnPath'
+import { useScrollPageTop } from '../../../shared/hooks/useScrollPageTop'
 import LoginHeroPanelDesktop from '../components/LoginHeroPanelDesktop'
 import LoginHeroPanelMobile from '../components/LoginHeroPanelMobile'
 import SignupForm from '../components/SignupForm'
 
 export default function SignupPage() {
   const returnTo = useLoginReturnPath()
+  useScrollPageTop()
 
   return (
     <PageLayout>
