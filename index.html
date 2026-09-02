@@ -7,16 +7,39 @@
     <title>빚담 | Bitdam</title>
     <script>
       (function () {
+        function isTheme(value) {
+          return value === 'dark' || value === 'light'
+        }
+        function themeFromState() {
+          try {
+            var state = new URLSearchParams(location.search).get('state')
+            if (!state) return null
+            var token = state.split('.').pop()
+            return isTheme(token) ? token : null
+          } catch (error) {
+            return null
+          }
+        }
+        function themeFromCookie() {
+          try {
+            var match = document.cookie.match(/(?:^|; )bitdam\.theme=(dark|light)/)
+            return match ? match[1] : null
+          } catch (error) {
+            return null
+          }
+        }
         try {
-          var stored = localStorage.getItem('bitdam.theme')
-          var theme =
-            stored === 'dark' || stored === 'light'
-              ? stored
-              : window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light'
+          var stored = null
+          try {
+            stored = localStorage.getItem('bitdam.theme')
+          } catch (storageError) {}
+          var theme = themeFromState() || themeFromCookie() || (isTheme(stored) ? stored : null)
+          if (!theme) {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          }
           document.documentElement.dataset.theme = theme
           document.documentElement.style.colorScheme = theme
+          document.documentElement.classList.toggle('dark', theme === 'dark')
         } catch (error) {
           document.documentElement.dataset.theme = 'light'
         }

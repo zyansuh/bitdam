@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../../shared/hooks/useAuth'
+import { useTheme } from '../../../shared/hooks/useTheme'
+import { readThemeFromOauthState } from '../../../shared/utils/themeStorage'
 import { completeKakaoLogin } from '../utils/kakaoAuth'
 import { formatUserHonorific } from '../../../shared/utils/formatUserHonorific'
 import { clearLoginReturnPath, readLoginReturnPath } from '../../../shared/utils/loginReturnPath'
@@ -11,8 +13,16 @@ export function useKakaoCallback() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const { login } = useAuth()
+  const { setTheme } = useTheme()
   const [status, setStatus] = useState<KakaoCallbackStatus>('loading')
   const [message, setMessage] = useState('카카오 로그인 처리 중...')
+  const oauthTheme = readThemeFromOauthState(searchParams.get('state'))
+
+  useLayoutEffect(() => {
+    if (oauthTheme) {
+      setTheme(oauthTheme)
+    }
+  }, [oauthTheme, setTheme])
 
   useEffect(() => {
     const error = searchParams.get('error')

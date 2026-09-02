@@ -1,6 +1,6 @@
 import { createContext, useLayoutEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Theme } from '../types/theme'
-import { readStoredTheme, resolveTheme, syncDocumentTheme } from '../utils/themeStorage'
+import { applyDocumentTheme, readStoredTheme, resolveTheme, syncDocumentTheme } from '../utils/themeStorage'
 
 interface ThemeContextValue {
   theme: Theme
@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     syncDocumentTheme(theme)
 
     const onPageShow = () => {
-      syncDocumentTheme(theme)
+      applyDocumentTheme(theme)
     }
 
     window.addEventListener('pageshow', onPageShow)
