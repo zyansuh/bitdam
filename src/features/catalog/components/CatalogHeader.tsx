@@ -3,6 +3,7 @@ import { Menu, Search, ShoppingCart, X } from 'lucide-react'
 import BrandLogo from '../../../shared/components/brand/BrandLogo'
 import ThemeToggle from '../../../shared/components/navigation/ThemeToggle'
 import LoginLink from '../../../shared/components/navigation/LoginLink'
+import SignupLink from '../../../shared/components/navigation/SignupLink'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { useMobileMenu } from '../../../shared/hooks/useMobileMenu'
 import { catalogLightLinks, catalogNavyLinks } from '../data/headerLinks'
@@ -50,7 +51,7 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
             <span className="catalog-header__badge">2</span>
           </button>
           {isNavy && !isLoggedIn && (
-            <LoginLink className="catalog-header__signup">회원가입</LoginLink>
+            <SignupLink className="catalog-header__signup">회원가입</SignupLink>
           )}
           {isLoggedIn ? (
             <button type="button" className="catalog-header__logout" onClick={logout}>
