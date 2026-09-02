@@ -6,6 +6,7 @@ import SignupPage from '../features/auth/pages/SignupPage'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
+import TermsPage from '../features/legal/pages/TermsPage'
 
 export function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export function AppRoutes() {
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
+      <Route path="/terms" element={<TermsPage />} />
     </Routes>
   )
 }
