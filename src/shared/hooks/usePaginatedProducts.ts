@@ -15,13 +15,11 @@ export function usePaginatedProducts(initialPage = 0, pageSize = PAGE_SIZE) {
     const nextPage = page + 1
 
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        const nextItems = getProductsPage(nextPage, pageSize)
-        setItems((prev) => [...prev, ...nextItems])
-        setPage(nextPage)
-        setHasMore(hasMoreProducts(nextPage, pageSize))
-        setLoading(false)
-      }, 400)
+      const nextItems = getProductsPage(nextPage, pageSize)
+      setItems((prev) => [...prev, ...nextItems])
+      setPage(nextPage)
+      setHasMore(hasMoreProducts(nextPage, pageSize))
+      setLoading(false)
     })
   }, [loading, hasMore, page, pageSize])
 
