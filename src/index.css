@@ -24,3 +24,4 @@
 @import 'maplibre-gl/dist/maplibre-gl.css';
 @import './features/brewery/styles/brewery-detail.css';
 @import './features/brewery/styles/class-booking.css';
+@import './features/legal/styles/policy.css';

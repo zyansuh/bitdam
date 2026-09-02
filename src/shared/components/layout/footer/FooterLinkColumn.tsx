@@ -18,9 +18,7 @@ export default function FooterLinkColumn({ title, links }: FooterLinkColumnProps
                 {link.label}
               </Link>
             ) : (
-              <a href="#" className="footer__link">
-                {link.label}
-              </a>
+              <span className="footer__link">{link.label}</span>
             )}
           </li>
         ))}

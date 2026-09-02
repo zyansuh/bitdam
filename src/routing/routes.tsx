@@ -9,6 +9,8 @@ import ClassBookingPage from '../features/brewery/pages/ClassBookingPage'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
+import TermsPage from '../features/legal/pages/TermsPage'
+import PrivacyPage from '../features/legal/pages/PrivacyPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -32,6 +34,8 @@ export function AppRoutes() {
       />
       <Route path="/breweries/:id" element={<BreweryDetailPage />} />
       <Route path="/classes" element={<ClassBookingPage />} />
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
   )
 }

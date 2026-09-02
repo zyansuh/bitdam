@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/login` · `/signup` |
+| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/login` · `/signup` · `/terms` · `/privacy` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -78,6 +78,8 @@
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 명인 · 방문 정보 |
 | `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
+| `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
+| `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
 
 ### 이용자 흐름
 
@@ -100,6 +102,8 @@ flowchart LR
     I -->|전체상품| H
     D -->|홈으로 돌아가기| C
     C --> E[상품·스토리 무한 스크롤]
+    C -->|푸터 이용약관| T[/ TermsPage /]
+    C -->|푸터 개인정보처리방침| P[/ PrivacyPage /]
     D --> F[술추천 맞춤 로그인]
     D --> G[소셜 로그인 UI]
 ```
@@ -115,6 +119,8 @@ flowchart LR
 | **회원가입** | 로그인과 동일 레이아웃 | 동일 | 동일 |
 | **양조장** | 권역 탭 · 지도 상단 · 추천 리스트 | 지도·리스트 세로 | 지도 + 추천 2단 |
 | **클래스** | 필터 토글 · 세션 카드 | 동일 | 좌측 필터 + 세션 목록 |
+| **운영정책** | 남색 헤더 · 목차 칩 · 조문 스크롤 | 동일 | 동일 max-w-3xl |
+| **개인정보처리방침** | 운영정책과 동일 레이아웃 | 동일 | 동일 |
 
 ---
 
@@ -227,6 +233,7 @@ flowchart TB
         AUTH[auth/pages + components]
         CAT[catalog/pages + components]
         BREW[brewery/pages + components]
+        LEGAL[legal/pages + components]
     end
     subgraph Shared["shared/"]
         STYLES[styles/]
@@ -235,7 +242,7 @@ flowchart TB
     end
     MAIN --> APP
     APP --> ROUTES
-    ROUTES --> HOME & AUTH & CAT & BREW
+    ROUTES --> HOME & AUTH & CAT & BREW & LEGAL
     HOME --> STYLES
     AUTH --> STYLES
     CAT --> STYLES
@@ -275,7 +282,8 @@ BITDAM/
     │   ├── home/                  # pages · components · data · styles
     │   ├── auth/                  # pages · components · data · styles
     │   ├── catalog/               # pages · components · hooks · data · styles · types
-    │   └── brewery/               # 지도 · 상세 · 클래스
+    │   ├── brewery/               # 지도 · 상세 · 클래스
+    │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
         ├── hooks/                 # useMobileMenu · usePaginated* · useFilterPanel …
@@ -322,6 +330,7 @@ BITDAM/
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | MapLibre · 권역 탭 · 예약 로컬 상태 |
+| **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
 ### `src/data/`
 
@@ -459,6 +468,8 @@ Vercel → Project → Settings → Environment Variables에서 Production / Pre
 | http://localhost:5173/category/takju | 카테고리 상세 (막걸리) |
 | http://localhost:5173/login | 로그인 |
 | http://localhost:5173/signup | 회원가입 |
+| http://localhost:5173/terms | 서비스 운영정책 |
+| http://localhost:5173/privacy | 개인정보처리방침 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
 | http://localhost:5173/breweries | 양조장 지도 |
 | http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
@@ -540,6 +551,7 @@ import { getProductsPage } from '../../../data/products';
 | 카카오 KOE101 | REST API 키가 맞는지 확인 · 카카오 로그인 활성화 ON · Redirect URI 등록 후 `npm run dev` 재시작 |
 | 배포에서 카카오 키 없음 | Vercel에 `VITE_KAKAO_REST_API_KEY` 추가 후 **Redeploy**. 로컬 `.env`는 배포에 포함되지 않음 |
 | 로그인 후 다크모드 해제 | 카카오는 `state`·쿠키·`bitdam.theme` 순으로 복구. 머지 후 하드 리프레시 |
+| 홈 스크롤 버벅임 | `html`에 `scroll-behavior: smooth`를 쓰지 않음. 해시 이동은 `scrollIntoView`만 사용 |
 
 ---
 
@@ -561,6 +573,8 @@ import { getProductsPage } from '../../../data/products';
 | 날짜 | 내용 |
 |------|------|
 | **2026-09-03** | 양조장 지도·상세·클래스 라우트 (`/breweries` · `/classes`) |
+| **2026-09-02** | `/privacy` 개인정보처리방침 페이지 |
+| **2026-09-02** | 홈 스크롤 버벅임 완화 (smooth scroll 제거 · 이미지 lazy · 헤더 blur 제거) |
 | **2026-09-02** | 카카오 OAuth `state`·쿠키로 다크모드 복구 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |

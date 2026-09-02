@@ -11,12 +11,12 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
   고객지원: [
     { label: '자주 묻는 질문' },
     { label: '1:1 문의' },
-    { label: '배송 안내' },
-    { label: '교환/반품' },
+    { label: '배송 안내', to: '/terms#shipping' },
+    { label: '교환/반품', to: '/terms#shipping' },
   ],
   '법적 고지': [
-    { label: '이용약관' },
-    { label: '개인정보처리방침' },
-    { label: '사업자 정보' },
+    { label: '이용약관', to: '/terms' },
+    { label: '개인정보처리방침', to: '/privacy' },
+    { label: '사업자 정보', to: '/terms#business' },
   ],
 }
