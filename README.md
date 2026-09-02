@@ -84,7 +84,8 @@ flowchart LR
     B -->|홈| C[/ HomeLanding /]
     B -->|로그인| D[/ Login /]
     B -->|회원가입| S[/ SignupPage /]
-    D -->|회원 가입| S
+    D -->|회원가입 버튼| S
+    C -->|Navbar 회원가입| S
     S -->|가입 완료| C
     C -->|전통주 / 브랜드 스토어| H[/ ProductListPage /]
     C -->|Navbar 프로필| D
@@ -530,7 +531,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
-| **2026-09-02** | 카카오 로그인 안내 모달 · Vercel REST 키 배포 안내 |
+| **2026-09-02** | 로그인·헤더·모바일 메뉴에서 `/signup` 폼으로 연결 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |
 | **2026-09-02** | 홈 랜딩 · 로그인 · 반응형 · 무한 스크롤 초기 구현 |
