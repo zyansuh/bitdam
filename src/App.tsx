@@ -1,14 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import HomeLanding from './pages/HomeLanding'
-import Login from './pages/Login'
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './shared/providers/authProvider'
+import { AppRoutes } from './routing/routes'
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomeLanding />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </BrowserRouter>
   )
 }
