@@ -15,12 +15,17 @@
   @apply order-2 flex flex-col gap-4 sm:gap-6 lg:order-1;
 }
 
+.hero__en {
+  @apply mb-3 text-xs tracking-[0.22em] text-gold sm:text-sm;
+  font-family: var(--font-en);
+}
+
 .hero__title {
-  @apply font-serif text-3xl leading-tight font-bold tracking-tight text-charcoal sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.2];
+  @apply font-serif text-4xl leading-tight font-semibold tracking-tight text-charcoal sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.15];
 }
 
 .hero__lead {
-  @apply max-w-md text-sm leading-relaxed text-muted sm:text-base;
+  @apply max-w-md text-[0.9375rem] leading-relaxed text-muted sm:text-base;
 }
 
 .hero__actions {
@@ -28,11 +33,11 @@
 }
 
 .hero__cta-primary {
-  @apply w-full rounded-sm bg-gold px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-gold-dark sm:w-auto;
+  @apply inline-flex w-full items-center justify-center rounded-sm bg-gold px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-gold-dark sm:w-auto;
 }
 
 .hero__cta-secondary {
-  @apply inline-flex w-full items-center justify-center rounded-sm border border-charcoal/20 bg-white px-8 py-3 text-sm font-medium text-charcoal transition-colors hover:border-gold hover:text-gold sm:w-auto;
+  @apply inline-flex w-full items-center justify-center rounded-sm border border-charcoal/20 bg-surface px-8 py-3 text-sm font-semibold text-charcoal transition-colors hover:border-gold hover:text-gold sm:w-auto;
 }
 
 .hero__media-wrap {

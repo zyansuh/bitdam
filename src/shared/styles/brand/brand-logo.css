@@ -15,7 +15,7 @@
 }
 
 .brand-logo__glyph {
-  @apply font-serif font-bold text-white;
+  @apply font-logo font-bold text-white;
 }
 
 .brand-logo__glyph--sm {
@@ -27,7 +27,7 @@
 }
 
 .brand-logo__name {
-  @apply font-serif font-bold tracking-tight;
+  @apply font-logo font-bold tracking-tight text-charcoal;
 }
 
 .brand-logo__name--sm {

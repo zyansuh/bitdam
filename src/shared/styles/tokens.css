@@ -14,6 +14,9 @@
   --color-line: #e8e0d8;
   --color-line-strong: #d9d0c8;
   --color-divider: #ddd5cc;
-  --font-serif: 'Nanum Myeongjo', 'Batang', serif;
-  --font-sans: 'Noto Sans KR', sans-serif;
+  --color-surface: #ffffff;
+  --font-serif: 'MaruBuri', serif;
+  --font-sans: 'Pretendard', sans-serif;
+  --font-logo: 'Nanum Myeongjo', 'Batang', serif;
+  --font-en: 'KookminUniversitySunggokSemiSerif', serif;
 }

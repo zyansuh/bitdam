@@ -1,0 +1,19 @@
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+button,
+input[type='submit'] {
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+nav a,
+.navbar__link,
+.catalog-header__link,
+.catalog-header__mobile-link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}

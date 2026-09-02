@@ -91,7 +91,7 @@
 }
 
 .login-mini-mark__glyph {
-  @apply font-serif font-bold text-white;
+  @apply font-logo font-bold text-white;
 }
 
 .login-mini-mark__glyph--desktop {
@@ -103,7 +103,7 @@
 }
 
 .login-brand-name {
-  @apply font-serif font-semibold text-white/90;
+  @apply font-logo font-semibold text-white/90;
 }
 
 .login-brand-name--desktop {
@@ -147,7 +147,7 @@
 }
 
 .login-form__input {
-  @apply w-full rounded-md border border-line bg-white px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted/45 focus:border-gold focus:ring-1 focus:ring-gold/30 sm:py-3.5;
+  @apply w-full rounded-md border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted/45 focus:border-gold focus:ring-1 focus:ring-gold/30 sm:py-3.5;
 }
 
 .login-form__agree {
@@ -163,7 +163,7 @@
 }
 
 .login-form__submit {
-  @apply mt-1 w-full rounded-md bg-gold py-3.5 text-sm font-medium text-white transition-colors hover:bg-gold-dark;
+  @apply mt-1 w-full rounded-md bg-gold py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
 }
 
 .login-divider {

@@ -1,0 +1,15 @@
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-cream: #12161c;
+  --color-cream-dark: #1c2430;
+  --color-surface: #1a212c;
+  --color-gold: #d4ae6a;
+  --color-gold-dark: #c5994c;
+  --color-navy: #0c1016;
+  --color-navy-light: #161d27;
+  --color-charcoal: #f3efe8;
+  --color-muted: #9a9188;
+  --color-line: #2c3544;
+  --color-line-strong: #3a4556;
+  --color-divider: #2c3544;
+}
