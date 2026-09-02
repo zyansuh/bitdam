@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/login` · `/signup` |
+| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/login` · `/signup` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -75,6 +75,9 @@
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
+| `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
+| `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 명인 · 방문 정보 |
+| `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
 
 ### 이용자 흐름
 
@@ -88,6 +91,10 @@ flowchart LR
     C -->|Navbar 회원가입| S
     S -->|가입 완료| C
     C -->|전통주 / 브랜드 스토어| H[/ ProductListPage /]
+    C -->|Navbar 양조장| J[/ BreweryMapPage /]
+    J -->|양조장 이야기| K[/ BreweryDetailPage /]
+    C -->|Navbar 클래스 / 프로모 CTA| L[/ ClassBookingPage /]
+    K -->|투어 신청| L
     C -->|Navbar 프로필| D
     H -->|카테고리·상품 카드| I[/ CategoryPage /]
     I -->|전체상품| H
@@ -106,6 +113,8 @@ flowchart LR
 | **카테고리** | 남색 헤더 · 필터 토글 · 대표 상품 | 동일 + 넓은 캐러셀 | 남색 헤더 · 좌측 필터 + 캐러셀 |
 | **로그인** | 상단 히어로 배너 + 폼 | 폼 중앙 · 피드 3열 | 좌측 sticky 히어로 + 우측 스크롤 |
 | **회원가입** | 로그인과 동일 레이아웃 | 동일 | 동일 |
+| **양조장** | 권역 탭 · 지도 상단 · 추천 리스트 | 지도·리스트 세로 | 지도 + 추천 2단 |
+| **클래스** | 필터 토글 · 세션 카드 | 동일 | 좌측 필터 + 세션 목록 |
 
 ---
 
@@ -119,9 +128,20 @@ flowchart LR
 | 히어로 | `Hero` | 「다섯 개의 손이 한 병에 모이다」· CTA 2종 |
 | 통계 | `Stats` | 31곳 · 9개 권역 · 5개 · 100+ 명 |
 | 급상승 술 | `InfiniteProductFeed` | 8개씩 paginate · Intersection Observer 무한 스크롤 |
-| 프로모션 | `PromoBanner` | 성수동 삼해소주 가옥 · 투어 예약 CTA |
+| 프로모션 | `PromoBanner` | 성수동 삼해소주 가옥 · CTA → `/classes?brewery=samhae` |
 | 스토리 | `InfiniteStoryFeed` | 빚담 이야기 카드 · 4개씩 추가 로드 |
 | 푸터 | `Footer` | **남색(`navy`)** 배경 · 서비스·고객지원·법적 고지 · Instagram/Facebook |
+
+### 🗺️ 양조장 (`/breweries`)
+
+카탈로그 헤더·홈 네비·푸터 「양조장 투어」는 `/breweries`로 연결됩니다. 지도는 MapLibre GL을 lazy chunk로 불러옵니다.
+
+| 기능 | 설명 |
+|------|------|
+| **권역 탭** | 경기~제주 · 지도 포커스와 추천 리스트 동기화 |
+| **핀** | 양조장 위치 · 팝업에서 상세(`/breweries/:id`) |
+| **추천 카드** | 양조장 이야기 · 상품 목록(`/products`) |
+| **클래스** | 상세 하단 투어 바 → `/classes?brewery=` |
 
 ### 🍶 상품 목록 (`/products`)
 
@@ -188,6 +208,7 @@ flowchart LR
 | 스타일 | Tailwind CSS 4.3 | `@tailwindcss/vite` · `@theme` 토큰 |
 | 라우팅 | react-router-dom 7 | `BrowserRouter` |
 | 아이콘 | lucide-react | Search · Cart · User · Menu 등 |
+| 지도 | maplibre-gl | 양조장 지도 lazy chunk |
 | 린트 | oxlint | `npm run lint` |
 
 ---
@@ -205,6 +226,7 @@ flowchart TB
         HOME[home/pages + components]
         AUTH[auth/pages + components]
         CAT[catalog/pages + components]
+        BREW[brewery/pages + components]
     end
     subgraph Shared["shared/"]
         STYLES[styles/]
@@ -213,7 +235,7 @@ flowchart TB
     end
     MAIN --> APP
     APP --> ROUTES
-    ROUTES --> HOME & AUTH & CAT
+    ROUTES --> HOME & AUTH & CAT & BREW
     HOME --> STYLES
     AUTH --> STYLES
     CAT --> STYLES
@@ -252,7 +274,8 @@ BITDAM/
     ├── features/
     │   ├── home/                  # pages · components · data · styles
     │   ├── auth/                  # pages · components · data · styles
-    │   └── catalog/               # pages · components · hooks · data · styles · types
+    │   ├── catalog/               # pages · components · hooks · data · styles · types
+    │   └── brewery/               # 지도 · 상세 · 클래스
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
         ├── hooks/                 # useMobileMenu · usePaginated* · useFilterPanel …
@@ -298,6 +321,7 @@ BITDAM/
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
+| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | MapLibre · 권역 탭 · 예약 로컬 상태 |
 
 ### `src/data/`
 
@@ -436,6 +460,9 @@ Vercel → Project → Settings → Environment Variables에서 Production / Pre
 | http://localhost:5173/login | 로그인 |
 | http://localhost:5173/signup | 회원가입 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
+| http://localhost:5173/breweries | 양조장 지도 |
+| http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
+| http://localhost:5173/classes | 클래스 예약 |
 
 ---
 
@@ -521,6 +548,7 @@ import { getProductsPage } from '../../../data/products';
 ### TODO
 
 - [x] `src/` → `shared/` + `features/` 폴더 구조 리팩터 · CSS/훅/컴포넌트 분리
+- [x] 양조장 지도(`/breweries`) · 상세(`/breweries/:id`) · 클래스(`/classes`)
 - [ ] 상품 단위 상세(PDP) 페이지
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
@@ -532,6 +560,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-03** | 양조장 지도·상세·클래스 라우트 (`/breweries` · `/classes`) |
 | **2026-09-02** | 카카오 OAuth `state`·쿠키로 다크모드 복구 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |
