@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Menu, Search, ShoppingCart, User, X } from 'lucide-react'
+import { Menu, Search, User, X } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 import { formatUserHonorific } from '../../utils/formatUserHonorific'
+import CartLink from './CartLink'
 import ThemeToggle from './ThemeToggle'
 import LoginLink from './LoginLink'
 import NavbarUserAvatar from './NavbarUserAvatar'
@@ -19,10 +20,7 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
       <Link to="/products" aria-label="검색" className="navbar__icon">
         <Search size={20} strokeWidth={1.5} />
       </Link>
-      <button type="button" aria-label="장바구니" className="navbar__cart">
-        <ShoppingCart size={20} strokeWidth={1.5} />
-        <span className="navbar__cart-dot" />
-      </button>
+      <CartLink className="navbar__cart" badgeClassName="navbar__cart-dot" />
       {isLoggedIn ? (
         <button
           type="button"

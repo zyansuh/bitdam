@@ -21,3 +21,4 @@
 @import './features/catalog/styles/catalog.css';
 @import './features/product/styles/product-detail.css';
 @import './features/product/styles/product-compare.css';
+@import './features/cart/styles/cart.css';
