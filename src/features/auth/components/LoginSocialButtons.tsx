@@ -1,8 +1,9 @@
 import { useKakaoLogin } from '../hooks/useKakaoLogin'
+import AuthNoticeDialog from './AuthNoticeDialog'
 import KakaoLoginButton from './KakaoLoginButton'
 
 export default function LoginSocialButtons() {
-  const { startKakaoLogin } = useKakaoLogin()
+  const { startKakaoLogin, notice, clearNotice } = useKakaoLogin()
 
   return (
     <div className="login-social">
@@ -15,6 +16,7 @@ export default function LoginSocialButtons() {
           Apple 로그인
         </button>
       </div>
+      <AuthNoticeDialog notice={notice} onClose={clearNotice} />
     </div>
   )
 }
