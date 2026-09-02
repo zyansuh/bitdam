@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import BrandStoryPage from '../features/brand/pages/BrandStoryPage'
 import KakaoCallbackPage from '../features/auth/pages/KakaoCallbackPage'
@@ -14,6 +15,9 @@ import WishlistPage from '../features/wishlist/pages/WishlistPage'
 import MembershipPage from '../features/membership/pages/MembershipPage'
 import WriteReviewPage from '../features/review/pages/WriteReviewPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
+import BreweryDetailPage from '../features/brewery/pages/BreweryDetailPage'
+import ClassBookingPage from '../features/brewery/pages/ClassBookingPage'
+const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
 export function AppRoutes() {
   return (
@@ -31,6 +35,16 @@ export function AppRoutes() {
       <Route path="/claims/new" element={<ClaimPage />} />
       <Route path="/wishlist" element={<WishlistPage />} />
       <Route path="/membership" element={<MembershipPage />} />
+      <Route
+        path="/breweries"
+        element={
+          <Suspense fallback={<p className="brewery-map-fallback">지도를 불러오는 중…</p>}>
+            <BreweryMapPage />
+          </Suspense>
+        }
+      />
+      <Route path="/breweries/:id" element={<BreweryDetailPage />} />
+      <Route path="/classes" element={<ClassBookingPage />} />
       <Route path="/compare" element={<ComparePage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
     </Routes>
