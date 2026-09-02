@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Menu, Search, ShoppingCart, X } from 'lucide-react'
+import { Menu, Search, X } from 'lucide-react'
 import BrandLogo from '../../../shared/components/brand/BrandLogo'
+import CartLink from '../../../shared/components/navigation/CartLink'
 import ThemeToggle from '../../../shared/components/navigation/ThemeToggle'
 import LoginLink from '../../../shared/components/navigation/LoginLink'
 import { useAuth } from '../../../shared/hooks/useAuth'
@@ -41,14 +42,11 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
               <Search size={20} strokeWidth={1.5} />
             </button>
           )}
-          <button
-            type="button"
-            aria-label="장바구니"
+          <CartLink
             className={`catalog-header__cart catalog-header__icon--${tone}`}
-          >
-            <ShoppingCart size={20} strokeWidth={1.5} />
-            <span className="catalog-header__badge">2</span>
-          </button>
+            badgeClassName="catalog-header__badge"
+            numbered
+          />
           {isNavy && !isLoggedIn && (
             <LoginLink className="catalog-header__signup">회원가입</LoginLink>
           )}

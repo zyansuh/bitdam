@@ -2,6 +2,7 @@ import { Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../../../data/products'
+import { useCart } from '../../../shared/hooks/useCart'
 import { formatWon } from '../../../shared/utils/formatWon'
 import { useItemQuantity } from '../hooks/useItemQuantity'
 import { buildComparePath } from '../utils/compareQuery'
@@ -14,6 +15,7 @@ interface ProductDetailInfoProps {
 
 export default function ProductDetailInfo({ product, similarIds }: ProductDetailInfoProps) {
   const { quantity, decrease, increase } = useItemQuantity()
+  const { addItem } = useCart()
   const [added, setAdded] = useState(false)
   const compareTo = buildComparePath([product.id, ...similarIds])
 
@@ -47,7 +49,10 @@ export default function ProductDetailInfo({ product, similarIds }: ProductDetail
         <button
           type="button"
           className="pdp-info__cart"
-          onClick={() => setAdded(true)}
+          onClick={() => {
+            addItem(product.id, quantity)
+            setAdded(true)
+          }}
         >
           {added ? '담았습니다' : `장바구니 담기 · ${formatWon(product.price * quantity)}`}
         </button>
