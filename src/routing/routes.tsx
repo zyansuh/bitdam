@@ -7,6 +7,7 @@ import ProductListPage from '../features/catalog/pages/ProductListPage'
 import ComparePage from '../features/product/pages/ComparePage'
 import ProductDetailPage from '../features/product/pages/ProductDetailPage'
 import CartPage from '../features/cart/pages/CartPage'
+import CouponBoxPage from '../features/coupon/pages/CouponBoxPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
 
 export function AppRoutes() {
@@ -19,6 +20,7 @@ export function AppRoutes() {
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/coupons" element={<CouponBoxPage />} />
       <Route path="/compare" element={<ComparePage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
     </Routes>

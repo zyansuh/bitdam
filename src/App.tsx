@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './shared/providers/authProvider'
 import { CartProvider } from './shared/providers/cartProvider'
+import { CouponProvider } from './shared/providers/couponProvider'
 import { ThemeProvider } from './shared/providers/themeProvider'
 import { AppRoutes } from './routing/routes'
 
@@ -10,7 +11,9 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <CartProvider>
-          <AppRoutes />
+          <CouponProvider>
+            <AppRoutes />
+          </CouponProvider>
         </CartProvider>
       </AuthProvider>
     </ThemeProvider>
