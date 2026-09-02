@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
 import { useFeaturedCarousel } from '../hooks/useFeaturedCarousel'
@@ -18,7 +19,9 @@ export default function FeaturedProduct({ products }: FeaturedProductProps) {
   return (
     <article className="featured">
       <div className="featured__media">
-        <img src={current.image} alt={current.name} className="featured__image" />
+        <Link to={`/products/${current.id}`}>
+          <img src={current.image} alt={current.name} className="featured__image" />
+        </Link>
         {featured.length > 1 && (
           <>
             <button
@@ -44,19 +47,21 @@ export default function FeaturedProduct({ products }: FeaturedProductProps) {
         )}
       </div>
       <div className="featured__body">
-        <div>
-          <p className="featured__region">
-            {current.region} · {current.abv}%
-          </p>
-          <h3 className="featured__name">{current.name}</h3>
-        </div>
-        <div className="featured__meta">
-          <span className="featured__price">{current.price.toLocaleString()}원</span>
-          <span className="featured__rating">
-            <Star size={14} className="featured__star" />
-            {current.rating}
-          </span>
-        </div>
+        <Link to={`/products/${current.id}`} className="featured__link">
+          <div>
+            <p className="featured__region">
+              {current.region} · {current.abv}%
+            </p>
+            <h3 className="featured__name">{current.name}</h3>
+          </div>
+          <div className="featured__meta">
+            <span className="featured__price">{current.price.toLocaleString()}원</span>
+            <span className="featured__rating">
+              <Star size={14} className="featured__star" />
+              {current.rating}
+            </span>
+          </div>
+        </Link>
       </div>
     </article>
   )

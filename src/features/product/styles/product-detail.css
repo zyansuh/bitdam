@@ -1,0 +1,151 @@
+.taste-bars {
+  @apply flex flex-col gap-2.5;
+}
+
+.taste-bars--compact {
+  @apply gap-1.5;
+}
+
+.taste-bars__row {
+  @apply grid grid-cols-[3.5rem_1fr_2.25rem] items-center gap-2;
+}
+
+.taste-bars--compact .taste-bars__row {
+  @apply grid-cols-[2.75rem_1fr_1.75rem] gap-1.5;
+}
+
+.taste-bars__label {
+  @apply text-xs text-muted;
+}
+
+.taste-bars__track {
+  @apply h-1.5 overflow-hidden rounded-full bg-cream-dark;
+}
+
+.taste-bars__fill {
+  @apply block h-full rounded-full bg-gold;
+}
+
+.taste-bars__value {
+  @apply text-right text-[11px] text-muted;
+}
+
+.pdp {
+  @apply mx-auto max-w-7xl px-0 py-8 sm:py-10;
+}
+
+.pdp__hero {
+  @apply grid gap-8 min-[1000px]:grid-cols-2 min-[1000px]:items-start min-[1000px]:gap-12;
+}
+
+.pdp-gallery__stage {
+  @apply overflow-hidden rounded-sm bg-cream-dark;
+}
+
+.pdp-gallery__image {
+  @apply aspect-[4/5] w-full object-cover;
+}
+
+.pdp-gallery__thumbs {
+  @apply mt-3 flex gap-2;
+}
+
+.pdp-gallery__thumb {
+  @apply h-16 w-16 overflow-hidden rounded-sm border border-transparent;
+}
+
+.pdp-gallery__thumb--on {
+  @apply border-gold;
+}
+
+.pdp-gallery__thumb-image {
+  @apply h-full w-full object-cover;
+}
+
+.pdp-info__brewery {
+  @apply text-xs text-muted sm:text-sm;
+}
+
+.pdp-info__name {
+  @apply mt-2 font-sans text-xl font-semibold text-charcoal sm:text-[1.375rem];
+}
+
+.pdp-info__tagline {
+  @apply mt-3 text-sm leading-relaxed text-charcoal/80;
+}
+
+.pdp-info__badges {
+  @apply mt-4 flex flex-wrap gap-2;
+}
+
+.pdp-info__badge {
+  @apply rounded-full border border-cream-dark bg-surface px-3 py-1 text-xs text-charcoal/80;
+}
+
+.pdp-info__price {
+  @apply mt-5 font-serif text-2xl font-bold text-gold;
+}
+
+.pdp-info__taste {
+  @apply mt-6 rounded-sm border border-cream-dark bg-surface p-4 sm:p-5;
+}
+
+.pdp-info__taste-title {
+  @apply mb-3 text-sm font-semibold text-charcoal;
+}
+
+.pdp-info__actions {
+  @apply mt-6 flex flex-wrap items-center gap-2;
+}
+
+.pdp-info__qty {
+  @apply flex items-center gap-3 rounded-sm border border-cream-dark bg-surface px-3 py-2 text-sm;
+}
+
+.pdp-info__wish {
+  @apply rounded-sm border border-cream-dark p-2.5 text-charcoal/70 transition-colors hover:text-gold;
+}
+
+.pdp-info__cart {
+  @apply flex-1 rounded-sm bg-gold px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
+}
+
+.pdp-info__links {
+  @apply mt-3 flex flex-wrap gap-4;
+}
+
+.pdp-info__compare {
+  @apply inline-flex text-sm font-medium text-gold transition-colors hover:text-gold-dark;
+}
+
+.pdp-story {
+  @apply mt-12 border-t border-cream-dark pt-8 sm:mt-16;
+}
+
+.pdp-story__tabs {
+  @apply mb-6 flex gap-5 text-sm;
+}
+
+.pdp-story__tab {
+  @apply border-b-2 border-transparent pb-1 text-muted;
+}
+
+.pdp-story__tab--on {
+  @apply border-b-2 border-gold pb-1 font-medium text-charcoal;
+}
+
+.pdp-story__title {
+  @apply font-serif text-xl font-bold text-charcoal sm:text-2xl;
+}
+
+.pdp-story__body {
+  @apply mt-4 max-w-3xl text-sm leading-[1.9] text-charcoal/85 sm:text-base;
+}
+
+.pdp-story__awards {
+  @apply mt-6 space-y-1 text-sm text-muted;
+}
+
+.pdp-missing {
+  @apply mx-auto flex min-h-[40vh] max-w-7xl flex-col items-start justify-center gap-4 py-16;
+}
