@@ -3,21 +3,61 @@ import { Link } from 'react-router-dom'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import { useCart } from '../../../shared/hooks/useCart'
+import { useCoupons } from '../../../shared/hooks/useCoupons'
+import type { Coupon } from '../../../shared/types/coupon'
 import { calcCartTotals } from '../../../shared/utils/cartTotals'
+import { couponEffect } from '../../../shared/utils/couponEffect'
 import CatalogHeader from '../../catalog/components/CatalogHeader'
+import CartCoupon from '../components/CartCoupon'
 import CartItemRow from '../components/CartItemRow'
 import CartSummary from '../components/CartSummary'
 
 export default function CartPage() {
   const { items, setQuantity, removeItem, clearCart } = useCart()
+  const { findAvailable, registerCode, markUsed } = useCoupons()
+  const [couponInput, setCouponInput] = useState('')
+  const [applied, setApplied] = useState<Coupon | null>(null)
+  const [couponMessage, setCouponMessage] = useState('')
   const [payment, setPayment] = useState('신용카드')
 
   const itemsAmount = useMemo(
     () => items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
     [items],
   )
-  const effect = { discount: 0, freeShipping: false }
+  const effect = applied ? couponEffect(applied, itemsAmount) : { discount: 0, freeShipping: false }
   const totals = calcCartTotals(itemsAmount, effect.discount, effect.freeShipping)
+
+  function applyOwned(coupon: Coupon) {
+    setApplied(coupon)
+    setCouponInput(coupon.code)
+    setCouponMessage(`${coupon.title}이 적용되었습니다.`)
+  }
+
+  function applyCoupon() {
+    const owned = findAvailable(couponInput)
+    if (owned) {
+      applyOwned(owned)
+      return
+    }
+    const result = registerCode(couponInput)
+    if (result.coupon) {
+      applyOwned(result.coupon)
+      return
+    }
+    setApplied(null)
+    setCouponMessage(result.message)
+  }
+
+  useEffect(() => {
+    const code = searchParams.get('coupon')
+    if (!code) {
+      return
+    }
+    const owned = findAvailable(code)
+    if (owned) {
+      applyOwned(owned)
+    }
+  }, [searchParams])
 
   function checkout() {
     clearCart()
@@ -33,6 +73,9 @@ export default function CartPage() {
             <p>담긴 술이 없습니다.</p>
             <Link to="/products" className="cart-empty__link">
               상품 보러 가기
+            </Link>
+            <Link to="/coupons" className="cart-empty__link">
+              내 쿠폰함
             </Link>
           </div>
         ) : (
@@ -50,6 +93,12 @@ export default function CartPage() {
                   onRemove={() => removeItem(item.product.id)}
                 />
               ))}
+              <CartCoupon
+                code={couponInput}
+                message={couponMessage}
+                onCodeChange={setCouponInput}
+                onApply={applyCoupon}
+              />
             </div>
             <CartSummary
               totals={totals}
