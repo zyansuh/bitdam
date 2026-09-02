@@ -1,0 +1,51 @@
+.footer {
+  @apply bg-navy text-white/70;
+}
+
+.footer__inner {
+  @apply mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16;
+}
+
+.footer__grid {
+  @apply grid grid-cols-2 gap-8 sm:gap-10 md:grid-cols-4 md:gap-12;
+}
+
+.footer__brand {
+  @apply col-span-2 md:col-span-1;
+}
+
+.footer__brand-row {
+  @apply mb-4 flex items-center gap-2;
+}
+
+.footer__copy {
+  @apply text-sm leading-relaxed;
+}
+
+.footer__heading {
+  @apply mb-4 text-sm font-semibold text-white;
+}
+
+.footer__list {
+  @apply space-y-2.5;
+}
+
+.footer__link {
+  @apply text-sm transition-colors hover:text-gold;
+}
+
+.footer__bottom {
+  @apply mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row;
+}
+
+.footer__copyright {
+  @apply text-xs;
+}
+
+.footer__sns {
+  @apply flex items-center gap-4;
+}
+
+.footer__sns-link {
+  @apply transition-colors hover:text-gold;
+}
