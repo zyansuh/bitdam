@@ -6,6 +6,7 @@ export const catalogLightLinks: NavLinkItem[] = [
   { label: '양조장', to: '/products' },
   { label: '기획전', to: '/products' },
   { label: '쿠폰함', to: '/coupons' },
+  { label: '위시', to: '/wishlist' },
   { label: '스토리', to: '/story' },
 ]
 
