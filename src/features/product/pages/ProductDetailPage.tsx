@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
-import type { ProductReview } from '../../../shared/types/review'
+import { useProductReviews } from '../../../shared/hooks/useProductReviews'
 import CatalogHeader from '../../catalog/components/CatalogHeader'
 import ProductDetailGallery from '../components/ProductDetailGallery'
 import ProductDetailInfo from '../components/ProductDetailInfo'
@@ -10,7 +10,7 @@ import { useProductDetail } from '../hooks/useProductDetail'
 
 export default function ProductDetailPage() {
   const { product, similar } = useProductDetail()
-  const reviews: ProductReview[] = []
+  const reviews = useProductReviews(product?.id ?? 0)
 
   if (!product) {
     return (

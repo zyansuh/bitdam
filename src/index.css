@@ -23,3 +23,5 @@
 @import './features/product/styles/product-compare.css';
 @import './features/cart/styles/cart.css';
 @import './features/coupon/styles/coupon.css';
+@import './features/order/styles/order-complete.css';
+@import './features/review/styles/review.css';
