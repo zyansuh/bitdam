@@ -24,6 +24,7 @@ export interface PolicyDocument {
   version: string
   effectiveDate: string
   revisedDate: string
+  intro?: string[]
   chapters: PolicyChapter[]
   company: PolicyPair[]
   addendum: string
