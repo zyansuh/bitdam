@@ -1,5 +1,7 @@
 .product-card {
   @apply cursor-pointer;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 360px;
 }
 
 .product-card__link {
