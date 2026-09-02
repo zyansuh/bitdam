@@ -1,0 +1,35 @@
+.kakao-login-button {
+  @apply w-full overflow-hidden rounded-md bg-kakao p-0 transition-opacity hover:opacity-90;
+}
+
+.kakao-login-button__img {
+  @apply block h-auto w-full;
+}
+
+.kakao-callback {
+  @apply flex min-h-dvh flex-col items-center justify-center gap-4 bg-cream px-6 text-center;
+}
+
+.kakao-callback__message {
+  @apply whitespace-pre-line text-sm leading-relaxed text-charcoal;
+}
+
+.kakao-callback__message--loading {
+  @apply text-muted;
+}
+
+.kakao-callback__message--success {
+  @apply font-medium text-gold;
+}
+
+.kakao-callback__message--error {
+  @apply text-charcoal;
+}
+
+.kakao-callback__back {
+  @apply text-sm text-gold transition-colors hover:text-gold-dark;
+}
+
+.catalog-header__logout {
+  @apply rounded-full border border-gold px-3.5 py-1.5 text-xs font-medium text-gold transition-colors hover:bg-gold hover:text-white sm:text-sm;
+}

@@ -13,4 +13,5 @@
 @import './features/home/styles/stats.css';
 @import './features/home/styles/promo-banner.css';
 @import './features/auth/styles/login.css';
+@import './features/auth/styles/kakao.css';
 @import './features/catalog/styles/catalog.css';
