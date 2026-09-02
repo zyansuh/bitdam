@@ -1,0 +1,19 @@
+@theme {
+  --color-cream: #faf7f4;
+  --color-cream-dark: #f0ebe4;
+  --color-gold: #c5994c;
+  --color-gold-dark: #a87d3a;
+  --color-navy: #1a2332;
+  --color-navy-light: #243044;
+  --color-charcoal: #2c2c2c;
+  --color-muted: #888888;
+  --color-kakao: #fee500;
+  --color-kakao-text: #191919;
+  --color-naver: #03c75a;
+  --color-apple: #1a1c20;
+  --color-line: #e8e0d8;
+  --color-line-strong: #d9d0c8;
+  --color-divider: #ddd5cc;
+  --font-serif: 'Nanum Myeongjo', 'Batang', serif;
+  --font-sans: 'Noto Sans KR', sans-serif;
+}

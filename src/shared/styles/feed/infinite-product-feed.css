@@ -1,0 +1,39 @@
+.product-feed {
+  @apply bg-cream py-10 sm:py-14 lg:py-20;
+}
+
+.product-feed__inner {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.product-feed__header {
+  @apply mb-8 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between;
+}
+
+.product-feed__title {
+  @apply font-serif text-xl font-bold text-charcoal sm:text-2xl md:text-3xl;
+}
+
+.product-feed__subtitle {
+  @apply mt-1 text-xs text-muted sm:text-sm;
+}
+
+.product-feed__grid {
+  @apply grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8;
+}
+
+.product-feed__sentinel {
+  @apply flex justify-center py-10;
+}
+
+.feed-status {
+  @apply flex items-center gap-2 text-sm text-muted;
+}
+
+.feed-status__spinner {
+  @apply h-4 w-4 animate-spin rounded-full border-2 border-gold border-t-transparent;
+}
+
+.feed-status__end {
+  @apply text-xs text-muted;
+}

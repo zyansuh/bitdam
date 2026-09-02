@@ -1,0 +1,227 @@
+.login-page {
+  @apply flex min-h-dvh flex-col min-[1000px]:flex-row;
+}
+
+.login-page__main {
+  @apply min-w-0 flex-1 bg-cream;
+}
+
+.login-hero-desktop {
+  @apply relative hidden overflow-hidden min-[1000px]:sticky min-[1000px]:top-0 min-[1000px]:flex min-[1000px]:h-dvh min-[1000px]:w-1/2 min-[1000px]:shrink-0;
+}
+
+.login-hero-desktop__image {
+  @apply absolute inset-0 h-full w-full object-cover;
+}
+
+.login-hero-desktop__shade-x {
+  @apply absolute inset-0 bg-linear-to-r from-black/65 via-black/40 to-black/20;
+}
+
+.login-hero-desktop__shade-y {
+  @apply absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/10;
+}
+
+.login-hero-desktop__content {
+  @apply relative z-10 flex h-full w-full flex-col justify-between p-10 xl:p-16;
+}
+
+.login-hero-desktop__copy {
+  @apply max-w-lg pt-4;
+}
+
+.login-hero-desktop__brand {
+  @apply flex items-center gap-2.5 pb-2;
+}
+
+.login-hero-mobile {
+  @apply relative min-[1000px]:hidden;
+}
+
+.login-hero-mobile__image {
+  @apply h-44 w-full object-cover sm:h-52;
+}
+
+.login-hero-mobile__shade {
+  @apply absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-black/20;
+}
+
+.login-hero-mobile__content {
+  @apply absolute inset-0 flex flex-col justify-end p-5 sm:p-6;
+}
+
+.login-hero-mobile__brand {
+  @apply mt-4 flex items-center gap-2;
+}
+
+.login-hero-title {
+  @apply font-serif leading-[1.35] font-bold tracking-tight text-white;
+}
+
+.login-hero-title--full {
+  @apply text-[1.75rem] xl:text-[2.25rem];
+}
+
+.login-hero-title--compact {
+  @apply text-xl sm:text-2xl;
+}
+
+.login-hero-lead {
+  @apply leading-relaxed text-white/70;
+}
+
+.login-hero-lead--full {
+  @apply mt-6 text-sm xl:text-[0.9375rem];
+}
+
+.login-hero-lead--compact {
+  @apply mt-3 text-xs sm:text-sm;
+}
+
+.login-mini-mark {
+  @apply flex items-center justify-center rounded-full bg-gold/90;
+}
+
+.login-mini-mark--desktop {
+  @apply h-7 w-7;
+}
+
+.login-mini-mark--mobile {
+  @apply h-6 w-6;
+}
+
+.login-mini-mark__glyph {
+  @apply font-serif font-bold text-white;
+}
+
+.login-mini-mark__glyph--desktop {
+  @apply text-[11px];
+}
+
+.login-mini-mark__glyph--mobile {
+  @apply text-[10px];
+}
+
+.login-brand-name {
+  @apply font-serif font-semibold text-white/90;
+}
+
+.login-brand-name--desktop {
+  @apply text-base;
+}
+
+.login-brand-name--mobile {
+  @apply text-sm;
+}
+
+.login-form {
+  @apply mx-auto w-full max-w-[400px] px-4 py-8 sm:px-6 sm:py-10 min-[1000px]:px-8 min-[1000px]:py-12;
+}
+
+.login-form__intro {
+  @apply mb-8 flex flex-col items-center text-center sm:mb-10;
+}
+
+.login-form__badge {
+  @apply flex h-12 w-12 items-center justify-center rounded-full bg-gold shadow-sm sm:h-14 sm:w-14;
+}
+
+.login-form__badge-glyph {
+  @apply font-serif text-base font-bold text-white sm:text-lg;
+}
+
+.login-form__title {
+  @apply mt-5 font-serif text-xl leading-tight font-bold text-charcoal sm:mt-6 sm:text-[1.625rem];
+}
+
+.login-form__desc {
+  @apply mt-3 text-xs leading-relaxed text-muted sm:text-[0.8125rem];
+}
+
+.login-form__fields {
+  @apply flex flex-col gap-4 sm:gap-[1.125rem];
+}
+
+.login-form__label {
+  @apply mb-2 block text-xs font-medium text-charcoal;
+}
+
+.login-form__input {
+  @apply w-full rounded-md border border-line bg-white px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted/45 focus:border-gold focus:ring-1 focus:ring-gold/30 sm:py-3.5;
+}
+
+.login-form__agree {
+  @apply flex cursor-pointer items-start gap-2.5 pt-0.5;
+}
+
+.login-form__checkbox {
+  @apply mt-0.5 h-4 w-4 shrink-0 rounded border-line-strong accent-gold;
+}
+
+.login-form__agree-text {
+  @apply text-xs leading-relaxed text-muted;
+}
+
+.login-form__submit {
+  @apply mt-1 w-full rounded-md bg-gold py-3.5 text-sm font-medium text-white transition-colors hover:bg-gold-dark;
+}
+
+.login-divider {
+  @apply relative my-6 sm:my-7;
+}
+
+.login-divider__line-wrap {
+  @apply absolute inset-0 flex items-center;
+}
+
+.login-divider__line {
+  @apply w-full border-t border-cream-dark;
+}
+
+.login-divider__label-wrap {
+  @apply relative flex justify-center;
+}
+
+.login-divider__label {
+  @apply bg-cream px-4 text-xs text-muted;
+}
+
+.login-social {
+  @apply flex flex-col gap-2.5;
+}
+
+.login-social__row {
+  @apply grid grid-cols-2 gap-2.5;
+}
+
+.login-social__naver {
+  @apply rounded-md bg-naver py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90;
+}
+
+.login-social__apple {
+  @apply rounded-md bg-apple py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90;
+}
+
+.login-form__help {
+  @apply mt-8 flex items-center justify-center gap-3 text-xs text-muted sm:mt-10;
+}
+
+.login-form__help-link {
+  @apply transition-colors hover:text-gold;
+}
+
+.login-form__help-sep {
+  @apply text-divider;
+}
+
+.login-form__home {
+  @apply mt-6 text-center min-[1000px]:hidden;
+}
+
+.login-form__home-link {
+  @apply text-xs text-muted transition-colors hover:text-gold;
+}
+
+.login-feed {
+  @apply border-t border-cream-dark pt-0;
+}

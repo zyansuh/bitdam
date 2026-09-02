@@ -4,4 +4,20 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    port: 5173,
+    strictPort: true,
+    proxy: {
+      '/kakao-oauth': {
+        target: 'https://kauth.kakao.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/kakao-oauth/, ''),
+      },
+      '/kakao-api': {
+        target: 'https://kapi.kakao.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/kakao-api/, ''),
+      },
+    },
+  },
 })

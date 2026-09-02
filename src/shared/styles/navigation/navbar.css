@@ -1,0 +1,59 @@
+.navbar {
+  @apply sticky top-0 z-50 border-b border-cream-dark bg-cream/95 backdrop-blur-sm;
+}
+
+.navbar__inner {
+  @apply mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-6 lg:px-8;
+}
+
+.navbar__desktop {
+  @apply hidden items-center gap-8 min-[1000px]:flex lg:gap-10;
+}
+
+.navbar__link {
+  @apply text-sm font-medium text-charcoal/80 transition-colors hover:text-gold;
+}
+
+.navbar__actions {
+  @apply flex items-center gap-3 sm:gap-5;
+}
+
+.navbar__icon {
+  @apply text-charcoal/70 transition-colors hover:text-gold;
+}
+
+.navbar__cart {
+  @apply relative text-charcoal/70 transition-colors hover:text-gold;
+}
+
+.navbar__cart-dot {
+  @apply absolute -top-1 -right-1 h-2 w-2 rounded-full bg-gold;
+}
+
+.navbar__menu-button {
+  @apply text-charcoal/70 transition-colors hover:text-gold min-[1000px]:hidden;
+}
+
+.navbar__mobile {
+  @apply border-t border-cream-dark bg-cream px-4 py-4 min-[1000px]:hidden;
+}
+
+.navbar__mobile-list {
+  @apply flex flex-col gap-1;
+}
+
+.navbar__mobile-link {
+  @apply block rounded-md px-3 py-2.5 text-sm font-medium text-charcoal/80 transition-colors hover:bg-cream-dark hover:text-gold;
+}
+
+.navbar__account {
+  @apply flex items-center gap-1.5 text-charcoal/70 transition-colors hover:text-gold;
+}
+
+.navbar__avatar {
+  @apply h-7 w-7 shrink-0 rounded-full object-cover ring-1 ring-charcoal/10;
+}
+
+.navbar__user-name {
+  @apply hidden max-w-28 truncate text-xs font-medium text-charcoal/80 sm:inline;
+}

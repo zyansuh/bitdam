@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/kakao-oauth/:path*",
+      "destination": "https://kauth.kakao.com/:path*"
+    },
+    {
+      "source": "/kakao-api/:path*",
+      "destination": "https://kapi.kakao.com/:path*"
+    },
+    {
+      "source": "/((?!kakao-oauth|kakao-api|assets|favicon).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

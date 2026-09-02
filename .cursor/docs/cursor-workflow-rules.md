@@ -66,18 +66,18 @@ src/
 └── assets/                          # 이미지, 아이콘, 폰트 파일
 ```
 
-### 현재 프로젝트 (마이그레이션 전 레거시 위치)
+### 현재 프로젝트 (마이그레이션 완료)
 
-아래 파일은 초기 구현 시 `src/components`, `src/pages`에 두었습니다. **새 작업부터**는 위 구조를 따르고, 기존 파일은 리팩터 시점에 점진적으로 이동합니다.
+레거시 `src/components`, `src/pages`는 제거했고, 새 파일은 위 구조를 따른다.
 
-| 현재 경로 | 목표 경로 |
-|-----------|-----------|
-| `src/pages/Login.tsx` | `src/features/auth/pages/Login.tsx` |
-| `src/pages/HomeLanding.tsx` | `src/features/home/pages/HomeLanding.tsx` |
-| `src/components/Navbar.tsx` | `src/shared/components/navigation/Navbar.tsx` |
-| `src/components/Hero.tsx` 등 | `src/features/home/components/` |
-| `src/data/products.ts` | `src/features/home/data/products.ts` |
-| `src/App.tsx` (라우팅) | `src/routing/routes.tsx` + `src/App.tsx` |
+| 경로 | 역할 |
+|------|------|
+| `src/features/auth/pages/Login.tsx` | 로그인 페이지 |
+| `src/features/home/pages/HomeLanding.tsx` | 홈 랜딩 |
+| `src/shared/components/navigation/Navbar.tsx` | 전역 네비 |
+| `src/shared/components/layout/footer/Footer.tsx` | 푸터 조합 |
+| `src/shared/styles/` | 토큰 · 글로벌 · 공용 컴포넌트 CSS |
+| `src/routing/routes.tsx` | 라우트 정의 |
 
 ### 분류 판단 규칙
 
