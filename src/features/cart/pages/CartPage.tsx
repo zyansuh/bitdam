@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import { useCart } from '../../../shared/hooks/useCart'
@@ -13,8 +13,9 @@ import CartItemRow from '../components/CartItemRow'
 import CartSummary from '../components/CartSummary'
 
 export default function CartPage() {
+  const [searchParams] = useSearchParams()
   const { items, setQuantity, removeItem, clearCart } = useCart()
-  const { findAvailable, registerCode, markUsed } = useCoupons()
+  const { findAvailable, registerCode } = useCoupons()
   const [couponInput, setCouponInput] = useState('')
   const [applied, setApplied] = useState<Coupon | null>(null)
   const [couponMessage, setCouponMessage] = useState('')
