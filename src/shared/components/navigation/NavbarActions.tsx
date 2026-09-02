@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Menu, Search, ShoppingCart, User, X } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 import { formatUserHonorific } from '../../utils/formatUserHonorific'
+import ThemeToggle from './ThemeToggle'
 import LoginLink from './LoginLink'
 import NavbarUserAvatar from './NavbarUserAvatar'
 
@@ -42,6 +43,7 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
           <User size={20} strokeWidth={1.5} />
         </LoginLink>
       )}
+      <ThemeToggle />
       <button
         type="button"
         aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
