@@ -1,0 +1,152 @@
+.review-page {
+  @apply mx-auto max-w-3xl px-0 py-8 sm:py-10;
+}
+
+.review-page__title {
+  @apply font-serif text-2xl font-semibold text-charcoal sm:text-3xl;
+}
+
+.review-page__lead {
+  @apply mt-2 text-sm text-muted;
+}
+
+.review-page__form {
+  @apply mt-8 flex flex-col gap-8;
+}
+
+.review-product {
+  @apply mt-6 flex items-center gap-4 rounded-xl border border-cream-dark bg-surface p-4;
+}
+
+.review-product__image {
+  @apply h-20 w-16 rounded-md object-cover sm:h-24 sm:w-20;
+}
+
+.review-product__name {
+  @apply font-semibold text-charcoal;
+}
+
+.review-product__price {
+  @apply mt-1 text-sm font-semibold text-gold;
+}
+
+.review-section__title {
+  @apply mb-3 font-serif text-base font-semibold text-charcoal;
+}
+
+.review-rating {
+  @apply grid gap-8 min-[600px]:grid-cols-2;
+}
+
+.review-rating__copy {
+  @apply mt-2 text-sm text-muted;
+}
+
+.star-score {
+  @apply flex items-center gap-1 text-gold;
+}
+
+.star-score__btn {
+  @apply text-gold/40 transition-colors hover:text-gold;
+}
+
+.star-score__btn--on {
+  @apply text-gold;
+}
+
+.review-attrs {
+  @apply space-y-3;
+}
+
+.review-attrs__label {
+  @apply mb-1 text-sm text-charcoal;
+}
+
+.review-attrs__label span {
+  @apply text-xs text-muted;
+}
+
+.review-tags {
+  @apply flex flex-wrap gap-2;
+}
+
+.review-tags__chip {
+  @apply rounded-full border border-cream-dark bg-surface px-3 py-1.5 text-xs text-charcoal/80;
+}
+
+.review-tags__chip--on {
+  @apply border-navy bg-navy text-white;
+}
+
+.review-body {
+  @apply w-full resize-y rounded-xl border border-cream-dark bg-surface p-4 text-sm leading-relaxed outline-none focus:border-gold;
+}
+
+.review-body__count {
+  @apply mt-2 text-right text-xs text-muted;
+}
+
+.review-drop {
+  @apply flex w-full flex-col items-center gap-1 rounded-xl border border-dashed border-cream-dark bg-surface px-4 py-10 text-sm text-muted;
+}
+
+.review-drop--over {
+  @apply border-gold bg-gold/5;
+}
+
+.review-drop em {
+  @apply text-xs not-italic text-muted/80;
+}
+
+.review-thumbs {
+  @apply mt-3 flex flex-wrap gap-2;
+}
+
+.review-thumbs__item {
+  @apply relative h-20 w-20 overflow-hidden rounded-md;
+}
+
+.review-thumbs__media {
+  @apply h-full w-full object-cover;
+}
+
+.review-thumbs__remove {
+  @apply absolute top-1 right-1 rounded-full bg-charcoal/70 p-0.5 text-white;
+}
+
+.review-thumbs__add {
+  @apply flex h-20 w-20 items-center justify-center rounded-md border border-dashed border-cream-dark text-muted;
+}
+
+.review-page__error {
+  @apply text-sm text-gold-dark;
+}
+
+.review-page__submit {
+  @apply block w-full rounded-md bg-gold py-3.5 text-center text-sm font-semibold text-white hover:bg-gold-dark;
+}
+
+.review-page__done,
+.review-page__back {
+  @apply mt-8 text-sm text-gold;
+}
+
+.pdp-reviews {
+  @apply mt-6 space-y-4;
+}
+
+.pdp-reviews__item {
+  @apply rounded-xl border border-cream-dark bg-surface p-4;
+}
+
+.pdp-reviews__meta {
+  @apply text-xs text-muted;
+}
+
+.pdp-reviews__body {
+  @apply mt-2 text-sm leading-relaxed text-charcoal/85;
+}
+
+.pdp-reviews__write {
+  @apply mt-4 inline-block text-sm font-semibold text-gold;
+}
