@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 import type { NavLinkItem } from '../../types/navigation'
+import LoginLink from './LoginLink'
+import SignupLink from './SignupLink'
 
 interface NavbarMobileMenuProps {
   links: NavLinkItem[]
@@ -7,6 +10,8 @@ interface NavbarMobileMenuProps {
 }
 
 export default function NavbarMobileMenu({ links, onClose }: NavbarMobileMenuProps) {
+  const { isLoggedIn } = useAuth()
+
   return (
     <nav className="navbar__mobile">
       <ul className="navbar__mobile-list">
@@ -17,6 +22,20 @@ export default function NavbarMobileMenu({ links, onClose }: NavbarMobileMenuPro
             </Link>
           </li>
         ))}
+        {!isLoggedIn && (
+          <>
+            <li>
+              <SignupLink className="navbar__mobile-link" onClick={onClose}>
+                회원가입
+              </SignupLink>
+            </li>
+            <li>
+              <LoginLink className="navbar__mobile-link" onClick={onClose}>
+                로그인
+              </LoginLink>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   )
