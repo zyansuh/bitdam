@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import KakaoCallbackPage from '../features/auth/pages/KakaoCallbackPage'
 import Login from '../features/auth/pages/Login'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
@@ -9,6 +10,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomeLanding />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
     </Routes>
