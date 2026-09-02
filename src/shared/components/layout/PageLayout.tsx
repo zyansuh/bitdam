@@ -6,9 +6,5 @@ interface PageLayoutProps {
 }
 
 export default function PageLayout({ children, className = '' }: PageLayoutProps) {
-  return (
-    <div className={`min-h-dvh w-full overflow-x-hidden bg-cream ${className}`}>
-      {children}
-    </div>
-  )
+  return <div className={`page-layout ${className}`.trim()}>{children}</div>
 }
