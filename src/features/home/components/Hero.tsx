@@ -29,7 +29,15 @@ export default function Hero() {
         <div className="hero__media-wrap">
           <div className="hero__media">
             <div className="hero__image-frame">
-              <img src={heroContent.image} alt={heroContent.imageAlt} className="hero__image" />
+              <img
+                src={heroContent.image}
+                alt={heroContent.imageAlt}
+                className="hero__image"
+                width={800}
+                height={1000}
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
             <div className="hero__accent" />
           </div>
