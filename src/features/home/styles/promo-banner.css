@@ -1,0 +1,35 @@
+.promo-banner {
+  @apply relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8;
+}
+
+.promo-banner__frame {
+  @apply relative overflow-hidden rounded-sm;
+}
+
+.promo-banner__image {
+  @apply h-44 w-full object-cover sm:h-48 md:h-56 lg:h-64;
+}
+
+.promo-banner__overlay {
+  @apply absolute inset-0 bg-navy/60;
+}
+
+.promo-banner__content {
+  @apply absolute inset-0 flex flex-col items-start justify-end gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-0 md:px-12;
+}
+
+.promo-banner__title {
+  @apply font-serif text-base leading-snug font-bold text-white sm:text-xl md:text-2xl lg:text-3xl;
+}
+
+.promo-banner__break {
+  @apply sm:hidden;
+}
+
+.promo-banner__space {
+  @apply hidden sm:inline;
+}
+
+.promo-banner__cta {
+  @apply w-full shrink-0 rounded-sm bg-gold px-5 py-2.5 text-xs font-medium text-white transition-colors hover:bg-gold-dark sm:w-auto md:px-6 md:py-3 md:text-sm;
+}
