@@ -61,6 +61,9 @@ export default function ProductDetailInfo({ product, similarIds }: ProductDetail
         <Link to={compareTo} className="pdp-info__compare">
           비슷한 술 비교하기
         </Link>
+        <Link to={`/products/${product.id}/review`} className="pdp-info__compare">
+          구매 후기 작성
+        </Link>
       </div>
     </div>
   )
