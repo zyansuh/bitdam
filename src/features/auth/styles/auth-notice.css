@@ -1,0 +1,43 @@
+.auth-notice {
+  @apply fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center sm:p-6;
+}
+
+.auth-notice__backdrop {
+  @apply absolute inset-0 bg-navy/55 backdrop-blur-[2px];
+}
+
+.auth-notice__panel {
+  @apply relative z-10 w-full max-w-[22.5rem] overflow-hidden rounded-2xl border border-line bg-cream shadow-[0_24px_60px_rgba(26,35,50,0.28)];
+}
+
+.auth-notice__accent {
+  @apply h-1.5 w-full bg-linear-to-r from-gold via-gold-dark to-gold;
+}
+
+.auth-notice__body {
+  @apply flex flex-col items-center px-6 pb-6 pt-7 text-center;
+}
+
+.auth-notice__mark {
+  @apply flex h-12 w-12 items-center justify-center rounded-full bg-gold shadow-sm;
+}
+
+.auth-notice__mark-glyph {
+  @apply font-logo text-base font-bold text-white;
+}
+
+.auth-notice__title {
+  @apply mt-4 font-serif text-lg font-bold leading-snug text-charcoal;
+}
+
+.auth-notice__copy {
+  @apply mt-2.5 text-[0.8125rem] leading-relaxed text-muted;
+}
+
+.auth-notice__actions {
+  @apply mt-6 flex w-full flex-col gap-2;
+}
+
+.auth-notice__confirm {
+  @apply w-full rounded-md bg-gold py-3 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
+}
