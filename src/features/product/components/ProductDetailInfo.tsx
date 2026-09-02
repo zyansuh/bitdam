@@ -2,9 +2,7 @@ import { Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../../../data/products'
-import { useCart } from '../../../shared/hooks/useCart'
 import { formatWon } from '../../../shared/utils/formatWon'
-import WishHeartButton from '../../../shared/components/product/WishHeartButton'
 import { useItemQuantity } from '../hooks/useItemQuantity'
 import { buildComparePath } from '../utils/compareQuery'
 import TasteBars from './TasteBars'
@@ -16,7 +14,6 @@ interface ProductDetailInfoProps {
 
 export default function ProductDetailInfo({ product, similarIds }: ProductDetailInfoProps) {
   const { quantity, decrease, increase } = useItemQuantity()
-  const { addItem } = useCart()
   const [added, setAdded] = useState(false)
   const compareTo = buildComparePath([product.id, ...similarIds])
 
@@ -47,14 +44,10 @@ export default function ProductDetailInfo({ product, similarIds }: ProductDetail
             <Plus size={16} />
           </button>
         </div>
-        <WishHeartButton productId={product.id} />
         <button
           type="button"
           className="pdp-info__cart"
-          onClick={() => {
-            addItem(product.id, quantity)
-            setAdded(true)
-          }}
+          onClick={() => setAdded(true)}
         >
           {added ? '담았습니다' : `장바구니 담기 · ${formatWon(product.price * quantity)}`}
         </button>
@@ -62,12 +55,6 @@ export default function ProductDetailInfo({ product, similarIds }: ProductDetail
       <div className="pdp-info__links">
         <Link to={compareTo} className="pdp-info__compare">
           비슷한 술 비교하기
-        </Link>
-        <Link to={`/products/${product.id}/review`} className="pdp-info__compare">
-          구매 후기 작성
-        </Link>
-        <Link to="/wishlist" className="pdp-info__compare">
-          위시리스트
         </Link>
       </div>
     </div>
