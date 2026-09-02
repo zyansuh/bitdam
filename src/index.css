@@ -18,4 +18,5 @@
 @import './features/brand/styles/brand-story.css';
 @import './features/auth/styles/login.css';
 @import './features/auth/styles/kakao.css';
+@import './features/auth/styles/auth-notice.css';
 @import './features/catalog/styles/catalog.css';

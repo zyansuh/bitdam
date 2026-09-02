@@ -7,11 +7,35 @@
 }
 
 .kakao-callback {
-  @apply flex min-h-dvh flex-col items-center justify-center gap-4 bg-cream px-6 text-center;
+  @apply flex min-h-dvh flex-col items-center justify-center bg-cream px-5 py-10;
+}
+
+.kakao-callback__card {
+  @apply w-full max-w-[22.5rem] overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_20px_48px_rgba(26,35,50,0.12)];
+}
+
+.kakao-callback__accent {
+  @apply h-1.5 w-full bg-linear-to-r from-gold via-gold-dark to-gold;
+}
+
+.kakao-callback__inner {
+  @apply flex flex-col items-center px-6 pb-8 pt-8 text-center;
+}
+
+.kakao-callback__mark {
+  @apply flex h-12 w-12 items-center justify-center rounded-full bg-gold shadow-sm;
+}
+
+.kakao-callback__mark-glyph {
+  @apply font-logo text-base font-bold text-white;
+}
+
+.kakao-callback__title {
+  @apply mt-4 font-serif text-lg font-bold leading-snug text-charcoal;
 }
 
 .kakao-callback__message {
-  @apply whitespace-pre-line text-sm leading-relaxed text-charcoal;
+  @apply mt-2.5 whitespace-pre-line text-[0.8125rem] leading-relaxed text-muted;
 }
 
 .kakao-callback__message--loading {
@@ -19,7 +43,7 @@
 }
 
 .kakao-callback__message--success {
-  @apply font-medium text-gold;
+  @apply font-medium text-gold-dark;
 }
 
 .kakao-callback__message--error {
@@ -27,7 +51,7 @@
 }
 
 .kakao-callback__back {
-  @apply text-sm text-gold transition-colors hover:text-gold-dark;
+  @apply mt-6 inline-flex w-full items-center justify-center rounded-md bg-gold py-3 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
 }
 
 .catalog-header__logout {

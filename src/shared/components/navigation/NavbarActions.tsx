@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { formatUserHonorific } from '../../utils/formatUserHonorific'
 import ThemeToggle from './ThemeToggle'
 import LoginLink from './LoginLink'
+import SignupLink from './SignupLink'
 import NavbarUserAvatar from './NavbarUserAvatar'
 
 interface NavbarActionsProps {
@@ -39,9 +40,12 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
           </span>
         </button>
       ) : (
-        <LoginLink aria-label="로그인" className="navbar__icon">
-          <User size={20} strokeWidth={1.5} />
-        </LoginLink>
+        <>
+          <SignupLink className="navbar__signup">회원가입</SignupLink>
+          <LoginLink aria-label="로그인" className="navbar__icon">
+            <User size={20} strokeWidth={1.5} />
+          </LoginLink>
+        </>
       )}
       <ThemeToggle />
       <button

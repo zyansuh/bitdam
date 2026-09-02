@@ -170,6 +170,10 @@
   @apply mt-1 w-full rounded-md bg-gold py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
 }
 
+.login-form__signup {
+  @apply mt-2.5 flex w-full items-center justify-center rounded-md border border-gold bg-transparent py-3.5 text-sm font-semibold text-gold transition-colors hover:bg-gold hover:text-white;
+}
+
 .login-divider {
   @apply relative my-6 sm:my-7;
 }
@@ -211,7 +215,7 @@
 }
 
 .login-form__help-link {
-  @apply transition-colors hover:text-gold;
+  @apply bg-transparent p-0 text-xs text-muted transition-colors hover:text-gold;
 }
 
 .login-form__help-sep {

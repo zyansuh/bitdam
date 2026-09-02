@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { buildSignupPath } from '../../../shared/utils/signupPath'
 import { useEmailLogin } from '../hooks/useEmailLogin'
 import LoginSocialButtons from './LoginSocialButtons'
 import LoginSocialDivider from './LoginSocialDivider'
@@ -10,7 +11,7 @@ interface LoginFormProps {
 export default function LoginForm({ returnTo = '/' }: LoginFormProps) {
   const backLabel = returnTo === '/' ? '← 홈으로 돌아가기' : '← 이전 페이지로 돌아가기'
   const form = useEmailLogin(returnTo)
-  const signupTo = returnTo === '/' ? '/signup' : `/signup?from=${encodeURIComponent(returnTo)}`
+  const signupTo = buildSignupPath(returnTo)
 
   return (
     <div className="login-form">
@@ -75,14 +76,14 @@ export default function LoginForm({ returnTo = '/' }: LoginFormProps) {
       <LoginSocialDivider />
       <LoginSocialButtons />
 
+      <Link to={signupTo} className="login-form__signup">
+        회원가입
+      </Link>
+
       <div className="login-form__help">
-        <Link to={signupTo} className="login-form__help-link">
-          회원 가입
-        </Link>
-        <span className="login-form__help-sep">|</span>
-        <a href="#" className="login-form__help-link">
+        <button type="button" className="login-form__help-link">
           비밀번호 찾기
-        </a>
+        </button>
       </div>
       <p className="login-form__home">
         <Link to={returnTo} className="login-form__home-link">

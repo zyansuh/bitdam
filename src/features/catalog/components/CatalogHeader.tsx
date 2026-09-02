@@ -50,8 +50,10 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
             <ShoppingCart size={20} strokeWidth={1.5} />
             <span className="catalog-header__badge">2</span>
           </button>
-          {isNavy && !isLoggedIn && (
-            <SignupLink className="catalog-header__signup">회원가입</SignupLink>
+          {!isLoggedIn && (
+            <SignupLink className={`catalog-header__signup catalog-header__signup--${tone}`}>
+              회원가입
+            </SignupLink>
           )}
           {isLoggedIn ? (
             <button type="button" className="catalog-header__logout" onClick={logout}>
@@ -85,6 +87,26 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
                 </Link>
               </li>
             ))}
+            {!isLoggedIn && (
+              <>
+                <li>
+                  <SignupLink
+                    className={`catalog-header__mobile-link catalog-header__mobile-link--${tone}`}
+                    onClick={closeMenu}
+                  >
+                    회원가입
+                  </SignupLink>
+                </li>
+                <li>
+                  <LoginLink
+                    className={`catalog-header__mobile-link catalog-header__mobile-link--${tone}`}
+                    onClick={closeMenu}
+                  >
+                    로그인
+                  </LoginLink>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       )}

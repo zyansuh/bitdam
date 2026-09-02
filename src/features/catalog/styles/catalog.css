@@ -55,7 +55,15 @@
 }
 
 .catalog-header__signup {
-  @apply hidden text-sm text-white/80 transition-colors hover:text-gold min-[1000px]:inline;
+  @apply text-sm transition-colors hover:text-gold;
+}
+
+.catalog-header__signup--navy {
+  @apply text-white/80;
+}
+
+.catalog-header__signup--light {
+  @apply text-charcoal/80;
 }
 
 .catalog-header__login {
