@@ -1,11 +1,6 @@
-import { createContext, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useLayoutEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Theme } from '../types/theme'
-import {
-  applyDocumentTheme,
-  readStoredTheme,
-  resolveTheme,
-  writeStoredTheme,
-} from '../utils/themeStorage'
+import { readStoredTheme, resolveTheme, syncDocumentTheme } from '../utils/themeStorage'
 
 interface ThemeContextValue {
   theme: Theme
@@ -20,24 +15,29 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    const next = resolveTheme(readStoredTheme())
-    applyDocumentTheme(next)
-    return next
-  })
+  const [theme, setThemeState] = useState<Theme>(() => resolveTheme(readStoredTheme()))
+
+  useLayoutEffect(() => {
+    syncDocumentTheme(theme)
+
+    const onPageShow = () => {
+      syncDocumentTheme(theme)
+    }
+
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [theme])
 
   const value = useMemo<ThemeContextValue>(
     () => ({
       theme,
       setTheme: (next) => {
-        writeStoredTheme(next)
-        applyDocumentTheme(next)
+        syncDocumentTheme(next)
         setThemeState(next)
       },
       toggleTheme: () => {
         const next = theme === 'dark' ? 'light' : 'dark'
-        writeStoredTheme(next)
-        applyDocumentTheme(next)
+        syncDocumentTheme(next)
         setThemeState(next)
       },
     }),

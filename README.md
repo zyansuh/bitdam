@@ -512,6 +512,7 @@ import { getProductsPage } from '../../../data/products';
 | 이미지 안 보임 | Unsplash URL placeholder — 네트워크·CORS 확인 |
 | 카카오 KOE101 | REST API 키가 맞는지 확인 · 카카오 로그인 활성화 ON · Redirect URI 등록 후 `npm run dev` 재시작 |
 | 배포에서 카카오 키 없음 | Vercel에 `VITE_KAKAO_REST_API_KEY` 추가 후 **Redeploy**. 로컬 `.env`는 배포에 포함되지 않음 |
+| 로그인 후 다크모드 해제 | `bitdam.theme`을 로그인 전에 저장함. 카카오 왕복 뒤에도 localStorage 값 유지 |
 
 ---
 
@@ -531,7 +532,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
-| **2026-09-02** | 로그인·헤더·모바일 메뉴에서 `/signup` 폼으로 연결 |
+| **2026-09-02** | 테마를 `bitdam.theme`에 저장해 로그인·카카오 왕복 후에도 다크모드 유지 |
 | **2026-09-02** | CSS / hook / component 종류별 분리 · `shared/` + `features/` 마이그레이션 |
 | **2026-09-02** | 상품 목록(`/products`) · 카테고리 상세(`/category/:slug`) · 남색 푸터 |
 | **2026-09-02** | 홈 랜딩 · 로그인 · 반응형 · 무한 스크롤 초기 구현 |

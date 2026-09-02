@@ -35,3 +35,8 @@ export function applyDocumentTheme(theme: Theme): void {
   document.documentElement.dataset.theme = theme
   document.documentElement.style.colorScheme = theme
 }
+
+export function syncDocumentTheme(theme: Theme): void {
+  writeStoredTheme(theme)
+  applyDocumentTheme(theme)
+}
