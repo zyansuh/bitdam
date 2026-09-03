@@ -1,0 +1,135 @@
+.class-page {
+  @apply mx-auto max-w-7xl py-8 sm:py-10;
+}
+
+.class-page__head {
+  @apply mb-6;
+}
+
+.class-page__title {
+  @apply font-serif text-2xl font-semibold text-charcoal sm:text-3xl;
+}
+
+.class-page__sub {
+  @apply mt-2 text-sm text-muted;
+}
+
+.class-featured {
+  @apply relative overflow-hidden rounded-2xl bg-navy;
+}
+
+.class-featured__image {
+  @apply h-56 w-full object-cover opacity-50 sm:h-64;
+}
+
+.class-featured__copy {
+  @apply absolute inset-0 flex flex-col justify-end px-6 py-6 text-white sm:px-10 sm:py-8;
+}
+
+.class-featured__kicker {
+  @apply text-xs tracking-wide text-gold;
+}
+
+.class-featured__title {
+  @apply mt-2 max-w-xl font-serif text-xl font-semibold sm:text-3xl;
+}
+
+.class-featured__price {
+  @apply mt-3 text-lg font-semibold;
+}
+
+.class-featured__btn {
+  @apply mt-4 w-fit rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-white hover:bg-gold-dark disabled:bg-muted;
+}
+
+.class-page__layout {
+  @apply mt-8 grid gap-8 min-[1000px]:grid-cols-[16rem_1fr] min-[1000px]:items-start;
+}
+
+.class-filters {
+  @apply flex flex-col gap-6 rounded-2xl border border-cream-dark bg-surface p-4;
+}
+
+.class-filters__group {
+  @apply flex flex-col gap-2 border-0 p-0;
+}
+
+.class-filters__group legend {
+  @apply mb-1 font-semibold text-charcoal;
+}
+
+.class-filters__check {
+  @apply flex items-center gap-2 text-sm text-charcoal/80;
+}
+
+.class-cal__title {
+  @apply mb-3 font-semibold text-charcoal;
+}
+
+.class-cal__week {
+  @apply mb-1 grid grid-cols-7 text-center text-[11px] text-muted;
+}
+
+.class-cal__grid {
+  @apply grid grid-cols-7 gap-1;
+}
+
+.class-cal__day {
+  @apply aspect-square rounded-md text-sm text-charcoal hover:bg-cream-dark;
+}
+
+.class-cal__day--open {
+  @apply font-semibold text-gold;
+}
+
+.class-cal__day--on {
+  @apply bg-navy text-white hover:bg-navy;
+}
+
+.class-list {
+  @apply flex flex-col gap-4;
+}
+
+.class-card {
+  @apply flex flex-col gap-3 rounded-2xl border border-cream-dark bg-surface p-3 sm:flex-row sm:items-center;
+}
+
+.class-card--closed {
+  @apply opacity-70;
+}
+
+.class-card__image {
+  @apply h-36 w-full rounded-xl object-cover sm:h-24 sm:w-32 sm:shrink-0;
+}
+
+.class-card__body {
+  @apply min-w-0 flex-1;
+}
+
+.class-card__title {
+  @apply font-serif text-base font-semibold text-charcoal;
+}
+
+.class-card__meta {
+  @apply mt-2 flex flex-wrap gap-3 text-xs text-muted;
+}
+
+.class-card__meta span {
+  @apply inline-flex items-center gap-1;
+}
+
+.class-card__action {
+  @apply flex shrink-0 flex-col items-start gap-2 sm:items-end;
+}
+
+.class-card__price {
+  @apply font-semibold text-charcoal;
+}
+
+.class-card__btn {
+  @apply rounded-md bg-gold px-4 py-2 text-sm font-semibold text-white hover:bg-gold-dark disabled:bg-muted disabled:text-white;
+}
+
+.class-empty {
+  @apply rounded-2xl border border-dashed border-cream-dark bg-surface px-4 py-10 text-sm text-muted;
+}

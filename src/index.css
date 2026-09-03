@@ -20,4 +20,8 @@
 @import './features/auth/styles/kakao.css';
 @import './features/auth/styles/auth-notice.css';
 @import './features/catalog/styles/catalog.css';
+@import './features/brewery/styles/brewery-map.css';
+@import 'maplibre-gl/dist/maplibre-gl.css';
+@import './features/brewery/styles/brewery-detail.css';
+@import './features/brewery/styles/class-booking.css';
 @import './features/legal/styles/policy.css';
