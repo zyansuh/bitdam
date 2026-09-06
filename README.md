@@ -94,6 +94,15 @@
 | `/account/notifications` | `SettingsNotificationsPage` | 알림 설정 |
 | `/account/connections` | `SettingsConnectionsPage` | 연동된 서비스 |
 | `/account/withdraw` | `SettingsWithdrawPage` | 탈퇴하기 |
+| `/notifications` | `NotificationsPage` | 알림 센터 · 분류 필터 · 읽음 처리 |
+| `/help` | `HelpHomePage` | 고객센터 → 배송 FAQ로 이동 |
+| `/help/:category` | `HelpCategoryPage` | 주문/결제·배송·교환/반품·회원·포인트·기타 FAQ |
+| `/help/chat` | `HelpChatPage` | `/chat`으로 이동 |
+| `/notices` | `NoticeListPage` | 공지 목록 · 분류 탭 · 1~5페이지 |
+| `/notices/new` | `NoticeWritePage` | 공지 작성 · 중요 토글 |
+| `/notices/digest` | `NoticeDigestPage` | 중요·최근 모아보기 |
+| `/notices/:id` | `NoticeDetailPage` | 공지 상세 |
+| `/chat` | `ChatPage` | 빚담 추천 AI · 왼쪽 대화 목록 |
 
 ### 이용자 흐름
 
@@ -111,7 +120,7 @@ flowchart LR
     J -->|햄버거 투어 목록| K[/ BreweryDetailPage /]
     C -->|Navbar 프로필 · 마이페이지| Q[/ MypagePage /]
     Q -->|개인정보 설정| R[/ SettingsProfilePage /]
-    C -->|Navbar 고객센터| R
+    C -->|Navbar 고객센터| HLP[/ HelpCategoryPage /]
     C -->|Navbar 프로필 · 내 글 목록| M[/ CommunityPage /]
     C -->|Navbar 클래스 / 프로모 CTA| L[/ ClassBookingPage /]
     K -->|투어 신청| L
@@ -317,6 +326,10 @@ BITDAM/
     │   ├── brewery/               # 지도 · 상세 · 클래스 · 투어 헤더
     │   ├── community/             # 본인 글 블로그
     │   ├── account/               # 마이페이지 · 개인정보 설정
+    │   ├── help/                  # 고객센터 FAQ
+    │   ├── notify/                # 알림 센터
+    │   ├── notice/                # 공지사항
+    │   ├── chat/                  # 빚담 추천 AI
     │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
@@ -349,7 +362,7 @@ BITDAM/
 | **styles/** | `tokens.css` · `global.css` · footer/navbar/feed/product CSS |
 | **hooks/** | `useMobileMenu` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
 | **components/layout/footer/** | `Footer` · `FooterBrand` · `FooterLinkColumn` · `FooterBottom` |
-| **components/navigation/** | `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` · `CustomerCenterMenu` |
+| **components/navigation/** | `SiteHeader` · `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` |
 | **components/brand/** | `BrandLogo` |
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
@@ -362,10 +375,14 @@ BITDAM/
 |---------|-------|--------|------|
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
-| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
-| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | 투어 헤더 · MapLibre · 예약 카드 |
+| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
+| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
 | **community** | `CommunityPage` · `CommunityWritePage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 상세 · localStorage |
 | **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
+| **help** | `HelpCategoryPage` · `HelpChatPage` | `help.css` | 고객센터 FAQ 분류 |
+| **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
+| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·모아보기 |
+| **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
 ### `src/data/`
@@ -373,7 +390,8 @@ BITDAM/
 | 파일 | 설명 |
 |------|------|
 | `products.ts` | `Product` 타입 · 48종 mock · 지역/도수/맛 태그 |
-| `navLinks.ts` | 홈 네비 링크 |
+| `navLinks.ts` | 기본 헤더 링크 (고객센터 포함) |
+| `settingsNav.ts` · `headerAccountLinks.ts` · `helpNav.ts` | 설정·계정 메뉴·FAQ 분류 |
 | `footerLinks.ts` | 푸터 컬럼 링크 |
 | `stories.ts` | 스토리 피드 mock |
 
@@ -492,8 +510,22 @@ Vite는 `VITE_*` 값을 **빌드 시점**에 넣습니다. 대시보드에 키�
 | `VITE_KAKAO_JAVASCRIPT_KEY` | 아니오 | JS SDK용. 현재 REST 플로우에는 필수는 아님 |
 | `VITE_KAKAO_REDIRECT_URI` | 쓰지 않음 | 넣으면 배포에서도 localhost로 고정됨. **Vercel에서 삭제** |
 | `VITE_KAKAO_CLIENT_SECRET` | 아니오 | 콘솔에서 Client Secret을 켠 경우에만 |
+| `VITE_OPENAI_API_KEY` | 아니오 | 있으면 `/chat`이 OpenAI `gpt-4o-mini`를 호출. **프론트에 노출됨** |
 
 Vercel → Project → Settings → Environment Variables에서 Production / Preview / Development에 추가한 뒤 Redeploy 합니다. 잘못된 이름(`VITE_KAKO_API_KEY` 등)만 있어도 빌드에 키가 안 들어갑니다. 코드는 `VITE_KAKAO_API_KEY`, `VITE_KAKO_API_KEY`를 보조로 읽지만 **정식 이름은 `VITE_KAKAO_REST_API_KEY`** 입니다.
+
+### 빚담 추천 AI (OpenAI)
+
+Fine-tuning으로 “교육”하지 않습니다. **시스템 프롬프트 + 카탈로그 목록 + 대화 맥락**으로 역할을 고정합니다.
+
+| 단계 | 하는 일 |
+|------|---------|
+| **1. 교육(역할 부여)** | `src/features/chat/data/chatPrompt.ts`의 `BITDAM_SYSTEM_PROMPT`에 말투, 19세 제한, 추천 규칙, 상품 목록을 적습니다. 여기를 고치면 AI 성격이 바뀝니다. |
+| **2. 사용** | `.env`에 `VITE_OPENAI_API_KEY=sk-...`를 넣고 `npm run dev`. `/chat`에서 질문하면 `askBitdamModel`이 Chat Completions를 호출합니다. |
+| **3. 키 없음** | 키가 없으면 같은 화면이 **로컬 규칙 답변**으로 동작합니다. |
+| **4. 운영** | `VITE_` 키는 브라우저에 노출됩니다. 배포 전에는 서버(또는 Vercel serverless)에서 OpenAI를 호출하도록 옮기세요. |
+
+Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'user'/'assistant', content: '예시' }`를 추가하면 됩니다. 상품 카드는 답변 텍스트에 카탈로그 상품명이 있을 때 붙습니다.
 
 ### 확인할 URL
 
@@ -511,6 +543,8 @@ Vercel → Project → Settings → Environment Variables에서 Production / Pre
 | http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
 | http://localhost:5173/classes | 클래스 예약 |
 | http://localhost:5173/community | 내 글 커뮤니티 |
+| http://localhost:5173/notices | 공지사항 |
+| http://localhost:5173/chat | 빚담 추천 AI |
 
 ---
 
@@ -610,6 +644,9 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 공지사항(`/notices`) · 모아보기·작성 · 빚담 추천 AI(`/chat`) |
+| **2026-09-07** | 공용 `SiteHeader` · 헤더 데이터는 `src/data` · 고객센터는 `/help` 링크 |
+| **2026-09-07** | 알림 센터(`/notifications`) · 고객센터 FAQ(`/help/:category`) |
 | **2026-09-07** | 마이페이지(`/mypage`) · 개인정보 설정(`/account`) · 헤더 고객센터·프로필 메뉴 |
 | **2026-09-07** | 커뮤니티 글쓰기·상세 · 양조장 예약 카드 · 카카오 Redirect는 origin만 사용 |
 | **2026-09-03** | 전 페이지 헤더·햄버거(`SiteHamburgerMenu`) · 양조장 투어·커뮤니티 |

@@ -57,7 +57,14 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       id: 'help',
       label: '고객센터',
       to: '/help',
-      items: [{ label: '알림 센터', to: '/notifications' }, { label: '1:1 문의', to: '/mypage/support' }, ...helpNav],
+      items: [
+        { label: '공지사항', to: '/notices' },
+        { label: '공지 모아보기', to: '/notices/digest' },
+        { label: 'AI 추천', to: '/chat' },
+        { label: '알림 센터', to: '/notifications' },
+        { label: '1:1 문의', to: '/mypage/support' },
+        ...helpNav,
+      ],
       clusters: [],
     },
   ]
