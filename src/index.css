@@ -28,4 +28,5 @@
 @import './features/brewery/styles/class-booking.css';
 @import './features/brewery/styles/brewery-header.css';
 @import './features/community/styles/community.css';
+@import './features/account/styles/account.css';
 @import './features/legal/styles/policy.css';

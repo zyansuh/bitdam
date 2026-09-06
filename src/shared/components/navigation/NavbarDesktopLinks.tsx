@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { NavLinkItem } from '../../types/navigation'
+import CustomerCenterMenu from './CustomerCenterMenu'
 
 interface NavbarDesktopLinksProps {
   links: NavLinkItem[]
@@ -13,6 +14,7 @@ export default function NavbarDesktopLinks({ links }: NavbarDesktopLinksProps) {
           {link.label}
         </Link>
       ))}
+      <CustomerCenterMenu />
     </nav>
   )
 }

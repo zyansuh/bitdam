@@ -7,7 +7,7 @@
 }
 
 .account-menu__panel {
-  @apply absolute right-0 top-full z-50 mt-2 min-w-44 rounded-md border border-line bg-surface py-1 shadow-lg;
+  @apply absolute right-0 top-full z-50 mt-2 min-w-52 rounded-md border border-line bg-surface py-1 shadow-lg;
 }
 
 .account-menu__label {

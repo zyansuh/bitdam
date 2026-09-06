@@ -3,7 +3,7 @@
 }
 
 .community-page__layout {
-  @apply grid gap-8 lg:grid-cols-[16rem_minmax(0,1fr)];
+  @apply grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)_15rem];
 }
 
 .community-aside {
@@ -12,6 +12,42 @@
 
 .community-profile {
   @apply rounded-md border border-line bg-surface p-5;
+}
+
+.community-profile__photo {
+  @apply mb-3 h-16 w-16 rounded-full object-cover;
+}
+
+.community-profile__photo--empty {
+  @apply block bg-cream-dark;
+}
+
+.community-tags {
+  @apply flex flex-col gap-1;
+}
+
+.community-tags__item {
+  @apply w-full rounded-md px-2 py-2 text-left text-sm text-charcoal/80 hover:bg-cream-dark hover:text-gold;
+}
+
+.community-tags__item--on {
+  @apply bg-cream-dark text-gold;
+}
+
+.community-promo {
+  @apply block rounded-md bg-gold px-5 py-5 text-white;
+}
+
+.community-promo__kicker {
+  @apply text-xs text-white/80;
+}
+
+.community-promo__title {
+  @apply mt-2 font-serif text-lg;
+}
+
+.community-promo__cta {
+  @apply mt-3 inline-block text-sm underline;
 }
 
 .community-profile__name {
@@ -78,8 +114,32 @@
   @apply mb-2 flex items-start justify-between gap-3;
 }
 
+.community-card__who {
+  @apply flex min-w-0 items-start gap-3;
+}
+
+.community-card__avatar {
+  @apply h-10 w-10 shrink-0 rounded-full object-cover;
+}
+
+.community-card__avatar--empty {
+  @apply bg-cream-dark;
+}
+
 .community-card__title {
   @apply font-serif text-lg text-charcoal;
+}
+
+.community-card__photo {
+  @apply mt-3 max-h-80 w-full rounded-md object-cover;
+}
+
+.community-card__actions {
+  @apply mt-3 flex gap-4 text-muted;
+}
+
+.community-card__react {
+  @apply inline-flex items-center gap-1.5 text-xs hover:text-gold;
 }
 
 .community-card__time {
@@ -96,4 +156,160 @@
 
 .community-empty {
   @apply rounded-md border border-dashed border-line px-4 py-10 text-center text-sm text-muted;
+}
+
+.community-cats {
+  @apply flex flex-col gap-0.5;
+}
+
+.community-cats__item {
+  @apply w-full rounded-md px-2 py-2 text-left text-sm text-charcoal/80 hover:bg-cream-dark hover:text-gold;
+}
+
+.community-cats__item--on {
+  @apply bg-cream-dark text-gold;
+}
+
+.community-list__head {
+  @apply mb-4 flex items-center justify-between gap-3;
+}
+
+.community-list__title {
+  @apply font-serif text-2xl text-charcoal;
+}
+
+.community-list__write {
+  @apply rounded-md bg-gold px-4 py-2 text-sm font-medium text-white hover:bg-gold-dark;
+}
+
+.community-list-card {
+  @apply overflow-hidden rounded-md border border-line bg-surface;
+}
+
+.community-list-card__media img {
+  @apply h-44 w-full object-cover;
+}
+
+.community-list-card__body {
+  @apply p-5;
+}
+
+.community-list-card__badge {
+  @apply mb-2 inline-block rounded-full bg-cream-dark px-2.5 py-0.5 text-xs text-gold;
+}
+
+.community-list-card__title {
+  @apply block font-serif text-xl text-charcoal hover:text-gold;
+}
+
+.community-list-card__excerpt {
+  @apply mt-2 text-sm leading-relaxed text-charcoal/75;
+}
+
+.community-list-card__meta {
+  @apply mt-3 text-xs text-muted;
+}
+
+.community-list-card__stats {
+  @apply mt-2 flex items-center gap-2 text-xs text-muted;
+}
+
+.community-page__write-layout {
+  @apply grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)];
+}
+
+.community-write__bar {
+  @apply mb-4 flex items-center justify-between gap-3;
+}
+
+.community-write__heading {
+  @apply font-serif text-2xl text-charcoal;
+}
+
+.community-write__ghost {
+  @apply rounded-md border border-line px-3 py-1.5 text-sm text-charcoal hover:border-gold hover:text-gold;
+}
+
+.community-write__label {
+  @apply mb-3 block text-sm text-muted;
+}
+
+.community-write__select {
+  @apply mt-1 w-full rounded-md border border-line bg-cream px-3 py-2 text-sm text-charcoal;
+}
+
+.community-write__title {
+  @apply mb-3 w-full border-b border-line bg-transparent py-3 font-serif text-2xl text-charcoal outline-none;
+}
+
+.community-write__body {
+  @apply mb-4 min-h-56 w-full resize-y rounded-md border border-line bg-cream px-3 py-3 text-sm leading-relaxed text-charcoal outline-none focus:border-gold;
+}
+
+.community-write__drop {
+  @apply mb-4 block cursor-pointer rounded-md border border-dashed border-line px-4 py-10 text-center text-sm text-muted hover:border-gold;
+}
+
+.community-write__drop input {
+  @apply sr-only;
+}
+
+.community-write__hint {
+  @apply mb-4 text-xs text-muted;
+}
+
+.community-write__submit {
+  @apply rounded-md bg-gold px-6 py-2.5 text-sm font-semibold text-white hover:bg-gold-dark disabled:opacity-50;
+}
+
+.community-page__detail-layout {
+  @apply grid gap-8 lg:grid-cols-[minmax(0,1fr)_16rem];
+}
+
+.community-detail__title {
+  @apply mt-2 font-serif text-3xl text-charcoal;
+}
+
+.community-detail__meta {
+  @apply mt-2 text-sm text-muted;
+}
+
+.community-detail__photo {
+  @apply mt-6 w-full rounded-md object-cover;
+}
+
+.community-detail__body {
+  @apply mt-6 whitespace-pre-wrap text-sm leading-relaxed text-charcoal/80;
+}
+
+.community-detail__tags {
+  @apply mt-4 text-sm text-gold;
+}
+
+.community-comments {
+  @apply mt-8 border-t border-line pt-6;
+}
+
+.community-comments__form {
+  @apply mb-4 flex gap-2;
+}
+
+.community-comments__input {
+  @apply min-w-0 flex-1 rounded-md border border-line bg-cream px-3 py-2 text-sm outline-none focus:border-gold;
+}
+
+.community-comments__btn {
+  @apply rounded-md bg-gold px-4 py-2 text-sm text-white hover:bg-gold-dark disabled:opacity-50;
+}
+
+.community-comments__list {
+  @apply flex flex-col gap-4;
+}
+
+.community-comments__name {
+  @apply text-sm font-medium text-charcoal;
+}
+
+.community-comments__body {
+  @apply mt-1 text-sm text-charcoal/80;
 }
