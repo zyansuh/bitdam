@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/login` · `/signup` · `/terms` · `/privacy` |
+| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/mypage` · `/account` · `/login` · `/signup` · `/terms` · `/privacy` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -76,11 +76,24 @@
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
-| `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 명인 · 방문 정보 |
+| `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 포함 사항 · 날짜·타임·인원 예약 카드 |
 | `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
-| `/community` | `CommunityPage` | 프로필 메뉴에서 진입 · 본인 글만 쓰는 블로그형 커뮤니티 |
+| `/community` | `CommunityPage` | 본인 글 목록 · 분류 · 해시태그 |
+| `/community/new` | `CommunityWritePage` | 글쓰기 · 임시저장 · 사진 첨부 |
+| `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
+| `/mypage` | `MypagePage` | 주문 요약 · 최근 주문 · NFT 보증서 |
+| `/mypage/certificates` | `MypageCertificatesPage` | 전통주 인증서(NFT) |
+| `/mypage/coupons` | `MypageCouponsPage` | 쿠폰 및 혜택 |
+| `/mypage/addresses` | `MypageAddressesPage` | 배송지 관리 |
+| `/mypage/payments` | `MypagePaymentsPage` | 결제수단 관리 |
+| `/mypage/support` | `MypageSupportPage` | 1:1 고객센터 |
+| `/account` | `SettingsProfilePage` | 프로필 설정 |
+| `/account/security` | `SettingsSecurityPage` | 보안 & 비밀번호 |
+| `/account/notifications` | `SettingsNotificationsPage` | 알림 설정 |
+| `/account/connections` | `SettingsConnectionsPage` | 연동된 서비스 |
+| `/account/withdraw` | `SettingsWithdrawPage` | 탈퇴하기 |
 
 ### 이용자 흐름
 
@@ -96,6 +109,9 @@ flowchart LR
     C -->|전통주 / 브랜드 스토어| H[/ ProductListPage /]
     C -->|Navbar 양조장| J[/ BreweryMapPage /]
     J -->|햄버거 투어 목록| K[/ BreweryDetailPage /]
+    C -->|Navbar 프로필 · 마이페이지| Q[/ MypagePage /]
+    Q -->|개인정보 설정| R[/ SettingsProfilePage /]
+    C -->|Navbar 고객센터| R
     C -->|Navbar 프로필 · 내 글 목록| M[/ CommunityPage /]
     C -->|Navbar 클래스 / 프로모 CTA| L[/ ClassBookingPage /]
     K -->|투어 신청| L
@@ -248,6 +264,7 @@ flowchart TB
         CAT[catalog/pages + components]
         BREW[brewery/pages + components]
         COMM[community/pages + components]
+        ACCT[account/pages + components]
         LEGAL[legal/pages + components]
     end
     subgraph Shared["shared/"]
@@ -257,7 +274,7 @@ flowchart TB
     end
     MAIN --> APP
     APP --> ROUTES
-    ROUTES --> HOME & AUTH & CAT & BREW & COMM & LEGAL
+    ROUTES --> HOME & AUTH & CAT & BREW & COMM & ACCT & LEGAL
     HOME --> STYLES
     AUTH --> STYLES
     CAT --> STYLES
@@ -299,6 +316,7 @@ BITDAM/
     │   ├── catalog/               # pages · components · hooks · data · styles · types
     │   ├── brewery/               # 지도 · 상세 · 클래스 · 투어 헤더
     │   ├── community/             # 본인 글 블로그
+    │   ├── account/               # 마이페이지 · 개인정보 설정
     │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
@@ -331,7 +349,7 @@ BITDAM/
 | **styles/** | `tokens.css` · `global.css` · footer/navbar/feed/product CSS |
 | **hooks/** | `useMobileMenu` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
 | **components/layout/footer/** | `Footer` · `FooterBrand` · `FooterLinkColumn` · `FooterBottom` |
-| **components/navigation/** | `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` |
+| **components/navigation/** | `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` · `CustomerCenterMenu` |
 | **components/brand/** | `BrandLogo` |
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
@@ -347,6 +365,7 @@ BITDAM/
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | 투어 헤더 · MapLibre · 예약 |
 | **community** | `CommunityPage` | `community.css` | 프로필 메뉴 · 내 글 목록 · localStorage |
+| **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
 ### `src/data/`
@@ -471,7 +490,7 @@ Vite는 `VITE_*` 값을 **빌드 시점**에 넣습니다. 대시보드에 키�
 |------|------|------|
 | `VITE_KAKAO_REST_API_KEY` | 예 | 카카오 REST API 키. OAuth `client_id` |
 | `VITE_KAKAO_JAVASCRIPT_KEY` | 아니오 | JS SDK용. 현재 REST 플로우에는 필수는 아님 |
-| `VITE_KAKAO_REDIRECT_URI` | 아니오 | 비우면 `window.location.origin` + `/login/kakao/callback` |
+| `VITE_KAKAO_REDIRECT_URI` | 쓰지 않음 | 넣으면 배포에서도 localhost로 고정됨. **Vercel에서 삭제** |
 | `VITE_KAKAO_CLIENT_SECRET` | 아니오 | 콘솔에서 Client Secret을 켠 경우에만 |
 
 Vercel → Project → Settings → Environment Variables에서 Production / Preview / Development에 추가한 뒤 Redeploy 합니다. 잘못된 이름(`VITE_KAKO_API_KEY` 등)만 있어도 빌드에 키가 안 들어갑니다. 코드는 `VITE_KAKAO_API_KEY`, `VITE_KAKO_API_KEY`를 보조로 읽지만 **정식 이름은 `VITE_KAKAO_REST_API_KEY`** 입니다.
@@ -579,6 +598,7 @@ import { getProductsPage } from '../../../data/products';
 
 - [x] `src/` → `shared/` + `features/` 폴더 구조 리팩터 · CSS/훅/컴포넌트 분리
 - [x] 양조장 투어 헤더·목록 · 블로그형 커뮤니티(`/community`)
+- [x] 마이페이지 · 개인정보 설정(`/mypage` · `/account`)
 - [ ] 상품 단위 상세(PDP) 페이지
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
@@ -590,6 +610,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 마이페이지(`/mypage`) · 개인정보 설정(`/account`) · 헤더 고객센터·프로필 메뉴 |
 | **2026-09-03** | 전 페이지 헤더·햄버거(`SiteHamburgerMenu`) · 양조장 투어·커뮤니티 |
 | **2026-09-02** | `/privacy` 개인정보처리방침 페이지 |
 | **2026-09-02** | 홈 스크롤 버벅임 완화 (smooth scroll 제거 · 이미지 lazy · 헤더 blur 제거) |
