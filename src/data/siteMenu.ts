@@ -22,6 +22,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '추석 특별전', to: '/events/chuseok' },
         { label: '설날 특별전', to: '/events/seollal' },
         { label: '타임 특가', to: '/deals' },
+        { label: '정기 구독', to: '/subscribe' },
       ],
       clusters: [],
     },

@@ -6,5 +6,6 @@ export function getCampaignNavLinks(): NavLinkItem[] {
   return [
     { label: holiday.navLabel, to: `/events/${holiday.slug}` },
     { label: '타임 특가', to: '/deals' },
+    { label: '정기 구독', to: '/subscribe' },
   ]
 }
