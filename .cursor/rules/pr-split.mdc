@@ -3,22 +3,35 @@ description: Default to many small stacked PRs (one concern each)
 alwaysApply: true
 ---
 
-# PR 기본값: 잘게 나누기
+# 브랜치·PR 기본값: 잘게 나누기
 
-한 채팅에서 기능이 여러 개면 **PR도 여러 개**다. 기본은 큰 PR 1개가 아니다.
+한 채팅에서 기능이 여러 개면 **브랜치도 여러 개, PR도 여러 개**다.
+기본은 큰 브랜치 1개 + 큰 PR 1개가 아니다.
 
 ## 기본
 
-- **PR 1개 = 관심사 1개** (예: 기념주 / 스토리 / 타이포 / 규칙)
+- **브랜치 1개 = 관심사 1개** (예: `feat/gift-flow` / `feat/holiday-event` / `feat/time-sale`)
+- **PR 1개 = 그 브랜치의 관심사 1개**
+- **브랜치는 자동으로 만든다.** 사용자가 "브랜치 만들어"라고 말하기 전에, 새 관심사가 시작되면 `feat|fix|chore|docs/{kebab}`를 현재 HEAD(스택이면 바로 아래 브랜치)에서 체크아웃한다
+- 한 브랜치에 선물+추석+구독을 쌓지 않는다. 관심사가 바뀌면 커밋 전에 다음 브랜치를 만든다
 - 스택: 아래 브랜치 → 위 브랜치. 각 PR base는 **바로 아래 PR의 head**
 - 커밋은 기존 Granular 규칙(파일 1개·Why/What/Affected)
 - 사용자가 "커밋하고 PR"이라고 하면 스택을 푸시하고 PR을 연다 (`git push --force` 금지)
 - 사용자가 커밋만 요청하면 push하지 않는다
 
+## 브랜치 자동 생성
+
+- 트리거: 새 기능/리팩터/문서 묶음을 쓰기 직전, 또는 작업 중 관심사가 바뀔 때
+- 이름: Conventional 타입 + kebab (예: `feat/gift-flow`, `chore/auto-branch-rule`)
+- 베이스: 스택의 바로 아래 head. 첫 관심사면 현재 추적 브랜치(또는 `main`)
+- 이미 그 관심사 브랜치에 있으면 다시 만들지 않는다
+- `git push --force`로 브랜치를 갈아엎지 않는다
+
 ## 나누는 예
 
 | 허용 | 금지 |
 |------|------|
+| `feat/gift-flow` 후 `feat/holiday-event` | gift + event + subscribe 한 브랜치 |
 | `feat/custom-label` 후 `feat/story-ugly-fruit` | custom + story + rules 한 PR |
 | 네비 연결은 그 feature PR에만 | 헤더 + 스토리 개편을 한 PR |
 
