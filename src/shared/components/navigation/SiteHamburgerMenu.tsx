@@ -1,3 +1,4 @@
+import { hamburgerAccountLinks } from '../../../data/headerAccountLinks'
 import { getSiteMenuBranches } from '../../../data/siteMenu'
 import { useAuth } from '../../hooks/useAuth'
 import LoginLink from './LoginLink'
@@ -15,17 +16,7 @@ interface SiteHamburgerMenuProps {
 export default function SiteHamburgerMenu({ onClose, tone = 'light' }: SiteHamburgerMenuProps) {
   const { isLoggedIn, logout } = useAuth()
   const root = tone === 'navy' ? 'site-menu site-menu--navy' : 'site-menu'
-  const accountItems = [
-    { label: '마이페이지', to: '/mypage' },
-    { label: '1:1 고객센터', to: '/mypage/support' },
-    { label: '프로필 설정', to: '/account' },
-    { label: '보안 & 비밀번호', to: '/account/security' },
-    { label: '알림 설정', to: '/account/notifications' },
-    { label: '연동된 서비스', to: '/account/connections' },
-    { label: '탈퇴하기', to: '/account/withdraw' },
-    { label: '내 글 목록', to: '/community' },
-    { label: '글쓰기', to: '/community/new' },
-  ]
+  const accountItems = hamburgerAccountLinks
 
   return (
     <nav className={root} aria-label="전체 메뉴">
