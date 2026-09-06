@@ -1,6 +1,6 @@
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
-import CatalogHeader from '../../catalog/components/CatalogHeader'
+import BrewerySiteHeader from '../components/BrewerySiteHeader'
 import BreweryHero from '../components/BreweryHero'
 import BreweryMapCanvas from '../components/BreweryMapCanvas'
 import BreweryRecommendList from '../components/BreweryRecommendList'
@@ -12,7 +12,7 @@ export default function BreweryMapPage() {
 
   return (
     <PageLayout>
-      <CatalogHeader />
+      <BrewerySiteHeader />
       <main className="brewery-page">
         <BreweryHero />
         <BreweryRegionTabs regionId={map.regionId} onSelect={map.selectRegion} />
