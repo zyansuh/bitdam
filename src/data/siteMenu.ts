@@ -23,6 +23,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '설날 특별전', to: '/events/seollal' },
         { label: '타임 특가', to: '/deals' },
         { label: '정기 구독', to: '/subscribe' },
+        { label: '단체 · 기업 선물', to: '/corporate' },
       ],
       clusters: [],
     },
