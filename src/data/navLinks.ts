@@ -2,6 +2,7 @@ import type { NavLinkItem } from '../shared/types/navigation'
 
 export const navLinks: NavLinkItem[] = [
   { label: '전통주', to: '/products' },
+  { label: '선물하기', to: '/gift' },
   { label: '양조장', to: '/breweries' },
   { label: '기념주', to: '/custom' },
   { label: '클래스', to: '/classes' },

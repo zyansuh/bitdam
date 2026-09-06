@@ -14,8 +14,17 @@ const shopItems: SiteMenuLinkItem[] = [
 export function getSiteMenuBranches(): SiteMenuBranch[] {
   return [
     {
+      id: 'gift',
+      label: '선물 · 특가',
+      to: '/gift',
+      items: [
+        { label: '선물하기', to: '/gift' },
+      ],
+      clusters: [],
+    },
+    {
       id: 'shop',
-      label: '전통주',
+      label: '전통주 마켓',
       to: '/products',
       items: shopItems,
       clusters: [],
