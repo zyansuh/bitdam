@@ -5,6 +5,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '양조장 투어', to: '/breweries' },
     { label: '브랜드 스토어', to: '/products' },
     { label: '클래스', to: '/classes' },
+    { label: '기념주 제작', to: '/custom' },
     { label: '이벤트' },
     { label: '커뮤니티', to: '/community' },
   ],
