@@ -7,11 +7,6 @@ export const KAKAO_OAUTH_STATE_KEY = 'kakao.oauth.state'
 export const KAKAO_LOGIN_SCOPE = 'profile_nickname,profile_image'
 
 export function getKakaoRedirectUri(): string {
-  const fromEnv = (import.meta.env.VITE_KAKAO_REDIRECT_URI ?? '').trim()
-  if (fromEnv) {
-    return fromEnv
-  }
-
   return `${window.location.origin}${KAKAO_CALLBACK_PATH}`
 }
 
