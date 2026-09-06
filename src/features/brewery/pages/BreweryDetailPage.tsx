@@ -4,8 +4,10 @@ import PageLayout from '../../../shared/components/layout/PageLayout'
 import BrewerySiteHeader from '../components/BrewerySiteHeader'
 import BreweryAwards from '../components/BreweryAwards'
 import BreweryDetailHero from '../components/BreweryDetailHero'
+import BreweryIncludes from '../components/BreweryIncludes'
 import BreweryMaster from '../components/BreweryMaster'
 import BreweryProgramCard from '../components/BreweryProgramCard'
+import BreweryReserveCard from '../components/BreweryReserveCard'
 import BrewerySideProducts from '../components/BrewerySideProducts'
 import BreweryStory from '../components/BreweryStory'
 import BreweryTourBar from '../components/BreweryTourBar'
@@ -36,10 +38,12 @@ export default function BreweryDetailPage() {
         <div className="brewery-detail__grid">
           <div className="brewery-detail__main">
             <BreweryStory brewery={brewery} />
+            <BreweryIncludes items={brewery.includes ?? []} />
             <BreweryMaster brewery={brewery} />
             <BreweryAwards awards={brewery.awards} />
           </div>
           <aside className="brewery-detail__aside">
+            <BreweryReserveCard brewery={brewery} />
             <BrewerySideProducts products={brewery.products} />
             <BreweryProgramCard brewery={brewery} />
             <BreweryVisitInfo brewery={brewery} />
