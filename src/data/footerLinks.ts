@@ -11,6 +11,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '추석 특별전', to: '/events/chuseok' },
     { label: '타임 특가', to: '/deals' },
     { label: '정기 구독', to: '/subscribe' },
+    { label: '단체 · 기업 선물', to: '/corporate' },
     { label: '커뮤니티', to: '/community' },
   ],
   고객지원: [
