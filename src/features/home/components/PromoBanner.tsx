@@ -14,7 +14,7 @@ export default function PromoBanner() {
             <br className="promo-banner__break" />
             {promoBanner.titleTail}
           </h3>
-          <Link to="/classes?brewery=samhae" className="promo-banner__cta">
+          <Link to="/tours" className="promo-banner__cta">
             {promoBanner.cta}
           </Link>
         </div>

@@ -230,3 +230,8 @@ export const BREWERIES: BreweryPin[] = [
 export function getBreweryById(id: string): BreweryPin | undefined {
   return BREWERIES.find((pin) => pin.id === id)
 }
+
+export function listBreweriesByRegion(regionId: MapRegionId): BreweryPin[] {
+  if (regionId === 'all') return BREWERIES
+  return BREWERIES.filter((pin) => pin.regionId === regionId)
+}

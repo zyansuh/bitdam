@@ -26,7 +26,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       to: '/breweries',
       items: [
         { label: '전국 지도', to: '/breweries' },
-        { label: '투어 예약', to: '/breweries/samhae' },
+        { label: '투어 예약', to: '/tours' },
         { label: '클래스 예약', to: '/classes' },
       ],
       clusters: MAP_REGIONS.filter((region) => region.id !== 'all')
