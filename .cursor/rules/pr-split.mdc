@@ -1,0 +1,27 @@
+---
+description: Default to many small stacked PRs (one concern each)
+alwaysApply: true
+---
+
+# PR 기본값: 잘게 나누기
+
+한 채팅에서 기능이 여러 개면 **PR도 여러 개**다. 기본은 큰 PR 1개가 아니다.
+
+## 기본
+
+- **PR 1개 = 관심사 1개** (예: 기념주 / 스토리 / 타이포 / 규칙)
+- 스택: 아래 브랜치 → 위 브랜치. 각 PR base는 **바로 아래 PR의 head**
+- 커밋은 기존 Granular 규칙(파일 1개·Why/What/Affected)
+- 사용자가 "커밋하고 PR"이라고 하면 스택을 푸시하고 PR을 연다 (`git push --force` 금지)
+- 사용자가 커밋만 요청하면 push하지 않는다
+
+## 나누는 예
+
+| 허용 | 금지 |
+|------|------|
+| `feat/custom-label` 후 `feat/story-ugly-fruit` | custom + story + rules 한 PR |
+| 네비 연결은 그 feature PR에만 | 헤더 + 스토리 개편을 한 PR |
+
+## 본문
+
+각 PR은 `.github/pull_request_template.md` 전 섹션을 채운 `.github/docs/pr-*.md`를 `docs(pr)`로 따로 커밋한다. 머지 순서를 Notes에 적는다.
