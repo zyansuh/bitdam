@@ -239,7 +239,7 @@ flowchart LR
 | **반응형** | `breakpoints.ts` · `Responsive.value<T>()` · Tailwind grid |
 | **무한 스크롤** | `useInfiniteScroll` + sentinel ref |
 | **페이지 스크롤** | `PageLayout` — `min-h-dvh`, `overflow-y: auto` |
-| **폰트** | Nanum Myeongjo(제목) · Noto Sans KR(본문) — Google Fonts |
+| **폰트** | 제목 MaruBuri · 본문/UI Pretendard · 로고 나눔명조 · 영문 킥커 국민대 숭곡 |
 
 ---
 
@@ -413,10 +413,14 @@ BITDAM/
 
 ### 타이포그래피
 
-| 용도 | 폰트 |
-|------|------|
-| 제목 (serif) | Nanum Myeongjo |
-| 본문 (sans) | Noto Sans KR |
+| 용도 | 토큰 | 폰트 |
+|------|------|------|
+| 제목 | `--font-serif` / `font-serif` | MaruBuri |
+| 본문 · 버튼 · 네비 · 표 | `--font-sans` / `font-sans` | Pretendard |
+| 로고 글자 | `--font-logo` / `font-logo` | Nanum Myeongjo |
+| 홈 Hero 영문 킥커 | `--font-en` | Kookmin University Sunggok SemiSerif |
+
+전역 규칙은 `src/shared/styles/typography.css`입니다. `h1`–`h6`은 제목 폰트, `p`·표·폼·푸터 링크는 본문 폰트입니다.
 
 ### 브레이크포인트
 
@@ -644,6 +648,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 제목 MaruBuri · 본문 Pretendard로 전역 타이포 정리 |
 | **2026-09-07** | 공지사항(`/notices`) · 모아보기·작성 · 빚담 추천 AI(`/chat`) |
 | **2026-09-07** | 공용 `SiteHeader` · 헤더 데이터는 `src/data` · 고객센터는 `/help` 링크 |
 | **2026-09-07** | 알림 센터(`/notifications`) · 고객센터 FAQ(`/help/:category`) |
