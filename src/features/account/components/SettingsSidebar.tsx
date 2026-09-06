@@ -1,4 +1,4 @@
-import { settingsNav } from '../data/settingsNav'
+import { settingsNav } from '../../../data/settingsNav'
 import AccountNavList from './AccountNavList'
 
 export default function SettingsSidebar() {

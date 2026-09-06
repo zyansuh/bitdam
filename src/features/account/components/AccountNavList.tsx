@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import type { AccountNavItem } from '../types/accountNav'
+import type { NavLinkItem } from '../../../shared/types/navigation'
 
 interface AccountNavListProps {
-  items: AccountNavItem[]
+  items: NavLinkItem[]
   endPaths?: string[]
 }
 

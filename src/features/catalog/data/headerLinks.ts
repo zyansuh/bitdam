@@ -8,6 +8,7 @@ export const catalogLightLinks: NavLinkItem[] = [
   { label: '커뮤니티', to: '/community' },
   { label: '기획전', to: '/products' },
   { label: '스토리', to: '/story' },
+  { label: '고객센터', to: '/help' },
 ]
 
 export const catalogNavyLinks: NavLinkItem[] = [
@@ -16,4 +17,5 @@ export const catalogNavyLinks: NavLinkItem[] = [
     label: category.shortLabel,
     to: `/category/${category.slug}`,
   })),
+  { label: '고객센터', to: '/help' },
 ]

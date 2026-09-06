@@ -94,6 +94,10 @@
 | `/account/notifications` | `SettingsNotificationsPage` | 알림 설정 |
 | `/account/connections` | `SettingsConnectionsPage` | 연동된 서비스 |
 | `/account/withdraw` | `SettingsWithdrawPage` | 탈퇴하기 |
+| `/notifications` | `NotificationsPage` | 알림 센터 · 분류 필터 · 읽음 처리 |
+| `/help` | `HelpHomePage` | 고객센터 → 배송 FAQ로 이동 |
+| `/help/:category` | `HelpCategoryPage` | 주문/결제·배송·교환/반품·회원·포인트·기타 FAQ |
+| `/help/chat` | `HelpChatPage` | AI 챗봇 안내 |
 
 ### 이용자 흐름
 
@@ -111,7 +115,7 @@ flowchart LR
     J -->|햄버거 투어 목록| K[/ BreweryDetailPage /]
     C -->|Navbar 프로필 · 마이페이지| Q[/ MypagePage /]
     Q -->|개인정보 설정| R[/ SettingsProfilePage /]
-    C -->|Navbar 고객센터| R
+    C -->|Navbar 고객센터| HLP[/ HelpCategoryPage /]
     C -->|Navbar 프로필 · 내 글 목록| M[/ CommunityPage /]
     C -->|Navbar 클래스 / 프로모 CTA| L[/ ClassBookingPage /]
     K -->|투어 신청| L
@@ -317,6 +321,8 @@ BITDAM/
     │   ├── brewery/               # 지도 · 상세 · 클래스 · 투어 헤더
     │   ├── community/             # 본인 글 블로그
     │   ├── account/               # 마이페이지 · 개인정보 설정
+    │   ├── help/                  # 고객센터 FAQ
+    │   ├── notify/                # 알림 센터
     │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
@@ -349,7 +355,7 @@ BITDAM/
 | **styles/** | `tokens.css` · `global.css` · footer/navbar/feed/product CSS |
 | **hooks/** | `useMobileMenu` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
 | **components/layout/footer/** | `Footer` · `FooterBrand` · `FooterLinkColumn` · `FooterBottom` |
-| **components/navigation/** | `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` · `CustomerCenterMenu` |
+| **components/navigation/** | `SiteHeader` · `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` |
 | **components/brand/** | `BrandLogo` |
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
@@ -362,10 +368,12 @@ BITDAM/
 |---------|-------|--------|------|
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
-| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
-| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | 투어 헤더 · MapLibre · 예약 카드 |
+| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
+| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
 | **community** | `CommunityPage` · `CommunityWritePage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 상세 · localStorage |
 | **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
+| **help** | `HelpCategoryPage` · `HelpChatPage` | `help.css` | 고객센터 FAQ 분류 |
+| **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
 ### `src/data/`
@@ -373,7 +381,8 @@ BITDAM/
 | 파일 | 설명 |
 |------|------|
 | `products.ts` | `Product` 타입 · 48종 mock · 지역/도수/맛 태그 |
-| `navLinks.ts` | 홈 네비 링크 |
+| `navLinks.ts` | 기본 헤더 링크 (고객센터 포함) |
+| `settingsNav.ts` · `headerAccountLinks.ts` · `helpNav.ts` | 설정·계정 메뉴·FAQ 분류 |
 | `footerLinks.ts` | 푸터 컬럼 링크 |
 | `stories.ts` | 스토리 피드 mock |
 
@@ -610,6 +619,8 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 공용 `SiteHeader` · 헤더 데이터는 `src/data` · 고객센터는 `/help` 링크 |
+| **2026-09-07** | 알림 센터(`/notifications`) · 고객센터 FAQ(`/help/:category`) |
 | **2026-09-07** | 마이페이지(`/mypage`) · 개인정보 설정(`/account`) · 헤더 고객센터·프로필 메뉴 |
 | **2026-09-07** | 커뮤니티 글쓰기·상세 · 양조장 예약 카드 · 카카오 Redirect는 origin만 사용 |
 | **2026-09-03** | 전 페이지 헤더·햄버거(`SiteHamburgerMenu`) · 양조장 투어·커뮤니티 |
