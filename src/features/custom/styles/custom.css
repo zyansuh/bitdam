@@ -47,15 +47,86 @@
 }
 
 .custom-preview__stage {
-  @apply relative mx-auto max-w-sm;
+  @apply relative mx-auto flex h-[28rem] max-w-sm items-end justify-center overflow-hidden rounded-2xl px-6 pb-6;
+  background:
+    radial-gradient(ellipse at 50% 20%, #f7f1e8 0%, transparent 55%),
+    linear-gradient(180deg, #efe6d8 0%, #d9cbb8 100%);
 }
 
-.custom-preview__bottle {
-  @apply w-full rounded-2xl object-cover;
+.custom-bottle {
+  @apply relative flex h-[22rem] w-28 flex-col items-center;
+}
+
+.custom-bottle__lip {
+  @apply z-10 h-2 w-8 rounded-t-sm bg-[#f3eee6] shadow-inner;
+}
+
+.custom-bottle__neck {
+  @apply h-10 w-6 bg-[#f6f1e8];
+}
+
+.custom-bottle__shoulder {
+  @apply h-6 w-16 rounded-t-full bg-[#f4efe6];
+}
+
+.custom-bottle__body {
+  @apply h-48 w-24 rounded-b-3xl bg-[#f7f2ea] shadow-[inset_-10px_0_18px_rgba(120,90,50,0.12)];
+}
+
+.custom-bottle__base {
+  @apply mt-1 h-2 w-20 rounded-sm bg-[#e8dfd2];
+}
+
+.custom-bottle--soju .custom-bottle__neck {
+  @apply h-14 w-5;
+}
+
+.custom-bottle--soju .custom-bottle__body {
+  @apply h-52 w-20;
+}
+
+.custom-bottle--yakju .custom-bottle__lip,
+.custom-bottle--yakju .custom-bottle__neck,
+.custom-bottle--yakju .custom-bottle__shoulder,
+.custom-bottle--yakju .custom-bottle__body,
+.custom-bottle--yakju .custom-bottle__base {
+  background-color: #cfd8c6;
+}
+
+.custom-bottle--yakju .custom-bottle__body {
+  @apply h-44 w-28 rounded-b-[2rem];
+}
+
+.custom-bottle--fruit .custom-bottle__lip,
+.custom-bottle--fruit .custom-bottle__neck,
+.custom-bottle--fruit .custom-bottle__shoulder,
+.custom-bottle--fruit .custom-bottle__body,
+.custom-bottle--fruit .custom-bottle__base {
+  background-color: #e4c9a3;
+}
+
+.custom-bottle--fruit .custom-bottle__neck {
+  @apply h-6 w-7;
+}
+
+.custom-bottle--fruit .custom-bottle__shoulder {
+  @apply h-8 w-24;
+}
+
+.custom-bottle--fruit .custom-bottle__body {
+  @apply h-40 w-32 rounded-b-[2.5rem];
 }
 
 .custom-preview__label {
-  @apply absolute top-[38%] left-1/2 w-[46%] -translate-x-1/2 rounded-sm border-4 bg-white/95 px-2 py-3 text-center shadow-sm;
+  @apply absolute top-[42%] left-1/2 w-[42%] -translate-x-1/2 rounded-sm border-4 bg-white/95 px-2 py-3 text-center shadow-sm;
+}
+
+.custom-preview__stage--yakju .custom-preview__label {
+  @apply top-[40%] w-[48%];
+}
+
+.custom-preview__stage--fruit .custom-preview__label {
+  @apply top-[46%] w-[52%];
 }
 
 .custom-preview__label--modern {
@@ -88,6 +159,10 @@
 
 .custom-preview__meta {
   @apply mt-3 text-center text-xs text-muted;
+}
+
+.custom-preview__note {
+  @apply mt-1 text-center text-[11px] leading-relaxed text-muted;
 }
 
 .custom-editor {

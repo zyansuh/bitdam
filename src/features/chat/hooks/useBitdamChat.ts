@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { ChatMessage, ChatThread } from '../types/chat'
-import { askBitdamModel, attachProducts, getOpenAiKey } from '../utils/askBitdamModel'
+import { askBitdamModel, attachProducts, getOpenAiKey } from '../services/askBitdamModel'
 import { loadChatThreads, saveChatThreads } from '../utils/chatStorage'
 
 function stamp() {

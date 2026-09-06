@@ -77,6 +77,7 @@
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
+| `/tours` | `TourReservePage` | 권역별 양조장 정보 · 예약 창 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 포함 사항 · 날짜·타임·인원 예약 카드 |
 | `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
 | `/community` | `CommunityPage` | 본인 글 목록 · 분류 · 해시태그 |
@@ -527,7 +528,7 @@ Fine-tuning으로 “교육”하지 않습니다. **시스템 프롬프트 + �
 
 | 단계 | 하는 일 |
 |------|---------|
-| **1. 교육(역할 부여)** | `src/features/chat/data/chatPrompt.ts`의 `BITDAM_SYSTEM_PROMPT`에 말투, 19세 제한, 추천 규칙, 상품 목록을 적습니다. 여기를 고치면 AI 성격이 바뀝니다. |
+| **1. 교육(역할 부여)** | `data/chatPrompt.ts`(역할·톤) + `safetyPolicy` · `recommendationRules` · `classPolicy` · `orderPolicy` · `shippingPolicy` · `refundPolicy`. `services/buildPrompt.ts`가 카탈로그와 합칩니다. |
 | **2. 사용** | `.env`에 `VITE_OPENAI_API_KEY=sk-...`를 넣고 `npm run dev`. `/chat`에서 질문하면 `askBitdamModel`이 Chat Completions를 호출합니다. |
 | **3. 키 없음** | 키가 없으면 같은 화면이 **로컬 규칙 답변**으로 동작합니다. |
 | **4. 운영** | `VITE_` 키는 브라우저에 노출됩니다. 배포 전에는 서버(또는 Vercel serverless)에서 OpenAI를 호출하도록 옮기세요. |
@@ -547,6 +548,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/privacy | 개인정보처리방침 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
 | http://localhost:5173/breweries | 양조장 지도 |
+| http://localhost:5173/tours | 지역별 투어 예약 |
 | http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
 | http://localhost:5173/classes | 클래스 예약 |
 | http://localhost:5173/community | 내 글 커뮤니티 |
@@ -653,6 +655,8 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 채팅 프롬프트를 정책 파일 + `buildPrompt`로 분리 |
+| **2026-09-07** | `/tours` 권역별 예약 · 기념주 도자기 병(소주·약주·과실주, 막걸리 제외) |
 | **2026-09-07** | 스토리 못난이 과일 · 시간이 흐를수록 히어로 |
 | **2026-09-07** | 기념주 `/custom` 라벨 4단계 · 실시간 견적 |
 | **2026-09-07** | 제목 MaruBuri · 본문 Pretendard로 전역 타이포 정리 |

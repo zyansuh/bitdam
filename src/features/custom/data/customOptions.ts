@@ -27,7 +27,6 @@ export const CUSTOM_TEMPLATES: CustomOption[] = [
 export const CUSTOM_SPIRITS: CustomOption[] = [
   { id: 'soju', label: '소주', extra: 0 },
   { id: 'yakju', label: '약주', extra: 2000 },
-  { id: 'makgeolli', label: '막걸리', extra: -2000 },
   { id: 'fruit', label: '과실주', extra: 3000 },
 ]
 
@@ -48,9 +47,9 @@ export const CUSTOM_BORDERS: CustomColorOption[] = [
 
 export const CUSTOM_BASE_PRICE = 28000
 export const CUSTOM_VOLUME = '500ml'
-export const CUSTOM_BOTTLE_IMAGE =
-  'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=900&h=1200&fit=crop&q=80'
-export const CUSTOM_BOTTLE_ALT = '흰 도자기 병에 담긴 빚담 기념주'
+
+export const CUSTOM_BOTTLE_NOTE =
+  '막걸리는 탄산 내압으로 PET만 가능해서 기념주 도자기 병에서는 빼 두었습니다.'
 
 export const CUSTOM_MESSAGE_HINTS = [
   '결혼 답례품으로 두 사람의 이름을 남겨 보세요.',
