@@ -42,6 +42,17 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         .filter((cluster) => cluster.items.length > 0),
     },
     {
+      id: 'custom',
+      label: '기념주',
+      to: '/custom',
+      items: [
+        { label: '기념주 제작하기', to: '/custom' },
+        { label: '라벨 맞춤 단계', to: '/custom' },
+        { label: '못난이 과일 스토리', to: '/story' },
+      ],
+      clusters: [],
+    },
+    {
       id: 'story',
       label: '이야기',
       to: '/story',
