@@ -363,8 +363,8 @@ BITDAM/
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
-| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | 투어 헤더 · MapLibre · 예약 |
-| **community** | `CommunityPage` | `community.css` | 프로필 메뉴 · 내 글 목록 · localStorage |
+| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | 투어 헤더 · MapLibre · 예약 카드 |
+| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 상세 · localStorage |
 | **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -611,6 +611,7 @@ import { getProductsPage } from '../../../data/products';
 | 날짜 | 내용 |
 |------|------|
 | **2026-09-07** | 마이페이지(`/mypage`) · 개인정보 설정(`/account`) · 헤더 고객센터·프로필 메뉴 |
+| **2026-09-07** | 커뮤니티 글쓰기·상세 · 양조장 예약 카드 · 카카오 Redirect는 origin만 사용 |
 | **2026-09-03** | 전 페이지 헤더·햄버거(`SiteHamburgerMenu`) · 양조장 투어·커뮤니티 |
 | **2026-09-02** | `/privacy` 개인정보처리방침 페이지 |
 | **2026-09-02** | 홈 스크롤 버벅임 완화 (smooth scroll 제거 · 이미지 lazy · 헤더 blur 제거) |
