@@ -4,9 +4,10 @@ import CommunityPostCard from './CommunityPostCard'
 interface CommunityPostListProps {
   posts: CommunityPost[]
   onDelete: (id: string) => void
+  onLike: (id: string) => void
 }
 
-export default function CommunityPostList({ posts, onDelete }: CommunityPostListProps) {
+export default function CommunityPostList({ posts, onDelete, onLike }: CommunityPostListProps) {
   if (posts.length === 0) {
     return <p className="community-empty">아직 글이 없습니다. 첫 기록을 남겨 보세요.</p>
   }
@@ -14,7 +15,7 @@ export default function CommunityPostList({ posts, onDelete }: CommunityPostList
   return (
     <div className="community-feed">
       {posts.map((post) => (
-        <CommunityPostCard key={post.id} post={post} onDelete={onDelete} />
+        <CommunityPostCard key={post.id} post={post} onDelete={onDelete} onLike={onLike} />
       ))}
     </div>
   )
