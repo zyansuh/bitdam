@@ -1,6 +1,7 @@
 import { BREWERIES, MAP_REGIONS } from '../features/brewery/data/breweries'
 import { CATALOG_CATEGORIES } from '../features/catalog/data/categories'
 import type { SiteMenuBranch, SiteMenuLinkItem } from '../shared/types/siteMenu'
+import { helpNav } from './helpNav'
 
 const shopItems: SiteMenuLinkItem[] = [
   { label: '전체상품', to: '/products' },
@@ -50,6 +51,13 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '글쓰기', to: '/community/new' },
         { label: '이벤트', to: '/' },
       ],
+      clusters: [],
+    },
+    {
+      id: 'help',
+      label: '고객센터',
+      to: '/help',
+      items: [{ label: '알림 센터', to: '/notifications' }, { label: '1:1 문의', to: '/mypage/support' }, ...helpNav],
       clusters: [],
     },
   ]
