@@ -3,6 +3,7 @@ import type { FooterNavLink } from '../shared/types/footer'
 export const footerLinks: Record<string, FooterNavLink[]> = {
   서비스: [
     { label: '양조장 투어', to: '/breweries' },
+    { label: '투어 예약', to: '/tours' },
     { label: '브랜드 스토어', to: '/products' },
     { label: '클래스', to: '/classes' },
     { label: '기념주 제작', to: '/custom' },
