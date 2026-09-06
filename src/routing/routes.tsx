@@ -41,6 +41,7 @@ import HolidayEventPage from '../features/event/pages/HolidayEventPage'
 import TimeSalePage from '../features/deals/pages/TimeSalePage'
 import SubscribePage from '../features/subscribe/pages/SubscribePage'
 import CorporateGiftPage from '../features/corporate/pages/CorporateGiftPage'
+import HolidayGiftSalePage from '../features/holidayGift/pages/HolidayGiftSalePage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -95,6 +96,7 @@ export function AppRoutes() {
       <Route path="/deals" element={<TimeSalePage />} />
       <Route path="/subscribe" element={<SubscribePage />} />
       <Route path="/corporate" element={<CorporateGiftPage />} />
+      <Route path="/holiday/gifts" element={<HolidayGiftSalePage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
