@@ -1,5 +1,6 @@
 import { allProducts, type Product } from '../../../data/products'
 import { getBreweryById } from '../data/breweries'
+import { DEFAULT_TOUR_INCLUDES } from '../data/tourBooking'
 import { breweryProfiles } from '../data/breweryProfiles'
 import type { BreweryDetail, BreweryProfile } from '../types/breweryDetail'
 
@@ -40,5 +41,10 @@ export function getBreweryDetail(id: string): BreweryDetail | undefined {
     if (products.length === 2) break
   }
 
-  return { ...pin, ...profile, products }
+  return {
+    ...pin,
+    ...profile,
+    includes: profile.includes ?? DEFAULT_TOUR_INCLUDES,
+    products,
+  }
 }
