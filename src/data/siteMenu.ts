@@ -25,6 +25,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       to: '/breweries',
       items: [
         { label: '전국 지도', to: '/breweries' },
+        { label: '투어 예약', to: '/breweries/samhae' },
         { label: '클래스 예약', to: '/classes' },
       ],
       clusters: MAP_REGIONS.filter((region) => region.id !== 'all')
@@ -45,7 +46,8 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       to: '/story',
       items: [
         { label: '브랜드 스토리', to: '/story' },
-        { label: '커뮤니티', to: '/community' },
+        { label: '글 목록', to: '/community' },
+        { label: '글쓰기', to: '/community/new' },
         { label: '이벤트', to: '/' },
       ],
       clusters: [],
