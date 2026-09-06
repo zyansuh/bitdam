@@ -19,7 +19,8 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       to: '/gift',
       items: [
         { label: '선물하기', to: '/gift' },
-        { label: '추석 특별전', to: '/events/chuseok' },
+        { label: '추석 특별관', to: '/holiday/gifts' },
+        { label: '추석 응모', to: '/events/chuseok' },
         { label: '설날 특별전', to: '/events/seollal' },
         { label: '타임 특가', to: '/deals' },
         { label: '정기 구독', to: '/subscribe' },
