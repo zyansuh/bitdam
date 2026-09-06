@@ -35,6 +35,7 @@ import NoticeDigestPage from '../features/notice/pages/NoticeDigestPage'
 import NoticeDetailPage from '../features/notice/pages/NoticeDetailPage'
 import ChatPage from '../features/chat/pages/ChatPage'
 import CustomLabelPage from '../features/custom/pages/CustomLabelPage'
+import TourReservePage from '../features/brewery/pages/TourReservePage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -56,6 +57,7 @@ export function AppRoutes() {
           </Suspense>
         }
       />
+      <Route path="/tours" element={<TourReservePage />} />
       <Route path="/breweries/:id" element={<BreweryDetailPage />} />
       <Route path="/classes" element={<ClassBookingPage />} />
       <Route path="/community" element={<CommunityPage />} />
