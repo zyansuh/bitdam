@@ -75,7 +75,7 @@
 }
 
 .chat-product__name {
-  @apply font-medium;
+  @apply font-serif font-medium;
 }
 
 .chat-product__meta {
