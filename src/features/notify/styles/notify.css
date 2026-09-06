@@ -1,0 +1,71 @@
+.notify-page {
+  @apply mx-auto w-full max-w-3xl px-4 py-10 sm:px-6;
+}
+
+.notify-panel {
+  @apply rounded-3xl border border-line bg-surface p-6 shadow-sm sm:p-8;
+}
+
+.notify-panel__head {
+  @apply mb-5 flex items-center justify-between gap-3;
+}
+
+.notify-panel__title {
+  @apply font-serif text-2xl text-charcoal;
+}
+
+.notify-panel__read {
+  @apply text-sm text-gold hover:underline;
+}
+
+.notify-tabs {
+  @apply mb-6 flex flex-wrap gap-2;
+}
+
+.notify-tabs__item {
+  @apply rounded-full border border-line px-3 py-1.5 text-sm text-charcoal/80 hover:bg-cream-dark;
+}
+
+.notify-tabs__item--on {
+  @apply border-gold bg-gold text-white hover:bg-gold;
+}
+
+.notify-list {
+  @apply flex flex-col gap-3;
+}
+
+.notify-card {
+  @apply rounded-2xl border border-line px-4 py-4;
+}
+
+.notify-card--read {
+  @apply opacity-60;
+}
+
+.notify-card__kind {
+  @apply text-xs font-medium text-gold;
+}
+
+.notify-card__title {
+  @apply mt-1 font-medium text-charcoal;
+}
+
+.notify-card__body {
+  @apply mt-1 text-sm text-muted;
+}
+
+.notify-card__foot {
+  @apply mt-3 flex items-center justify-between gap-3;
+}
+
+.notify-card__time {
+  @apply text-xs text-muted;
+}
+
+.notify-card__action {
+  @apply text-sm text-gold hover:underline;
+}
+
+.notify-empty {
+  @apply py-8 text-center text-sm text-muted;
+}

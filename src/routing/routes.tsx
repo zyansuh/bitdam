@@ -25,6 +25,10 @@ import SettingsSecurityPage from '../features/account/pages/SettingsSecurityPage
 import SettingsNotificationsPage from '../features/account/pages/SettingsNotificationsPage'
 import SettingsConnectionsPage from '../features/account/pages/SettingsConnectionsPage'
 import SettingsWithdrawPage from '../features/account/pages/SettingsWithdrawPage'
+import HelpHomePage from '../features/help/pages/HelpHomePage'
+import HelpCategoryPage from '../features/help/pages/HelpCategoryPage'
+import HelpChatPage from '../features/help/pages/HelpChatPage'
+import NotificationsPage from '../features/notify/pages/NotificationsPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -62,6 +66,10 @@ export function AppRoutes() {
       <Route path="/account/notifications" element={<SettingsNotificationsPage />} />
       <Route path="/account/connections" element={<SettingsConnectionsPage />} />
       <Route path="/account/withdraw" element={<SettingsWithdrawPage />} />
+      <Route path="/notifications" element={<NotificationsPage />} />
+      <Route path="/help" element={<HelpHomePage />} />
+      <Route path="/help/chat" element={<HelpChatPage />} />
+      <Route path="/help/:category" element={<HelpCategoryPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
