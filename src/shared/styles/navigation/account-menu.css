@@ -1,0 +1,19 @@
+.account-menu {
+  @apply relative;
+}
+
+.account-menu__trigger {
+  @apply flex items-center gap-1.5 transition-colors hover:text-gold;
+}
+
+.account-menu__panel {
+  @apply absolute right-0 top-full z-50 mt-2 min-w-44 rounded-md border border-line bg-surface py-1 shadow-lg;
+}
+
+.account-menu__label {
+  @apply px-3.5 pb-1 pt-2 text-[11px] font-medium tracking-wide text-muted;
+}
+
+.account-menu__item {
+  @apply block w-full px-3.5 py-2.5 text-left text-sm font-medium text-charcoal/80 transition-colors hover:bg-cream-dark hover:text-gold;
+}
