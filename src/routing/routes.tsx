@@ -12,6 +12,17 @@ import HomeLanding from '../features/home/pages/HomeLanding'
 import CommunityPage from '../features/community/pages/CommunityPage'
 import TermsPage from '../features/legal/pages/TermsPage'
 import PrivacyPage from '../features/legal/pages/PrivacyPage'
+import MypagePage from '../features/account/pages/MypagePage'
+import MypageCertificatesPage from '../features/account/pages/MypageCertificatesPage'
+import MypageCouponsPage from '../features/account/pages/MypageCouponsPage'
+import MypageAddressesPage from '../features/account/pages/MypageAddressesPage'
+import MypagePaymentsPage from '../features/account/pages/MypagePaymentsPage'
+import MypageSupportPage from '../features/account/pages/MypageSupportPage'
+import SettingsProfilePage from '../features/account/pages/SettingsProfilePage'
+import SettingsSecurityPage from '../features/account/pages/SettingsSecurityPage'
+import SettingsNotificationsPage from '../features/account/pages/SettingsNotificationsPage'
+import SettingsConnectionsPage from '../features/account/pages/SettingsConnectionsPage'
+import SettingsWithdrawPage from '../features/account/pages/SettingsWithdrawPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -36,6 +47,17 @@ export function AppRoutes() {
       <Route path="/breweries/:id" element={<BreweryDetailPage />} />
       <Route path="/classes" element={<ClassBookingPage />} />
       <Route path="/community" element={<CommunityPage />} />
+      <Route path="/mypage" element={<MypagePage />} />
+      <Route path="/mypage/certificates" element={<MypageCertificatesPage />} />
+      <Route path="/mypage/coupons" element={<MypageCouponsPage />} />
+      <Route path="/mypage/addresses" element={<MypageAddressesPage />} />
+      <Route path="/mypage/payments" element={<MypagePaymentsPage />} />
+      <Route path="/mypage/support" element={<MypageSupportPage />} />
+      <Route path="/account" element={<SettingsProfilePage />} />
+      <Route path="/account/security" element={<SettingsSecurityPage />} />
+      <Route path="/account/notifications" element={<SettingsNotificationsPage />} />
+      <Route path="/account/connections" element={<SettingsConnectionsPage />} />
+      <Route path="/account/withdraw" element={<SettingsWithdrawPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
