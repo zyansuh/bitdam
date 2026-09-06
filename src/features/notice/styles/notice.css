@@ -1,0 +1,135 @@
+.notice-page {
+  @apply mx-auto w-full max-w-5xl px-4 py-8 sm:px-6;
+}
+
+.notice-page__head {
+  @apply mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between;
+}
+
+.notice-page__title {
+  @apply font-serif text-3xl text-charcoal;
+}
+
+.notice-page__lead {
+  @apply mt-1 text-sm text-muted;
+}
+
+.notice-page__tools {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.notice-search {
+  @apply rounded-full border border-line bg-surface px-4 py-2 text-sm outline-none focus:border-gold;
+}
+
+.notice-tool {
+  @apply rounded-full border border-line px-3 py-1.5 text-sm text-charcoal hover:border-gold;
+}
+
+.notice-tool--gold {
+  @apply border-gold bg-gold text-white;
+}
+
+.notice-tabs {
+  @apply mb-4 flex flex-wrap gap-4 border-b border-line;
+}
+
+.notice-tabs__item {
+  @apply border-b-2 border-transparent pb-2 text-sm text-muted;
+}
+
+.notice-tabs__item--on {
+  @apply border-gold font-medium text-gold;
+}
+
+.notice-table-wrap {
+  @apply overflow-x-auto rounded-2xl border border-line bg-surface;
+}
+
+.notice-table {
+  @apply w-full min-w-[36rem] text-left text-sm;
+}
+
+.notice-table th {
+  @apply border-b border-line px-3 py-3 font-medium text-muted;
+}
+
+.notice-table td {
+  @apply border-b border-line px-3 py-3 text-charcoal;
+}
+
+.notice-table__title {
+  @apply inline-flex flex-wrap items-center gap-2 hover:text-gold;
+}
+
+.notice-important {
+  @apply rounded bg-gold px-1.5 py-0.5 text-xs text-white;
+}
+
+.notice-pager {
+  @apply mt-6 flex justify-center gap-1;
+}
+
+.notice-pager__btn {
+  @apply h-9 min-w-9 rounded-md px-2 text-sm text-charcoal hover:bg-cream-dark disabled:opacity-40;
+}
+
+.notice-pager__btn--on {
+  @apply bg-navy text-white hover:bg-navy;
+}
+
+.notice-form,
+.notice-detail,
+.notice-digest {
+  @apply rounded-2xl border border-line bg-surface p-6;
+}
+
+.notice-field {
+  @apply mb-4 flex flex-col gap-1.5 text-sm text-muted;
+}
+
+.notice-field input,
+.notice-field select,
+.notice-field textarea {
+  @apply rounded-lg border border-line bg-cream px-3 py-2.5 text-charcoal outline-none focus:border-gold;
+}
+
+.notice-important-toggle {
+  @apply mb-4 inline-flex items-center gap-2 rounded-full border border-gold px-4 py-2 text-sm font-medium text-gold;
+}
+
+.notice-save {
+  @apply rounded-xl bg-gold px-6 py-3 text-sm text-white hover:bg-gold-dark;
+}
+
+.notice-error {
+  @apply mb-3 text-sm text-red-700;
+}
+
+.notice-detail__meta {
+  @apply mb-2 text-sm text-muted;
+}
+
+.notice-detail__title {
+  @apply font-serif text-2xl text-charcoal;
+}
+
+.notice-detail__body {
+  @apply my-6 whitespace-pre-wrap text-sm leading-relaxed text-charcoal/80;
+}
+
+.notice-digest__title {
+  @apply mb-3 mt-6 font-serif text-xl first:mt-0;
+}
+
+.notice-digest__list {
+  @apply flex flex-col gap-2 text-sm;
+}
+
+.notice-digest__list a {
+  @apply hover:text-gold;
+}
+
+.notice-empty {
+  @apply rounded-2xl border border-line bg-surface px-4 py-8 text-center text-sm text-muted;
+}

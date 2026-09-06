@@ -29,6 +29,11 @@ import HelpHomePage from '../features/help/pages/HelpHomePage'
 import HelpCategoryPage from '../features/help/pages/HelpCategoryPage'
 import HelpChatPage from '../features/help/pages/HelpChatPage'
 import NotificationsPage from '../features/notify/pages/NotificationsPage'
+import NoticeListPage from '../features/notice/pages/NoticeListPage'
+import NoticeWritePage from '../features/notice/pages/NoticeWritePage'
+import NoticeDigestPage from '../features/notice/pages/NoticeDigestPage'
+import NoticeDetailPage from '../features/notice/pages/NoticeDetailPage'
+import ChatPage from '../features/chat/pages/ChatPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -70,6 +75,11 @@ export function AppRoutes() {
       <Route path="/help" element={<HelpHomePage />} />
       <Route path="/help/chat" element={<HelpChatPage />} />
       <Route path="/help/:category" element={<HelpCategoryPage />} />
+      <Route path="/notices" element={<NoticeListPage />} />
+      <Route path="/notices/new" element={<NoticeWritePage />} />
+      <Route path="/notices/digest" element={<NoticeDigestPage />} />
+      <Route path="/notices/:id" element={<NoticeDetailPage />} />
+      <Route path="/chat" element={<ChatPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>

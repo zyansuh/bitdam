@@ -31,4 +31,6 @@
 @import './features/account/styles/account.css';
 @import './features/help/styles/help.css';
 @import './features/notify/styles/notify.css';
+@import './features/notice/styles/notice.css';
+@import './features/chat/styles/chat.css';
 @import './features/legal/styles/policy.css';
