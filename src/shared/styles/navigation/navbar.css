@@ -10,8 +10,16 @@
   @apply hidden items-center gap-8 min-[1000px]:flex lg:gap-10;
 }
 
+.navbar--navy {
+  @apply border-transparent bg-navy text-white;
+}
+
 .navbar__link {
   @apply text-sm font-medium text-charcoal/80 transition-colors hover:text-gold;
+}
+
+.navbar__link--on {
+  @apply text-gold;
 }
 
 .navbar__actions {
@@ -64,4 +72,15 @@
 
 .theme-toggle {
   @apply text-charcoal/70 transition-colors hover:text-gold;
+}
+
+.navbar--navy .navbar__link,
+.navbar--navy .navbar__icon,
+.navbar--navy .navbar__cart,
+.navbar--navy .navbar__menu-button,
+.navbar--navy .navbar__signup,
+.navbar--navy .navbar__account,
+.navbar--navy .navbar__user-name,
+.navbar--navy .theme-toggle {
+  @apply text-white/80 hover:text-gold;
 }
