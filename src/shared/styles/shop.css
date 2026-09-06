@@ -1,0 +1,441 @@
+.shop-gold-btn {
+  @apply inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-navy;
+}
+
+.shop-ghost-btn {
+  @apply inline-flex items-center justify-center rounded-xl border border-gold bg-transparent px-5 py-3 text-sm text-charcoal;
+}
+
+.shop-navy-btn {
+  @apply inline-flex items-center justify-center rounded-xl bg-navy px-5 py-3 text-sm text-white;
+}
+
+.shop-kakao-btn {
+  @apply inline-flex items-center justify-center rounded-xl bg-kakao px-5 py-3 text-sm text-kakao-text;
+}
+
+.count-boxes {
+  @apply flex flex-col items-end gap-1;
+}
+
+.count-boxes__label {
+  @apply text-[11px] tracking-[0.18em] text-gold uppercase;
+}
+
+.count-boxes__row {
+  @apply flex items-center gap-1;
+}
+
+.count-boxes__cell {
+  @apply inline-flex items-center gap-1;
+}
+
+.count-boxes__cell em {
+  @apply text-white;
+}
+
+.count-boxes__cell strong {
+  @apply min-w-12 rounded-md bg-gold px-2 py-1 text-center font-en text-lg text-navy;
+}
+
+.gift-page {
+  @apply mx-auto max-w-6xl px-4 py-8;
+}
+
+.gift-bar {
+  @apply mb-8 flex flex-wrap items-center justify-center gap-6;
+}
+
+.gift-bar__item {
+  @apply flex items-center gap-2 text-sm text-muted;
+}
+
+.gift-bar__item span {
+  @apply flex h-8 w-8 items-center justify-center rounded-full bg-cream-dark text-xs;
+}
+
+.gift-bar__item--on {
+  @apply text-navy;
+}
+
+.gift-bar__item--on span {
+  @apply bg-navy text-white;
+}
+
+.gift-grid {
+  @apply grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px];
+}
+
+.gift-panel,
+.gift-summary {
+  @apply rounded-2xl bg-surface p-6 shadow-sm;
+}
+
+.gift-panel h1,
+.sub-plans h2,
+.sub-guide h2,
+.sub-archive h2,
+.sub-faq h2,
+.corp-sets h2,
+.event-howto h2,
+.event-prizes h2,
+.event-winners h2,
+.deal-feature h2 {
+  @apply mb-2 font-serif text-2xl text-navy;
+}
+
+.gift-panel h2 {
+  @apply mt-6 mb-3 text-sm font-semibold text-navy;
+}
+
+.gift-pick {
+  @apply mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.gift-pick__card {
+  @apply flex w-full flex-col overflow-hidden rounded-xl border border-line text-left;
+}
+
+.gift-pick__card img {
+  @apply h-36 w-full object-cover;
+}
+
+.gift-pick__card strong,
+.gift-pick__card span,
+.gift-pick__card em {
+  @apply px-3;
+}
+
+.gift-pick__card em {
+  @apply pb-3 text-gold;
+}
+
+.gift-pick__card--on {
+  @apply border-gold;
+}
+
+.gift-pills {
+  @apply flex flex-wrap gap-2;
+}
+
+.gift-pill {
+  @apply rounded-full border border-line px-3 py-2 text-xs;
+}
+
+.gift-pill--on {
+  @apply border-gold text-gold;
+}
+
+.gift-letter,
+.gift-field input,
+.event-entry input,
+.event-entry textarea,
+.corp-form input,
+.corp-form textarea {
+  @apply w-full rounded-xl border border-line bg-cream px-3 py-3 text-sm;
+}
+
+.gift-count {
+  @apply mt-2 text-right text-xs text-muted;
+}
+
+.gift-wraps {
+  @apply space-y-2;
+}
+
+.gift-wrap {
+  @apply flex items-center justify-between rounded-xl border border-line px-3 py-3;
+}
+
+.gift-wrap--on {
+  @apply border-navy;
+}
+
+.gift-actions {
+  @apply mt-6 flex flex-wrap gap-3;
+}
+
+.gift-field {
+  @apply mt-4 block text-sm text-muted;
+}
+
+.gift-pay-total,
+.gift-summary__total {
+  @apply mt-4 font-serif text-xl text-gold;
+}
+
+.gift-done {
+  @apply mt-4 rounded-xl bg-cream p-4 text-sm text-navy;
+}
+
+.gift-card {
+  @apply min-h-40 rounded-xl border border-gold p-4;
+}
+
+.gift-card span {
+  @apply text-xs tracking-widest text-gold;
+}
+
+.gift-summary__item {
+  @apply mt-4 flex gap-3;
+}
+
+.gift-summary__item img {
+  @apply h-16 w-12 rounded object-cover;
+}
+
+.event-hero {
+  @apply relative min-h-[380px] bg-cover bg-center;
+}
+
+.event-hero__veil {
+  @apply flex min-h-[380px] flex-col justify-end bg-navy/55 px-6 py-16 text-white;
+}
+
+.event-hero__badge {
+  @apply mb-3 w-fit rounded-full bg-gold px-3 py-1 text-xs text-navy;
+}
+
+.event-hero h1 {
+  @apply max-w-3xl font-serif text-3xl leading-snug md:text-4xl;
+}
+
+.event-page {
+  @apply mx-auto max-w-6xl px-4 py-10;
+}
+
+.event-split {
+  @apply grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px];
+}
+
+.event-howto ol {
+  @apply mt-4 space-y-3;
+}
+
+.event-howto li {
+  @apply flex items-start gap-3 text-sm;
+}
+
+.event-howto span {
+  @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-navy text-xs text-white;
+}
+
+.event-share {
+  @apply mt-8 rounded-2xl bg-cream-dark p-5;
+}
+
+.event-share div {
+  @apply mt-4 flex flex-wrap gap-2;
+}
+
+.event-entry {
+  @apply rounded-2xl bg-navy p-5 text-white;
+}
+
+.event-entry__time {
+  @apply font-en text-sm tracking-[0.2em] text-gold;
+}
+
+.event-entry__count {
+  @apply my-4 text-sm text-white/80;
+}
+
+.event-entry h2 {
+  @apply mb-3 font-serif text-xl;
+}
+
+.event-entry label {
+  @apply mt-3 block text-xs text-white/70;
+}
+
+.event-prizes ul,
+.corp-sets ul,
+.sub-archive ul,
+.sub-guide ul,
+.sub-plans > ul {
+  @apply mt-6 grid gap-4 md:grid-cols-3;
+}
+
+.event-prizes li,
+.corp-sets li,
+.sub-archive li,
+.sub-guide li,
+.sub-plans li {
+  @apply rounded-2xl bg-surface p-4 shadow-sm;
+}
+
+.event-prizes span {
+  @apply text-gold;
+}
+
+.event-winners table,
+.corp-quote table {
+  @apply mt-4 w-full text-left text-sm;
+}
+
+.event-winners th,
+.event-winners td,
+.corp-quote th,
+.corp-quote td {
+  @apply border-b border-line px-2 py-2;
+}
+
+.deal-banner {
+  @apply flex flex-wrap items-center justify-between gap-4 bg-navy px-6 py-3 text-sm text-white;
+}
+
+.deal-page {
+  @apply mx-auto max-w-6xl px-4 py-8;
+}
+
+.deal-feature__card {
+  @apply mt-4 grid gap-4 rounded-2xl border border-gold bg-surface p-4 lg:grid-cols-[220px_minmax(0,1fr)_180px];
+}
+
+.deal-feature__card img,
+.deal-card img {
+  @apply h-48 w-full rounded-xl object-cover;
+}
+
+.deal-badge {
+  @apply rounded-full bg-rose-200 px-2 py-1 text-xs text-rose-800;
+}
+
+.deal-price {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.deal-price s {
+  @apply text-muted;
+}
+
+.deal-price strong,
+.deal-price em,
+.corp-sets em {
+  @apply text-gold;
+}
+
+.deal-bar {
+  @apply my-2 h-2 overflow-hidden rounded-full bg-cream-dark;
+}
+
+.deal-bar i {
+  @apply block h-full bg-gold;
+}
+
+.deal-body {
+  @apply mt-8 grid gap-8 lg:grid-cols-[200px_minmax(0,1fr)];
+}
+
+.deal-filters button {
+  @apply w-full rounded-lg px-2 py-2 text-left text-sm;
+}
+
+.deal-filters .is-on {
+  @apply bg-cream-dark text-navy;
+}
+
+.deal-grid {
+  @apply grid gap-4 sm:grid-cols-2 xl:grid-cols-3;
+}
+
+.deal-card {
+  @apply rounded-2xl bg-surface p-3 shadow-sm;
+}
+
+.deal-card__media {
+  @apply relative;
+}
+
+.deal-card__media span {
+  @apply absolute top-2 right-2 rounded bg-gold px-2 py-1 text-xs text-navy;
+}
+
+.sub-hero {
+  @apply grid items-center gap-8 bg-navy px-6 py-16 text-white lg:grid-cols-2;
+}
+
+.sub-hero p:first-child {
+  @apply mb-3 text-gold;
+}
+
+.sub-hero h1 {
+  @apply font-serif text-4xl;
+}
+
+.sub-hero img {
+  @apply w-full rounded-2xl;
+}
+
+.sub-plans,
+.sub-guide,
+.sub-archive,
+.sub-faq,
+.corp-sets,
+.corp-quote {
+  @apply mx-auto max-w-6xl px-4 py-14;
+}
+
+.sub-plans .is-hot {
+  @apply border border-gold;
+}
+
+.sub-plans span {
+  @apply rounded-full bg-gold px-2 py-1 text-xs text-navy;
+}
+
+.sub-guide em {
+  @apply font-en text-gold;
+}
+
+.sub-archive p {
+  @apply mt-3 text-sm text-gold;
+}
+
+.sub-faq {
+  @apply grid gap-8 lg:grid-cols-2;
+}
+
+.sub-faq blockquote {
+  @apply mb-4;
+}
+
+.sub-faq cite {
+  @apply text-xs text-muted;
+}
+
+.sub-faq details {
+  @apply border-b border-line py-3;
+}
+
+.sub-cta {
+  @apply bg-navy px-6 py-16 text-center text-white;
+}
+
+.sub-cta h2 {
+  @apply mb-6 font-serif text-3xl;
+}
+
+.corp-hero {
+  @apply bg-cover bg-center;
+}
+
+.corp-hero div {
+  @apply bg-navy/60 px-6 py-20 text-center text-white;
+}
+
+.corp-hero p:first-child {
+  @apply mb-3 inline-block rounded-full bg-gold px-3 py-1 text-xs text-navy;
+}
+
+.corp-hero h1 {
+  @apply mx-auto max-w-3xl font-serif text-3xl;
+}
+
+.corp-quote {
+  @apply grid gap-8 bg-cream-dark lg:grid-cols-2;
+}
+
+.corp-form {
+  @apply rounded-2xl bg-surface p-6;
+}
