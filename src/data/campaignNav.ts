@@ -1,0 +1,7 @@
+import { getActiveHolidayEvent } from '../features/event/data/holidayEvents'
+import type { NavLinkItem } from '../shared/types/navigation'
+
+export function getCampaignNavLinks(): NavLinkItem[] {
+  const holiday = getActiveHolidayEvent()
+  return [{ label: holiday.navLabel, to: `/events/${holiday.slug}` }]
+}

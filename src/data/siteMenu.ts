@@ -19,6 +19,8 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       to: '/gift',
       items: [
         { label: '선물하기', to: '/gift' },
+        { label: '추석 특별전', to: '/events/chuseok' },
+        { label: '설날 특별전', to: '/events/seollal' },
       ],
       clusters: [],
     },
@@ -69,7 +71,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '브랜드 스토리', to: '/story' },
         { label: '글 목록', to: '/community' },
         { label: '글쓰기', to: '/community/new' },
-        { label: '이벤트', to: '/' },
+        { label: '명절 특별전', to: '/events/chuseok' },
       ],
       clusters: [],
     },
