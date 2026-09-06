@@ -18,6 +18,9 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
       {!isLoggedIn ? (
         <SignupLink className="navbar__signup">회원가입</SignupLink>
       ) : null}
+      <Link to="/custom" className="navbar__cta">
+        기념주 제작하기
+      </Link>
       <Link to="/products" aria-label="검색" className="navbar__icon">
         <Search size={20} strokeWidth={1.5} />
       </Link>
