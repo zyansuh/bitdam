@@ -7,7 +7,13 @@
 }
 
 .login-hero-desktop {
-  @apply relative hidden overflow-hidden min-[1000px]:sticky min-[1000px]:top-0 min-[1000px]:flex min-[1000px]:h-dvh min-[1000px]:w-1/2 min-[1000px]:shrink-0;
+  @apply relative hidden overflow-hidden min-[1000px]:sticky min-[1000px]:top-16 min-[1000px]:flex min-[1000px]:w-1/2 min-[1000px]:shrink-0;
+}
+
+@media (min-width: 1000px) {
+  .login-hero-desktop {
+    height: calc(100dvh - 4rem);
+  }
 }
 
 .login-hero-desktop__image {
