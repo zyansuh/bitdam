@@ -36,6 +36,7 @@ import NoticeDetailPage from '../features/notice/pages/NoticeDetailPage'
 import ChatPage from '../features/chat/pages/ChatPage'
 import CustomLabelPage from '../features/custom/pages/CustomLabelPage'
 import TourReservePage from '../features/brewery/pages/TourReservePage'
+import GiftPage from '../features/gift/pages/GiftPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -84,6 +85,7 @@ export function AppRoutes() {
       <Route path="/notices/:id" element={<NoticeDetailPage />} />
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/custom" element={<CustomLabelPage />} />
+      <Route path="/gift" element={<GiftPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
