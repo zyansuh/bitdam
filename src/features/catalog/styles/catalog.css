@@ -71,7 +71,7 @@
 }
 
 .catalog-header__menu-button {
-  @apply transition-colors hover:text-gold min-[1000px]:hidden;
+  @apply transition-colors hover:text-gold;
 }
 
 .catalog-header__mobile {
