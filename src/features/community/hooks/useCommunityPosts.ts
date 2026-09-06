@@ -1,36 +1,100 @@
 import { useState } from 'react'
 import type { AuthUser } from '../../../shared/types/auth'
-import type { CommunityPost } from '../types/communityPost'
+import type { CommunityCategoryId, CommunityPost } from '../types/communityPost'
 import { loadCommunityPosts, saveCommunityPosts } from '../utils/communityStorage'
 
 export function useCommunityPosts(user: AuthUser | null) {
   const [posts, setPosts] = useState<CommunityPost[]>(() => loadCommunityPosts())
+  const [tag, setTag] = useState<string | null>(null)
+  const [category, setCategory] = useState<CommunityCategoryId>('all')
 
   const mine = user ? posts.filter((post) => post.authorId === user.id) : []
+  const shown = mine.filter((post) => {
+    if (category !== 'all' && post.category !== category) return false
+    if (tag && !`${post.title} ${post.body} ${post.tags.join(' ')}`.includes(tag.replace('#', ''))) {
+      return false
+    }
+    return true
+  })
 
-  function addPost(title: string, body: string) {
-    if (!user) return
-    const next: CommunityPost[] = [
-      {
-        id: crypto.randomUUID(),
-        authorId: user.id,
-        authorName: user.nickname,
-        title: title.trim(),
-        body: body.trim(),
-        createdAt: new Date().toISOString(),
-      },
-      ...posts,
-    ]
+  function persist(next: CommunityPost[]) {
     setPosts(next)
     saveCommunityPosts(next)
+  }
+
+  function addPost(input: {
+    title: string
+    body: string
+    image?: string
+    category: Exclude<CommunityCategoryId, 'all'>
+    tags: string[]
+  }) {
+    if (!user) return undefined
+    const post: CommunityPost = {
+      id: crypto.randomUUID(),
+      authorId: user.id,
+      authorName: user.nickname,
+      authorImage: user.profileImage,
+      title: input.title.trim(),
+      body: input.body.trim(),
+      image: input.image?.trim() || undefined,
+      category: input.category,
+      tags: input.tags,
+      likes: 0,
+      comments: [],
+      createdAt: new Date().toISOString(),
+    }
+    persist([post, ...posts])
+    return post.id
   }
 
   function removePost(id: string) {
     if (!user) return
-    const next = posts.filter((post) => !(post.id === id && post.authorId === user.id))
-    setPosts(next)
-    saveCommunityPosts(next)
+    persist(posts.filter((post) => !(post.id === id && post.authorId === user.id)))
   }
 
-  return { mine, addPost, removePost }
+  function likePost(id: string) {
+    persist(posts.map((post) => (post.id === id ? { ...post, likes: post.likes + 1 } : post)))
+  }
+
+  function addComment(id: string, body: string) {
+    if (!user || !body.trim()) return
+    persist(
+      posts.map((post) =>
+        post.id === id
+          ? {
+              ...post,
+              comments: [
+                ...post.comments,
+                {
+                  id: crypto.randomUUID(),
+                  authorName: user.nickname,
+                  authorImage: user.profileImage,
+                  body: body.trim(),
+                  createdAt: new Date().toISOString(),
+                },
+              ],
+            }
+          : post,
+      ),
+    )
+  }
+
+  function getPost(id: string) {
+    return mine.find((post) => post.id === id)
+  }
+
+  return {
+    mine,
+    shown,
+    tag,
+    setTag,
+    category,
+    setCategory,
+    addPost,
+    removePost,
+    likePost,
+    addComment,
+    getPost,
+  }
 }
