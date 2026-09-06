@@ -10,6 +10,8 @@ import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
 import CommunityPage from '../features/community/pages/CommunityPage'
+import CommunityPostPage from '../features/community/pages/CommunityPostPage'
+import CommunityWritePage from '../features/community/pages/CommunityWritePage'
 import TermsPage from '../features/legal/pages/TermsPage'
 import PrivacyPage from '../features/legal/pages/PrivacyPage'
 import MypagePage from '../features/account/pages/MypagePage'
@@ -47,6 +49,8 @@ export function AppRoutes() {
       <Route path="/breweries/:id" element={<BreweryDetailPage />} />
       <Route path="/classes" element={<ClassBookingPage />} />
       <Route path="/community" element={<CommunityPage />} />
+      <Route path="/community/new" element={<CommunityWritePage />} />
+      <Route path="/community/:id" element={<CommunityPostPage />} />
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage/certificates" element={<MypageCertificatesPage />} />
       <Route path="/mypage/coupons" element={<MypageCouponsPage />} />
