@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { User } from 'lucide-react'
-import { settingsNav } from '../../../features/account/data/settingsNav'
+import { headerAccountLinks } from '../../../data/headerAccountLinks'
+import { settingsNav } from '../../../data/settingsNav'
 import { useAccountMenu } from '../../hooks/useAccountMenu'
 import { useAuth } from '../../hooks/useAuth'
 import { formatUserHonorific } from '../../utils/formatUserHonorific'
@@ -37,9 +38,14 @@ export default function AccountMenu({ triggerClassName }: AccountMenuProps) {
       </button>
       {menuOpen ? (
         <div className="account-menu__panel" role="menu">
-          <p className="account-menu__label">마이페이지</p>
-          <Link to="/mypage" className="account-menu__item" role="menuitem" onClick={closeMenu}>
-            마이페이지
+          <p className="account-menu__label">내 계정</p>
+          {headerAccountLinks.map((item) => (
+            <Link key={item.to} to={item.to} className="account-menu__item" role="menuitem" onClick={closeMenu}>
+              {item.label}
+            </Link>
+          ))}
+          <Link to="/help" className="account-menu__item" role="menuitem" onClick={closeMenu}>
+            고객센터
           </Link>
           <p className="account-menu__label">개인정보 설정</p>
           {settingsNav.map((item) => (
