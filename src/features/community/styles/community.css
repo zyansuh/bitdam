@@ -1,0 +1,99 @@
+.community-page {
+  @apply mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8;
+}
+
+.community-page__layout {
+  @apply grid gap-8 lg:grid-cols-[16rem_minmax(0,1fr)];
+}
+
+.community-aside {
+  @apply flex flex-col gap-6;
+}
+
+.community-profile {
+  @apply rounded-md border border-line bg-surface p-5;
+}
+
+.community-profile__name {
+  @apply font-serif text-lg text-charcoal;
+}
+
+.community-profile__meta {
+  @apply mt-1 text-sm text-muted;
+}
+
+.community-index__title {
+  @apply mb-2 font-serif text-base text-charcoal;
+}
+
+.community-index__list {
+  @apply flex flex-col gap-1;
+}
+
+.community-index__link {
+  @apply block truncate rounded-md px-2 py-2 text-sm text-charcoal/80 hover:bg-cream-dark hover:text-gold;
+}
+
+.community-index__empty {
+  @apply px-2 text-sm text-muted;
+}
+
+.community-composer {
+  @apply mb-6 rounded-md border border-line bg-surface p-4;
+}
+
+.community-composer__title {
+  @apply mb-3 w-full rounded-md border border-line bg-cream px-3 py-2 text-sm text-charcoal outline-none focus:border-gold;
+}
+
+.community-composer__body {
+  @apply mb-3 min-h-28 w-full resize-y rounded-md border border-line bg-cream px-3 py-2 text-sm text-charcoal outline-none focus:border-gold;
+}
+
+.community-composer__submit {
+  @apply rounded-sm bg-gold px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gold-dark disabled:opacity-50;
+}
+
+.community-prompt {
+  @apply mb-6 rounded-md border border-line bg-surface p-6 text-center;
+}
+
+.community-prompt__text {
+  @apply text-sm text-muted;
+}
+
+.community-prompt__link {
+  @apply mt-3 inline-block text-sm font-medium text-gold hover:text-gold-dark;
+}
+
+.community-feed {
+  @apply flex flex-col gap-4;
+}
+
+.community-card {
+  @apply rounded-md border border-line bg-surface p-5;
+}
+
+.community-card__head {
+  @apply mb-2 flex items-start justify-between gap-3;
+}
+
+.community-card__title {
+  @apply font-serif text-lg text-charcoal;
+}
+
+.community-card__time {
+  @apply mt-1 text-xs text-muted;
+}
+
+.community-card__body {
+  @apply whitespace-pre-wrap text-sm leading-relaxed text-charcoal/80;
+}
+
+.community-card__delete {
+  @apply shrink-0 text-xs text-muted hover:text-gold;
+}
+
+.community-empty {
+  @apply rounded-md border border-dashed border-line px-4 py-10 text-center text-sm text-muted;
+}

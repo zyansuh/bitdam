@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Menu, Search, ShoppingCart, X } from 'lucide-react'
 import BrandLogo from '../../../shared/components/brand/BrandLogo'
-import ThemeToggle from '../../../shared/components/navigation/ThemeToggle'
-import LoginLink from '../../../shared/components/navigation/LoginLink'
+import AccountMenu from '../../../shared/components/navigation/AccountMenu'
+import SiteHamburgerMenu from '../../../shared/components/navigation/SiteHamburgerMenu'
 import SignupLink from '../../../shared/components/navigation/SignupLink'
+import ThemeToggle from '../../../shared/components/navigation/ThemeToggle'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { useMobileMenu } from '../../../shared/hooks/useMobileMenu'
 import { catalogLightLinks, catalogNavyLinks } from '../data/headerLinks'
@@ -16,7 +17,7 @@ interface CatalogHeaderProps {
 
 export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps) {
   const { menuOpen, toggleMenu, closeMenu } = useMobileMenu()
-  const { isLoggedIn, logout } = useAuth()
+  const { isLoggedIn } = useAuth()
   const isNavy = variant === 'navy'
   const tone = isNavy ? 'navy' : 'light'
   const links = isNavy ? catalogNavyLinks : catalogLightLinks
@@ -37,11 +38,13 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
           ))}
         </nav>
         <div className="catalog-header__actions">
-          {!isNavy && (
-            <button type="button" aria-label="검색" className="catalog-header__icon--light">
-              <Search size={20} strokeWidth={1.5} />
-            </button>
-          )}
+          <Link
+            to="/products"
+            aria-label="검색"
+            className={`catalog-header__icon--${tone}`}
+          >
+            <Search size={20} strokeWidth={1.5} />
+          </Link>
           <button
             type="button"
             aria-label="장바구니"
@@ -55,17 +58,12 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
               회원가입
             </SignupLink>
           )}
-          {isLoggedIn ? (
-            <button type="button" className="catalog-header__logout" onClick={logout}>
-              로그아웃
-            </button>
-          ) : (
-            <LoginLink className="catalog-header__login">로그인</LoginLink>
-          )}
+          <AccountMenu triggerClassName={`account-menu__trigger catalog-header__icon--${tone}`} />
           <ThemeToggle className={`theme-toggle catalog-header__icon--${tone}`} />
           <button
             type="button"
             aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={menuOpen}
             className={`catalog-header__menu-button catalog-header__icon--${tone}`}
             onClick={toggleMenu}
           >
@@ -73,43 +71,7 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
           </button>
         </div>
       </div>
-      {menuOpen && (
-        <nav className={`catalog-header__mobile catalog-header__mobile--${tone}`}>
-          <ul className="catalog-header__mobile-list">
-            {links.map((link) => (
-              <li key={link.label}>
-                <Link
-                  to={link.to}
-                  className={`catalog-header__mobile-link catalog-header__mobile-link--${tone}`}
-                  onClick={closeMenu}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            {!isLoggedIn && (
-              <>
-                <li>
-                  <SignupLink
-                    className={`catalog-header__mobile-link catalog-header__mobile-link--${tone}`}
-                    onClick={closeMenu}
-                  >
-                    회원가입
-                  </SignupLink>
-                </li>
-                <li>
-                  <LoginLink
-                    className={`catalog-header__mobile-link catalog-header__mobile-link--${tone}`}
-                    onClick={closeMenu}
-                  >
-                    로그인
-                  </LoginLink>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      )}
+      {menuOpen ? <SiteHamburgerMenu onClose={closeMenu} tone={tone} /> : null}
     </header>
   )
 }

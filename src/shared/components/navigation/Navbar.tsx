@@ -3,7 +3,7 @@ import { useMobileMenu } from '../../hooks/useMobileMenu'
 import BrandLogo from '../brand/BrandLogo'
 import NavbarActions from './NavbarActions'
 import NavbarDesktopLinks from './NavbarDesktopLinks'
-import NavbarMobileMenu from './NavbarMobileMenu'
+import SiteHamburgerMenu from './SiteHamburgerMenu'
 
 export default function Navbar() {
   const { menuOpen, toggleMenu, closeMenu } = useMobileMenu()
@@ -15,7 +15,7 @@ export default function Navbar() {
         <NavbarDesktopLinks links={navLinks} />
         <NavbarActions menuOpen={menuOpen} onToggleMenu={toggleMenu} />
       </div>
-      {menuOpen && <NavbarMobileMenu links={navLinks} onClose={closeMenu} />}
+      {menuOpen ? <SiteHamburgerMenu onClose={closeMenu} /> : null}
     </header>
   )
 }

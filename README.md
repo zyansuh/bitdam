@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/login` · `/signup` · `/terms` · `/privacy` |
+| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/login` · `/signup` · `/terms` · `/privacy` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -78,6 +78,7 @@
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 명인 · 방문 정보 |
 | `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
+| `/community` | `CommunityPage` | 프로필 메뉴에서 진입 · 본인 글만 쓰는 블로그형 커뮤니티 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
 
@@ -94,10 +95,11 @@ flowchart LR
     S -->|가입 완료| C
     C -->|전통주 / 브랜드 스토어| H[/ ProductListPage /]
     C -->|Navbar 양조장| J[/ BreweryMapPage /]
-    J -->|양조장 이야기| K[/ BreweryDetailPage /]
+    J -->|햄버거 투어 목록| K[/ BreweryDetailPage /]
+    C -->|Navbar 프로필 · 내 글 목록| M[/ CommunityPage /]
     C -->|Navbar 클래스 / 프로모 CTA| L[/ ClassBookingPage /]
     K -->|투어 신청| L
-    C -->|Navbar 프로필| D
+    C -->|프로필에서 로그인| D
     H -->|카테고리·상품 카드| I[/ CategoryPage /]
     I -->|전체상품| H
     D -->|홈으로 돌아가기| C
@@ -112,12 +114,13 @@ flowchart LR
 
 | 화면 | mobile (<600px) | tablet (600~999px) | desktop (≥1000px) |
 |------|-----------------|--------------------|--------------------|
-| **홈** | 햄버거 메뉴 · Hero 이미지 상단 · 상품 2열 | 상품 3열 · Stats 4열 | Nav 링크 노출 · Hero 2단 · 상품 4열 |
+| **홈** | 헤더 · 햄버거(페이지·카테고리·투어·계정) · 상품 2열 | 상품 3열 · Stats 4열 | Nav 링크 + 햄버거 · Hero 2단 · 상품 4열 |
 | **목록** | 필터 토글 · 상품 2열 | 필터 토글 · 상품 2열 | 좌측 sticky 필터 + 상품 3열 |
 | **카테고리** | 남색 헤더 · 필터 토글 · 대표 상품 | 동일 + 넓은 캐러셀 | 남색 헤더 · 좌측 필터 + 캐러셀 |
 | **로그인** | 상단 히어로 배너 + 폼 | 폼 중앙 · 피드 3열 | 좌측 sticky 히어로 + 우측 스크롤 |
 | **회원가입** | 로그인과 동일 레이아웃 | 동일 | 동일 |
-| **양조장** | 권역 탭 · 지도 상단 · 추천 리스트 | 지도·리스트 세로 | 지도 + 추천 2단 |
+| **양조장** | 투어 헤더 · 햄버거 목록 · 지도 상단 | 지도·리스트 세로 | 양조장 투어 헤더 + 지도 2단 |
+| **커뮤니티** | 글 목록 · 작성 폼 세로 | 동일 | 좌측 목록 + 본문 |
 | **클래스** | 필터 토글 · 세션 카드 | 동일 | 좌측 필터 + 세션 목록 |
 | **운영정책** | 남색 헤더 · 목차 칩 · 조문 스크롤 | 동일 | 동일 max-w-3xl |
 | **개인정보처리방침** | 운영정책과 동일 레이아웃 | 동일 | 동일 |
@@ -130,7 +133,7 @@ flowchart LR
 
 | 섹션 | 컴포넌트 | 설명 |
 |------|----------|------|
-| 네비게이션 | `Navbar` | sticky 헤더 · 1000px 미만 햄버거 메뉴 · 검색·장바구니·프로필 아이콘 |
+| 네비게이션 | `Navbar` | sticky 헤더 · 햄버거(전통주·양조장·이야기·계정 계층) · 검색·장바구니·프로필 |
 | 히어로 | `Hero` | 「다섯 개의 손이 한 병에 모이다」· CTA 2종 |
 | 통계 | `Stats` | 31곳 · 9개 권역 · 5개 · 100+ 명 |
 | 급상승 술 | `InfiniteProductFeed` | 8개씩 paginate · Intersection Observer 무한 스크롤 |
@@ -148,6 +151,17 @@ flowchart LR
 | **핀** | 양조장 위치 · 팝업에서 상세(`/breweries/:id`) |
 | **추천 카드** | 양조장 이야기 · 상품 목록(`/products`) |
 | **클래스** | 상세 하단 투어 바 → `/classes?brewery=` |
+| **투어 헤더** | 「양조장 투어」 강조 · 오른쪽 햄버거로 전체 사이트 메뉴·투어 목록 |
+
+### ✍️ 커뮤니티 (`/community`)
+
+프로필(사람) 아이콘을 누르면 「커뮤니티 · 내 글 목록」이 열립니다. 로그인한 계정으로 쓴 글만 보이고, 브라우저 `localStorage`에 저장됩니다.
+
+| 기능 | 설명 |
+|------|------|
+| **글 목록** | 좌측(모바일은 상단) 제목 목록 · 본문 앵커로 이동 |
+| **작성** | 제목 · 본문 · 게시하기 |
+| **비로그인** | 로그인 안내 |
 
 ### 🍶 상품 목록 (`/products`)
 
@@ -233,6 +247,7 @@ flowchart TB
         AUTH[auth/pages + components]
         CAT[catalog/pages + components]
         BREW[brewery/pages + components]
+        COMM[community/pages + components]
         LEGAL[legal/pages + components]
     end
     subgraph Shared["shared/"]
@@ -242,7 +257,7 @@ flowchart TB
     end
     MAIN --> APP
     APP --> ROUTES
-    ROUTES --> HOME & AUTH & CAT & BREW & LEGAL
+    ROUTES --> HOME & AUTH & CAT & BREW & COMM & LEGAL
     HOME --> STYLES
     AUTH --> STYLES
     CAT --> STYLES
@@ -282,7 +297,8 @@ BITDAM/
     │   ├── home/                  # pages · components · data · styles
     │   ├── auth/                  # pages · components · data · styles
     │   ├── catalog/               # pages · components · hooks · data · styles · types
-    │   ├── brewery/               # 지도 · 상세 · 클래스
+    │   ├── brewery/               # 지도 · 상세 · 클래스 · 투어 헤더
+    │   ├── community/             # 본인 글 블로그
     │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
@@ -315,7 +331,7 @@ BITDAM/
 | **styles/** | `tokens.css` · `global.css` · footer/navbar/feed/product CSS |
 | **hooks/** | `useMobileMenu` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
 | **components/layout/footer/** | `Footer` · `FooterBrand` · `FooterLinkColumn` · `FooterBottom` |
-| **components/navigation/** | `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `NavbarMobileMenu` |
+| **components/navigation/** | `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` |
 | **components/brand/** | `BrandLogo` |
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
@@ -329,7 +345,8 @@ BITDAM/
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 훅 · 헤더 · 카드 · 캐러셀 |
-| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | MapLibre · 권역 탭 · 예약 로컬 상태 |
+| **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | 투어 헤더 · MapLibre · 예약 |
+| **community** | `CommunityPage` | `community.css` | 프로필 메뉴 · 내 글 목록 · localStorage |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
 ### `src/data/`
@@ -474,6 +491,7 @@ Vercel → Project → Settings → Environment Variables에서 Production / Pre
 | http://localhost:5173/breweries | 양조장 지도 |
 | http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
 | http://localhost:5173/classes | 클래스 예약 |
+| http://localhost:5173/community | 내 글 커뮤니티 |
 
 ---
 
@@ -560,7 +578,7 @@ import { getProductsPage } from '../../../data/products';
 ### TODO
 
 - [x] `src/` → `shared/` + `features/` 폴더 구조 리팩터 · CSS/훅/컴포넌트 분리
-- [x] 양조장 지도(`/breweries`) · 상세(`/breweries/:id`) · 클래스(`/classes`)
+- [x] 양조장 투어 헤더·목록 · 블로그형 커뮤니티(`/community`)
 - [ ] 상품 단위 상세(PDP) 페이지
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
@@ -572,7 +590,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
-| **2026-09-03** | 양조장 지도·상세·클래스 라우트 (`/breweries` · `/classes`) |
+| **2026-09-03** | 전 페이지 헤더·햄버거(`SiteHamburgerMenu`) · 양조장 투어·커뮤니티 |
 | **2026-09-02** | `/privacy` 개인정보처리방침 페이지 |
 | **2026-09-02** | 홈 스크롤 버벅임 완화 (smooth scroll 제거 · 이미지 lazy · 헤더 blur 제거) |
 | **2026-09-02** | 카카오 OAuth `state`·쿠키로 다크모드 복구 |

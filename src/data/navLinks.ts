@@ -5,6 +5,6 @@ export const navLinks: NavLinkItem[] = [
   { label: '양조장', to: '/breweries' },
   { label: '클래스', to: '/classes' },
   { label: '스토리', to: '/story' },
-  { label: '커뮤니티', to: '/' },
+  { label: '커뮤니티', to: '/community' },
   { label: '이벤트', to: '/' },
 ]

@@ -1,6 +1,7 @@
 import InfiniteProductFeed from '../../../shared/components/feed/InfiniteProductFeed'
 import InfiniteStoryFeed from '../../../shared/components/feed/InfiniteStoryFeed'
 import PageLayout from '../../../shared/components/layout/PageLayout'
+import Navbar from '../../../shared/components/navigation/Navbar'
 import { useLoginReturnPath } from '../../../shared/hooks/useLoginReturnPath'
 import { useScrollPageTop } from '../../../shared/hooks/useScrollPageTop'
 import LoginForm from '../components/LoginForm'
@@ -13,6 +14,7 @@ export default function Login() {
 
   return (
     <PageLayout>
+      <Navbar />
       <div className="login-page">
         <LoginHeroPanelMobile />
         <LoginHeroPanelDesktop />

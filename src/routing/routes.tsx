@@ -9,6 +9,7 @@ import ClassBookingPage from '../features/brewery/pages/ClassBookingPage'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
+import CommunityPage from '../features/community/pages/CommunityPage'
 import TermsPage from '../features/legal/pages/TermsPage'
 import PrivacyPage from '../features/legal/pages/PrivacyPage'
 
@@ -34,6 +35,7 @@ export function AppRoutes() {
       />
       <Route path="/breweries/:id" element={<BreweryDetailPage />} />
       <Route path="/classes" element={<ClassBookingPage />} />
+      <Route path="/community" element={<CommunityPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>

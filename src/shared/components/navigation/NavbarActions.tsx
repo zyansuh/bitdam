@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Menu, Search, ShoppingCart, User, X } from 'lucide-react'
+import { Menu, Search, ShoppingCart, X } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
-import { formatUserHonorific } from '../../utils/formatUserHonorific'
 import ThemeToggle from './ThemeToggle'
-import LoginLink from './LoginLink'
 import SignupLink from './SignupLink'
-import NavbarUserAvatar from './NavbarUserAvatar'
+import AccountMenu from './AccountMenu'
 
 interface NavbarActionsProps {
   menuOpen: boolean
@@ -13,7 +11,7 @@ interface NavbarActionsProps {
 }
 
 export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsProps) {
-  const { user, isLoggedIn, logout } = useAuth()
+  const { isLoggedIn } = useAuth()
 
   return (
     <div className="navbar__actions">
@@ -24,29 +22,10 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
         <ShoppingCart size={20} strokeWidth={1.5} />
         <span className="navbar__cart-dot" />
       </button>
-      {isLoggedIn ? (
-        <button
-          type="button"
-          aria-label={`${user ? formatUserHonorific(user.nickname) : ''} 로그아웃`}
-          className="navbar__account"
-          onClick={logout}
-        >
-          <NavbarUserAvatar
-            src={user?.profileImage}
-            alt={user ? formatUserHonorific(user.nickname) : '프로필'}
-          />
-          <span className="navbar__user-name">
-            {user ? formatUserHonorific(user.nickname) : ''}
-          </span>
-        </button>
-      ) : (
-        <>
-          <SignupLink className="navbar__signup">회원가입</SignupLink>
-          <LoginLink aria-label="로그인" className="navbar__icon">
-            <User size={20} strokeWidth={1.5} />
-          </LoginLink>
-        </>
-      )}
+      {!isLoggedIn ? (
+        <SignupLink className="navbar__signup">회원가입</SignupLink>
+      ) : null}
+      <AccountMenu triggerClassName="account-menu__trigger navbar__account" />
       <ThemeToggle />
       <button
         type="button"

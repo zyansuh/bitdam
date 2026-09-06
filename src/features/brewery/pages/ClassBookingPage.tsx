@@ -1,6 +1,6 @@
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
-import CatalogHeader from '../../catalog/components/CatalogHeader'
+import BrewerySiteHeader from '../components/BrewerySiteHeader'
 import ClassFeaturedCard from '../components/ClassFeaturedCard'
 import ClassFilterSidebar from '../components/ClassFilterSidebar'
 import ClassSessionList from '../components/ClassSessionList'
@@ -15,7 +15,7 @@ export default function ClassBookingPage() {
 
   return (
     <PageLayout>
-      <CatalogHeader />
+      <BrewerySiteHeader />
       <main className="class-page">
         <header className="class-page__head">
           <h1 className="class-page__title">클래스 예약</h1>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
-import CatalogHeader from '../../catalog/components/CatalogHeader'
+import BrewerySiteHeader from '../components/BrewerySiteHeader'
 import BreweryAwards from '../components/BreweryAwards'
 import BreweryDetailHero from '../components/BreweryDetailHero'
 import BreweryMaster from '../components/BreweryMaster'
@@ -18,7 +18,7 @@ export default function BreweryDetailPage() {
   if (!brewery) {
     return (
       <PageLayout>
-        <CatalogHeader />
+        <BrewerySiteHeader />
         <main className="brewery-detail-missing">
           <p>양조장을 찾을 수 없습니다.</p>
           <Link to="/breweries">지도로 돌아가기</Link>
@@ -30,7 +30,7 @@ export default function BreweryDetailPage() {
 
   return (
     <PageLayout>
-      <CatalogHeader />
+      <BrewerySiteHeader />
       <main className="brewery-detail">
         <BreweryDetailHero brewery={brewery} />
         <div className="brewery-detail__grid">

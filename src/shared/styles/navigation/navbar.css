@@ -18,6 +18,10 @@
   @apply flex items-center gap-3 sm:gap-5;
 }
 
+.navbar__icon {
+  @apply text-charcoal/70 transition-colors hover:text-gold;
+}
+
 .navbar__signup {
   @apply hidden text-sm font-medium text-charcoal/80 transition-colors hover:text-gold min-[1000px]:inline;
 }
@@ -31,11 +35,11 @@
 }
 
 .navbar__menu-button {
-  @apply text-charcoal/70 transition-colors hover:text-gold min-[1000px]:hidden;
+  @apply text-charcoal/70 transition-colors hover:text-gold;
 }
 
 .navbar__mobile {
-  @apply border-t border-cream-dark bg-cream px-4 py-4 min-[1000px]:hidden;
+  @apply border-t border-cream-dark bg-cream px-4 py-4;
 }
 
 .navbar__mobile-list {

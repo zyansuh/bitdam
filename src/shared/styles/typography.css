@@ -13,7 +13,10 @@ input[type='submit'] {
 nav a,
 .navbar__link,
 .catalog-header__link,
-.catalog-header__mobile-link {
+.catalog-header__mobile-link,
+.brewery-header__link,
+.account-menu__item,
+.site-menu__link {
   font-family: var(--font-sans);
   font-weight: 500;
 }
