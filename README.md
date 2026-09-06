@@ -69,7 +69,8 @@
 | 경로 | 페이지 | 설명 |
 |------|--------|------|
 | `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 스토리 피드 |
-| `/story` | `BrandStoryPage` | 빚담 브랜드 이야기 · 챕터형 소개 |
+| `/story` | `BrandStoryPage` | 시간이 흐를수록 · 못난이 과일 · 철학·펀딩·여정 |
+| `/custom` | `CustomLabelPage` | 기념주 라벨 4단계 맞춤 · 실시간 견적 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
@@ -239,7 +240,7 @@ flowchart LR
 | **반응형** | `breakpoints.ts` · `Responsive.value<T>()` · Tailwind grid |
 | **무한 스크롤** | `useInfiniteScroll` + sentinel ref |
 | **페이지 스크롤** | `PageLayout` — `min-h-dvh`, `overflow-y: auto` |
-| **폰트** | Nanum Myeongjo(제목) · Noto Sans KR(본문) — Google Fonts |
+| **폰트** | 제목 MaruBuri · 본문/UI Pretendard · 로고 나눔명조 · 영문 킥커 국민대 숭곡 |
 
 ---
 
@@ -383,6 +384,8 @@ BITDAM/
 | **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
 | **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·모아보기 |
 | **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
+| **custom** | `CustomLabelPage` | `custom.css` | 기념주 4단계 · 실시간 견적 |
+| **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
 ### `src/data/`
@@ -413,10 +416,14 @@ BITDAM/
 
 ### 타이포그래피
 
-| 용도 | 폰트 |
-|------|------|
-| 제목 (serif) | Nanum Myeongjo |
-| 본문 (sans) | Noto Sans KR |
+| 용도 | 토큰 | 폰트 |
+|------|------|------|
+| 제목 | `--font-serif` / `font-serif` | MaruBuri |
+| 본문 · 버튼 · 네비 · 표 | `--font-sans` / `font-sans` | Pretendard |
+| 로고 글자 | `--font-logo` / `font-logo` | Nanum Myeongjo |
+| 홈 Hero 영문 킥커 | `--font-en` | Kookmin University Sunggok SemiSerif |
+
+전역 규칙은 `src/shared/styles/typography.css`입니다. `h1`–`h6`은 제목 폰트, `p`·표·폼·푸터 링크는 본문 폰트입니다.
 
 ### 브레이크포인트
 
@@ -545,6 +552,8 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/community | 내 글 커뮤니티 |
 | http://localhost:5173/notices | 공지사항 |
 | http://localhost:5173/chat | 빚담 추천 AI |
+| http://localhost:5173/custom | 기념주 라벨 맞춤 |
+| http://localhost:5173/story | 브랜드 스토리 |
 
 ---
 
@@ -644,6 +653,9 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 스토리 못난이 과일 · 시간이 흐를수록 히어로 |
+| **2026-09-07** | 기념주 `/custom` 라벨 4단계 · 실시간 견적 |
+| **2026-09-07** | 제목 MaruBuri · 본문 Pretendard로 전역 타이포 정리 |
 | **2026-09-07** | 공지사항(`/notices`) · 모아보기·작성 · 빚담 추천 AI(`/chat`) |
 | **2026-09-07** | 공용 `SiteHeader` · 헤더 데이터는 `src/data` · 고객센터는 `/help` 링크 |
 | **2026-09-07** | 알림 센터(`/notifications`) · 고객센터 FAQ(`/help/:category`) |

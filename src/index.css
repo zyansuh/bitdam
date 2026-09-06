@@ -18,6 +18,7 @@
 @import './features/home/styles/stats.css';
 @import './features/home/styles/promo-banner.css';
 @import './features/brand/styles/brand-story.css';
+@import './features/custom/styles/custom.css';
 @import './features/auth/styles/login.css';
 @import './features/auth/styles/kakao.css';
 @import './features/auth/styles/auth-notice.css';
@@ -26,6 +27,7 @@
 @import 'maplibre-gl/dist/maplibre-gl.css';
 @import './features/brewery/styles/brewery-detail.css';
 @import './features/brewery/styles/class-booking.css';
+@import './features/brewery/styles/brewery-tour.css';
 @import './features/brewery/styles/brewery-header.css';
 @import './features/community/styles/community.css';
 @import './features/account/styles/account.css';

@@ -1,12 +1,36 @@
+/* Title: MaruBuri. Body / UI: Pretendard. Logo: Nanum Myeongjo. EN kicker: KMU Sunggok. */
+
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 600;
 }
 
+p,
+li,
+td,
+th,
+label,
+dt,
+dd {
+  font-family: var(--font-sans);
+}
+
 button,
+input,
+textarea,
+select,
 input[type='submit'] {
   font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+button,
+input[type='submit'] {
   font-weight: 600;
 }
 
@@ -16,7 +40,9 @@ nav a,
 .catalog-header__mobile-link,
 .brewery-header__link,
 .account-menu__item,
-.site-menu__link {
+.site-menu__link,
+.footer__heading,
+.footer__link {
   font-family: var(--font-sans);
   font-weight: 500;
 }

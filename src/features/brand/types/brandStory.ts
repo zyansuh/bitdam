@@ -18,6 +18,37 @@ export interface BrandStoryWord {
   meaning: string
 }
 
+export interface BrandStoryStat {
+  value: string
+  label: string
+}
+
+export interface BrandStoryCard {
+  id: string
+  title: string
+  text: string
+}
+
+export interface BrandStoryProcessStep {
+  id: string
+  title: string
+  text: string
+}
+
+export interface BrandStoryFunding {
+  id: string
+  tag: string
+  title: string
+  percent: number
+  amount: string
+  image: string
+}
+
+export interface BrandStoryMilestone {
+  date: string
+  text: string
+}
+
 export interface BrandStoryClosing {
   name: string
   words: BrandStoryWord[]

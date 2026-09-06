@@ -26,7 +26,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       to: '/breweries',
       items: [
         { label: '전국 지도', to: '/breweries' },
-        { label: '투어 예약', to: '/breweries/samhae' },
+        { label: '투어 예약', to: '/tours' },
         { label: '클래스 예약', to: '/classes' },
       ],
       clusters: MAP_REGIONS.filter((region) => region.id !== 'all')
@@ -40,6 +40,17 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
           })),
         }))
         .filter((cluster) => cluster.items.length > 0),
+    },
+    {
+      id: 'custom',
+      label: '기념주',
+      to: '/custom',
+      items: [
+        { label: '기념주 제작하기', to: '/custom' },
+        { label: '라벨 맞춤 단계', to: '/custom' },
+        { label: '못난이 과일 스토리', to: '/story' },
+      ],
+      clusters: [],
     },
     {
       id: 'story',

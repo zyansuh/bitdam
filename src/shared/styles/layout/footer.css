@@ -23,7 +23,7 @@
 }
 
 .footer__heading {
-  @apply mb-4 text-sm font-semibold text-white;
+  @apply mb-4 font-sans text-sm font-semibold text-white;
 }
 
 .footer__list {
