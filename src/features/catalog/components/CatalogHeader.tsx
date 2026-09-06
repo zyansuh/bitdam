@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Menu, Search, ShoppingCart, X } from 'lucide-react'
 import BrandLogo from '../../../shared/components/brand/BrandLogo'
 import AccountMenu from '../../../shared/components/navigation/AccountMenu'
+import CustomerCenterMenu from '../../../shared/components/navigation/CustomerCenterMenu'
 import SiteHamburgerMenu from '../../../shared/components/navigation/SiteHamburgerMenu'
 import SignupLink from '../../../shared/components/navigation/SignupLink'
 import ThemeToggle from '../../../shared/components/navigation/ThemeToggle'
@@ -36,8 +37,14 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
               {link.label}
             </Link>
           ))}
+          <CustomerCenterMenu triggerClassName={`catalog-header__link catalog-header__link--${tone}`} />
         </nav>
         <div className="catalog-header__actions">
+          {!isLoggedIn && (
+            <SignupLink className={`catalog-header__signup catalog-header__signup--${tone}`}>
+              회원가입
+            </SignupLink>
+          )}
           <Link
             to="/products"
             aria-label="검색"
@@ -45,6 +52,7 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
           >
             <Search size={20} strokeWidth={1.5} />
           </Link>
+          <ThemeToggle className={`theme-toggle catalog-header__icon--${tone}`} />
           <button
             type="button"
             aria-label="장바구니"
@@ -53,13 +61,7 @@ export default function CatalogHeader({ variant = 'light' }: CatalogHeaderProps)
             <ShoppingCart size={20} strokeWidth={1.5} />
             <span className="catalog-header__badge">2</span>
           </button>
-          {!isLoggedIn && (
-            <SignupLink className={`catalog-header__signup catalog-header__signup--${tone}`}>
-              회원가입
-            </SignupLink>
-          )}
           <AccountMenu triggerClassName={`account-menu__trigger catalog-header__icon--${tone}`} />
-          <ThemeToggle className={`theme-toggle catalog-header__icon--${tone}`} />
           <button
             type="button"
             aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}

@@ -17,9 +17,11 @@ export type BreweryProfile = {
   programPrice: number
   hours: string
   parking: string
+  includes?: string[]
 }
 
 export type BreweryDetail = BreweryPin &
   BreweryProfile & {
     products: Product[]
+    includes: string[]
   }

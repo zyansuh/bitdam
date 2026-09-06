@@ -1,0 +1,265 @@
+.account-page {
+  @apply mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8;
+}
+
+.account-page__layout {
+  @apply grid gap-8 lg:grid-cols-[16rem_minmax(0,1fr)];
+}
+
+.account-page__main {
+  @apply flex min-w-0 flex-col gap-6;
+}
+
+.account-aside {
+  @apply flex flex-col gap-4;
+}
+
+.mypage-profile {
+  @apply rounded-2xl border border-line bg-surface p-5 text-center shadow-sm;
+}
+
+.mypage-profile__photo {
+  @apply mx-auto mb-3 h-20 w-20 rounded-full object-cover;
+}
+
+.mypage-profile__photo--empty {
+  @apply block bg-cream-dark;
+}
+
+.mypage-profile__name {
+  @apply font-serif text-lg text-charcoal;
+}
+
+.mypage-profile__level {
+  @apply mt-1 text-sm text-muted;
+}
+
+.mypage-profile__points {
+  @apply mt-2 text-sm font-medium text-gold;
+}
+
+.account-nav {
+  @apply overflow-hidden rounded-2xl border border-line bg-surface;
+}
+
+.account-nav__item {
+  @apply block px-4 py-3 text-sm text-charcoal/80 transition-colors hover:bg-cream-dark;
+}
+
+.account-nav__item--on {
+  @apply bg-gold font-medium text-white hover:bg-gold;
+}
+
+.mypage-stats {
+  @apply grid grid-cols-2 gap-3 md:grid-cols-4;
+}
+
+.mypage-stats__card {
+  @apply rounded-2xl border border-line bg-surface px-4 py-5 shadow-sm;
+}
+
+.mypage-stats__label {
+  @apply text-xs text-muted;
+}
+
+.mypage-stats__value {
+  @apply mt-2 font-serif text-2xl text-gold;
+}
+
+.account-panel {
+  @apply rounded-2xl border border-line bg-surface p-5 shadow-sm sm:p-6;
+}
+
+.account-panel__head {
+  @apply mb-4 flex items-center justify-between gap-3;
+}
+
+.account-panel__title {
+  @apply font-serif text-xl text-charcoal;
+}
+
+.account-panel__sub {
+  @apply mb-4 mt-1 text-sm text-muted;
+}
+
+.account-panel__more {
+  @apply text-sm text-gold hover:underline;
+}
+
+.mypage-table-wrap {
+  @apply overflow-x-auto;
+}
+
+.mypage-table {
+  @apply w-full min-w-[32rem] text-left text-sm;
+}
+
+.mypage-table th {
+  @apply border-b border-line pb-3 font-medium text-muted;
+}
+
+.mypage-table td {
+  @apply border-b border-line py-3 align-top text-charcoal;
+}
+
+.mypage-table__sub {
+  @apply text-xs text-muted;
+}
+
+.mypage-status {
+  @apply ml-1 inline-flex rounded-full bg-cream-dark px-2 py-0.5 text-xs text-gold;
+}
+
+.mypage-certs {
+  @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.mypage-certs__card {
+  @apply overflow-hidden rounded-2xl border border-line bg-cream;
+}
+
+.mypage-certs__image {
+  @apply h-48 w-full object-cover;
+}
+
+.mypage-certs__no {
+  @apply px-4 pt-3 text-xs text-gold;
+}
+
+.mypage-certs__name {
+  @apply px-4 font-serif text-lg text-charcoal;
+}
+
+.mypage-certs__desc {
+  @apply px-4 pb-4 pt-1 text-sm text-muted;
+}
+
+.account-list {
+  @apply flex flex-col gap-3;
+}
+
+.account-list__item {
+  @apply flex items-start justify-between gap-4 rounded-xl border border-line px-4 py-3;
+}
+
+.account-list__title {
+  @apply font-medium text-charcoal;
+}
+
+.account-list__meta {
+  @apply mt-1 text-sm text-muted;
+}
+
+.account-list__actions {
+  @apply flex shrink-0 flex-col gap-1;
+}
+
+.account-form {
+  @apply mt-6 flex flex-col gap-4;
+}
+
+.account-field {
+  @apply flex flex-col gap-1.5;
+}
+
+.account-field__label {
+  @apply text-sm text-muted;
+}
+
+.account-field input,
+.account-field textarea {
+  @apply w-full rounded-lg border border-line bg-cream px-3 py-2.5 text-sm text-charcoal outline-none focus:border-gold;
+}
+
+.account-field__row {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.account-field__row input {
+  @apply min-w-0 flex-1;
+}
+
+.account-verified {
+  @apply rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700;
+}
+
+.settings-photo {
+  @apply relative flex flex-wrap items-center gap-4;
+}
+
+.settings-photo__image {
+  @apply h-24 w-24 rounded-full object-cover;
+}
+
+.settings-photo__image--empty {
+  @apply block bg-cream-dark;
+}
+
+.settings-photo__actions {
+  @apply flex gap-2;
+}
+
+.settings-photo__change {
+  @apply cursor-pointer rounded-full bg-gold px-3 py-1.5 text-sm text-white;
+}
+
+.settings-photo__delete {
+  @apply rounded-full border border-line px-3 py-1.5 text-sm text-charcoal;
+}
+
+.settings-photo__hint {
+  @apply mt-2 text-xs text-muted;
+}
+
+.settings-interests__row {
+  @apply mt-2 flex flex-wrap gap-3;
+}
+
+.settings-interests__item {
+  @apply flex items-center gap-2 text-sm text-charcoal;
+}
+
+.settings-password {
+  @apply rounded-xl border border-line bg-cream p-4;
+}
+
+.account-save {
+  @apply rounded-xl bg-gold px-6 py-3 text-sm font-medium text-white hover:bg-gold-dark;
+}
+
+.account-save--danger {
+  @apply mt-4 bg-red-700 hover:bg-red-800;
+}
+
+.account-ghost {
+  @apply text-xs text-muted hover:text-gold;
+}
+
+.account-error {
+  @apply text-sm text-red-700;
+}
+
+.account-ok {
+  @apply text-sm text-emerald-700;
+}
+
+.account-prompt {
+  @apply mx-auto max-w-lg rounded-2xl border border-line bg-surface p-8 text-center;
+}
+
+.account-prompt__text {
+  @apply text-sm text-muted;
+}
+
+.account-prompt__link {
+  @apply mt-4 inline-block text-sm font-medium text-gold hover:underline;
+}
+
+.settings-switch {
+  @apply flex items-center gap-2 text-sm text-charcoal;
+}
+
+.settings-photo__file {
+  @apply absolute h-px w-px overflow-hidden whitespace-nowrap;
+  clip: rect(0, 0, 0, 0);
+}

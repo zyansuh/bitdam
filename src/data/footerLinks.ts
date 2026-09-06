@@ -10,7 +10,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
   ],
   고객지원: [
     { label: '자주 묻는 질문' },
-    { label: '1:1 문의' },
+    { label: '1:1 문의', to: '/mypage/support' },
     { label: '배송 안내', to: '/terms#shipping' },
     { label: '교환/반품', to: '/terms#shipping' },
   ],

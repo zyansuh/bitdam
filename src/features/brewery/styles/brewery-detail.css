@@ -30,6 +30,10 @@
   @apply mt-2 max-w-2xl font-serif text-2xl font-semibold sm:text-4xl;
 }
 
+.brewery-detail-hero__lead {
+  @apply mt-3 max-w-xl text-sm leading-relaxed text-white/80;
+}
+
 .brewery-detail__grid {
   @apply mt-10 grid gap-10 min-[1000px]:grid-cols-[1.15fr_0.85fr] min-[1000px]:items-start;
 }
@@ -39,7 +43,87 @@
 }
 
 .brewery-detail__aside {
-  @apply flex flex-col gap-6;
+  @apply flex flex-col gap-6 min-[1000px]:sticky min-[1000px]:top-20;
+}
+
+.brewery-includes {
+  @apply mt-3 flex flex-col gap-2;
+}
+
+.brewery-includes__item {
+  @apply flex items-center gap-2 text-sm text-charcoal/80;
+}
+
+.brewery-includes__item svg {
+  @apply text-gold;
+}
+
+.brewery-reserve {
+  @apply rounded-2xl border border-line bg-surface p-5 shadow-sm;
+}
+
+.brewery-reserve__title {
+  @apply font-serif text-lg text-charcoal;
+}
+
+.brewery-reserve__step {
+  @apply mt-4 mb-2 text-xs font-medium text-muted;
+}
+
+.brewery-reserve__dates {
+  @apply flex gap-2 overflow-x-auto pb-1;
+}
+
+.brewery-reserve__date {
+  @apply flex h-14 w-12 shrink-0 flex-col items-center justify-center rounded-md border border-line text-sm text-charcoal hover:border-gold;
+}
+
+.brewery-reserve__date--on {
+  @apply border-navy bg-navy text-white;
+}
+
+.brewery-reserve__weekday {
+  @apply text-[10px] text-muted;
+}
+
+.brewery-reserve__date--on .brewery-reserve__weekday {
+  @apply text-white/70;
+}
+
+.brewery-reserve__times {
+  @apply flex flex-wrap gap-2;
+}
+
+.brewery-reserve__time {
+  @apply rounded-full border border-line px-3 py-1.5 text-xs text-charcoal hover:border-gold;
+}
+
+.brewery-reserve__time--on {
+  @apply border-gold text-gold;
+}
+
+.brewery-reserve__guests {
+  @apply flex items-center gap-3 text-sm font-medium text-charcoal;
+}
+
+.brewery-reserve__count {
+  @apply flex h-8 w-8 items-center justify-center rounded-full border border-line hover:border-gold;
+}
+
+.brewery-reserve__bill {
+  @apply mt-4 flex flex-col gap-2 border-t border-line pt-4 text-sm;
+}
+
+.brewery-reserve__bill div {
+  @apply flex items-center justify-between text-charcoal/80;
+}
+
+.brewery-reserve__total {
+  @apply font-semibold text-charcoal;
+}
+
+.brewery-reserve__cta {
+  @apply mt-4 w-full rounded-md bg-gold py-3 text-sm font-semibold text-white hover:bg-gold-dark;
 }
 
 .brewery-detail__heading {

@@ -15,7 +15,7 @@ export default function CommunityIndexList({ posts }: CommunityIndexListProps) {
         <ul className="community-index__list">
           {posts.map((post) => (
             <li key={post.id}>
-              <Link to={`#post-${post.id}`} className="community-index__link">
+              <Link to={`/community/${post.id}`} className="community-index__link">
                 {post.title}
               </Link>
             </li>

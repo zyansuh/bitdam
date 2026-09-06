@@ -28,6 +28,26 @@ export function matchAccount(email: string, password: string): EmailAccount | un
   return account
 }
 
+export function updateAccountPassword(accountId: string, current: string, next: string): void {
+  const accounts = readList()
+  const index = accounts.findIndex((account) => account.id === accountId)
+  if (index < 0) {
+    throw new Error('이메일 계정을 찾을 수 없습니다.')
+  }
+  if (accounts[index].password !== current) {
+    throw new Error('현재 비밀번호가 올바르지 않습니다.')
+  }
+  if (next.length < 8) {
+    throw new Error('새 비밀번호는 8자 이상이어야 합니다.')
+  }
+  accounts[index] = { ...accounts[index], password: next }
+  writeList(accounts)
+}
+
+export function deleteAccount(accountId: string): void {
+  writeList(readList().filter((account) => account.id !== accountId))
+}
+
 export function createAccount(input: { email: string; password: string; nickname: string }): EmailAccount {
   const email = input.email.trim().toLowerCase()
   if (findAccountByEmail(email)) {
