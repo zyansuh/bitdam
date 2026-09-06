@@ -9,6 +9,8 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '커뮤니티', to: '/community' },
   ],
   고객지원: [
+    { label: '공지사항', to: '/notices' },
+    { label: 'AI 추천', to: '/chat' },
     { label: '자주 묻는 질문', to: '/help' },
     { label: '알림 센터', to: '/notifications' },
     { label: '1:1 문의', to: '/mypage/support' },
