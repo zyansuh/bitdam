@@ -1,0 +1,31 @@
+.brewery-header {
+  @apply sticky top-0 z-50 border-b border-cream-dark bg-cream/95 text-charcoal;
+}
+
+.brewery-header__inner {
+  @apply mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:h-16 sm:px-6 lg:px-8;
+}
+
+.brewery-header__menu {
+  @apply shrink-0 text-charcoal/70 transition-colors hover:text-gold;
+}
+
+.brewery-header__nav {
+  @apply hidden min-w-0 flex-1 items-center gap-6 min-[1000px]:flex lg:gap-8;
+}
+
+.brewery-header__link {
+  @apply text-sm font-medium text-charcoal/80 transition-colors hover:text-gold;
+}
+
+.brewery-header__link--on {
+  @apply text-gold;
+}
+
+.brewery-header__actions {
+  @apply ml-auto flex items-center gap-3 sm:gap-4;
+}
+
+.brewery-header__icon {
+  @apply text-charcoal/70 transition-colors hover:text-gold;
+}
