@@ -30,6 +30,14 @@
   @apply text-charcoal/70 transition-colors hover:text-gold;
 }
 
+.navbar__cta {
+  @apply hidden rounded-sm bg-gold px-3 py-1.5 text-xs font-semibold text-white hover:bg-gold-dark min-[1000px]:inline;
+}
+
+.navbar--navy .navbar__cta {
+  @apply text-white hover:bg-gold-dark;
+}
+
 .navbar__signup {
   @apply hidden text-sm font-medium text-charcoal/80 transition-colors hover:text-gold min-[1000px]:inline;
 }
