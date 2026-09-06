@@ -1,12 +1,104 @@
-import type { BrandStoryChapter, BrandStoryClosing } from '../types/brandStory'
+import type {
+  BrandStoryCard,
+  BrandStoryChapter,
+  BrandStoryClosing,
+  BrandStoryFunding,
+  BrandStoryMilestone,
+  BrandStoryProcessStep,
+  BrandStoryStat,
+} from '../types/brandStory'
 
 export const brandStoryHero = {
   kicker: '브랜드 이야기',
   name: '빚담',
-  title: '시간을 빚고, 이야기를 담습니다.',
+  title: '시간이 흐를수록 깊어지는 맛과 향',
+  lead: '명인의 땀과 숨결을 다음 세대에 남기는 것. 빚담은 그 꿈을 한 병에 담습니다.',
   image:
-    'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1600&h=900&fit=crop&q=80',
-  imageAlt: '잔에 담긴 술과 시간의 여백',
+    'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1800&h=1000&fit=crop&q=80',
+  imageAlt: '숲과 계곡이 이어진 풍경 위에 얹은 빚담 스토리',
+}
+
+export const brandStoryUglyFruit = {
+  badge: '가치 있는 소비를 위한 전통주 프로젝트',
+  title: '버려지는 못난이 과일, 장인의 손길로 명품 전통주가 되다',
+  text: '모양이 고르지 않아 버려질 뻔한 우리 농가의 과일이, 전통 양조를 거쳐 시간이 흐를수록 깊어지는 맛과 향으로 다시 태어납니다.',
+  image:
+    'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=1200&h=900&fit=crop&q=80',
+  imageAlt: '나무 위에 놓인 못난이 과일과 잘린 과육',
+  primary: { label: '지금 동참하기', to: '/custom' },
+  secondary: { label: '스토리 전체 보기', to: '#brand-story-body' },
+}
+
+export const brandStoryPhilosophies: BrandStoryCard[] = [
+  {
+    id: 'tradition',
+    title: '전통 보존',
+    text: '1500년을 이어 온 양조를 오늘의 손으로 다시 빚습니다.',
+  },
+  {
+    id: 'modern',
+    title: '현대적 감각',
+    text: '기념주 라벨과 패키지로 전통을 지금 감각의 선물로 만듭니다.',
+  },
+  {
+    id: 'together',
+    title: '상생 양조',
+    text: '지역 양조장·농가와 함께 못난이 과일의 가치를 나눕니다.',
+  },
+]
+
+export const brandStoryStats: BrandStoryStat[] = [
+  { value: '12.8t', label: '구해 낸 못난이 과일' },
+  { value: '3.2t', label: '줄어든 탄소' },
+  { value: '48', label: '함께하는 농가' },
+]
+
+export const brandStoryProcess: BrandStoryProcessStep[] = [
+  { id: '01', title: '선별', text: '떨어진 과일과 못난이 과일을 골라 한 철의 시간을 남깁니다.' },
+  { id: '02', title: '손질', text: '장인의 손으로 씻고 깎아 술의 재료로 다시 앉힙니다.' },
+  { id: '03', title: '발효와 숙성', text: '기다림 속에서 맛과 향이 깊어집니다.' },
+  { id: '04', title: '가치 소비', text: '한 병이 농가와 지구에 돌아가는 소비가 됩니다.' },
+]
+
+export const brandStoryFunding: BrandStoryFunding[] = [
+  {
+    id: 'apple',
+    tag: '목표 초과',
+    title: '충주 못난이 사과 약주',
+    percent: 145,
+    amount: '14,500,000원',
+    image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b21094?w=800&h=500&fit=crop&q=80',
+  },
+  {
+    id: 'pear',
+    tag: '진행 중',
+    title: '나주 배 과실주 크라우드',
+    percent: 82,
+    amount: '8,200,000원',
+    image: 'https://images.unsplash.com/photo-1571771894821-ce3b22ce5c26?w=800&h=500&fit=crop&q=80',
+  },
+  {
+    id: 'citrus',
+    tag: '진행 중',
+    title: '제주 감귤 증류 펀딩',
+    percent: 61,
+    amount: '6,100,000원',
+    image: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=800&h=500&fit=crop&q=80',
+  },
+]
+
+export const brandStoryMilestones: BrandStoryMilestone[] = [
+  { date: '2023.04', text: '빚담 프로젝트 시작. 작은 양조장과 못난이 과일을 잇기 시작했습니다.' },
+  { date: '2024.08', text: '디지털 전통 명인 인증서를 열고, 한 병의 내력을 기록합니다.' },
+  { date: '2025.01', text: '조명화 명인 한정 패키지와 탄소 저감 기부를 함께 열었습니다.' },
+]
+
+export const brandStoryPartners = ['삼해소주', '문배주', '안동소주', '한산모시', '전주이강주', '서울탁주']
+
+export const brandStoryBanner = {
+  title: '지구를 위한 한 방울, 우리 술 가치 소비의 시작',
+  action: '못난이 친구와 함께 성장하기',
+  to: '/custom',
 }
 
 export const brandStoryChapters: BrandStoryChapter[] = [
