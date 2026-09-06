@@ -7,6 +7,7 @@ interface AuthContextValue {
   isLoggedIn: boolean
   login: (user: AuthUser) => void
   logout: () => void
+  updateUser: (patch: Partial<AuthUser>) => void
 }
 
 export const AuthContext = createContext<AuthContextValue | null>(null)
@@ -29,6 +30,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       logout: () => {
         clearAuthUser()
         setUser(null)
+      },
+      updateUser: (patch) => {
+        setUser((current) => {
+          if (!current) return current
+          const next = { ...current, ...patch }
+          writeAuthUser(next)
+          return next
+        })
       },
     }),
     [user],
