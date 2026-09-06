@@ -1,0 +1,96 @@
+.help-page {
+  @apply mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8;
+}
+
+.help-page__head {
+  @apply mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between;
+}
+
+.help-page__title {
+  @apply font-serif text-3xl text-charcoal;
+}
+
+.help-search {
+  @apply relative w-full sm:max-w-md;
+}
+
+.help-search__label {
+  @apply absolute h-px w-px overflow-hidden whitespace-nowrap;
+  clip: rect(0, 0, 0, 0);
+}
+
+.help-search input {
+  @apply w-full rounded-full border border-line bg-surface px-4 py-2.5 text-sm text-charcoal outline-none focus:border-gold;
+}
+
+.help-page__layout {
+  @apply grid gap-8 lg:grid-cols-[14rem_minmax(0,1fr)];
+}
+
+.help-nav {
+  @apply overflow-hidden rounded-2xl border border-line bg-surface;
+}
+
+.help-nav__item {
+  @apply block px-4 py-3 text-sm text-charcoal/80 hover:bg-cream-dark;
+}
+
+.help-nav__item--on {
+  @apply bg-gold font-medium text-white hover:bg-gold;
+}
+
+.help-crumb {
+  @apply mb-4 text-sm text-muted;
+}
+
+.help-faq-list {
+  @apply overflow-hidden rounded-2xl border border-line bg-surface;
+}
+
+.help-faq + .help-faq {
+  @apply border-t border-line;
+}
+
+.help-faq__q {
+  @apply flex w-full items-center justify-between gap-3 px-4 py-4 text-left text-sm font-medium text-charcoal;
+}
+
+.help-faq__mark {
+  @apply text-lg text-gold;
+}
+
+.help-faq__a {
+  @apply px-4 pb-4 text-sm leading-relaxed text-muted;
+}
+
+.help-empty {
+  @apply rounded-2xl border border-line bg-surface px-4 py-8 text-sm text-muted;
+}
+
+.help-actions {
+  @apply mt-8 grid gap-4 sm:grid-cols-2;
+}
+
+.help-actions__card {
+  @apply rounded-2xl border border-line bg-surface px-5 py-6 hover:border-gold;
+}
+
+.help-actions__title {
+  @apply font-serif text-lg text-charcoal;
+}
+
+.help-actions__desc {
+  @apply mt-2 text-sm text-muted;
+}
+
+.help-chat {
+  @apply flex flex-col gap-3 rounded-2xl border border-line bg-surface p-5;
+}
+
+.help-chat__bubble {
+  @apply max-w-xl rounded-2xl px-4 py-3 text-sm;
+}
+
+.help-chat__bubble--bot {
+  @apply bg-cream text-charcoal;
+}
