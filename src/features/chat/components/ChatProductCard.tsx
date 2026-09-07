@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatWon } from '../../../shared/utils/formatWon'
+import SafeImage from '../../../shared/components/media/SafeImage'
 import type { ChatProductRef } from '../types/chat'
 
 interface ChatProductCardProps {
@@ -9,7 +10,7 @@ interface ChatProductCardProps {
 export default function ChatProductCard({ product }: ChatProductCardProps) {
   return (
     <Link to={`/products/${product.id}`} className="chat-product">
-      <img src={product.image} alt="" className="chat-product__image" />
+      <SafeImage src={product.image} alt="" className="chat-product__image" />
       <div>
         <p className="chat-product__name">{product.name}</p>
         <p className="chat-product__meta">

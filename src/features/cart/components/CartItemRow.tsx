@@ -2,6 +2,7 @@ import { Minus, Plus, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { CartItem } from '../../../shared/providers/cartProvider'
 import { formatWon } from '../../../shared/utils/formatWon'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface CartItemRowProps {
   item: CartItem
@@ -15,7 +16,7 @@ export default function CartItemRow({ item, onQuantity, onRemove }: CartItemRowP
   return (
     <article className="cart-item">
       <Link to={`/products/${product.id}`} className="cart-item__media">
-        <img src={product.image} alt="" className="cart-item__image" />
+        <SafeImage src={product.image} alt="" className="cart-item__image" />
       </Link>
       <div className="cart-item__body">
         <Link to={`/products/${product.id}`} className="cart-item__name">

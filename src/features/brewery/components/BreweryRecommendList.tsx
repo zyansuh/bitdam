@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { BreweryPin } from '../data/breweries'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface BreweryRecommendListProps {
   breweries: BreweryPin[]
@@ -34,7 +35,7 @@ export default function BreweryRecommendList({
                   className="brewery-card__hit"
                   onClick={() => onSelect(item.id)}
                 >
-                  <img src={item.image} alt="" className="brewery-card__image" />
+                  <SafeImage src={item.image} alt="" className="brewery-card__image" fallbackSrc="/images/mock-brewery.svg" />
                   <div className="brewery-card__body">
                     <p className="brewery-card__name">{item.name}</p>
                     <p className="brewery-card__meta">

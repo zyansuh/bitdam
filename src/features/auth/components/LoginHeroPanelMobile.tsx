@@ -1,10 +1,11 @@
+import SafeImage from '../../../shared/components/media/SafeImage'
 import { LOGIN_HERO_IMAGE } from '../data/login'
 import LoginHeroContent from './LoginHeroContent'
 
 export default function LoginHeroPanelMobile() {
   return (
     <div className="login-hero-mobile">
-      <img src={LOGIN_HERO_IMAGE} alt="전통 양조장 장독대" className="login-hero-mobile__image" />
+      <SafeImage src={LOGIN_HERO_IMAGE} alt="전통 양조장 장독대" className="login-hero-mobile__image" />
       <div className="login-hero-mobile__shade" />
       <div className="login-hero-mobile__content">
         <LoginHeroContent compact />

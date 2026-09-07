@@ -7,14 +7,14 @@ import type {
   BrandStoryProcessStep,
   BrandStoryStat,
 } from '../types/brandStory'
+import { MOCK_IMAGES } from '../../../data/mockImages'
 
 export const brandStoryHero = {
   kicker: '브랜드 이야기',
   name: '빚담',
   title: '시간이 흐를수록 깊어지는 맛과 향',
   lead: '명인의 땀과 숨결을 다음 세대에 남기는 것. 빚담은 그 꿈을 한 병에 담습니다.',
-  image:
-    'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1800&h=1000&fit=crop&q=80',
+  image: MOCK_IMAGES.brewery,
   imageAlt: '숲과 계곡이 이어진 풍경 위에 얹은 빚담 스토리',
 }
 
