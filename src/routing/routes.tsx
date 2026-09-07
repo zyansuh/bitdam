@@ -9,6 +9,7 @@ import ClassBookingPage from '../features/brewery/pages/ClassBookingPage'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import ProductDetailPage from '../features/product/pages/ProductDetailPage'
+import CartPage from '../features/cart/pages/CartPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
 import CommunityPage from '../features/community/pages/CommunityPage'
 import CommunityPostPage from '../features/community/pages/CommunityPostPage'
@@ -73,6 +74,7 @@ export function AppRoutes() {
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
+      <Route path="/cart" element={<CartPage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
       <Route
         path="/breweries"
