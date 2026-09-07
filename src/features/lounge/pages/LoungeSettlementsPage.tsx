@@ -2,11 +2,13 @@ import { formatWon } from '../../../shared/utils/formatWon'
 import LoungeLayout from '../components/LoungeLayout'
 import LoungeSalesBars from '../components/LoungeSalesBars'
 import LoungeSettlementTable from '../components/LoungeSettlementTable'
-import { LOUNGE_SETTLEMENTS } from '../data/loungeRecords'
+import { SETTLEMENT_FEE_RATE } from '../data/settlementFee'
 import { useLoungeScope } from '../providers/loungeScopeProvider'
+import { barsFromShopOrders } from '../utils/barsFromShopOrders'
 import { downloadSettlementCsv } from '../utils/downloadSettlementCsv'
 import { inSellerScope } from '../utils/inSellerScope'
-import { barsForScope, sellerIdsForScope } from '../utils/loungeSnapshot'
+import { sellerIdsForScope } from '../utils/loungeSnapshot'
+import { shopOrdersToSettlements } from '../utils/shopOrdersToSettlements'
 
 export default function LoungeSettlementsPage() {
   return (
@@ -18,10 +20,15 @@ export default function LoungeSettlementsPage() {
 
 function LoungeSettlementsBody() {
   const { scopeId } = useLoungeScope()
-  const rows = inSellerScope(LOUNGE_SETTLEMENTS, sellerIdsForScope(scopeId))
-  const paid = rows.reduce((sum, row) => sum + row.paid, 0)
+  const ids = sellerIdsForScope(scopeId)
+  const rows = inSellerScope(shopOrdersToSettlements(), ids)
+  const now = new Date()
+  const monthPrefix = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}`
+  const monthRows = rows.filter((row) => row.date.startsWith(monthPrefix))
+  const paid = monthRows.reduce((sum, row) => sum + row.paid, 0)
   const fee = rows.reduce((sum, row) => sum + row.fee, 0)
-  const due = rows.reduce((sum, row) => sum + row.due, 0)
+  const due = rows.filter((row) => row.status === '정산대기').reduce((sum, row) => sum + row.due, 0)
+  const percent = Math.round(SETTLEMENT_FEE_RATE * 100)
 
   return (
     <>
@@ -36,23 +43,27 @@ function LoungeSettlementsBody() {
         <article className="lounge-kpi">
           <p className="lounge-kpi__label">이번달 총 매출</p>
           <p className="lounge-kpi__value">{formatWon(paid)}</p>
-          <p className="lounge-kpi__note">+12.4% 상향</p>
+          <p className="lounge-kpi__note">ShopOrder 라인 합계</p>
         </article>
         <article className="lounge-kpi">
           <p className="lounge-kpi__label">정산 예정 금액</p>
           <p className="lounge-kpi__value">{formatWon(due)}</p>
-          <p className="lounge-kpi__note">10월 25일 정산 예정</p>
+          <p className="lounge-kpi__note">대기 건 정산예정액 합</p>
         </article>
         <article className="lounge-kpi">
-          <p className="lounge-kpi__label">플랫폼 수수료 (11%)</p>
+          <p className="lounge-kpi__label">플랫폼 수수료 ({percent}%)</p>
           <p className="lounge-kpi__value">{formatWon(fee)}</p>
           <p className="lounge-kpi__note">부가세 별도</p>
         </article>
       </section>
-      <LoungeSalesBars bars={barsForScope(scopeId)} />
+      <LoungeSalesBars bars={barsFromShopOrders(ids)} />
       <section className="lounge-panel">
         <h2>정산 건별 내역</h2>
-        <LoungeSettlementTable rows={rows} />
+        {rows.length === 0 ? (
+          <p className="staff-lead">아직 이 공방의 쇼핑몰 주문이 없습니다. 결제하면 여기에 수수료와 정산예정액이 생깁니다.</p>
+        ) : (
+          <LoungeSettlementTable rows={rows} />
+        )}
       </section>
     </>
   )
