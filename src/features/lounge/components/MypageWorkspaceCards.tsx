@@ -3,6 +3,9 @@ import { useAuth } from '../../../shared/hooks/useAuth'
 import {
   canOpenAdminScope,
   canOpenLounge,
+  canPickAllShops,
+  canViewStaffPerformance,
+  canWriteNotice,
   needsWorkshopVerify,
   resolveWorkspaceRole,
   workspaceRoleLabel,
@@ -16,25 +19,44 @@ export default function MypageWorkspaceCards() {
   const role = resolveWorkspaceRole(user)
   const shop = getSellerShop(user?.sellerId)
   const isAdmin = canOpenAdminScope(role)
-  const verifyNeeded = needsWorkshopVerify(user) || role === 'member'
 
   return (
     <section className="lounge-mypage-cards">
       {isAdmin ? (
-        <Link to="/mypage/lounge" className="lounge-mypage-card lounge-mypage-card--admin">
-          <p className="lounge-mypage-card__kicker">ADMIN</p>
-          <h2>운영 콘솔</h2>
-          <p>전체 입점 양조장을 조회합니다. 상단에서 공방을 고르세요.</p>
-        </Link>
+        <>
+          <Link to="/mypage/admin/people" className="lounge-mypage-card lounge-mypage-card--admin">
+            <p className="lounge-mypage-card__kicker">ADMIN</p>
+            <h2>구성원 권한</h2>
+            <p>가입 계정에 직원·팀장·ADMIN 등급을 부여합니다.</p>
+          </Link>
+          {canViewStaffPerformance(role) ? (
+            <Link to="/mypage/admin/performance" className="lounge-mypage-card lounge-mypage-card--admin">
+              <p className="lounge-mypage-card__kicker">ADMIN</p>
+              <h2>직원 성과</h2>
+              <p>팀장·직원의 공지 기여와 라운지 점검을 봅니다.</p>
+            </Link>
+          ) : null}
+        </>
       ) : null}
       {canOpenLounge(role) && !needsWorkshopVerify(user) ? (
         <Link to="/mypage/lounge" className="lounge-mypage-card">
           <p className="lounge-mypage-card__kicker">{workspaceRoleLabel(role)}</p>
-          <h2>셀러 라운지</h2>
-          <p>{isAdmin ? '입점 공방 대시보드를 공방별로 조회합니다.' : `${shop?.name ?? '내 공방'}만 보입니다.`}</p>
+          <h2>{canPickAllShops(role) ? '공방 라운지' : '셀러 라운지'}</h2>
+          <p>
+            {canPickAllShops(role)
+              ? '직원·팀장·ADMIN은 전체 공방을 골라 볼 수 있습니다.'
+              : `${shop?.name ?? '내 공방'}만 보입니다.`}
+          </p>
         </Link>
       ) : null}
-      {verifyNeeded && !isAdmin ? (
+      {canWriteNotice(role) ? (
+        <Link to="/notices/new" className="lounge-mypage-card">
+          <p className="lounge-mypage-card__kicker">{workspaceRoleLabel(role)}</p>
+          <h2>공지 작성</h2>
+          <p>{role === 'staff' ? '직원은 공지를 등록할 수 있습니다. 중요 공지는 팀장·ADMIN만 표시합니다.' : '공지와 중요 표시를 포함해 작성할 수 있습니다.'}</p>
+        </Link>
+      ) : null}
+      {needsWorkshopVerify(user) || role === 'member' ? (
         <Link to="/mypage/lounge/verify" className="lounge-mypage-card">
           <p className="lounge-mypage-card__kicker">사업자 인증</p>
           <h2>내 공방 사전 지정</h2>
