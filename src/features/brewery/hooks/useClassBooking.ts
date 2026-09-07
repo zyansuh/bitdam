@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { appendBooking } from '../../../shared/utils/bookingStorage'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import type { ClassSession } from '../types/classSession'
 
 export function useClassBooking() {
@@ -23,6 +24,16 @@ export function useClassBooking() {
         amount: session.price,
         createdAt: new Date().toISOString(),
       })
+      appendSiteNotice(
+        makeSiteNotice({
+          kind: 'event',
+          title: `${session.title} 예약이 접수되었습니다`,
+          body: `${session.place} · ${session.dateLabel}`,
+          actionLabel: '예약 내역',
+          actionTo: '/mypage/reservations',
+          audienceId: user.id,
+        }),
+      )
     },
     [user],
   )
