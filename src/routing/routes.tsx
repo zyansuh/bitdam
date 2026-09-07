@@ -12,6 +12,7 @@ import HomeLanding from '../features/home/pages/HomeLanding'
 import CommunityPage from '../features/community/pages/CommunityPage'
 import CommunityPostPage from '../features/community/pages/CommunityPostPage'
 import CommunityWritePage from '../features/community/pages/CommunityWritePage'
+import CommunityEditPage from '../features/community/pages/CommunityEditPage'
 import TermsPage from '../features/legal/pages/TermsPage'
 import PrivacyPage from '../features/legal/pages/PrivacyPage'
 import MypagePage from '../features/account/pages/MypagePage'
@@ -31,6 +32,7 @@ import HelpChatPage from '../features/help/pages/HelpChatPage'
 import NotificationsPage from '../features/notify/pages/NotificationsPage'
 import NoticeListPage from '../features/notice/pages/NoticeListPage'
 import NoticeWritePage from '../features/notice/pages/NoticeWritePage'
+import NoticeEditPage from '../features/notice/pages/NoticeEditPage'
 import NoticeDigestPage from '../features/notice/pages/NoticeDigestPage'
 import NoticeDetailPage from '../features/notice/pages/NoticeDetailPage'
 import ChatPage from '../features/chat/pages/ChatPage'
@@ -83,6 +85,7 @@ export function AppRoutes() {
       <Route path="/classes" element={<ClassBookingPage />} />
       <Route path="/community" element={<CommunityPage />} />
       <Route path="/community/new" element={<CommunityWritePage />} />
+      <Route path="/community/:id/edit" element={<CommunityEditPage />} />
       <Route path="/community/:id" element={<CommunityPostPage />} />
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage/certificates" element={<MypageCertificatesPage />} />
@@ -113,6 +116,7 @@ export function AppRoutes() {
       <Route path="/notices" element={<NoticeListPage />} />
       <Route path="/notices/new" element={<NoticeWritePage />} />
       <Route path="/notices/digest" element={<NoticeDigestPage />} />
+      <Route path="/notices/:id/edit" element={<NoticeEditPage />} />
       <Route path="/notices/:id" element={<NoticeDetailPage />} />
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/custom" element={<CustomLabelPage />} />
