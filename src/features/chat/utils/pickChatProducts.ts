@@ -6,7 +6,7 @@ export function pickChatProducts(text: string): ChatProductRef[] {
   const fallback =
     hits.length > 0
       ? hits
-      : allProducts.filter((item) => item.name.includes('소곡주') || item.category === '약주').slice(0, 1)
+      : listCatalogProducts().filter((item) => item.name.includes('소곡주') || item.category === '약주').slice(0, 1)
 
   return fallback.map((item) => ({
     id: item.id,
