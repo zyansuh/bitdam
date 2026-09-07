@@ -2,15 +2,10 @@ import type { Product } from '../../../data/products'
 import { CATALOG_CATEGORIES } from '../data/categories'
 import { ABV_RANGES } from '../data/filterOptions'
 import type { ProductFilterState } from '../types/catalog'
+import { productMatchesQuery } from './productMatchesQuery'
 
 function matchesQuery(product: Product, query: string): boolean {
-  if (!query.trim()) return true
-  const needle = query.trim().toLowerCase()
-  return (
-    product.name.toLowerCase().includes(needle) ||
-    product.region.toLowerCase().includes(needle) ||
-    product.category.toLowerCase().includes(needle)
-  )
+  return productMatchesQuery(product, query)
 }
 
 function matchesCategory(product: Product, categorySlug: string | null): boolean {
@@ -30,7 +25,8 @@ function matchesPrice(product: Product, priceMin: number, priceMax: number): boo
 
 function matchesTaste(product: Product, tasteTags: string[]): boolean {
   if (tasteTags.length === 0) return true
-  return tasteTags.some((tag) => product.tasteTags.includes(tag))
+  const have = new Set(product.tasteTags.map((tag) => tag.replace(/^#/, '')))
+  return tasteTags.every((tag) => have.has(tag.replace(/^#/, '')))
 }
 
 function matchesAbv(product: Product, abvRangeId: string | null): boolean {
@@ -45,7 +41,7 @@ function sortProducts(products: Product[], sort: ProductFilterState['sort']): Pr
   if (sort === 'priceAsc') return next.sort((a, b) => a.price - b.price)
   if (sort === 'priceDesc') return next.sort((a, b) => b.price - a.price)
   if (sort === 'rating') return next.sort((a, b) => b.rating - a.rating)
-  return next.sort((a, b) => b.rating - a.rating || b.price - a.price)
+  return next.sort((a, b) => b.rating * Math.log10(1 + b.reviewCount) - a.rating * Math.log10(1 + a.reviewCount))
 }
 
 export function filterProducts(products: Product[], filters: ProductFilterState): Product[] {
