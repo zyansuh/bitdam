@@ -1,13 +1,13 @@
-import type { LearnCategory } from '../types/learn'
-import { listLearnByCategory } from '../data/learnArticles'
+import type { LearnArticle, LearnCategory } from '../types/learn'
 import LearnArticleCard from './LearnArticleCard'
 
 interface LearnCategoryBlockProps {
   category: LearnCategory
+  articles: LearnArticle[]
 }
 
-export default function LearnCategoryBlock({ category }: LearnCategoryBlockProps) {
-  const articles = listLearnByCategory(category.id)
+export default function LearnCategoryBlock({ category, articles }: LearnCategoryBlockProps) {
+  if (articles.length === 0) return null
 
   return (
     <section className="learn-block" id={category.id}>
