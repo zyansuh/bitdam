@@ -30,7 +30,7 @@ function tagsFromText(title: string, body: string) {
 
 export default function CommunityWriteForm({
   mode = 'create',
-  hint = '커뮤니티 예의를 지켜 주세요. 본인 글만 목록에 보입니다.',
+  hint = '커뮤니티 예의를 지켜 주세요. 글은 공개 피드에 올라갑니다.',
   initialTitle = '',
   initialBody = '',
   initialImage = '',
