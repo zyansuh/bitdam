@@ -25,7 +25,7 @@ export default function ChatPage() {
           <header className="chat-main__head">
             <div>
               <h1>빚담 추천 AI</h1>
-              <p>{chat.hasKey ? 'OpenAI로 추천 중입니다.' : '키 없이 로컬 추천으로 동작합니다. .env에 VITE_OPENAI_API_KEY를 넣으면 모델이 답합니다.'}</p>
+              <p>{chat.hasKey ? '서버 OpenAI로 추천 중입니다.' : '서버에 OPENAI_API_KEY가 없으면 로컬 추천으로 동작합니다. 브라우저에 키를 넣지 마세요.'}</p>
             </div>
           </header>
           <ChatMessageList messages={chat.active.messages} />
