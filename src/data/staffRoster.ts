@@ -9,8 +9,8 @@ export interface StaffRosterEntry {
 
 export const STAFF_ROSTER: StaffRosterEntry[] = [
   { email: 'admin@bitdam.kr', nickname: '빚담 운영', workspaceRole: 'admin' },
-  { email: 'seolah@hansan.kr', nickname: '김설아', workspaceRole: 'seller', sellerId: 'hansan' },
-  { email: 'seller@andong.kr', nickname: '안동 공방', workspaceRole: 'seller', sellerId: 'andong' },
+  { email: 'seolah@hansan.kr', nickname: '김설아', workspaceRole: 'seller' },
+  { email: 'seller@andong.kr', nickname: '안동 공방', workspaceRole: 'seller' },
 ]
 
 export function findStaffByEmail(email: string | undefined): StaffRosterEntry | undefined {
