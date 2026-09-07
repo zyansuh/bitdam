@@ -1,6 +1,13 @@
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { formatUserHonorific } from '../../../shared/utils/formatUserHonorific'
-import { canManagePeople, canOpenLounge, canViewStaffPerformance, resolveWorkspaceRole, workspaceRoleLabel } from '../../../shared/utils/workspaceRole'
+import {
+  canManagePeople,
+  canOpenLounge,
+  canReplySupport,
+  canViewStaffPerformance,
+  resolveWorkspaceRole,
+  workspaceRoleLabel,
+} from '../../../shared/utils/workspaceRole'
 import { mypageNav } from '../data/mypageNav'
 import AccountNavList from './AccountNavList'
 
@@ -11,6 +18,7 @@ export default function MypageSidebar() {
   const extras = [
     ...(canManagePeople(role) ? [{ label: '구성원 권한', to: '/mypage/admin/people' }] : []),
     ...(canViewStaffPerformance(role) ? [{ label: '직원 성과', to: '/mypage/admin/performance' }] : []),
+    ...(canReplySupport(role) ? [{ label: '1:1 문의 답변', to: '/mypage/admin/support' }] : []),
     ...(canOpenLounge(role) ? [{ label: '셀러 라운지', to: '/mypage/lounge' }] : []),
   ]
   const items = extras.length ? [...extras, ...mypageNav] : mypageNav
