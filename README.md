@@ -68,7 +68,9 @@
 
 | 경로 | 페이지 | 설명 |
 |------|--------|------|
-| `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 스토리 피드 |
+| `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 술 상식 티저 |
+| `/learn` | `LearnIndexPage` | 술 상식 허브 · 양조·증류·종류·이름 |
+| `/learn/:slug` | `LearnArticlePage` | 막걸리 제조·누룩·소주 어원 등 공부 글 |
 | `/story` | `BrandStoryPage` | 시간이 흐를수록 · 못난이 과일 · 철학·펀딩·여정 |
 | `/custom` | `CustomLabelPage` | 기념주 라벨 4단계 맞춤 · 실시간 견적 |
 | `/gift` | `GiftPage` | 선물 3단계: 상품 선택 → 메시지 → 결제 |
@@ -450,6 +452,7 @@ BITDAM/
 | **limited** | `LimitedEditionPage` | `campaign-pages.css` | 테이스팅 · 펀딩 선예약 |
 | **ir** | `IrPage` | `ir.css` | 카탈로그 KPI · 프리 A · 리더십 · 문의 |
 | **lounge** | `LoungeDashboardPage` 외 | `lounge.css` | 셀러 SELLER · 직원 ADMIN 공방 조회 |
+| **learn** | `LearnIndexPage` · `LearnArticlePage` | `learn.css` | 술 상식 51편 · 브랜드 스토리와 분리 |
 | **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -752,6 +755,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | `/learn` 술 상식 · 홈 빚담 이야기 카드가 개별 공부 글로 연결 |
 | **2026-09-08** | 로컬 카탈로그/양조장/IR 이미지 · 선물 WebP · 나눔명조 셀프호스트 · 정렬 URL · 404 · 주문/일지 필터 · vitest |
 | **2026-09-08** | SafeImage MOCK · 제목 한글 fallback · 직원 주문 토스트 · PR 제목 영어 규칙 |
 | **2026-09-08** | 홈 스토리 티저 · 버튼 간격 · 선물 미리보기 · 카탈로그 정렬 · 업무일지 · 주문 모달 · CMS |
