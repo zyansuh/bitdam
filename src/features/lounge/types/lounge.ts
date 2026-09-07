@@ -46,6 +46,7 @@ export interface LoungeOrder {
   buyer: string
   amount: number
   status: '신규 주문' | '결제 확인' | '출고 준비' | '배송 중'
+  shopOrderId?: string
 }
 
 export interface LoungeSettlement {
