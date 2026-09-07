@@ -7,12 +7,16 @@ import { usePageMeta } from '../../../shared/hooks/usePageMeta'
 import { LEARN_CATEGORIES } from '../data/learnCategories'
 import { listLearnByCategory } from '../data/learnArticles'
 import LearnArticleBody from '../components/LearnArticleBody'
+import LearnTagBadge from '../components/LearnTagBadge'
+import LearnToneNote from '../components/LearnToneNote'
 import { useLearnArticle } from '../hooks/useLearnArticle'
 
 export default function LearnArticlePage() {
   const article = useLearnArticle()
   const category = LEARN_CATEGORIES.find((item) => item.id === article?.category)
-  const siblings = article ? listLearnByCategory(article.category).filter((item) => item.slug !== article.slug).slice(0, 4) : []
+  const siblings = article
+    ? listLearnByCategory(article.category).filter((item) => item.slug !== article.slug)
+    : []
 
   usePageMeta({
     title: article ? `${article.title} | 빚담 술 상식` : '글을 찾을 수 없습니다 | 빚담',
@@ -43,9 +47,11 @@ export default function LearnArticlePage() {
           <p className="learn-article__kicker">
             <Link to="/learn">{category?.kicker ?? '술 상식'}</Link>
           </p>
+          <LearnTagBadge tag={article.tag} />
           <h1>{article.title}</h1>
           <p className="learn-article__lead">{article.lead}</p>
-          <p className="learn-article__meta">읽는 시간 약 {article.minutes}분 · 브랜드 스토리와 별개의 공부 글</p>
+          <p className="learn-article__meta">읽는 시간 약 {article.minutes}분 · 브랜드 스토리와 별개의 카드</p>
+          <LearnToneNote tone={article.tone} />
           <LearnArticleBody article={article} />
         </article>
         {siblings.length > 0 ? (
