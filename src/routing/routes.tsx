@@ -10,6 +10,8 @@ import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import ProductDetailPage from '../features/product/pages/ProductDetailPage'
 import CartPage from '../features/cart/pages/CartPage'
+import OrderCompletePage from '../features/order/pages/OrderCompletePage'
+import OrderDetailPage from '../features/order/pages/OrderDetailPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
 import CommunityPage from '../features/community/pages/CommunityPage'
 import CommunityPostPage from '../features/community/pages/CommunityPostPage'
@@ -75,6 +77,8 @@ export function AppRoutes() {
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/order/complete/:id" element={<OrderCompletePage />} />
+      <Route path="/mypage/orders/:id" element={<OrderDetailPage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
       <Route
         path="/breweries"
