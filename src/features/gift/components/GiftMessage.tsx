@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { GIFT_MESSAGE_MAX, GIFT_SKINS, GIFT_WRAPS } from '../data/giftOptions'
 import { formatWon } from '../../../shared/utils/formatWon'
 import GiftWrapPreviewDialog from './GiftWrapPreviewDialog'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface GiftMessageProps {
   skinId: string
@@ -43,7 +44,7 @@ export default function GiftMessage({
             className={`gift-skin${skinId === item.id ? ' gift-skin--on' : ''}`}
             onClick={() => onSkin(item.id)}
           >
-            <img src={item.image} alt="" />
+            <SafeImage src={item.image} alt="" />
             <strong>{item.label}</strong>
             <span>{item.hint}</span>
           </button>
@@ -72,7 +73,7 @@ export default function GiftMessage({
           <li key={item.id}>
             <label className={`gift-wrap${wrapId === item.id ? ' gift-wrap--on' : ''}`}>
               <input type="radio" name="wrap" checked={wrapId === item.id} onChange={() => onWrap(item.id)} />
-              <img src={item.image} alt="" />
+              <SafeImage src={item.image} alt="" />
               <span>
                 <strong>{item.label}</strong>
                 <em>{item.detail}</em>
