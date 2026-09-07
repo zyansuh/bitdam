@@ -16,6 +16,7 @@ export default function LearnArticleCard({ article }: LearnArticleCardProps) {
         <h3 className="learn-card__title">{article.title}</h3>
         <p className="learn-card__lead">{article.lead}</p>
         <p className="learn-card__meta">약 {article.minutes}분 · 카드형 상식</p>
+        <span className="learn-card__go">이어서 읽기</span>
       </Link>
     </article>
   )
