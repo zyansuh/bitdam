@@ -18,6 +18,16 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/kakao-api/, ''),
       },
+      '/naver-oauth': {
+        target: 'https://nid.naver.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/naver-oauth/, ''),
+      },
+      '/naver-api': {
+        target: 'https://openapi.naver.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/naver-api/, ''),
+      },
     },
   },
 })

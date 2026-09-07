@@ -9,7 +9,15 @@
       "destination": "https://kapi.kakao.com/:path*"
     },
     {
-      "source": "/((?!kakao-oauth|kakao-api|assets|favicon).*)",
+      "source": "/naver-oauth/:path*",
+      "destination": "https://nid.naver.com/:path*"
+    },
+    {
+      "source": "/naver-api/:path*",
+      "destination": "https://openapi.naver.com/:path*"
+    },
+    {
+      "source": "/((?!kakao-oauth|kakao-api|naver-oauth|naver-api|assets|favicon).*)",
       "destination": "/index.html"
     }
   ]
