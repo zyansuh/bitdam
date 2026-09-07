@@ -1,5 +1,7 @@
+import { MOCK_IMAGES } from '../../../data/mockImages'
+
 export const promoBanner = {
-  image: 'https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=1400&h=400&fit=crop&q=80',
+  image: MOCK_IMAGES.brewery,
   alt: '성수동 삼해소주 가옥',
   titleLead: '성수동 삼해소주 가옥',
   titleTail: '도심 속 양조장',
