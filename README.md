@@ -81,7 +81,8 @@
 | `/holiday/tours` | `HolidayTourPage` | 명절 전용 양조장 투어 |
 | `/limited` | `LimitedEditionPage` | 크리에이터 한정판 · 테이스팅 · 펀딩 선예약 |
 | `/ir` | `IrPage` | 투자 IR · 카탈로그 기반 KPI · 프리 A · 문의 |
-| `/mypage/lounge` | `LoungeDashboardPage` | 셀러·직원 라운지 · 공방 스코프 |
+| `/mypage/lounge` | `LoungeDashboardPage` | 셀러·직원 라운지 · 인증된 본인 공방 |
+| `/mypage/lounge/verify` | `LoungeVerifyPage` | 사업자번호·대표자 인증 후 양조장 지정 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
@@ -591,7 +592,8 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/holiday/tours | 명절 양조장 투어 |
 | http://localhost:5173/limited | 크리에이터 한정판 |
 | http://localhost:5173/ir | 투자 IR |
-| http://localhost:5173/mypage/lounge | 셀러 라운지 (직원·셀러 로그인) |
+| http://localhost:5173/mypage/lounge | 셀러 라운지 (인증된 공방만) |
+| http://localhost:5173/mypage/lounge/verify | 사업자 인증 · 내 양조장 지정 |
 | http://localhost:5173/story | 브랜드 스토리 |
 
 ---
@@ -692,6 +694,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 셀러 사업자 인증 모달 · 인증 후 본인 양조장만 표시 |
 | **2026-09-07** | 마이페이지 셀러 라운지 · ADMIN 전체 공방 조회 |
 | **2026-09-07** | `/ir` 투자 IR · 햄버거 전용 가지 · 카탈로그 KPI |
 | **2026-09-07** | 명절 세트전 · 복주머니 · 명절 투어 · 크리에이터 한정판 |
