@@ -7,12 +7,17 @@ import { useCart } from '../../../shared/hooks/useCart'
 import CatalogHeader from '../../catalog/components/CatalogHeader'
 import CartItemRow from '../components/CartItemRow'
 import CartSummary from '../components/CartSummary'
+import { useCouponWallet } from '../../../shared/hooks/useCouponWallet'
+import CartCoupon from '../components/CartCoupon'
 import { useCartCheckout } from '../hooks/useCartCheckout'
 
 export default function CartPage() {
   const { items, setQuantity, removeItem, addItem } = useCart()
   const { isLoggedIn } = useAuth()
-  const { totals, checkout } = useCartCheckout()
+  const { unused } = useCouponWallet()
+  const [couponId, setCouponId] = useState('')
+  const selected = unused.find((coupon) => coupon.id === couponId)
+  const { totals, checkout, couponReason } = useCartCheckout(selected)
   const [payment, setPayment] = useState('신용카드')
   const [params] = useSearchParams()
   const navigate = useNavigate()
@@ -60,7 +65,15 @@ export default function CartPage() {
               totals={totals}
               payment={payment}
               onPayment={setPayment}
-              canCheckout={items.length > 0 && isLoggedIn}
+              canCheckout={items.length > 0 && isLoggedIn && !couponReason}
+              couponSlot={
+                <CartCoupon
+                  coupons={unused}
+                  selectedId={couponId}
+                  onSelect={setCouponId}
+                  reason={couponReason}
+                />
+              }
               onCheckout={() => {
                 if (!isLoggedIn) {
                   navigate('/login')

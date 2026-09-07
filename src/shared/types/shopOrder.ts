@@ -17,6 +17,9 @@ export interface ShopOrder {
   phone: string
   payment: string
   amount: number
+  discount?: number
+  couponCode?: string
+  couponTitle?: string
   status: ShopOrderStatus
   lines: ShopOrderLine[]
 }
