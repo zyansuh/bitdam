@@ -4,6 +4,7 @@ import { headerAccountLinks } from '../../../data/headerAccountLinks'
 import { settingsNav } from '../../../data/settingsNav'
 import { useAccountMenu } from '../../hooks/useAccountMenu'
 import { useAuth } from '../../hooks/useAuth'
+import { canOpenLounge, resolveWorkspaceRole } from '../../utils/workspaceRole'
 import { formatUserHonorific } from '../../utils/formatUserHonorific'
 import LoginLink from './LoginLink'
 import NavbarUserAvatar from './NavbarUserAvatar'
@@ -44,6 +45,11 @@ export default function AccountMenu({ triggerClassName }: AccountMenuProps) {
               {item.label}
             </Link>
           ))}
+          {canOpenLounge(resolveWorkspaceRole(user)) ? (
+            <Link to="/mypage/lounge" className="account-menu__item" role="menuitem" onClick={closeMenu}>
+              셀러 라운지
+            </Link>
+          ) : null}
           <Link to="/help" className="account-menu__item" role="menuitem" onClick={closeMenu}>
             고객센터
           </Link>
