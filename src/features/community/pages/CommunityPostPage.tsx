@@ -16,7 +16,10 @@ export default function CommunityPostPage() {
   const { user, isLoggedIn } = useAuth()
   const navigate = useNavigate()
   const moderate = canModerateContent(resolveWorkspaceRole(user))
-  const { visible, getPost, likePost, addComment, removePost, setVisibility } = useCommunityPosts(user, { moderate })
+  const { ready, visible, getPost, likePost, addComment, removePost, setVisibility } = useCommunityPosts(
+    user,
+    { moderate },
+  )
   const post = getPost(id)
   const canEdit = Boolean(post && user && (moderate || post.authorId === user.id))
 
@@ -24,7 +27,11 @@ export default function CommunityPostPage() {
     <PageLayout>
       <Navbar />
       <main className="community-page">
-        {!post ? (
+        {!ready ? (
+          <div className="community-empty">
+            <p>글을 불러오는 중입니다.</p>
+          </div>
+        ) : !post ? (
           <div className="community-empty">
             <p>
               {moderate
