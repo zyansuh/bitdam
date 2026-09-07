@@ -7,8 +7,8 @@ import { canEditStory, resolveWorkspaceRole } from '../../../shared/utils/worksp
 import StoryEditor from '../../staff/components/StoryEditor'
 import { useStoryOverride } from '../../staff/hooks/useStoryOverride'
 import BrandStoryBanner from '../components/BrandStoryBanner'
-import BrandStoryChapterSection from '../components/BrandStoryChapterSection'
 import BrandStoryClosing from '../components/BrandStoryClosing'
+import BrandStoryEssay from '../components/BrandStoryEssay'
 import BrandStoryFunding from '../components/BrandStoryFunding'
 import BrandStoryHero from '../components/BrandStoryHero'
 import BrandStoryImpact from '../components/BrandStoryImpact'
@@ -18,7 +18,6 @@ import BrandStoryProcess from '../components/BrandStoryProcess'
 import BrandStoryTimeline from '../components/BrandStoryTimeline'
 import BrandStoryUglyFruit from '../components/BrandStoryUglyFruit'
 import { usePageMeta } from '../../../shared/hooks/usePageMeta'
-import { brandStoryChapters } from '../data/brandStory'
 
 export default function BrandStoryPage() {
   usePageMeta({
@@ -51,11 +50,7 @@ export default function BrandStoryPage() {
         <BrandStoryFunding />
         <BrandStoryTimeline />
         <BrandStoryPartners />
-        <div id="brand-story-body" className="brand-story__body">
-          {brandStoryChapters.map((chapter) => (
-            <BrandStoryChapterSection key={chapter.id} chapter={chapter} />
-          ))}
-        </div>
+        <BrandStoryEssay />
         <BrandStoryClosing />
         <BrandStoryBanner />
       </main>
