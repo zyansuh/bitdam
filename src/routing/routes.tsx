@@ -9,6 +9,7 @@ import ClassBookingPage from '../features/brewery/pages/ClassBookingPage'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
 import ProductDetailPage from '../features/product/pages/ProductDetailPage'
+import WriteReviewPage from '../features/review/pages/WriteReviewPage'
 import CartPage from '../features/cart/pages/CartPage'
 import OrderCompletePage from '../features/order/pages/OrderCompletePage'
 import OrderDetailPage from '../features/order/pages/OrderDetailPage'
@@ -75,6 +76,7 @@ export function AppRoutes() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
+      <Route path="/products/:id/review" element={<WriteReviewPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/order/complete/:id" element={<OrderCompletePage />} />
