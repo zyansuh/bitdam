@@ -1,4 +1,5 @@
 import { readSellerCatalog } from '../shared/utils/sellerCatalogStorage'
+import { isCatalogPaused } from '../shared/utils/catalogPauseStorage'
 import { readStockOverlay, writeStockOverlay } from '../shared/utils/stockStorage'
 
 export interface TasteProfile {
@@ -84,8 +85,12 @@ function withStock(product: Product): Product {
   return { ...product, stock: overlay ?? fallbackStock(product) }
 }
 
-export function listCatalogProducts(): Product[] {
+export function listCatalogInventory(): Product[] {
   return [...allProducts, ...readSellerCatalog()].map(withStock)
+}
+
+export function listCatalogProducts(): Product[] {
+  return listCatalogInventory().filter((product) => !isCatalogPaused(product.id))
 }
 
 export function isSoldOut(product: Product): boolean {
@@ -102,7 +107,7 @@ export function consumeCatalogStock(lines: { productId: number; quantity: number
 }
 
 export function getProductById(id: number): Product | undefined {
-  return listCatalogProducts().find((item) => item.id === id)
+  return listCatalogInventory().find((item) => item.id === id)
 }
 
 export function getProductsPage(page: number, pageSize = PAGE_SIZE): Product[] {
