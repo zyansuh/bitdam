@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import BrandStoryPage from '../features/brand/pages/BrandStoryPage'
 import KakaoCallbackPage from '../features/auth/pages/KakaoCallbackPage'
+import NaverCallbackPage from '../features/auth/pages/NaverCallbackPage'
 import Login from '../features/auth/pages/Login'
 import SignupPage from '../features/auth/pages/SignupPage'
 import BreweryDetailPage from '../features/brewery/pages/BreweryDetailPage'
@@ -78,6 +79,7 @@ export function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
+      <Route path="/login/naver/callback" element={<NaverCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/products/:id/review" element={<WriteReviewPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
