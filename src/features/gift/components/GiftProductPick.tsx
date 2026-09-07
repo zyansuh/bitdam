@@ -1,4 +1,4 @@
-import { allProducts } from '../../../data/products'
+import { listCatalogProducts } from '../../../data/products'
 import { formatWon } from '../../../shared/utils/formatWon'
 
 interface GiftProductPickProps {
@@ -8,7 +8,7 @@ interface GiftProductPickProps {
 }
 
 export default function GiftProductPick({ productId, onPick, onNext }: GiftProductPickProps) {
-  const picks = allProducts.slice(0, 6)
+  const picks = listCatalogProducts().slice(0, 6)
 
   return (
     <section className="gift-panel">
