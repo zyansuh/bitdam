@@ -38,16 +38,72 @@
   @apply mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base;
 }
 
-.brand-story__body {
-  @apply mx-auto flex max-w-3xl flex-col gap-16 px-1 pb-6 sm:gap-20 sm:pb-10 lg:gap-24;
+.brand-story-essay {
+  @apply mx-auto max-w-3xl scroll-mt-24 px-4 pb-10 sm:px-6;
+}
+
+.brand-story-essay__head {
+  @apply mb-6 border-b border-line pb-6;
+}
+
+.brand-story-essay__head p:first-child {
+  @apply mb-2 text-xs tracking-[0.2em] text-gold;
+}
+
+.brand-story-essay__head h2 {
+  @apply font-serif text-2xl text-charcoal sm:text-3xl;
+}
+
+.brand-story-essay__head p:last-child {
+  @apply mt-2 text-sm text-muted;
+}
+
+.brand-story-essay__nav {
+  @apply sticky top-16 z-20 mb-8 flex gap-2 overflow-x-auto bg-cream/95 py-3 backdrop-blur-sm;
+}
+
+:root[data-theme='dark'] .brand-story-essay__nav {
+  @apply bg-cream/90;
+}
+
+.brand-story-essay__chip {
+  @apply shrink-0 rounded-full border border-line bg-surface px-3 py-1.5 text-left text-xs text-charcoal;
+}
+
+.brand-story-essay__chip span {
+  @apply mr-1.5 font-serif text-gold;
+}
+
+.brand-story-essay__chip.is-on {
+  @apply border-gold bg-gold/10 text-charcoal;
+}
+
+.brand-story-essay__chip:focus-visible {
+  @apply outline-2 outline-offset-2 outline-gold;
+}
+
+.brand-story-essay__page {
+  @apply rounded-2xl border border-line bg-surface px-5 py-8 sm:px-8 sm:py-10;
+}
+
+.brand-story-essay__pager {
+  @apply mt-6 grid grid-cols-2 gap-3;
+}
+
+.brand-story-essay__pager button {
+  @apply rounded-xl border border-line bg-surface px-4 py-3 text-left text-sm text-charcoal hover:border-gold;
+}
+
+.brand-story-essay__pager button span {
+  @apply block text-[11px] tracking-wide text-gold;
+}
+
+.brand-story-essay__pager button:last-child {
+  @apply text-right;
 }
 
 .brand-story-chapter {
-  @apply border-t border-cream-dark pt-10 sm:pt-12;
-}
-
-.brand-story-chapter:first-child {
-  @apply border-t-0 pt-0;
+  @apply pt-0;
 }
 
 .brand-story-chapter__meta {
@@ -83,7 +139,7 @@
 }
 
 .brand-story-blocks__p {
-  @apply text-[0.95rem] leading-[1.9] text-charcoal/85 sm:text-base sm:leading-[2];
+  @apply max-w-prose text-[0.95rem] leading-[1.7] text-charcoal/85 sm:text-base sm:leading-[1.75];
 }
 
 .brand-story-blocks__emphasis {
@@ -91,7 +147,7 @@
 }
 
 .brand-story-blocks__quote {
-  @apply border-l-2 border-gold bg-surface/70 py-4 pr-4 pl-5 font-serif text-[1.75rem] leading-snug font-normal text-charcoal sm:py-5 sm:pr-6 sm:pl-6 sm:text-4xl;
+  @apply border-l-2 border-gold bg-cream/80 py-3 pr-4 pl-5 font-serif text-xl leading-snug text-charcoal sm:text-2xl;
 }
 
 .brand-story-scenes {
@@ -205,7 +261,7 @@
 .brand-fund,
 .brand-time,
 .brand-partners {
-  @apply mx-auto max-w-7xl px-4 py-12 sm:px-6;
+  @apply mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-11;
 }
 
 .brand-philo__title,

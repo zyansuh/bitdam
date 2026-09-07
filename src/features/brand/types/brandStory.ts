@@ -9,6 +9,7 @@ export type BrandStoryBlock =
 export interface BrandStoryChapter {
   id: string
   number: string
+  tocLabel: string
   titleLines: string[]
   blocks: BrandStoryBlock[]
 }
