@@ -69,8 +69,8 @@
 | 경로 | 페이지 | 설명 |
 |------|--------|------|
 | `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 술 상식 티저 |
-| `/learn` | `LearnIndexPage` | 술 상식 100장 · 태그 · 오늘의 카드 |
-| `/learn/:slug` | `LearnArticlePage` | 카드형 본문 · 원리/과정 안내 |
+| `/learn` | `LearnIndexPage` | 100장 · 검색/태그 · 오늘의 카드 |
+| `/learn/:slug` | `LearnArticlePage` | 본문 · 관련 상품/도가 · 예약 전 잠금 |
 | `/mypage/admin/content/learn` | `LearnDeskPage` | AI 초안 예약 공개 (ADMIN·CMS) |
 | `/story` | `BrandStoryPage` | 시간이 흐를수록 · 못난이 과일 · 철학·펀딩·여정 |
 | `/custom` | `CustomLabelPage` | 기념주 라벨 4단계 맞춤 · 실시간 견적 |
@@ -453,7 +453,7 @@ BITDAM/
 | **limited** | `LimitedEditionPage` | `campaign-pages.css` | 테이스팅 · 펀딩 선예약 |
 | **ir** | `IrPage` | `ir.css` | 카탈로그 KPI · 프리 A · 리더십 · 문의 |
 | **lounge** | `LoungeDashboardPage` 외 | `lounge.css` | 셀러 SELLER · 직원 ADMIN 공방 조회 |
-| **learn** | `LearnIndexPage` · `LearnArticlePage` · `LearnDeskPage` | `learn.css` | 카드 100장 · 태그 · 하루 한 장 · AI 예약 |
+| **learn** | `LearnIndexPage` · `LearnArticlePage` · `LearnDeskPage` | `learn.css` | 검색 · 커버 · 잠금 · 북마크 · 서버 OpenAI |
 | **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -595,7 +595,7 @@ Vite는 `VITE_*` 값을 **빌드 시점**에 넣습니다. 대시보드에 키�
 | `VITE_KAKAO_CLIENT_SECRET` | 아니오 | 콘솔에서 Client Secret을 켠 경우에만 |
 | `VITE_NAVER_CLIENT_ID` | 네이버 사용 시 | 네이버 로그인 애플리케이션 Client ID |
 | `VITE_NAVER_CLIENT_SECRET` | 네이버 사용 시 | 토큰 교환용. **SPA 빌드에 포함됨** |
-| `VITE_OPENAI_API_KEY` | 아니오 | 있으면 `/chat`이 OpenAI `gpt-4o-mini`를 호출. **프론트에 노출됨** |
+| `OPENAI_API_KEY` | 아니오 | 서버 전용. `/api/openai`가 Chat Completions를 대신 호출. **VITE_ 붙이지 말 것** |
 
 Vercel → Project → Settings → Environment Variables에서 Production / Preview / Development에 추가한 뒤 Redeploy 합니다. 잘못된 이름(`VITE_KAKO_API_KEY` 등)만 있어도 빌드에 키가 안 들어갑니다. 코드는 `VITE_KAKAO_API_KEY`, `VITE_KAKO_API_KEY`를 보조로 읽지만 **정식 이름은 `VITE_KAKAO_REST_API_KEY`** 입니다.
 
@@ -606,9 +606,9 @@ Fine-tuning으로 “교육”하지 않습니다. **시스템 프롬프트 + �
 | 단계 | 하는 일 |
 |------|---------|
 | **1. 교육(역할 부여)** | `data/chatPrompt.ts`(역할·톤) + `safetyPolicy` · `recommendationRules` · `classPolicy` · `orderPolicy` · `shippingPolicy` · `refundPolicy`. `services/buildPrompt.ts`가 카탈로그와 합칩니다. |
-| **2. 사용** | `.env`에 `VITE_OPENAI_API_KEY=sk-...`를 넣고 `npm run dev`. `/chat`에서 질문하면 `askBitdamModel`이 Chat Completions를 호출합니다. |
-| **3. 키 없음** | 키가 없으면 같은 화면이 **로컬 규칙 답변**으로 동작합니다. |
-| **4. 운영** | `VITE_` 키는 브라우저에 노출됩니다. 배포 전에는 서버(또는 Vercel serverless)에서 OpenAI를 호출하도록 옮기세요. |
+| **2. 사용** | `.env`와 Vercel에 `OPENAI_API_KEY=sk-...`만 넣습니다. 브라우저는 `/api/openai`만 호출합니다. |
+| **3. 키 없음** | 서버 키가 없으면 **로컬 규칙 답변**으로 동작합니다. |
+| **4. 운영** | 하루 한 장 인덱스는 `/api/learn-daily` cron이 알립니다. 글 DB·카카오 채널 발송은 아직 없습니다. |
 
 Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'user'/'assistant', content: '예시' }`를 추가하면 됩니다. 상품 카드는 답변 텍스트에 카탈로그 상품명이 있을 때 붙습니다.
 
@@ -734,6 +734,7 @@ import { getProductsPage } from '../../../data/products';
 | 배포에서 카카오 키 없음 | Vercel에 `VITE_KAKAO_REST_API_KEY` 추가 후 **Redeploy**. 로컬 `.env`는 배포에 포함되지 않음 |
 | 로그인 후 다크모드 해제 | 카카오는 `state`·쿠키·`bitdam.theme` 순으로 복구. 머지 후 하드 리프레시 |
 | 홈 스크롤 버벅임 | `html`에 `scroll-behavior: smooth`를 쓰지 않음. 해시 이동은 `scrollIntoView`만 사용 |
+| 배포에 술 상식 100장이 없음 | GitHub `main`에는 `#123`이 있습니다. Vercel Production Branch를 `main`으로 두고 최신 커밋을 **Redeploy**. 번들에 `전통 장독대에서 숙성`이 보이면 예전 빌드입니다 |
 
 ---
 
@@ -750,15 +751,19 @@ import { getProductsPage } from '../../../data/products';
 - [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
 - [x] 네이버 OAuth (`/login/naver/callback` · Vite/Vercel 프록시)
-- [ ] Apple Sign In (서버 JWT `client_secret` 필요)
+- [ ] Apple Sign In (서버 JWT `client_secret` 필요 · 프론트만으로 불가)
 - [x] `npm run lint`(oxlint) · GitHub Actions CI
-- [ ] 프로덕션 배포 (Vercel 등)
-- [ ] 전 페이지 대체 텍스트·포커스 링 (셸 모달·햄버거는 적용됨)
+- [ ] 프로덕션 배포 (Vercel `OPENAI_API_KEY` · Kakao/Naver 키 점검)
+- [ ] 전 페이지 대체 텍스트·포커스 링 (술 상식 카드·검색은 적용)
+- [x] 술 상식 검색·관련 링크·커버 SVG·초안 잠금·북마크·에디터 픽
+- [ ] 술 상식 전문가 검수(외부 양조사) · 카카오 채널 발송 · 글 DB
+- [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 
 ### Changelog
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | 술 상식 검색·커버·관련 도가·초안 잠금·북마크·픽·`OPENAI_API_KEY` 서버 프록시 |
 | **2026-09-08** | 술 상식 100장 · 태그 · 오늘의 카드 · CMS AI 하루 한 장 예약 |
 | **2026-09-08** | `/learn` 술 상식 · 홈 빚담 이야기 카드가 개별 공부 글로 연결 |
 | **2026-09-08** | 로컬 카탈로그/양조장/IR 이미지 · 선물 WebP · 나눔명조 셀프호스트 · 정렬 URL · 404 · 주문/일지 필터 · vitest |
