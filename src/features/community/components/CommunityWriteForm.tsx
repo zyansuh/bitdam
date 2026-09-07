@@ -3,6 +3,8 @@ import type { CommunityCategoryId } from '../types/communityPost'
 import { COMMUNITY_CATEGORIES } from '../data/communityCategories'
 
 interface CommunityWriteFormProps {
+  mode?: 'create' | 'edit'
+  hint?: string
   initialTitle?: string
   initialBody?: string
   initialImage?: string
@@ -14,7 +16,7 @@ interface CommunityWriteFormProps {
     category: Exclude<CommunityCategoryId, 'all'>
     tags: string[]
   }) => void
-  onSaveDraft: (input: {
+  onSaveDraft?: (input: {
     title: string
     body: string
     image?: string
@@ -27,6 +29,8 @@ function tagsFromText(title: string, body: string) {
 }
 
 export default function CommunityWriteForm({
+  mode = 'create',
+  hint = '커뮤니티 예의를 지켜 주세요. 본인 글만 목록에 보입니다.',
   initialTitle = '',
   initialBody = '',
   initialImage = '',
@@ -69,14 +73,16 @@ export default function CommunityWriteForm({
   return (
     <form className="community-write" onSubmit={handleSubmit}>
       <div className="community-write__bar">
-        <h1 className="community-write__heading">새 글 쓰기</h1>
-        <button
-          type="button"
-          className="community-write__ghost"
-          onClick={() => onSaveDraft({ title, body, image, category })}
-        >
-          임시저장
-        </button>
+        <h1 className="community-write__heading">{mode === 'edit' ? '글 수정' : '새 글 쓰기'}</h1>
+        {onSaveDraft ? (
+          <button
+            type="button"
+            className="community-write__ghost"
+            onClick={() => onSaveDraft({ title, body, image, category })}
+          >
+            임시저장
+          </button>
+        ) : null}
       </div>
       <label className="community-write__label">
         분류
@@ -110,9 +116,9 @@ export default function CommunityWriteForm({
         <input type="file" accept="image/jpeg,image/png" onChange={handleFile} />
         {image ? '사진이 첨부되었습니다. 다시 누르면 교체됩니다.' : '한옥 도가 풍경 사진을 클릭해 첨부하세요. (JPG, PNG, 10MB)'}
       </label>
-      <p className="community-write__hint">커뮤니티 예의를 지켜 주세요. 본인 글만 목록에 보입니다.</p>
+      <p className="community-write__hint">{hint}</p>
       <button type="submit" className="community-write__submit" disabled={!canPost}>
-        게시하기
+        {mode === 'edit' ? '수정하기' : '게시하기'}
       </button>
     </form>
   )

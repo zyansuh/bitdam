@@ -2,13 +2,21 @@ import { noticeTabs } from '../data/noticeTabs'
 import NoticeLayout from '../components/NoticeLayout'
 import { useNoticeComposer } from '../hooks/useNoticeComposer'
 
-export default function NoticeWritePage() {
-  const form = useNoticeComposer()
+interface NoticeWritePageProps {
+  editId?: string
+}
+
+export default function NoticeWritePage({ editId }: NoticeWritePageProps) {
+  const form = useNoticeComposer(editId)
 
   return (
     <NoticeLayout>
       {!form.canWrite ? (
-        <p className="notice-error">공지 작성은 직원·팀장·ADMIN만 할 수 있습니다.</p>
+        <p className="notice-error">
+          {form.isEdit ? '공지 수정은 ADMIN만 할 수 있습니다.' : '공지 작성은 직원·팀장·ADMIN만 할 수 있습니다.'}
+        </p>
+      ) : form.missing ? (
+        <p className="notice-error">수정할 공지를 찾을 수 없습니다.</p>
       ) : (
         <form
           className="notice-form"
@@ -54,7 +62,7 @@ export default function NoticeWritePage() {
           )}
           {form.error ? <p className="notice-error">{form.error}</p> : null}
           <button type="submit" className="notice-save">
-            공지 등록
+            {form.isEdit ? '공지 수정' : '공지 등록'}
           </button>
         </form>
       )}

@@ -3,6 +3,7 @@ import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import Navbar from '../../../shared/components/navigation/Navbar'
 import { useAuth } from '../../../shared/hooks/useAuth'
+import { canModerateContent, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
 import CommunityCategoryNav from '../components/CommunityCategoryNav'
 import CommunityHashtags from '../components/CommunityHashtags'
 import CommunityLoginPrompt from '../components/CommunityLoginPrompt'
@@ -12,7 +13,8 @@ import { clearCommunityDraft, loadCommunityDraft, saveCommunityDraft } from '../
 
 export default function CommunityWritePage() {
   const { user, isLoggedIn } = useAuth()
-  const { addPost, category, setCategory, setTag, tag } = useCommunityPosts(user)
+  const moderate = canModerateContent(resolveWorkspaceRole(user))
+  const { addPost, category, setCategory, setTag, tag } = useCommunityPosts(user, { moderate })
   const navigate = useNavigate()
   const draft = loadCommunityDraft()
 
@@ -31,6 +33,11 @@ export default function CommunityWritePage() {
           <div>
             {isLoggedIn ? (
               <CommunityWriteForm
+                hint={
+                  moderate
+                    ? 'ADMIN은 모든 커뮤니티 글을 보고 수정할 수 있습니다.'
+                    : '커뮤니티 예의를 지켜 주세요. 본인 글만 목록에 보입니다.'
+                }
                 initialTitle={draft?.title}
                 initialBody={draft?.body}
                 initialImage={draft?.image}

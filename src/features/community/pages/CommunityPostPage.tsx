@@ -4,6 +4,7 @@ import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import Navbar from '../../../shared/components/navigation/Navbar'
 import { useAuth } from '../../../shared/hooks/useAuth'
+import { canModerateContent, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
 import { communityCategoryLabel } from '../data/communityCategories'
 import CommunityCommentBox from '../components/CommunityCommentBox'
 import CommunityIndexList from '../components/CommunityIndexList'
@@ -14,8 +15,10 @@ export default function CommunityPostPage() {
   const { id = '' } = useParams()
   const { user, isLoggedIn } = useAuth()
   const navigate = useNavigate()
-  const { mine, getPost, likePost, addComment, removePost } = useCommunityPosts(user)
+  const moderate = canModerateContent(resolveWorkspaceRole(user))
+  const { visible, getPost, likePost, addComment, removePost } = useCommunityPosts(user, { moderate })
   const post = getPost(id)
+  const canEdit = Boolean(post && user && (moderate || post.authorId === user.id))
 
   return (
     <PageLayout>
@@ -23,7 +26,11 @@ export default function CommunityPostPage() {
       <main className="community-page">
         {!post ? (
           <div className="community-empty">
-            <p>글을 찾을 수 없습니다. 본인이 쓴 글만 볼 수 있습니다.</p>
+            <p>
+              {moderate
+                ? '글을 찾을 수 없습니다.'
+                : '글을 찾을 수 없습니다. 본인이 쓴 글만 볼 수 있습니다.'}
+            </p>
             <Link to="/community" className="community-prompt__link">
               목록으로
             </Link>
@@ -50,16 +57,23 @@ export default function CommunityPostPage() {
                   <MessageCircle size={16} strokeWidth={1.6} />
                   {post.comments.length}
                 </span>
-                <button
-                  type="button"
-                  className="community-card__delete"
-                  onClick={() => {
-                    removePost(post.id)
-                    navigate('/community')
-                  }}
-                >
-                  삭제
-                </button>
+                {canEdit ? (
+                  <Link to={`/community/${post.id}/edit`} className="community-card__react">
+                    수정
+                  </Link>
+                ) : null}
+                {canEdit ? (
+                  <button
+                    type="button"
+                    className="community-card__delete"
+                    onClick={() => {
+                      removePost(post.id)
+                      navigate('/community')
+                    }}
+                  >
+                    삭제
+                  </button>
+                ) : null}
               </div>
               <CommunityCommentBox
                 comments={post.comments}
@@ -69,7 +83,7 @@ export default function CommunityPostPage() {
             </article>
             <aside className="community-aside">
               <CommunityPromoCard />
-              <CommunityIndexList posts={mine} />
+              <CommunityIndexList posts={visible} />
             </aside>
           </div>
         )}
