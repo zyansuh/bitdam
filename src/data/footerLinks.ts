@@ -10,6 +10,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '선물하기', to: '/gift' },
     { label: '추석 특별관', to: '/holiday/gifts' },
     { label: '추석 응모', to: '/events/chuseok' },
+    { label: '설날 복주머니', to: '/events/daily' },
     { label: '타임 특가', to: '/deals' },
     { label: '정기 구독', to: '/subscribe' },
     { label: '단체 · 기업 선물', to: '/corporate' },
