@@ -7,7 +7,19 @@
 }
 
 .story-feed__title {
-  @apply mb-6 font-serif text-lg font-bold text-charcoal sm:mb-8 sm:text-xl;
+  @apply mb-2 font-serif text-lg font-bold text-charcoal sm:text-xl;
+}
+
+.story-feed__lead {
+  @apply mb-6 max-w-2xl text-sm text-muted sm:mb-8;
+}
+
+.story-feed__more {
+  @apply mt-8 flex flex-wrap gap-4;
+}
+
+.story-card__link {
+  @apply block text-inherit no-underline;
 }
 
 .story-feed__grid {
