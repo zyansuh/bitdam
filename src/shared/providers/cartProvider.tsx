@@ -1,6 +1,7 @@
 import { createContext, useMemo, useState, type ReactNode } from 'react'
 import type { Product } from '../../data/products'
 import { getProductById } from '../../data/products'
+import { isCatalogPaused } from '../utils/catalogPauseStorage'
 import type { CartLine } from '../types/cart'
 import { readCartLines, writeCartLines } from '../utils/cartStorage'
 
@@ -51,7 +52,7 @@ export function CartProvider({ children }: CartProviderProps) {
       itemCount,
       addItem: (productId, quantity = 1) => {
         const stock = getProductById(productId)?.stock ?? 0
-        if (stock <= 0) return
+        if (stock <= 0 || isCatalogPaused(productId)) return
         const current = lines.find((line) => line.productId === productId)
         const cap = Math.min(9, stock)
         if (current) {
