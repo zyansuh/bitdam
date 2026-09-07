@@ -29,28 +29,28 @@ export const IR_LEADERS: IrPerson[] = [
     name: '김서연',
     role: 'CEO',
     bio: '전 카카오 전략리드 · 서울대 MBA. 전통주를 생활 구독으로 옮깁니다.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80',
+    image: '/images/people/ceo.svg',
   },
   {
     id: 'cpo',
     name: '박준호',
     role: 'CPO',
     bio: '커머스 프로덕트 10년. 한정판 펀딩과 AI 소믈리에를 붙입니다.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80',
+    image: '/images/people/cpo.svg',
   },
   {
     id: 'cdo',
     name: '이하늘',
     role: 'CDO',
     bio: '브랜드·패키지 디렉터. 기념주 라벨과 명인 병 스토리를 설계합니다.',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&q=80',
+    image: '/images/people/cdo.svg',
   },
   {
     id: 'coo',
     name: '정민우',
     role: 'COO',
     bio: '콜드체인·양조장 출고 운영. 9개 권역 물류를 맞춥니다.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80',
+    image: '/images/people/coo.svg',
   },
 ]
 
