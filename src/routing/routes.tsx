@@ -46,6 +46,14 @@ import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
 import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
 import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
 import IrPage from '../features/ir/pages/IrPage'
+import LoungeDashboardPage from '../features/lounge/pages/LoungeDashboardPage'
+import LoungeProductsPage from '../features/lounge/pages/LoungeProductsPage'
+import LoungeProductNewPage from '../features/lounge/pages/LoungeProductNewPage'
+import LoungeOrdersPage from '../features/lounge/pages/LoungeOrdersPage'
+import LoungeSettlementsPage from '../features/lounge/pages/LoungeSettlementsPage'
+import LoungeReportsPage from '../features/lounge/pages/LoungeReportsPage'
+import LoungeCustomersPage from '../features/lounge/pages/LoungeCustomersPage'
+import LoungeSubscriptionsPage from '../features/lounge/pages/LoungeSubscriptionsPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -79,6 +87,14 @@ export function AppRoutes() {
       <Route path="/mypage/addresses" element={<MypageAddressesPage />} />
       <Route path="/mypage/payments" element={<MypagePaymentsPage />} />
       <Route path="/mypage/support" element={<MypageSupportPage />} />
+      <Route path="/mypage/lounge" element={<LoungeDashboardPage />} />
+      <Route path="/mypage/lounge/products/new" element={<LoungeProductNewPage />} />
+      <Route path="/mypage/lounge/products" element={<LoungeProductsPage />} />
+      <Route path="/mypage/lounge/orders" element={<LoungeOrdersPage />} />
+      <Route path="/mypage/lounge/settlements" element={<LoungeSettlementsPage />} />
+      <Route path="/mypage/lounge/reports" element={<LoungeReportsPage />} />
+      <Route path="/mypage/lounge/customers" element={<LoungeCustomersPage />} />
+      <Route path="/mypage/lounge/subscriptions" element={<LoungeSubscriptionsPage />} />
       <Route path="/account" element={<SettingsProfilePage />} />
       <Route path="/account/security" element={<SettingsSecurityPage />} />
       <Route path="/account/notifications" element={<SettingsNotificationsPage />} />
