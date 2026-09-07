@@ -18,6 +18,9 @@ alwaysApply: true
 - 커밋은 기존 Granular 규칙(파일 1개·Why/What/Affected)
 - 사용자가 "커밋하고 PR"이라고 하면 스택을 푸시하고 PR을 연다 (`git push --force` 금지)
 - 사용자가 커밋만 요청하면 push하지 않는다
+- **PR Title is English** (Conventional Commits). Bodies may be Korean. Example: `feat: add real-time order notifications`
+
+## 브랜치 자동 생성
 
 ## 브랜치 자동 생성
 
@@ -38,3 +41,19 @@ alwaysApply: true
 ## 본문
 
 각 PR은 `.github/pull_request_template.md` 전 섹션을 채운 `.github/docs/pr-*.md`를 `docs(pr)`로 따로 커밋한다. 머지 순서를 Notes에 적는다.
+
+## PR 제목 (영어)
+
+커밋 메시지와 같이 **GitHub PR Title은 영어** Conventional Commits다. 본문·스크린샷 설명은 한국어여도 된다.
+
+허용 예:
+
+- `feat: add real-time order notifications`
+- `fix: resolve broken images on home page`
+- `feat: add admin content management`
+- `style: improve global button spacing`
+- `feat: add product sorting options`
+
+금지 예: `feat: 홈 이미지 깨짐 수정` 처럼 제목만 한글인 경우 (특별한 브랜드 고유명 표기가 필요할 때만 예외).
+
+기존 커밋 영어 규칙과 충돌하지 않는다. 템플릿 첫 줄 예시는 영어 제목을 안내한다.
