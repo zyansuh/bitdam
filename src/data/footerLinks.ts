@@ -16,6 +16,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '타임 특가', to: '/deals' },
     { label: '정기 구독', to: '/subscribe' },
     { label: '단체 · 기업 선물', to: '/corporate' },
+    { label: '투자 IR', to: '/ir' },
     { label: '커뮤니티', to: '/community' },
   ],
   고객지원: [
