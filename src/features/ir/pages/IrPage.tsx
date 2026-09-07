@@ -10,10 +10,12 @@ import IrKpiRow from '../components/IrKpiRow'
 import IrLeaders from '../components/IrLeaders'
 import IrMarketMix from '../components/IrMarketMix'
 import IrRound from '../components/IrRound'
+import { useIrHashScroll } from '../hooks/useIrHashScroll'
 import { useIrInquiry } from '../hooks/useIrInquiry'
 import { computeIrSnapshot } from '../utils/computeIrMetrics'
 
 export default function IrPage() {
+  useIrHashScroll()
   const snapshot = computeIrSnapshot()
   const inquiry = useIrInquiry()
 
