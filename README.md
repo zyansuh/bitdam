@@ -84,11 +84,12 @@
 | `/mypage/lounge` | `LoungeDashboardPage` | 셀러·직원 라운지 · 인증된 본인 공방 또는 전체 공방 |
 | `/mypage/lounge/verify` | `LoungeVerifyPage` | 사업자번호·대표자 인증 후 양조장 지정 |
 | `/mypage/admin/people` | `AdminPeoplePage` | ADMIN이 가입 계정에 직원·팀장 등급 부여 |
-| `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원·팀장 성과 |
+| `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원 성과(공지·커뮤니티·공방 수 집계) |
+| `/mypage/admin/support` | `AdminSupportPage` | 직원·팀장·ADMIN 1:1 문의 답변 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
-| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 구매 · 리뷰 탭 |
+| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 재고/품절 · 구매 · 리뷰 탭 |
 | `/products/:id/review` | `WriteReviewPage` | 별점 · 태그 · 본문 · 사진 후기 |
-| `/cart` | `CartPage` | 장바구니 · 지갑 쿠폰 차감 · 라운지·마이페이지 동일 주문 |
+| `/cart` | `CartPage` | 장바구니 · 쿠폰 차감 · 재고 확인 · 라운지·마이페이지 동일 주문 |
 | `/wishlist` | `WishlistPage` | 헤더·마이페이지와 동기화된 위시 |
 | `/order/complete/:id` | `OrderCompletePage` | 결제 완료 · 배송 스테퍼 |
 | `/mypage/orders/:id` | `OrderDetailPage` | 주문 상세 · 배송 상태 |
@@ -112,13 +113,13 @@
 | `/mypage/reservations` | `MypageReservationsPage` | 양조장 투어·클래스 예약 내역 |
 | `/mypage/addresses` | `MypageAddressesPage` | 배송지 관리 |
 | `/mypage/payments` | `MypagePaymentsPage` | 결제수단 관리 |
-| `/mypage/support` | `MypageSupportPage` | 1:1 고객센터 |
+| `/mypage/support` | `MypageSupportPage` | 1:1 문의 · 직원 답변 스레드 |
 | `/account` | `SettingsProfilePage` | 프로필 설정 |
 | `/account/security` | `SettingsSecurityPage` | 보안 & 비밀번호 |
 | `/account/notifications` | `SettingsNotificationsPage` | 알림 설정 |
 | `/account/connections` | `SettingsConnectionsPage` | 연동된 서비스 |
 | `/account/withdraw` | `SettingsWithdrawPage` | 탈퇴하기 |
-| `/notifications` | `NotificationsPage` | 알림 센터 · 분류 필터 · 읽음 처리 |
+| `/notifications` | `NotificationsPage` | 알림 센터 · 주문/문의/댓글/예약 실시간 · 설정 필터 |
 | `/help` | `HelpHomePage` | 고객센터 → 배송 FAQ로 이동 |
 | `/help/:category` | `HelpCategoryPage` | 주문/결제·배송·교환/반품·회원·포인트·기타 FAQ |
 | `/help/chat` | `HelpChatPage` | `/chat`으로 이동 |
@@ -228,7 +229,7 @@ flowchart LR
 
 ### 🍾 상품 상세 · 장바구니 (`/products/:id` · `/cart`)
 
-목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 구매하면 `bitdam.shop.orders`에 쌓여 **마이페이지**와 **셀러 라운지 주문**이 같은 주문번호를 봅니다. 장바구니에서 지갑 쿠폰을 고르면 할인·무료배송이 적용되고 결제 시 사용 처리됩니다. 헤더 하트와 마이페이지 위시리스트는 `bitdam.wishlist`를 공유합니다. 양조장 투어·클래스 예약은 `/mypage/reservations`에 모입니다.
+목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 셀러 라운지에서 등록한 병은 `bitdam.catalog.seller`에 붙어 `/products`에 나옵니다. 재고는 시드+오버레이(`bitdam.catalog.stock`)이며 품절 SKU는 구매가 막힙니다. 결제하면 재고가 줄고 알림 센터에 주문 알림이 쌓입니다.
 
 ### 📂 카테고리 상세 (`/category/:slug`)
 
@@ -409,17 +410,17 @@ BITDAM/
 |---------|-------|--------|------|
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
-| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
+| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 · 셀러 등록분 병합 · 품절 뱃지 |
 | **product** | `ProductDetailPage` | `product-detail.css` | PDP 갤러리 · 맛 바 · 구매 |
-| **cart** | `CartPage` | `cart.css` | 장바구니 · 쿠폰 차감 · ShopOrder 결제 |
+| **cart** | `CartPage` | `cart.css` | 장바구니 · 쿠폰 차감 · 재고 · ShopOrder 결제 |
 | **order** | `OrderCompletePage` · `OrderDetailPage` | `order-complete.css` | 결제완료 · 배송 상태 |
 | **review** | `WriteReviewPage` | `review.css` | 상품 후기 작성 |
 | **wishlist** | `WishlistPage` | `wishlist.css` | 헤더·마이페이지 동기화 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
 | **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 공개 피드 · 글쓰기 · ADMIN 숨김 · IndexedDB |
-| **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 쿠폰 지갑 · 예약 내역 · 개인정보 설정 |
+| **account** | `MypagePage` · `AdminSupportPage` 외 | `account.css` | 마이페이지 · 1:1 문의 스레드 · 쿠폰 · 예약 |
 | **help** | `HelpCategoryPage` · `HelpChatPage` | `help.css` | 고객센터 FAQ 분류 |
-| **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
+| **notify** | `NotificationsPage` | `notify.css` | 알림 센터 · 실시간 이벤트 + 설정 필터 |
 | **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeEditPage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·ADMIN 수정·IndexedDB |
 | **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
 | **custom** | `CustomLabelPage` | `custom.css` | 기념주 4단계 · 실시간 견적 |
@@ -723,6 +724,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 직원 성과 실집계 · 셀러 상품 카탈로그 · 재고/품절 · 1:1 답변 · 알림 연동 |
 | **2026-09-07** | 쿠폰 결제 차감 · 카탈로그 검색 AND · 예약 내역 · 공개 피드 · 공지/커뮤니티 IndexedDB |
 | **2026-09-07** | PDP · 장바구니·라운지 주문 · 결제완료/배송 · 리뷰 · 위시리스트 |
 | **2026-09-07** | ADMIN 공지·커뮤니티 전체 글 수정·삭제 |
