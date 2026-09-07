@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
+import SafeImage from '../../../shared/components/media/SafeImage'
 import { useFeaturedCarousel } from '../hooks/useFeaturedCarousel'
 
 interface FeaturedProductProps {
@@ -19,7 +20,7 @@ export default function FeaturedProduct({ products }: FeaturedProductProps) {
   return (
     <article className="featured">
       <div className="featured__media">
-        <img src={current.image} alt={current.name} className="featured__image" />
+        <SafeImage src={current.image} alt={current.name} className="featured__image" />
         {featured.length > 1 && (
           <>
             <button

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatWon } from '../../../shared/utils/formatWon'
+import SafeImage from '../../../shared/components/media/SafeImage'
 import { useLoungeCatalogRows } from '../hooks/useLoungeCatalogRows'
 
 export default function LoungeProductList() {
@@ -16,7 +17,7 @@ export default function LoungeProductList() {
       <ul className="lounge-products">
         {rows.map((row) => (
           <li key={row.id}>
-            <img src={row.image} alt="" />
+            <SafeImage src={row.image} alt="" />
             <div>
               <strong>{row.name}</strong>
               <p>

@@ -4,6 +4,7 @@ import type { Product } from '../../../data/products'
 import { useCart } from '../../../shared/hooks/useCart'
 import { formatWon } from '../../../shared/utils/formatWon'
 import WishHeartButton from '../../../shared/components/product/WishHeartButton'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface WishlistCardProps {
   product: Product
@@ -17,7 +18,7 @@ export default function WishlistCard({ product }: WishlistCardProps) {
       <div className="wish-card__media">
         <WishHeartButton productId={product.id} overlay />
         <Link to={`/products/${product.id}`}>
-          <img src={product.image} alt={product.name} className="wish-card__image" />
+          <SafeImage src={product.image} alt={product.name} className="wish-card__image" />
         </Link>
       </div>
       <p className="wish-card__brewery">{product.brewery}</p>
