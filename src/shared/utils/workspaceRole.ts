@@ -6,36 +6,49 @@ export function resolveWorkspaceRole(user: AuthUser | null | undefined): Workspa
   return user?.workspaceRole ?? 'member'
 }
 
+export function isAdminRole(role: WorkspaceRole): boolean {
+  return role === 'admin'
+}
+
 export function canOpenLounge(role: WorkspaceRole): boolean {
-  return role === 'seller' || role === 'staff' || role === 'lead' || role === 'admin'
+  if (isAdminRole(role)) return true
+  return role === 'seller' || role === 'staff' || role === 'lead'
 }
 
 export function canPickAllShops(role: WorkspaceRole): boolean {
-  return role === 'staff' || role === 'lead' || role === 'admin'
+  if (isAdminRole(role)) return true
+  return role === 'staff' || role === 'lead'
 }
 
 export function canOpenAdminScope(role: WorkspaceRole): boolean {
-  return role === 'admin'
+  return isAdminRole(role)
 }
 
 export function canWriteNotice(role: WorkspaceRole): boolean {
-  return role === 'staff' || role === 'lead' || role === 'admin'
+  if (isAdminRole(role)) return true
+  return role === 'staff' || role === 'lead'
 }
 
 export function canMarkNoticeImportant(role: WorkspaceRole): boolean {
-  return role === 'lead' || role === 'admin'
+  if (isAdminRole(role)) return true
+  return role === 'lead'
 }
 
 export function canEditStory(role: WorkspaceRole): boolean {
-  return role === 'lead' || role === 'admin'
+  if (isAdminRole(role)) return true
+  return role === 'lead'
 }
 
 export function canManagePeople(role: WorkspaceRole): boolean {
-  return role === 'admin'
+  return isAdminRole(role)
 }
 
 export function canViewStaffPerformance(role: WorkspaceRole): boolean {
-  return role === 'admin'
+  return isAdminRole(role)
+}
+
+export function canModerateContent(role: WorkspaceRole): boolean {
+  return isAdminRole(role)
 }
 
 export function workspaceRoleLabel(role: WorkspaceRole): string {
@@ -47,5 +60,6 @@ export function workspaceRoleLabel(role: WorkspaceRole): string {
 }
 
 export function needsWorkshopVerify(user: AuthUser | null | undefined): boolean {
+  if (isAdminRole(resolveWorkspaceRole(user))) return false
   return resolveWorkspaceRole(user) === 'seller' && user?.sellerVerified !== true
 }
