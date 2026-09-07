@@ -9,6 +9,7 @@ export default function NoticeListPage() {
 
   return (
     <NoticeLayout query={board.query} onQuery={board.search}>
+      {!board.ready ? <p className="notice-error">공지를 불러오는 중입니다.</p> : null}
       <NoticeTabs active={board.tab} onSelect={board.selectTab} />
       <NoticeTable rows={board.rows} />
       <NoticePager page={board.page} pages={board.pages} onPage={board.setPage} />

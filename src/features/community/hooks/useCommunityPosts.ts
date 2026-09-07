@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { AuthUser } from '../../../shared/types/auth'
+import { listCommunityPosts, saveCommunityPosts } from '../api/communityApi'
 import type { CommunityCategoryId, CommunityPost } from '../types/communityPost'
-import { loadCommunityPosts, saveCommunityPosts } from '../utils/communityStorage'
 
 interface UseCommunityPostsOptions {
   moderate?: boolean
@@ -9,9 +9,22 @@ interface UseCommunityPostsOptions {
 
 export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityPostsOptions) {
   const moderate = options?.moderate === true
-  const [posts, setPosts] = useState<CommunityPost[]>(() => loadCommunityPosts())
+  const [posts, setPosts] = useState<CommunityPost[]>([])
+  const [ready, setReady] = useState(false)
   const [tag, setTag] = useState<string | null>(null)
   const [category, setCategory] = useState<CommunityCategoryId>('all')
+
+  useEffect(() => {
+    let alive = true
+    listCommunityPosts().then((rows) => {
+      if (!alive) return
+      setPosts(rows)
+      setReady(true)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
 
   const mine = user ? posts.filter((post) => post.authorId === user.id) : []
   const publicFeed = posts.filter((post) => post.visibility !== 'hidden')
@@ -26,7 +39,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
 
   function persist(next: CommunityPost[]) {
     setPosts(next)
-    saveCommunityPosts(next)
+    void saveCommunityPosts(next)
   }
 
   function addPost(input: {
@@ -128,6 +141,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
   }
 
   return {
+    ready,
     mine,
     visible,
     shown,

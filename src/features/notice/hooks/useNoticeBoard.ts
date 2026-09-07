@@ -1,13 +1,27 @@
-import { useMemo, useState } from 'react'
-import { loadNotices } from '../utils/noticeStorage'
+import { useEffect, useMemo, useState } from 'react'
+import { listNotices } from '../api/noticeApi'
 import { filterNotices, noticePageCount, paginateNotices } from '../utils/paginateNotices'
-import type { NoticeCategoryId } from '../types/notice'
+import type { NoticeCategoryId, SiteNoticePost } from '../types/notice'
 
 export function useNoticeBoard() {
   const [tab, setTab] = useState<'all' | NoticeCategoryId>('all')
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
-  const all = useMemo(() => loadNotices(), [])
+  const [all, setAll] = useState<SiteNoticePost[]>([])
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    let alive = true
+    listNotices().then((posts) => {
+      if (!alive) return
+      setAll(posts)
+      setReady(true)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
+
   const filtered = useMemo(() => filterNotices(all, tab, query), [all, tab, query])
   const pages = noticePageCount(filtered.length)
   const safePage = Math.min(page, pages)
@@ -23,5 +37,5 @@ export function useNoticeBoard() {
     setPage(1)
   }
 
-  return { tab, selectTab, query, search, page: safePage, setPage, pages, rows, total: filtered.length }
+  return { ready, tab, selectTab, query, search, page: safePage, setPage, pages, rows, total: filtered.length }
 }

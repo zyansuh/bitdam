@@ -34,6 +34,19 @@ function writeHidden(ids: string[]): void {
   localStorage.setItem(HIDDEN_KEY, JSON.stringify(ids))
 }
 
+export function snapshotLocalUserNotices(): SiteNoticePost[] {
+  return readUser()
+}
+
+export function snapshotLocalHiddenNoticeIds(): string[] {
+  return readHidden()
+}
+
+export function clearLocalNoticeCache(): void {
+  localStorage.removeItem(KEY)
+  localStorage.removeItem(HIDDEN_KEY)
+}
+
 export function loadNotices(): SiteNoticePost[] {
   const user = readUser()
   const hidden = new Set(readHidden())

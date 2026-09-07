@@ -4,10 +4,11 @@ import NoticeLayout from '../components/NoticeLayout'
 import { useNoticeDigest } from '../hooks/useNoticeDigest'
 
 export default function NoticeDigestPage() {
-  const { important, recent } = useNoticeDigest()
+  const { ready, important, recent } = useNoticeDigest()
 
   return (
     <NoticeLayout>
+      {!ready ? <p className="notice-error">공지를 불러오는 중입니다.</p> : null}
       <section className="notice-digest">
         <h2 className="notice-digest__title">중요 공지 모아보기</h2>
         <ul className="notice-digest__list">

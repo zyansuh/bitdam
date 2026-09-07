@@ -17,7 +17,7 @@ import { useCommunityPosts } from '../hooks/useCommunityPosts'
 export default function CommunityPage() {
   const { user, isLoggedIn } = useAuth()
   const moderate = canModerateContent(resolveWorkspaceRole(user))
-  const { visible, shown, tag, setTag, category, setCategory } = useCommunityPosts(user, { moderate })
+  const { ready, visible, shown, tag, setTag, category, setCategory } = useCommunityPosts(user, { moderate })
 
   return (
     <PageLayout>
@@ -43,7 +43,9 @@ export default function CommunityPage() {
               ) : null}
             </div>
             {!isLoggedIn ? <CommunityLoginPrompt /> : null}
-            {shown.length === 0 ? (
+            {!ready ? (
+              <p className="community-empty">피드를 불러오는 중입니다.</p>
+            ) : shown.length === 0 ? (
               <p className="community-empty">아직 공개된 글이 없습니다. 로그인 후 첫 기록을 남겨 보세요.</p>
             ) : null}
             <div className="community-feed">
