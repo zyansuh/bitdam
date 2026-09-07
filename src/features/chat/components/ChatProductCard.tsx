@@ -8,7 +8,7 @@ interface ChatProductCardProps {
 
 export default function ChatProductCard({ product }: ChatProductCardProps) {
   return (
-    <Link to="/products" className="chat-product">
+    <Link to={`/products/${product.id}`} className="chat-product">
       <img src={product.image} alt="" className="chat-product__image" />
       <div>
         <p className="chat-product__name">{product.name}</p>
