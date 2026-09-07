@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { upsertWalletCoupon } from '../../../shared/utils/couponStorage'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import { COUPON_AMOUNT, COUPON_DAYS, STAMP_MAX } from '../data/dailyEventCopy'
 import type { LuckyBagState } from '../types/dailyEvent'
 import { addDaysIso, loadLuckyBag, saveLuckyBag, todayKey } from '../utils/luckyBagStorage'
@@ -45,6 +46,16 @@ export function useLuckyBag() {
         minAmount: 0,
         expire,
       })
+      appendSiteNotice(
+        makeSiteNotice({
+          kind: 'event',
+          title: `출석 쿠폰 ${COUPON_AMOUNT.toLocaleString()}원이 지급되었습니다`,
+          body: `${expire}까지 장바구니에서 LUCKY 코드를 사용할 수 있습니다.`,
+          actionLabel: '쿠폰 확인',
+          actionTo: '/mypage/coupons',
+          audienceId: user.id,
+        }),
+      )
     }
   }
 

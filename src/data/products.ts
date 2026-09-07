@@ -1,3 +1,7 @@
+import { readSellerCatalog } from '../shared/utils/sellerCatalogStorage'
+import { isCatalogPaused } from '../shared/utils/catalogPauseStorage'
+import { readStockOverlay, writeStockOverlay } from '../shared/utils/stockStorage'
+
 export interface TasteProfile {
   sweet: number
   sour: number
@@ -25,6 +29,7 @@ export interface Product {
   tagline: string
   story: string
   awards: string[]
+  stock?: number
 }
 
 export const TASTE_SCORE_MAX = 5
@@ -64,20 +69,52 @@ export const allProducts: Product[] = Array.from({ length: 48 }, (_, i) => {
     price: base.price + (i % 3) * 1000,
     reviewCount: Math.round(base.rating * 18) + (i % 7),
     gallery: [base.image, base.image],
+    stock: i === 14 ? 0 : 12 + (i % 18),
   }
 })
 
 export const PAGE_SIZE = 8
 
+function fallbackStock(product: Product): number {
+  if (typeof product.stock === 'number') return product.stock
+  return product.id === 15 ? 0 : 12 + (product.id % 18)
+}
+
+function withStock(product: Product): Product {
+  const overlay = readStockOverlay()[String(product.id)]
+  return { ...product, stock: overlay ?? fallbackStock(product) }
+}
+
+export function listCatalogInventory(): Product[] {
+  return [...allProducts, ...readSellerCatalog()].map(withStock)
+}
+
+export function listCatalogProducts(): Product[] {
+  return listCatalogInventory().filter((product) => !isCatalogPaused(product.id))
+}
+
+export function isSoldOut(product: Product): boolean {
+  return (product.stock ?? 0) <= 0
+}
+
+export function consumeCatalogStock(lines: { productId: number; quantity: number }[]): void {
+  const overlay = { ...readStockOverlay() }
+  for (const line of lines) {
+    const current = getProductById(line.productId)?.stock ?? 0
+    overlay[String(line.productId)] = Math.max(0, current - line.quantity)
+    writeStockOverlay(overlay)
+  }
+}
+
 export function getProductById(id: number): Product | undefined {
-  return allProducts.find((item) => item.id === id)
+  return listCatalogInventory().find((item) => item.id === id)
 }
 
 export function getProductsPage(page: number, pageSize = PAGE_SIZE): Product[] {
   const start = page * pageSize
-  return allProducts.slice(start, start + pageSize)
+  return listCatalogProducts().slice(start, start + pageSize)
 }
 
 export function hasMoreProducts(page: number, pageSize = PAGE_SIZE): boolean {
-  return (page + 1) * pageSize < allProducts.length
+  return (page + 1) * pageSize < listCatalogProducts().length
 }

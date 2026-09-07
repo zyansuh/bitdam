@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import { useFocusTrap } from '../../../shared/hooks/useFocusTrap'
 import { useSellerVerify } from '../hooks/useSellerVerify'
 import { DEMO_ANDONG_BIZ_NO, DEMO_HANSAN_BIZ_NO } from '../data/sellerLicenses'
 import LoungeMatchedShop from './LoungeMatchedShop'
@@ -8,9 +10,17 @@ interface LoungeVerifyModalProps {
 
 export default function LoungeVerifyModal({ embedded = false }: LoungeVerifyModalProps) {
   const form = useSellerVerify()
+  const rootRef = useRef<HTMLElement>(null)
+  useFocusTrap(!embedded, rootRef)
 
   return (
-    <section className={embedded ? 'lounge-verify lounge-verify--page' : 'lounge-verify-mask'} role="dialog" aria-modal={!embedded} aria-labelledby="lounge-verify-title">
+    <section
+      ref={rootRef}
+      className={embedded ? 'lounge-verify lounge-verify--page' : 'lounge-verify-mask'}
+      role="dialog"
+      aria-modal={!embedded}
+      aria-labelledby="lounge-verify-title"
+    >
       <div className="lounge-verify">
         <p className="lounge-verify__kicker">SELLER 사전 지정</p>
         <h1 id="lounge-verify-title">사업자 인증 후 내 공방이 열립니다</h1>

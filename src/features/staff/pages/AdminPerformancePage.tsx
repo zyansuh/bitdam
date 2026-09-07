@@ -9,7 +9,9 @@ export default function AdminPerformancePage() {
     <StaffLayout>
       <section className="lounge-panel">
         <h2>직원·팀장 성과</h2>
-        <p className="staff-lead">ADMIN만 전 직원의 공지 기여, 라운지 점검, 담당 공방 커버를 봅니다. 숫자는 로컬 데모입니다.</p>
+        <p className="staff-lead">
+          ADMIN만 봅니다. 공지 작성·커뮤니티 글은 이 브라우저에 저장된 실제 건수이고, 담당 공방은 직원·팀장·ADMIN은 전체 입점 공방 수, 셀러 겸직이면 본인 공방 1곳입니다.
+        </p>
         <StaffPerformanceBoard rows={directory.performance} />
       </section>
     </StaffLayout>

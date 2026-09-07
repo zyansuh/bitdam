@@ -1,10 +1,10 @@
-import { allProducts } from '../../../data/products'
+import { getProductById } from '../../../data/products'
 import { GIFT_WRAPS } from '../data/giftOptions'
 import type { GiftDraft } from '../types/gift'
 
 export function getGiftProduct(productId: number | null) {
   if (productId == null) return undefined
-  return allProducts.find((item) => item.id === productId)
+  return getProductById(productId)
 }
 
 export function buildGiftTotal(draft: GiftDraft): number {

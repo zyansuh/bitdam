@@ -49,7 +49,7 @@
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
 | **라우팅** | react-router-dom — `/` · `/story` · `/ir` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/mypage` · `/account` · `/login` · `/signup` · `/terms` · `/privacy` |
-| **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
+| **상태** | mock 카탈로그 · 계정/주문은 localStorage · 공지·커뮤니티는 IndexedDB API 레이어 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
 ### 브랜드 핵심 메시지
@@ -82,42 +82,46 @@
 | `/limited` | `LimitedEditionPage` | 크리에이터 한정판 · 테이스팅 · 펀딩 선예약 |
 | `/ir` | `IrPage` | 투자 IR · 카탈로그 기반 KPI · 프리 A · 문의 |
 | `/mypage/lounge` | `LoungeDashboardPage` | 셀러·직원 라운지 · 인증된 본인 공방 또는 전체 공방 |
+| `/mypage/lounge/settlements` | `LoungeSettlementsPage` | ShopOrder 기준 수수료 11% · 정산대기/완료 |
 | `/mypage/lounge/verify` | `LoungeVerifyPage` | 사업자번호·대표자 인증 후 양조장 지정 |
 | `/mypage/admin/people` | `AdminPeoplePage` | ADMIN이 가입 계정에 직원·팀장 등급 부여 |
-| `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원·팀장 성과 |
+| `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원 성과(공지·커뮤니티·공방 수 집계) |
+| `/mypage/admin/support` | `AdminSupportPage` | 직원·팀장·ADMIN 1:1 문의 답변 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
-| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 구매 · 리뷰 탭 |
+| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 재고/품절/판매중지 · 구매 · 리뷰 탭 |
 | `/products/:id/review` | `WriteReviewPage` | 별점 · 태그 · 본문 · 사진 후기 |
-| `/cart` | `CartPage` | 장바구니 · 결제 시 라운지·마이페이지 동일 주문 |
+| `/cart` | `CartPage` | 장바구니 · 쿠폰 차감 · 재고 확인 · 라운지·마이페이지 동일 주문 |
 | `/wishlist` | `WishlistPage` | 헤더·마이페이지와 동기화된 위시 |
 | `/order/complete/:id` | `OrderCompletePage` | 결제 완료 · 배송 스테퍼 |
 | `/mypage/orders/:id` | `OrderDetailPage` | 주문 상세 · 배송 상태 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
-| `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
+| `/login` | `Login` | 이메일 · 카카오 · 네이버 OAuth · Apple은 안내 다이얼로그 |
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
+| `/login/naver/callback` | `NaverCallbackPage` | 네이버 OAuth 콜백 |
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
 | `/tours` | `TourReservePage` | 권역별 양조장 정보 · 예약 창 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 포함 사항 · 날짜·타임·인원 예약 카드 |
-| `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
-| `/community` | `CommunityPage` | 본인 글 목록(ADMIN은 전체) · 분류 · 해시태그 |
+| `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약 시 마이페이지 내역 |
+| `/community` | `CommunityPage` | 공개 피드 · 분류 · 해시태그 · ADMIN 검수 |
 | `/community/new` | `CommunityWritePage` | 글쓰기 · 임시저장 · 사진 첨부 |
 | `/community/:id/edit` | `CommunityEditPage` | 본인 글 수정(ADMIN은 전체) |
-| `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 |
+| `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 · ADMIN 숨김 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
 | `/mypage` | `MypagePage` | 주문 요약 · 최근 주문 · NFT 보증서 |
 | `/mypage/certificates` | `MypageCertificatesPage` | 전통주 인증서(NFT) |
-| `/mypage/coupons` | `MypageCouponsPage` | 쿠폰 및 혜택 |
+| `/mypage/coupons` | `MypageCouponsPage` | 지갑 쿠폰 · 사용/만료 |
+| `/mypage/reservations` | `MypageReservationsPage` | 양조장 투어·클래스 예약 내역 |
 | `/mypage/addresses` | `MypageAddressesPage` | 배송지 관리 |
 | `/mypage/payments` | `MypagePaymentsPage` | 결제수단 관리 |
-| `/mypage/support` | `MypageSupportPage` | 1:1 고객센터 |
+| `/mypage/support` | `MypageSupportPage` | 1:1 문의 · 직원 답변 스레드 |
 | `/account` | `SettingsProfilePage` | 프로필 설정 |
 | `/account/security` | `SettingsSecurityPage` | 보안 & 비밀번호 |
 | `/account/notifications` | `SettingsNotificationsPage` | 알림 설정 |
 | `/account/connections` | `SettingsConnectionsPage` | 연동된 서비스 |
 | `/account/withdraw` | `SettingsWithdrawPage` | 탈퇴하기 |
-| `/notifications` | `NotificationsPage` | 알림 센터 · 분류 필터 · 읽음 처리 |
+| `/notifications` | `NotificationsPage` | 알림 센터 · 주문/문의/댓글/예약 실시간 · 설정 필터 |
 | `/help` | `HelpHomePage` | 고객센터 → 배송 FAQ로 이동 |
 | `/help/:category` | `HelpCategoryPage` | 주문/결제·배송·교환/반품·회원·포인트·기타 FAQ |
 | `/help/chat` | `HelpChatPage` | `/chat`으로 이동 |
@@ -204,13 +208,14 @@ flowchart LR
 
 ### ✍️ 커뮤니티 (`/community`)
 
-프로필(사람) 아이콘을 누르면 「커뮤니티 · 내 글 목록」이 열립니다. 일반 회원은 본인 글만 보이고, **ADMIN**(`admin@bitdam.kr`)은 모든 글을 보고 수정·삭제할 수 있습니다. 브라우저 `localStorage`에 저장됩니다.
+햄버거 「공개 피드」로 들어갑니다. 게스트도 **공개 글**을 읽고, 글쓰기는 로그인 회원만 가능합니다. **ADMIN**(`admin@bitdam.kr`)은 숨김 글까지 보고 숨김/공개·수정·삭제를 합니다. 저장은 IndexedDB(`noticeApi`와 같은 `bitdam` DB)입니다.
 
 | 기능 | 설명 |
 |------|------|
-| **글 목록** | 좌측(모바일은 상단) 제목 목록 · 본문 앵커로 이동 |
-| **작성** | 제목 · 본문 · 게시하기 |
-| **비로그인** | 로그인 안내 |
+| **공개 피드** | 숨기지 않은 글 · 분류 · 해시태그 |
+| **작성** | 제목 · 본문 · 사진 · 공개 피드에 즉시 게시 |
+| **검수** | ADMIN 상세에서 숨김/공개 |
+| **비로그인** | 피드는 보임 · 글쓰기는 로그인 안내 |
 
 ### 🍶 상품 목록 (`/products`)
 
@@ -218,15 +223,17 @@ flowchart LR
 
 | 기능 | 설명 |
 |------|------|
-| **검색** | 상품명 · 지역 · 카테고리 텍스트 필터 |
+| **검색** | 이름 · 양조장 · 지역 · 맛 · 스토리 · 도수/용량/가격(숫자) · URL `q` 유지 |
 | **카테고리 칩** | 탁주/막걸리 · 청주/약주 · 증류식소주 · 과실주 · 리큐르/기타 |
-| **상세 필터** | 지역 체크박스 · 가격 슬라이더 · 맛 프로필 태그 |
-| **정렬** | 인기순 · 낮은/높은 가격순 · 평점순 |
+| **상세 필터** | 지역 체크박스 · 가격 슬라이더 · 맛 태그 AND |
+| **정렬** | 인기순(`rating × log10(1+리뷰)`) · 낮은/높은 가격순 · 평점순 |
 | **상품 카드** | 지역 · 도수 · 가격(골드) · 평점 · 클릭 시 `/products/:id` · 하트로 위시 |
 
 ### 🍾 상품 상세 · 장바구니 (`/products/:id` · `/cart`)
 
-목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 구매하면 `bitdam.shop.orders`에 쌓여 **마이페이지**와 **셀러 라운지 주문**이 같은 주문번호를 봅니다. 헤더 하트와 마이페이지 위시리스트는 `bitdam.wishlist`를 공유합니다.
+목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 셀러 라운지에서 등록한 병은 `bitdam.catalog.seller`에 붙어 `/products`에 나옵니다. 재고는 시드+오버레이(`bitdam.catalog.stock`)이며 품절 SKU는 구매가 막힙니다. 라운지에서 **판매 중지**한 병은 `bitdam.catalog.paused`에 들어가 카탈로그 목록에서 빠지고 PDP·장바구니 구매가 막힙니다. 결제하면 재고가 줄고 알림 센터에 주문 알림이 쌓입니다.
+
+`/mypage/lounge/settlements`는 `LOUNGE_SETTLEMENTS` 목업이 아니라 `bitdam.shop.orders` 라인에서 매출·수수료(11%)·정산예정액을 만듭니다. 배송 완료 건은 정산완료, 그 외 결제 건은 정산대기입니다.
 
 ### 📂 카테고리 상세 (`/category/:slug`)
 
@@ -245,7 +252,7 @@ flowchart LR
 | 기능 | 설명 |
 |------|------|
 | **히어로 패널** | 데스크톱 좌측 50% sticky · 모바일 상단 배너 |
-| **소셜 로그인** | 카카오 공식 버튼 이미지 · OAuth 코드 플로우 (`/login/kakao/callback`) |
+| **소셜 로그인** | 카카오 · 네이버 OAuth 코드 플로우. Apple은 SPA에서 JWT를 못 서명해 안내만 |
 | **이메일 로그인** | 가입한 계정으로 localStorage 데모 로그인 |
 
 ### 🧾 회원가입 (`/signup`)
@@ -257,7 +264,7 @@ flowchart LR
 | **필드** | 닉네임 · 이메일 · 비밀번호(8자+) · 비밀번호 확인 |
 | **검증** | 중복 이메일 · 확인 불일치 · 약관 미동의 |
 | **이후** | 바로 로그인 처리 후 `from` 경로 또는 홈으로 이동 |
-| **기타 소셜 UI** | 네이버 · Apple 버튼 (OAuth **미연동**) |
+| **기타 소셜 UI** | Apple 버튼 → 서버 키 필요 안내 (Sign in with Apple 미연동) |
 | **하단 피드** | `InfiniteProductFeed` + `InfiniteStoryFeed` (스크롤 탐색) |
 
 ### 📱 공통
@@ -330,6 +337,7 @@ BITDAM/
 ├── index.html
 ├── .gitignore · .oxlintrc.json
 ├── .github/
+│   ├── workflows/ci.yml           # npm ci · oxlint · build
 │   ├── pull_request_template.md
 │   └── docs/
 │       ├── pr-001-initial-frontend.md
@@ -352,11 +360,11 @@ BITDAM/
     │   ├── auth/                  # pages · components · data · styles
     │   ├── catalog/               # pages · components · hooks · data · styles · types
     │   ├── brewery/               # 지도 · 상세 · 클래스 · 투어 헤더
-    │   ├── community/             # 본인 글 블로그
+    │   ├── community/             # 공개 피드 · api · IndexedDB
     │   ├── account/               # 마이페이지 · 개인정보 설정
     │   ├── help/                  # 고객센터 FAQ
     │   ├── notify/                # 알림 센터
-    │   ├── notice/                # 공지사항
+    │   ├── notice/                # 공지사항 · api · IndexedDB
     │   ├── chat/                  # 빚담 추천 AI
     │   ├── ir/                    # 투자 IR · KPI · 프리 A
     │   ├── lounge/                # 셀러 라운지 · 직원 ADMIN 스코프
@@ -382,6 +390,7 @@ BITDAM/
 |------|------|------|
 | **styles** | `shared/styles/`, `features/*/styles/` | Tailwind `@apply` · 시맨틱 클래스. 컴포넌트에 유틸 클래스 나열 금지 |
 | **hooks** | `shared/hooks/`, `features/*/hooks/` | `use{Name}` · UI 반환 없음 |
+| **api** | `features/*/api/` | IndexedDB 등 비동기 list/get/save. 훅·UI와 분리 |
 | **components** | `shared/components/`, `features/*/components/` | JSX만. 스타일·데이터·훅은 각각 해당 폴더 |
 | **data** | `src/data/`, `features/*/data/` | mock · 링크 · 카피 |
 | **routing** | `src/routing/routes.tsx` | 라우트 정의만 |
@@ -391,14 +400,14 @@ BITDAM/
 | 경로 | 설명 |
 |------|------|
 | **styles/** | `tokens.css` · `global.css` · footer/navbar/feed/product CSS |
-| **hooks/** | `useMobileMenu` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
+| **hooks/** | `useMobileMenu` · `useFocusTrap` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
 | **components/layout/footer/** | `Footer` · `FooterBrand` · `FooterLinkColumn` · `FooterBottom` |
 | **components/navigation/** | `SiteHeader` · `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` |
 | **components/brand/** | `BrandLogo` |
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
 | **components/feed/** | `InfiniteProductFeed` · `InfiniteStoryFeed` · `StoryCard` · `FeedStatus` |
-| **utils/** | `breakpoints` · `responsive` · `formatWon` |
+| **utils/** | `breakpoints` · `responsive` · `formatWon` · `bitdamIdb` |
 
 ### `src/features/`
 
@@ -406,18 +415,18 @@ BITDAM/
 |---------|-------|--------|------|
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
-| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
+| **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | 필터 · 셀러 등록분 병합 · 품절 뱃지 |
 | **product** | `ProductDetailPage` | `product-detail.css` | PDP 갤러리 · 맛 바 · 구매 |
-| **cart** | `CartPage` | `cart.css` | 장바구니 · ShopOrder 결제 |
+| **cart** | `CartPage` | `cart.css` | 장바구니 · 쿠폰 차감 · 재고 · ShopOrder 결제 |
 | **order** | `OrderCompletePage` · `OrderDetailPage` | `order-complete.css` | 결제완료 · 배송 상태 |
 | **review** | `WriteReviewPage` | `review.css` | 상품 후기 작성 |
 | **wishlist** | `WishlistPage` | `wishlist.css` | 헤더·마이페이지 동기화 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
-| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 수정 · 상세 · localStorage |
-| **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
+| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 공개 피드 · 글쓰기 · ADMIN 숨김 · IndexedDB |
+| **account** | `MypagePage` · `AdminSupportPage` 외 | `account.css` | 마이페이지 · 1:1 문의 스레드 · 쿠폰 · 예약 |
 | **help** | `HelpCategoryPage` · `HelpChatPage` | `help.css` | 고객센터 FAQ 분류 |
-| **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
-| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeEditPage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·ADMIN 수정·모아보기 |
+| **notify** | `NotificationsPage` | `notify.css` | 알림 센터 · 실시간 이벤트 + 설정 필터 |
+| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeEditPage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·ADMIN 수정·IndexedDB |
 | **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
 | **custom** | `CustomLabelPage` | `custom.css` | 기념주 4단계 · 실시간 견적 |
 | **gift** | `GiftPage` | `shop.css` | 상품 선택 → 메시지 → 결제 (순서 강제) |
@@ -546,7 +555,7 @@ Node.js 20+, npm 9+
 git clone https://github.com/zyansuh/bitdam.git
 cd bitdam
 npm install
-cp .env.example .env   # VITE_KAKAO_REST_API_KEY 입력
+cp .env.example .env   # VITE_KAKAO_REST_API_KEY · (선택) VITE_NAVER_CLIENT_ID 입력
 npm run dev          # http://localhost:5173
 ```
 
@@ -554,6 +563,11 @@ npm run dev          # http://localhost:5173
 
 - `http://localhost:5173/login/kakao/callback`
 - (배포 시) `https://<배포 도메인>/login/kakao/callback` 예: `https://bitdam.vercel.app/login/kakao/callback`
+
+네이버는 개발자 센터 **Callback URL**에 아래를 등록합니다.
+
+- `http://localhost:5173/login/naver/callback`
+- (배포 시) `https://<배포 도메인>/login/naver/callback`
 
 ### Vercel 환경 변수 (카카오 로그인)
 
@@ -565,6 +579,8 @@ Vite는 `VITE_*` 값을 **빌드 시점**에 넣습니다. 대시보드에 키�
 | `VITE_KAKAO_JAVASCRIPT_KEY` | 아니오 | JS SDK용. 현재 REST 플로우에는 필수는 아님 |
 | `VITE_KAKAO_REDIRECT_URI` | 쓰지 않음 | 넣으면 배포에서도 localhost로 고정됨. **Vercel에서 삭제** |
 | `VITE_KAKAO_CLIENT_SECRET` | 아니오 | 콘솔에서 Client Secret을 켠 경우에만 |
+| `VITE_NAVER_CLIENT_ID` | 네이버 사용 시 | 네이버 로그인 애플리케이션 Client ID |
+| `VITE_NAVER_CLIENT_SECRET` | 네이버 사용 시 | 토큰 교환용. **SPA 빌드에 포함됨** |
 | `VITE_OPENAI_API_KEY` | 아니오 | 있으면 `/chat`이 OpenAI `gpt-4o-mini`를 호출. **프론트에 노출됨** |
 
 Vercel → Project → Settings → Environment Variables에서 Production / Preview / Development에 추가한 뒤 Redeploy 합니다. 잘못된 이름(`VITE_KAKO_API_KEY` 등)만 있어도 빌드에 키가 안 들어갑니다. 코드는 `VITE_KAKAO_API_KEY`, `VITE_KAKO_API_KEY`를 보조로 읽지만 **정식 이름은 `VITE_KAKAO_REST_API_KEY`** 입니다.
@@ -597,6 +613,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/terms | 서비스 운영정책 |
 | http://localhost:5173/privacy | 개인정보처리방침 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
+| http://localhost:5173/login/naver/callback | 네이버 OAuth 콜백 |
 | http://localhost:5173/breweries | 양조장 지도 |
 | http://localhost:5173/tours | 지역별 투어 예약 |
 | http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
@@ -616,6 +633,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/limited | 크리에이터 한정판 |
 | http://localhost:5173/ir | 투자 IR |
 | http://localhost:5173/mypage/lounge | 셀러 라운지 (인증된 공방만) |
+| http://localhost:5173/mypage/lounge/settlements | ShopOrder 정산 |
 | http://localhost:5173/mypage/lounge/verify | 사업자 인증 · 내 양조장 지정 |
 | http://localhost:5173/mypage/admin/people | 구성원 권한 (ADMIN) |
 | http://localhost:5173/mypage/admin/performance | 직원 성과 (ADMIN) |
@@ -710,15 +728,21 @@ import { getProductsPage } from '../../../data/products';
 - [x] 마이페이지 · 개인정보 설정(`/mypage` · `/account`)
 - [x] 상품 단위 상세(PDP) 페이지
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
+- [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
-- [ ] 네이버 · Apple OAuth 연동
-- [ ] `npm run lint` 통과 · GitHub Actions CI
+- [x] 네이버 OAuth (`/login/naver/callback` · Vite/Vercel 프록시)
+- [ ] Apple Sign In (서버 JWT `client_secret` 필요)
+- [x] `npm run lint`(oxlint) · GitHub Actions CI
 - [ ] 프로덕션 배포 (Vercel 등)
+- [ ] 전 페이지 대체 텍스트·포커스 링 (셸 모달·햄버거는 적용됨)
 
 ### Changelog
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | 라운지 정산←ShopOrder · 판매 중지 · CI · 셸 포커스 트랩 · 네이버 OAuth |
+| **2026-09-07** | 직원 성과 실집계 · 셀러 상품 카탈로그 · 재고/품절 · 1:1 답변 · 알림 연동 |
+| **2026-09-07** | 쿠폰 결제 차감 · 카탈로그 검색 AND · 예약 내역 · 공개 피드 · 공지/커뮤니티 IndexedDB |
 | **2026-09-07** | PDP · 장바구니·라운지 주문 · 결제완료/배송 · 리뷰 · 위시리스트 |
 | **2026-09-07** | ADMIN 공지·커뮤니티 전체 글 수정·삭제 |
 | **2026-09-07** | 직원·팀장 등급 · ADMIN 권한 부여 · 성과 보드 |

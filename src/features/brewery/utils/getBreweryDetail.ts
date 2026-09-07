@@ -1,4 +1,4 @@
-import { allProducts, type Product } from '../../../data/products'
+import { listCatalogProducts, type Product } from '../../../data/products'
 import { getBreweryById } from '../data/breweries'
 import { DEFAULT_TOUR_INCLUDES } from '../data/tourBooking'
 import { breweryProfiles } from '../data/breweryProfiles'
@@ -34,7 +34,7 @@ export function getBreweryDetail(id: string): BreweryDetail | undefined {
   const profile = breweryProfiles[id] ?? fallbackProfile(pin.name, pin.region, pin.image, pin.summary)
   const products: Product[] = []
   const seen = new Set<string>()
-  for (const item of allProducts) {
+  for (const item of listCatalogProducts()) {
     if (item.region !== pin.region || seen.has(item.name)) continue
     seen.add(item.name)
     products.push(item)

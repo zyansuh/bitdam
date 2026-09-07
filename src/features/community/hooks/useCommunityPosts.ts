@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { AuthUser } from '../../../shared/types/auth'
+import { listCommunityPosts, saveCommunityPosts } from '../api/communityApi'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import type { CommunityCategoryId, CommunityPost } from '../types/communityPost'
-import { loadCommunityPosts, saveCommunityPosts } from '../utils/communityStorage'
 
 interface UseCommunityPostsOptions {
   moderate?: boolean
@@ -9,12 +10,26 @@ interface UseCommunityPostsOptions {
 
 export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityPostsOptions) {
   const moderate = options?.moderate === true
-  const [posts, setPosts] = useState<CommunityPost[]>(() => loadCommunityPosts())
+  const [posts, setPosts] = useState<CommunityPost[]>([])
+  const [ready, setReady] = useState(false)
   const [tag, setTag] = useState<string | null>(null)
   const [category, setCategory] = useState<CommunityCategoryId>('all')
 
+  useEffect(() => {
+    let alive = true
+    listCommunityPosts().then((rows) => {
+      if (!alive) return
+      setPosts(rows)
+      setReady(true)
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
+
   const mine = user ? posts.filter((post) => post.authorId === user.id) : []
-  const visible = moderate ? posts : mine
+  const publicFeed = posts.filter((post) => post.visibility !== 'hidden')
+  const visible = moderate ? posts : publicFeed
   const shown = visible.filter((post) => {
     if (category !== 'all' && post.category !== category) return false
     if (tag && !`${post.title} ${post.body} ${post.tags.join(' ')}`.includes(tag.replace('#', ''))) {
@@ -25,7 +40,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
 
   function persist(next: CommunityPost[]) {
     setPosts(next)
-    saveCommunityPosts(next)
+    void saveCommunityPosts(next)
   }
 
   function addPost(input: {
@@ -49,6 +64,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
       likes: 0,
       comments: [],
       createdAt: new Date().toISOString(),
+      visibility: 'public',
     }
     persist([post, ...posts])
     return post.id
@@ -95,13 +111,14 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
 
   function addComment(id: string, body: string) {
     if (!user || !body.trim()) return
+    const post = posts.find((item) => item.id === id)
     persist(
-      posts.map((post) =>
-        post.id === id
+      posts.map((item) =>
+        item.id === id
           ? {
-              ...post,
+              ...item,
               comments: [
-                ...post.comments,
+                ...item.comments,
                 {
                   id: crypto.randomUUID(),
                   authorName: user.nickname,
@@ -111,9 +128,26 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
                 },
               ],
             }
-          : post,
+          : item,
       ),
     )
+    if (post && post.authorId !== user.id) {
+      appendSiteNotice(
+        makeSiteNotice({
+          kind: 'community',
+          title: `${user.nickname}님이 회원님의 글에 댓글을 남겼습니다`,
+          body: body.trim().slice(0, 80),
+          actionLabel: '댓글 확인하기',
+          actionTo: `/community/${id}`,
+          audienceId: post.authorId,
+        }),
+      )
+    }
+  }
+
+  function setVisibility(id: string, visibility: CommunityPost['visibility']) {
+    if (!moderate) return
+    persist(posts.map((post) => (post.id === id ? { ...post, visibility } : post)))
   }
 
   function getPost(id: string) {
@@ -121,6 +155,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
   }
 
   return {
+    ready,
     mine,
     visible,
     shown,
@@ -133,6 +168,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
     removePost,
     likePost,
     addComment,
+    setVisibility,
     getPost,
   }
 }

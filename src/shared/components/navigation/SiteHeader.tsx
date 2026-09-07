@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import BrandLogo from '../brand/BrandLogo'
 import { useMobileMenu } from '../../hooks/useMobileMenu'
 import type { NavLinkItem } from '../../types/navigation'
@@ -16,6 +17,21 @@ interface SiteHeaderProps {
 export default function SiteHeader({ links, tone = 'light', isLinkActive }: SiteHeaderProps) {
   const { menuOpen, toggleMenu, closeMenu } = useMobileMenu()
   const root = tone === 'navy' ? 'navbar navbar--navy' : 'navbar'
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeMenu()
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen, closeMenu])
 
   return (
     <header className={root}>

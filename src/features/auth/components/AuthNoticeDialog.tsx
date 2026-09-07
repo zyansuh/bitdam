@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { useFocusTrap } from '../../../shared/hooks/useFocusTrap'
 import type { AuthNotice } from '../types/authNotice'
 
 interface AuthNoticeDialogProps {
@@ -7,6 +8,9 @@ interface AuthNoticeDialogProps {
 }
 
 export default function AuthNoticeDialog({ notice, onClose }: AuthNoticeDialogProps) {
+  const rootRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(Boolean(notice), rootRef)
+
   useEffect(() => {
     if (!notice) {
       return
@@ -27,7 +31,13 @@ export default function AuthNoticeDialog({ notice, onClose }: AuthNoticeDialogPr
   }
 
   return (
-    <div className="auth-notice" role="alertdialog" aria-modal="true" aria-labelledby="auth-notice-title">
+    <div
+      ref={rootRef}
+      className="auth-notice"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="auth-notice-title"
+    >
       <button type="button" className="auth-notice__backdrop" aria-label="닫기" onClick={onClose} />
       <div className="auth-notice__panel">
         <div className="auth-notice__accent" />

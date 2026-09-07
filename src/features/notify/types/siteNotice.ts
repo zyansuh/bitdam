@@ -8,4 +8,5 @@ export interface SiteNotice {
   time: string
   actionLabel: string
   actionTo: string
+  audienceId?: string
 }

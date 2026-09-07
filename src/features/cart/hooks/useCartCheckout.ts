@@ -3,6 +3,8 @@ import { useAuth } from '../../../shared/hooks/useAuth'
 import { calcCartTotals } from '../../../shared/utils/cartTotals'
 import { couponEffect } from '../../../shared/utils/couponEffect'
 import { markCouponUsed } from '../../../shared/utils/couponStorage'
+import { consumeCatalogStock, isSoldOut } from '../../../data/products'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import { appendShopOrder, createShopOrderId } from '../../../shared/utils/shopOrderStorage'
 import type { ShopOrder } from '../../../shared/types/shopOrder'
 import type { WalletCoupon } from '../../../shared/types/coupon'
@@ -15,10 +17,15 @@ export function useCartCheckout(coupon?: WalletCoupon) {
   const itemsAmount = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
   const applied = couponEffect(coupon, itemsAmount)
   const totals = calcCartTotals(itemsAmount, applied.discount, applied.freeShipping)
+  const stockIssue = items.find((item) => isSoldOut(item.product) || item.quantity > (item.product.stock ?? 0))
+  const stockReason = stockIssue
+    ? `${stockIssue.product.name}은(는) 재고가 부족합니다.`
+    : undefined
 
   function checkout(payment: string): ShopOrder | undefined {
     if (!user || items.length === 0) return undefined
     if (coupon && applied.reason) return undefined
+    if (stockReason) return undefined
     const order: ShopOrder = {
       id: createShopOrderId(),
       createdAt: new Date().toISOString(),
@@ -41,10 +48,21 @@ export function useCartCheckout(coupon?: WalletCoupon) {
       })),
     }
     appendShopOrder(order)
+    consumeCatalogStock(order.lines.map((line) => ({ productId: line.productId, quantity: line.quantity })))
+    appendSiteNotice(
+      makeSiteNotice({
+        kind: 'shipping',
+        title: `${order.lines[0]?.name ?? '주문'} 결제가 완료되었습니다`,
+        body: `주문 ${order.id} · ${order.lines.length}종이 결제 확인입니다. 출고되면 배송 조회가 열립니다.`,
+        actionLabel: '주문 상세',
+        actionTo: `/mypage/orders/${order.id}`,
+        audienceId: user.id,
+      }),
+    )
     if (coupon) markCouponUsed(coupon.id, order.id)
     clearCart()
     return order
   }
 
-  return { totals, checkout, couponReason: applied.reason }
+  return { totals, checkout, couponReason: applied.reason, stockReason }
 }

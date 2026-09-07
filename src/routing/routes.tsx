@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import BrandStoryPage from '../features/brand/pages/BrandStoryPage'
 import KakaoCallbackPage from '../features/auth/pages/KakaoCallbackPage'
+import NaverCallbackPage from '../features/auth/pages/NaverCallbackPage'
 import Login from '../features/auth/pages/Login'
 import SignupPage from '../features/auth/pages/SignupPage'
 import BreweryDetailPage from '../features/brewery/pages/BreweryDetailPage'
@@ -24,9 +25,11 @@ import PrivacyPage from '../features/legal/pages/PrivacyPage'
 import MypagePage from '../features/account/pages/MypagePage'
 import MypageCertificatesPage from '../features/account/pages/MypageCertificatesPage'
 import MypageCouponsPage from '../features/account/pages/MypageCouponsPage'
+import MypageReservationsPage from '../features/account/pages/MypageReservationsPage'
 import MypageAddressesPage from '../features/account/pages/MypageAddressesPage'
 import MypagePaymentsPage from '../features/account/pages/MypagePaymentsPage'
 import MypageSupportPage from '../features/account/pages/MypageSupportPage'
+import AdminSupportPage from '../features/account/pages/AdminSupportPage'
 import SettingsProfilePage from '../features/account/pages/SettingsProfilePage'
 import SettingsSecurityPage from '../features/account/pages/SettingsSecurityPage'
 import SettingsNotificationsPage from '../features/account/pages/SettingsNotificationsPage'
@@ -76,6 +79,7 @@ export function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
+      <Route path="/login/naver/callback" element={<NaverCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
       <Route path="/products/:id/review" element={<WriteReviewPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
@@ -102,12 +106,14 @@ export function AppRoutes() {
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage/certificates" element={<MypageCertificatesPage />} />
       <Route path="/mypage/coupons" element={<MypageCouponsPage />} />
+      <Route path="/mypage/reservations" element={<MypageReservationsPage />} />
       <Route path="/mypage/addresses" element={<MypageAddressesPage />} />
       <Route path="/mypage/payments" element={<MypagePaymentsPage />} />
       <Route path="/mypage/support" element={<MypageSupportPage />} />
       <Route path="/mypage/lounge/verify" element={<LoungeVerifyPage />} />
       <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
       <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
+      <Route path="/mypage/admin/support" element={<AdminSupportPage />} />
       <Route path="/mypage/lounge" element={<LoungeDashboardPage />} />
       <Route path="/mypage/lounge/products/new" element={<LoungeProductNewPage />} />
       <Route path="/mypage/lounge/products" element={<LoungeProductsPage />} />

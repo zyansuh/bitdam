@@ -14,9 +14,20 @@ export interface SavedPayment {
   holder: string
 }
 
+export interface SupportReply {
+  id: string
+  authorName: string
+  body: string
+  createdAt: string
+}
+
 export interface SupportTicket {
   id: string
+  userId: string
+  userName: string
   title: string
   body: string
   createdAt: string
+  status: 'open' | 'answered'
+  replies: SupportReply[]
 }

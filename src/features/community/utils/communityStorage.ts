@@ -18,6 +18,10 @@ export function saveCommunityPosts(posts: CommunityPost[]): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
 }
 
+export function clearLocalCommunityCache(): void {
+  localStorage.removeItem(STORAGE_KEY)
+}
+
 function isCommunityPost(value: unknown): value is CommunityPost {
   if (!value || typeof value !== 'object') return false
   const item = value as CommunityPost
@@ -40,5 +44,6 @@ export function normalizeCommunityPost(value: CommunityPost): CommunityPost {
     category: value.category ?? 'free',
     tags: Array.isArray(value.tags) ? value.tags : [],
     comments: Array.isArray(value.comments) ? value.comments : [],
+    visibility: value.visibility === 'hidden' ? 'hidden' : 'public',
   }
 }

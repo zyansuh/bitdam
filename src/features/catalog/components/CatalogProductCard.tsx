@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
+import { isSoldOut } from '../../../data/products'
 import WishHeartButton from '../../../shared/components/product/WishHeartButton'
 
 interface CatalogProductCardProps {
@@ -9,6 +10,7 @@ interface CatalogProductCardProps {
 
 export default function CatalogProductCard({ product }: CatalogProductCardProps) {
   const to = `/products/${product.id}`
+  const soldOut = isSoldOut(product)
 
   return (
     <article>
@@ -16,6 +18,7 @@ export default function CatalogProductCard({ product }: CatalogProductCardProps)
         <div className="catalog-card__media">
           <WishHeartButton productId={product.id} overlay />
           <img src={product.image} alt={product.name} className="catalog-card__image" />
+          {soldOut ? <span className="catalog-card__sold">품절</span> : null}
         </div>
         <p className="catalog-card__region">
           {product.region} · {product.abv}%

@@ -68,6 +68,9 @@ export interface LoungeProductRow {
   stock: number
   price: number
   image: string
+  href?: string
+  catalogId?: number
+  paused?: boolean
 }
 
 export interface LoungeCustomer {

@@ -1,5 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import type { ProductDraft } from '../types/lounge'
+import { useLoungeScope } from '../providers/loungeScopeProvider'
+import { draftToCatalogProduct } from '../utils/draftToCatalogProduct'
+import { nextSellerCatalogId, upsertSellerProduct } from '../../../shared/utils/sellerCatalogStorage'
 
 const SAMPLE =
   'https://images.unsplash.com/photo-1569529465841-df988a64df86?w=800&h=800&fit=crop&q=80'
@@ -20,6 +24,9 @@ const initial: ProductDraft = {
 }
 
 export function useProductRegister() {
+  const navigate = useNavigate()
+  const { titleShop, shops, scopeId } = useLoungeScope()
+  const shop = titleShop ?? shops.find((item) => item.id === scopeId) ?? shops[0]
   const [draft, setDraft] = useState<ProductDraft>(initial)
 
   function patch(next: Partial<ProductDraft>) {
@@ -38,5 +45,13 @@ export function useProductRegister() {
     setDraft((prev) => ({ ...prev, saved: true }))
   }
 
-  return { draft, patch, go, next, saveDraft }
+  function publish() {
+    if (!shop || !draft.name.trim()) return
+    const product = draftToCatalogProduct(draft, shop, nextSellerCatalogId())
+    upsertSellerProduct(product)
+    setDraft((prev) => ({ ...prev, saved: true }))
+    navigate(`/products/${product.id}`)
+  }
+
+  return { draft, patch, go, next, saveDraft, publish, shop }
 }

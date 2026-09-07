@@ -51,8 +51,8 @@ function LoungeProductNewBody() {
             다음 단계로
           </button>
         ) : (
-          <button type="button" className="lounge-btn" onClick={form.saveDraft}>
-            등록 완료 (로컬)
+          <button type="button" className="lounge-btn" onClick={form.publish}>
+            카탈로그에 등록
           </button>
         )}
       </div>

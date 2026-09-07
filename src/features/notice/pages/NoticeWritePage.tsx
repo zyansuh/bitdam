@@ -11,7 +11,9 @@ export default function NoticeWritePage({ editId }: NoticeWritePageProps) {
 
   return (
     <NoticeLayout>
-      {!form.canWrite ? (
+      {!form.ready ? (
+        <p className="notice-error">공지를 불러오는 중입니다.</p>
+      ) : !form.canWrite ? (
         <p className="notice-error">
           {form.isEdit ? '공지 수정은 ADMIN만 할 수 있습니다.' : '공지 작성은 직원·팀장·ADMIN만 할 수 있습니다.'}
         </p>
@@ -22,7 +24,7 @@ export default function NoticeWritePage({ editId }: NoticeWritePageProps) {
           className="notice-form"
           onSubmit={(event) => {
             event.preventDefault()
-            form.submit()
+            void form.submit()
           }}
         >
           <label className="notice-field">

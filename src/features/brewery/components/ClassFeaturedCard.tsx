@@ -3,7 +3,7 @@ import type { ClassSession } from '../types/classSession'
 interface ClassFeaturedCardProps {
   session: ClassSession
   booked: boolean
-  onBook: (id: string) => void
+  onBook: (session: ClassSession) => void
 }
 
 export default function ClassFeaturedCard({ session, booked, onBook }: ClassFeaturedCardProps) {
@@ -21,7 +21,7 @@ export default function ClassFeaturedCard({ session, booked, onBook }: ClassFeat
           type="button"
           className="class-featured__btn"
           disabled={closed || booked}
-          onClick={() => onBook(session.id)}
+          onClick={() => onBook(session)}
         >
           {label}
         </button>
