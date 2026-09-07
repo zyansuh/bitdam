@@ -1,9 +1,9 @@
 import InfiniteProductFeed from '../../../shared/components/feed/InfiniteProductFeed'
-import InfiniteStoryFeed from '../../../shared/components/feed/InfiniteStoryFeed'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import Navbar from '../../../shared/components/navigation/Navbar'
 import Hero from '../components/Hero'
+import HomeStoryTeaser from '../components/HomeStoryTeaser'
 import PromoBanner from '../components/PromoBanner'
 import Stats from '../components/Stats'
 
@@ -16,7 +16,7 @@ export default function HomeLanding() {
         <Stats />
         <InfiniteProductFeed />
         <PromoBanner />
-        <InfiniteStoryFeed />
+        <HomeStoryTeaser />
       </main>
       <Footer />
     </PageLayout>
