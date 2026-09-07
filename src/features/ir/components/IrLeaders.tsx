@@ -1,4 +1,5 @@
 import { readIrLeaders } from '../../cms/utils/irContentStorage'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function IrLeaders() {
   const leaders = readIrLeaders()
@@ -10,7 +11,7 @@ export default function IrLeaders() {
       <ul className="ir-leaders">
         {leaders.map((person) => (
           <li key={person.id} className="ir-card">
-            <img src={person.image} alt={`${person.name} ${person.role}`} />
+            <SafeImage src={person.image} alt={`${person.name} ${person.role}`} />
             <strong>
               {person.name} · {person.role}
             </strong>
