@@ -29,6 +29,12 @@ export default function GiftSummary({ draft, total }: GiftSummaryProps) {
             </p>
           </div>
         </div>
+        {wrap ? (
+          <div className="gift-summary__wrap">
+            <img src={wrap.image} alt="" />
+            <p>{wrap.detail}</p>
+          </div>
+        ) : null}
       ) : (
         <p className="gift-summary__empty">상품을 먼저 골라 주세요.</p>
       )}
