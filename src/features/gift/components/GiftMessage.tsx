@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { GIFT_MESSAGE_MAX, GIFT_SKINS, GIFT_WRAPS } from '../data/giftOptions'
 import { formatWon } from '../../../shared/utils/formatWon'
+import GiftWrapPreviewDialog from './GiftWrapPreviewDialog'
 
 interface GiftMessageProps {
   skinId: string
@@ -22,6 +24,10 @@ export default function GiftMessage({
   onNext,
   onBack,
 }: GiftMessageProps) {
+  const [previewId, setPreviewId] = useState<string | null>(null)
+  const skin = GIFT_SKINS.find((item) => item.id === skinId) ?? GIFT_SKINS[0]
+  const wrapPreview = GIFT_WRAPS.find((item) => item.id === previewId) ?? null
+
   return (
     <section className="gift-panel">
       <header>
@@ -29,17 +35,26 @@ export default function GiftMessage({
         <p>따뜻한 편지와 보자기 패키지로 받는 분의 상을 먼저 그려 보세요.</p>
       </header>
       <h2>카드 스킨 템플릿</h2>
-      <div className="gift-pills">
+      <div className="gift-skins">
         {GIFT_SKINS.map((item) => (
           <button
             key={item.id}
             type="button"
-            className={`gift-pill${skinId === item.id ? ' gift-pill--on' : ''}`}
+            className={`gift-skin${skinId === item.id ? ' gift-skin--on' : ''}`}
             onClick={() => onSkin(item.id)}
           >
-            {item.label}
+            <img src={item.image} alt="" />
+            <strong>{item.label}</strong>
+            <span>{item.hint}</span>
           </button>
         ))}
+      </div>
+      <div className="gift-skin-live">
+        <p className="gift-skin-live__label">선택한 카드 미리보기</p>
+        <blockquote className={`gift-card gift-card--${skin.id}`} style={{ backgroundImage: `url(${skin.image})` }}>
+          <span>빚담 GIFT</span>
+          <p>{message || '메시지를 작성하면 이 자리에 보입니다.'}</p>
+        </blockquote>
       </div>
       <h2>고마운 마음 편지 작성</h2>
       <textarea
@@ -57,9 +72,16 @@ export default function GiftMessage({
           <li key={item.id}>
             <label className={`gift-wrap${wrapId === item.id ? ' gift-wrap--on' : ''}`}>
               <input type="radio" name="wrap" checked={wrapId === item.id} onChange={() => onWrap(item.id)} />
-              <span>{item.label}</span>
-              <em>+{formatWon(item.extra)}</em>
+              <img src={item.image} alt="" />
+              <span>
+                <strong>{item.label}</strong>
+                <em>{item.detail}</em>
+              </span>
+              <b>+{formatWon(item.extra)}</b>
             </label>
+            <button type="button" className="gift-wrap__preview" onClick={() => setPreviewId(item.id)}>
+              확대 보기
+            </button>
           </li>
         ))}
       </ul>
@@ -71,6 +93,7 @@ export default function GiftMessage({
           결제로 이동하기
         </button>
       </div>
+      <GiftWrapPreviewDialog wrap={wrapPreview} onClose={() => setPreviewId(null)} />
     </section>
   )
 }
