@@ -3,10 +3,9 @@ import LoungeLayout from '../components/LoungeLayout'
 import LoungeOrderTable from '../components/LoungeOrderTable'
 import LoungeSalesBars from '../components/LoungeSalesBars'
 import LoungeSplitDonut from '../components/LoungeSplitDonut'
-import { LOUNGE_ORDERS } from '../data/loungeRecords'
 import { useLoungeScope } from '../providers/loungeScopeProvider'
-import { inSellerScope } from '../utils/inSellerScope'
-import { barsForScope, kpisForScope, sellerIdsForScope, splitForScope } from '../utils/loungeSnapshot'
+import { useScopedLoungeOrders } from '../hooks/useScopedLoungeOrders'
+import { barsForScope, kpisForScope, splitForScope } from '../utils/loungeSnapshot'
 
 export default function LoungeDashboardPage() {
   return (
@@ -18,7 +17,7 @@ export default function LoungeDashboardPage() {
 
 function LoungeDashboardBody() {
   const { scopeId } = useLoungeScope()
-  const orders = inSellerScope(LOUNGE_ORDERS, sellerIdsForScope(scopeId))
+  const orders = useScopedLoungeOrders()
 
   return (
     <>
