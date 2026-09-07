@@ -50,7 +50,7 @@ export default function ProductDetailStory({ product, reviews }: ProductDetailSt
         </>
       ) : null}
       {tab === 'reviews' ? (
-        <ProductReviewList catalogCount={product.reviewCount} reviews={reviews} />
+        <ProductReviewList productId={product.id} catalogCount={product.reviewCount} reviews={reviews} />
       ) : null}
       {tab === 'shipping' ? (
         <p className="pdp-story__body">
