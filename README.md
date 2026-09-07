@@ -111,6 +111,7 @@
 | `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 · ADMIN 숨김 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
+| `*` | `NotFoundPage` | 잘못된 경로 404 |
 | `/mypage` | `MypagePage` | 주문 요약 · 최근 주문 · NFT 보증서 |
 | `/mypage/certificates` | `MypageCertificatesPage` | 전통주 인증서(NFT) |
 | `/mypage/coupons` | `MypageCouponsPage` | 지갑 쿠폰 · 사용/만료 |
