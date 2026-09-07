@@ -146,6 +146,26 @@
   @apply mt-6 space-y-1 text-sm text-muted;
 }
 
+.pdp-reviews {
+  @apply mt-4 space-y-4;
+}
+
+.pdp-reviews__item {
+  @apply rounded-xl border border-cream-dark bg-surface p-4;
+}
+
+.pdp-reviews__meta {
+  @apply text-sm text-muted;
+}
+
+.pdp-reviews__body {
+  @apply mt-2 text-sm leading-relaxed text-charcoal/85;
+}
+
+.pdp-reviews__write {
+  @apply mt-4 inline-flex text-sm font-medium text-gold hover:text-gold-dark;
+}
+
 .pdp-missing {
   @apply mx-auto flex min-h-[40vh] max-w-7xl flex-col items-start justify-center gap-4 py-16;
 }
