@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { useFocusTrap } from './useFocusTrap'
 import { useMobileMenu } from './useMobileMenu'
 
 export function useAccountMenu() {
   const { menuOpen, toggleMenu, closeMenu } = useMobileMenu()
   const rootRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(menuOpen, rootRef)
 
   useEffect(() => {
     if (!menuOpen) return
