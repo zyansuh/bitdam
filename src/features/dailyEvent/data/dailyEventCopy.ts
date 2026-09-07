@@ -13,14 +13,14 @@ export const PREMIUM_GIFT_ADS: PremiumGiftAd[] = [
     name: '명인 안동소주 사과세트',
     price: 72000,
     perk: '설날 특별 무료 선물 포장',
-    image: 'https://images.unsplash.com/photo-1551024601-b78d007933a0?w=400&h=320&fit=crop&q=80',
+    image: '/images/catalog/soju-1.svg',
   },
   {
     id: 'hansan-box',
     name: '한산 소곡주 명인 함',
     price: 98000,
     perk: '보자기 포장 + 한과 페어링',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=320&fit=crop&q=80',
+    image: '/images/catalog/yakju-1.svg',
   },
 ]
 

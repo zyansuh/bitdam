@@ -6,7 +6,7 @@ import { draftToCatalogProduct } from '../utils/draftToCatalogProduct'
 import { nextSellerCatalogId, upsertSellerProduct } from '../../../shared/utils/sellerCatalogStorage'
 
 const SAMPLE =
-  'https://images.unsplash.com/photo-1569529465841-df988a64df86?w=800&h=800&fit=crop&q=80'
+  '/images/catalog/soju-1.svg'
 
 const initial: ProductDraft = {
   step: 1,

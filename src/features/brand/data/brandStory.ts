@@ -23,7 +23,7 @@ export const brandStoryUglyFruit = {
   title: '버려지는 못난이 과일, 장인의 손길로 명품 전통주가 되다',
   text: '모양이 고르지 않아 버려질 뻔한 우리 농가의 과일이, 전통 양조를 거쳐 시간이 흐를수록 깊어지는 맛과 향으로 다시 태어납니다.',
   image:
-    'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=1200&h=900&fit=crop&q=80',
+    '/images/catalog/soju-1.svg',
   imageAlt: '나무 위에 놓인 못난이 과일과 잘린 과육',
   primary: { label: '지금 동참하기', to: '/custom' },
   secondary: { label: '스토리 전체 보기', to: '#brand-story-body' },
@@ -67,7 +67,7 @@ export const brandStoryFunding: BrandStoryFunding[] = [
     title: '충주 못난이 사과 약주',
     percent: 145,
     amount: '14,500,000원',
-    image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b21094?w=800&h=500&fit=crop&q=80',
+    image: '/images/catalog/yakju-1.svg',
   },
   {
     id: 'pear',
@@ -75,7 +75,7 @@ export const brandStoryFunding: BrandStoryFunding[] = [
     title: '나주 배 과실주 크라우드',
     percent: 82,
     amount: '8,200,000원',
-    image: 'https://images.unsplash.com/photo-1571771894821-ce3b22ce5c26?w=800&h=500&fit=crop&q=80',
+    image: '/images/catalog/fruit-1.svg',
   },
   {
     id: 'citrus',
@@ -83,7 +83,7 @@ export const brandStoryFunding: BrandStoryFunding[] = [
     title: '제주 감귤 증류 펀딩',
     percent: 61,
     amount: '6,100,000원',
-    image: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=800&h=500&fit=crop&q=80',
+    image: '/images/catalog/makgeolli-1.svg',
   },
 ]
 
