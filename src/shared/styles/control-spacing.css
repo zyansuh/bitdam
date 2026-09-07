@@ -1,0 +1,56 @@
+.navbar__actions {
+  @apply gap-4 sm:gap-6;
+}
+
+.login-social,
+.login-social__row {
+  @apply gap-4;
+}
+
+.gift-pills {
+  @apply gap-3 sm:gap-4;
+}
+
+.gift-actions {
+  @apply gap-4 sm:gap-5;
+}
+
+.pdp-info__actions {
+  @apply gap-3 sm:gap-5;
+}
+
+.lounge-panel__head {
+  @apply gap-4 sm:gap-5;
+}
+
+.cart-coupon {
+  @apply gap-3 sm:gap-4;
+}
+
+.notice-pager {
+  @apply gap-2 sm:gap-3;
+}
+
+.custom-chips,
+.brewery-reserve__times,
+.chat-quick,
+.notify-tabs,
+.taste-tags {
+  @apply gap-3;
+}
+
+.chat-composer {
+  @apply gap-3;
+}
+
+.event-share div {
+  @apply gap-3;
+}
+
+.product-toolbar {
+  @apply gap-4;
+}
+
+.story-feed__more {
+  @apply gap-4 sm:gap-5;
+}
