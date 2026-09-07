@@ -114,16 +114,100 @@
   @apply border-gold;
 }
 
-.gift-pills {
-  @apply flex flex-wrap gap-2;
+.gift-skins {
+  @apply mt-3 grid gap-3 sm:grid-cols-2;
 }
 
-.gift-pill {
-  @apply rounded-full border border-line px-3 py-2 text-xs;
+.gift-skin {
+  @apply flex flex-col overflow-hidden rounded-xl border border-line text-left;
 }
 
-.gift-pill--on {
-  @apply border-gold text-gold;
+.gift-skin img {
+  @apply h-36 w-full object-cover;
+}
+
+.gift-skin strong {
+  @apply px-3 pt-2 text-sm;
+}
+
+.gift-skin span {
+  @apply px-3 pb-3 text-xs text-muted;
+}
+
+.gift-skin--on {
+  @apply border-gold;
+}
+
+.gift-skin-live {
+  @apply mt-4;
+}
+
+.gift-skin-live__label {
+  @apply mb-2 text-xs tracking-widest text-gold uppercase;
+}
+
+.gift-card {
+  @apply min-h-40 rounded-xl border border-gold bg-cover bg-center p-4;
+}
+
+.gift-card span {
+  @apply text-xs tracking-widest text-gold;
+}
+
+.gift-card p {
+  @apply mt-6 max-w-xs rounded-md bg-white/80 p-3 text-sm text-navy;
+}
+
+.gift-wraps {
+  @apply space-y-3;
+}
+
+.gift-wraps li {
+  @apply flex flex-col gap-2;
+}
+
+.gift-wrap {
+  @apply flex items-center gap-3 rounded-xl border border-line px-3 py-3;
+}
+
+.gift-wrap img {
+  @apply h-16 w-20 shrink-0 rounded-md object-cover;
+}
+
+.gift-wrap span {
+  @apply flex min-w-0 flex-1 flex-col gap-1;
+}
+
+.gift-wrap em {
+  @apply text-xs font-normal text-muted not-italic;
+}
+
+.gift-wrap b {
+  @apply shrink-0 text-sm text-gold;
+}
+
+.gift-wrap__preview {
+  @apply self-start text-xs text-gold underline;
+}
+
+.gift-wrap-dialog {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+}
+
+.gift-wrap-dialog__backdrop {
+  @apply absolute inset-0 bg-navy/40;
+}
+
+.gift-wrap-dialog__panel {
+  @apply relative z-10 max-w-lg rounded-2xl bg-surface p-4 shadow-lg;
+}
+
+.gift-wrap-dialog__panel img {
+  @apply mb-3 max-h-64 w-full rounded-xl object-cover;
+}
+
+.gift-wrap--on {
+  @apply border-navy;
 }
 
 .gift-letter,
@@ -137,18 +221,6 @@
 
 .gift-count {
   @apply mt-2 text-right text-xs text-muted;
-}
-
-.gift-wraps {
-  @apply space-y-2;
-}
-
-.gift-wrap {
-  @apply flex items-center justify-between rounded-xl border border-line px-3 py-3;
-}
-
-.gift-wrap--on {
-  @apply border-navy;
 }
 
 .gift-actions {
@@ -168,20 +240,20 @@
   @apply mt-4 rounded-xl bg-cream p-4 text-sm text-navy;
 }
 
-.gift-card {
-  @apply min-h-40 rounded-xl border border-gold p-4;
-}
-
-.gift-card span {
-  @apply text-xs tracking-widest text-gold;
-}
-
 .gift-summary__item {
   @apply mt-4 flex gap-3;
 }
 
 .gift-summary__item img {
   @apply h-16 w-12 rounded object-cover;
+}
+
+.gift-summary__wrap {
+  @apply mt-3 flex gap-3 text-xs text-muted;
+}
+
+.gift-summary__wrap img {
+  @apply h-16 w-20 rounded object-cover;
 }
 
 .event-hero {
