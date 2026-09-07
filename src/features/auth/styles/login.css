@@ -216,6 +216,14 @@
   @apply rounded-md bg-apple py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90;
 }
 
+.login-form__demo {
+  @apply mt-6 text-center text-[11px] leading-relaxed text-muted;
+}
+
+.login-form__demo code {
+  @apply text-gold;
+}
+
 .login-form__help {
   @apply mt-8 flex items-center justify-center gap-3 text-xs text-muted sm:mt-10;
 }
