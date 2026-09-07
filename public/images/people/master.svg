@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="명인">
+  <rect width="400" height="400" fill="#1c3a2e"/>
+  <circle cx="200" cy="150" r="70" fill="#f0ebe4" opacity="0.85"/>
+  <ellipse cx="200" cy="340" rx="120" ry="90" fill="#f0ebe4" opacity="0.85"/>
+  <text x="200" y="390" text-anchor="middle" fill="#faf7f4" font-size="22" font-family="sans-serif">명인</text>
+</svg>
