@@ -1,12 +1,13 @@
 import { formatWon } from '../../../shared/utils/formatWon'
-import { mypageOrders } from '../data/mypageMock'
+import { useMypageOrders } from '../hooks/useMypageOrders'
 
 interface MypageOrderTableProps {
   compact?: boolean
 }
 
 export default function MypageOrderTable({ compact = false }: MypageOrderTableProps) {
-  const rows = compact ? mypageOrders.slice(0, 2) : mypageOrders
+  const all = useMypageOrders()
+  const rows = compact ? all.slice(0, 2) : all
 
   return (
     <div className="mypage-table-wrap">
