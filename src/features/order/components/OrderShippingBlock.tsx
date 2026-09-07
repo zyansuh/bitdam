@@ -28,6 +28,8 @@ export default function OrderShippingBlock({ order }: OrderShippingBlockProps) {
           <dt>결제</dt>
           <dd>
             {order.payment} · {formatWon(order.amount)}
+            {order.couponTitle ? ` · ${order.couponTitle}` : ''}
+            {order.discount ? ` · 할인 ${formatWon(order.discount)}` : ''}
           </dd>
         </div>
         <div>
