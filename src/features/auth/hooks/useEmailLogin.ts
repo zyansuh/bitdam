@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { clearLoginReturnPath } from '../../../shared/utils/loginReturnPath'
 import { matchAccount } from '../utils/accountStorage'
+import { mapAccountToUser } from '../utils/mapAccountToUser'
 
 export function useEmailLogin(returnTo: string) {
   const navigate = useNavigate()
@@ -31,12 +32,7 @@ export function useEmailLogin(returnTo: string) {
       return
     }
 
-    login({
-      id: account.id,
-      nickname: account.nickname,
-      email: account.email,
-      provider: 'email',
-    })
+    login(mapAccountToUser(account))
     clearLoginReturnPath()
     navigate(returnTo, { replace: true })
   }

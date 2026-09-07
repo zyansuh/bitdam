@@ -1,3 +1,5 @@
+export type WorkspaceRole = 'member' | 'seller' | 'admin'
+
 export interface AuthUser {
   id: string
   nickname: string
@@ -7,4 +9,6 @@ export interface AuthUser {
   birth?: string
   interests?: string[]
   provider: 'kakao' | 'email'
+  workspaceRole?: WorkspaceRole
+  sellerId?: string
 }
