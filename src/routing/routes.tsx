@@ -41,6 +41,10 @@ import HolidayEventPage from '../features/event/pages/HolidayEventPage'
 import TimeSalePage from '../features/deals/pages/TimeSalePage'
 import SubscribePage from '../features/subscribe/pages/SubscribePage'
 import CorporateGiftPage from '../features/corporate/pages/CorporateGiftPage'
+import HolidayGiftSalePage from '../features/holidayGift/pages/HolidayGiftSalePage'
+import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
+import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
+import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -91,10 +95,14 @@ export function AppRoutes() {
       <Route path="/custom" element={<CustomLabelPage />} />
       <Route path="/gift" element={<GiftPage />} />
       <Route path="/events" element={<HolidayEventPage />} />
+      <Route path="/events/daily" element={<DailyEventPage />} />
       <Route path="/events/:slug" element={<HolidayEventPage />} />
       <Route path="/deals" element={<TimeSalePage />} />
       <Route path="/subscribe" element={<SubscribePage />} />
       <Route path="/corporate" element={<CorporateGiftPage />} />
+      <Route path="/holiday/gifts" element={<HolidayGiftSalePage />} />
+      <Route path="/holiday/tours" element={<HolidayTourPage />} />
+      <Route path="/limited" element={<LimitedEditionPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
