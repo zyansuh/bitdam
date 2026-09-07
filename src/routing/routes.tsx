@@ -8,10 +8,12 @@ import BreweryDetailPage from '../features/brewery/pages/BreweryDetailPage'
 import ClassBookingPage from '../features/brewery/pages/ClassBookingPage'
 import CategoryPage from '../features/catalog/pages/CategoryPage'
 import ProductListPage from '../features/catalog/pages/ProductListPage'
+import ProductDetailPage from '../features/product/pages/ProductDetailPage'
 import HomeLanding from '../features/home/pages/HomeLanding'
 import CommunityPage from '../features/community/pages/CommunityPage'
 import CommunityPostPage from '../features/community/pages/CommunityPostPage'
 import CommunityWritePage from '../features/community/pages/CommunityWritePage'
+import CommunityEditPage from '../features/community/pages/CommunityEditPage'
 import TermsPage from '../features/legal/pages/TermsPage'
 import PrivacyPage from '../features/legal/pages/PrivacyPage'
 import MypagePage from '../features/account/pages/MypagePage'
@@ -31,6 +33,7 @@ import HelpChatPage from '../features/help/pages/HelpChatPage'
 import NotificationsPage from '../features/notify/pages/NotificationsPage'
 import NoticeListPage from '../features/notice/pages/NoticeListPage'
 import NoticeWritePage from '../features/notice/pages/NoticeWritePage'
+import NoticeEditPage from '../features/notice/pages/NoticeEditPage'
 import NoticeDigestPage from '../features/notice/pages/NoticeDigestPage'
 import NoticeDetailPage from '../features/notice/pages/NoticeDetailPage'
 import ChatPage from '../features/chat/pages/ChatPage'
@@ -45,6 +48,18 @@ import HolidayGiftSalePage from '../features/holidayGift/pages/HolidayGiftSalePa
 import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
 import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
 import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
+import IrPage from '../features/ir/pages/IrPage'
+import LoungeDashboardPage from '../features/lounge/pages/LoungeDashboardPage'
+import LoungeProductsPage from '../features/lounge/pages/LoungeProductsPage'
+import LoungeProductNewPage from '../features/lounge/pages/LoungeProductNewPage'
+import LoungeOrdersPage from '../features/lounge/pages/LoungeOrdersPage'
+import LoungeSettlementsPage from '../features/lounge/pages/LoungeSettlementsPage'
+import LoungeReportsPage from '../features/lounge/pages/LoungeReportsPage'
+import LoungeCustomersPage from '../features/lounge/pages/LoungeCustomersPage'
+import LoungeSubscriptionsPage from '../features/lounge/pages/LoungeSubscriptionsPage'
+import LoungeVerifyPage from '../features/lounge/pages/LoungeVerifyPage'
+import AdminPeoplePage from '../features/staff/pages/AdminPeoplePage'
+import AdminPerformancePage from '../features/staff/pages/AdminPerformancePage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -57,6 +72,7 @@ export function AppRoutes() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
       <Route path="/products" element={<ProductListPage />} />
+      <Route path="/products/:id" element={<ProductDetailPage />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
       <Route
         path="/breweries"
@@ -71,6 +87,7 @@ export function AppRoutes() {
       <Route path="/classes" element={<ClassBookingPage />} />
       <Route path="/community" element={<CommunityPage />} />
       <Route path="/community/new" element={<CommunityWritePage />} />
+      <Route path="/community/:id/edit" element={<CommunityEditPage />} />
       <Route path="/community/:id" element={<CommunityPostPage />} />
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage/certificates" element={<MypageCertificatesPage />} />
@@ -78,6 +95,17 @@ export function AppRoutes() {
       <Route path="/mypage/addresses" element={<MypageAddressesPage />} />
       <Route path="/mypage/payments" element={<MypagePaymentsPage />} />
       <Route path="/mypage/support" element={<MypageSupportPage />} />
+      <Route path="/mypage/lounge/verify" element={<LoungeVerifyPage />} />
+      <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
+      <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
+      <Route path="/mypage/lounge" element={<LoungeDashboardPage />} />
+      <Route path="/mypage/lounge/products/new" element={<LoungeProductNewPage />} />
+      <Route path="/mypage/lounge/products" element={<LoungeProductsPage />} />
+      <Route path="/mypage/lounge/orders" element={<LoungeOrdersPage />} />
+      <Route path="/mypage/lounge/settlements" element={<LoungeSettlementsPage />} />
+      <Route path="/mypage/lounge/reports" element={<LoungeReportsPage />} />
+      <Route path="/mypage/lounge/customers" element={<LoungeCustomersPage />} />
+      <Route path="/mypage/lounge/subscriptions" element={<LoungeSubscriptionsPage />} />
       <Route path="/account" element={<SettingsProfilePage />} />
       <Route path="/account/security" element={<SettingsSecurityPage />} />
       <Route path="/account/notifications" element={<SettingsNotificationsPage />} />
@@ -90,6 +118,7 @@ export function AppRoutes() {
       <Route path="/notices" element={<NoticeListPage />} />
       <Route path="/notices/new" element={<NoticeWritePage />} />
       <Route path="/notices/digest" element={<NoticeDigestPage />} />
+      <Route path="/notices/:id/edit" element={<NoticeEditPage />} />
       <Route path="/notices/:id" element={<NoticeDetailPage />} />
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/custom" element={<CustomLabelPage />} />
@@ -103,6 +132,7 @@ export function AppRoutes() {
       <Route path="/holiday/gifts" element={<HolidayGiftSalePage />} />
       <Route path="/holiday/tours" element={<HolidayTourPage />} />
       <Route path="/limited" element={<LimitedEditionPage />} />
+      <Route path="/ir" element={<IrPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>

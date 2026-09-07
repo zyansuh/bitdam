@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { clearLoginReturnPath } from '../../../shared/utils/loginReturnPath'
 import { createAccount } from '../utils/accountStorage'
+import { mapAccountToUser } from '../utils/mapAccountToUser'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -43,12 +44,7 @@ export function useSignupForm(returnTo: string) {
 
     try {
       const account = createAccount({ email, password, nickname })
-      login({
-        id: account.id,
-        nickname: account.nickname,
-        email: account.email,
-        provider: 'email',
-      })
+      login(mapAccountToUser(account))
       clearLoginReturnPath()
       navigate(returnTo, { replace: true })
     } catch (caught) {

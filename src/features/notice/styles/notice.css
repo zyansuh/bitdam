@@ -23,7 +23,11 @@
 }
 
 .notice-tool {
-  @apply rounded-full border border-line px-3 py-1.5 text-sm text-charcoal hover:border-gold;
+  @apply rounded-full border border-line bg-transparent px-3 py-1.5 text-sm text-charcoal hover:border-gold;
+}
+
+button.notice-tool {
+  @apply cursor-pointer;
 }
 
 .notice-tool--gold {
@@ -116,6 +120,10 @@
 
 .notice-detail__body {
   @apply my-6 whitespace-pre-wrap text-sm leading-relaxed text-charcoal/80;
+}
+
+.notice-detail__actions {
+  @apply flex flex-wrap items-center gap-2;
 }
 
 .notice-digest__title {

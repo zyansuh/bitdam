@@ -1,6 +1,11 @@
 import { brandStoryHero } from '../data/brandStory'
 
-export default function BrandStoryHero() {
+interface BrandStoryHeroProps {
+  title?: string
+  lead?: string
+}
+
+export default function BrandStoryHero({ title, lead }: BrandStoryHeroProps) {
   return (
     <header className="brand-story-hero">
       <div className="brand-story-hero__media">
@@ -10,8 +15,8 @@ export default function BrandStoryHero() {
       <div className="brand-story-hero__copy">
         <p className="brand-story-hero__kicker">{brandStoryHero.kicker}</p>
         <p className="brand-story-hero__name">{brandStoryHero.name}</p>
-        <h1 className="brand-story-hero__title">{brandStoryHero.title}</h1>
-        <p className="brand-story-hero__lead">{brandStoryHero.lead}</p>
+        <h1 className="brand-story-hero__title">{title ?? brandStoryHero.title}</h1>
+        <p className="brand-story-hero__lead">{lead ?? brandStoryHero.lead}</p>
       </div>
     </header>
   )

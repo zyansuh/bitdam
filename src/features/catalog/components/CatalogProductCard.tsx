@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
-import { getCategoryByProductCategory } from '../data/categories'
 
 interface CatalogProductCardProps {
   product: Product
 }
 
 export default function CatalogProductCard({ product }: CatalogProductCardProps) {
-  const category = getCategoryByProductCategory(product.category)
-  const to = category ? `/category/${category.slug}` : '/products'
+  const to = `/products/${product.id}`
 
   return (
     <article>

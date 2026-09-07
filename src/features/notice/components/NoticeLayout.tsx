@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { navLinks } from '../../../data/navLinks'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import SiteHeader from '../../../shared/components/navigation/SiteHeader'
-import { navLinks } from '../../../data/navLinks'
+import { useAuth } from '../../../shared/hooks/useAuth'
+import { canWriteNotice, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
 
 interface NoticeLayoutProps {
   query?: string
@@ -12,6 +14,8 @@ interface NoticeLayoutProps {
 }
 
 export default function NoticeLayout({ query, onQuery, children }: NoticeLayoutProps) {
+  const { user } = useAuth()
+  const canWrite = canWriteNotice(resolveWorkspaceRole(user))
   return (
     <PageLayout>
       <SiteHeader tone="navy" links={navLinks} />
@@ -33,9 +37,11 @@ export default function NoticeLayout({ query, onQuery, children }: NoticeLayoutP
             <Link to="/notices/digest" className="notice-tool">
               모아보기
             </Link>
-            <Link to="/notices/new" className="notice-tool notice-tool--gold">
-              글쓰기
-            </Link>
+            {canWrite ? (
+              <Link to="/notices/new" className="notice-tool notice-tool--gold">
+                글쓰기
+              </Link>
+            ) : null}
           </div>
         </div>
         {children}

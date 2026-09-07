@@ -4,6 +4,7 @@ import PageLayout from '../../../shared/components/layout/PageLayout'
 import Navbar from '../../../shared/components/navigation/Navbar'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { formatUserHonorific } from '../../../shared/utils/formatUserHonorific'
+import { canModerateContent, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
 import CommunityCategoryNav from '../components/CommunityCategoryNav'
 import CommunityHashtags from '../components/CommunityHashtags'
 import CommunityIndexList from '../components/CommunityIndexList'
@@ -15,7 +16,8 @@ import { useCommunityPosts } from '../hooks/useCommunityPosts'
 
 export default function CommunityPage() {
   const { user, isLoggedIn } = useAuth()
-  const { mine, shown, tag, setTag, category, setCategory } = useCommunityPosts(user)
+  const moderate = canModerateContent(resolveWorkspaceRole(user))
+  const { visible, shown, tag, setTag, category, setCategory } = useCommunityPosts(user, { moderate })
 
   return (
     <PageLayout>
@@ -26,14 +28,14 @@ export default function CommunityPage() {
             <CommunityProfileCard
               name={isLoggedIn && user ? formatUserHonorific(user.nickname) : '커뮤니티'}
               image={user?.profileImage}
-              postCount={mine.length}
+              postCount={visible.length}
             />
             <CommunityCategoryNav active={category} onSelect={setCategory} />
             <CommunityHashtags active={tag} onSelect={setTag} />
           </aside>
           <div>
             <div className="community-list__head">
-              <h1 className="community-list__title">내 글 목록</h1>
+              <h1 className="community-list__title">{moderate ? '전체 글 목록' : '내 글 목록'}</h1>
               {isLoggedIn ? (
                 <Link to="/community/new" className="community-list__write">
                   글쓰기
@@ -52,7 +54,7 @@ export default function CommunityPage() {
           </div>
           <aside className="community-aside">
             <CommunityPromoCard />
-            <CommunityIndexList posts={mine} />
+            <CommunityIndexList posts={visible} />
           </aside>
         </div>
       </main>

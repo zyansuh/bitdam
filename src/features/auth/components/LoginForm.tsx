@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { buildSignupPath } from '../../../shared/utils/signupPath'
 import { useEmailLogin } from '../hooks/useEmailLogin'
+import LoginDemoHint from './LoginDemoHint'
 import LoginSocialButtons from './LoginSocialButtons'
 import LoginSocialDivider from './LoginSocialDivider'
 
@@ -75,6 +76,8 @@ export default function LoginForm({ returnTo = '/' }: LoginFormProps) {
 
       <LoginSocialDivider />
       <LoginSocialButtons />
+
+      <LoginDemoHint />
 
       <Link to={signupTo} className="login-form__signup">
         회원가입

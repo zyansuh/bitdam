@@ -1,20 +1,68 @@
 import type { EmailAccount } from '../types/account'
+import { DEMO_STAFF_ACCOUNTS } from '../data/demoStaff'
 
 const STORAGE_KEY = 'bitdam.auth.accounts'
+
+function mergeDemoAccounts(accounts: EmailAccount[]): EmailAccount[] {
+  const byEmail = new Map(accounts.map((account) => [account.email, account]))
+
+  for (const demo of DEMO_STAFF_ACCOUNTS) {
+    const existing = byEmail.get(demo.email)
+    if (!existing) {
+      byEmail.set(demo.email, demo)
+      continue
+    }
+
+    byEmail.set(demo.email, {
+      ...existing,
+      workspaceRole: existing.workspaceRole ?? demo.workspaceRole,
+      nickname: existing.nickname || demo.nickname,
+    })
+  }
+
+  return [...byEmail.values()]
+}
 
 function readList(): EmailAccount[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
-    const parsed = JSON.parse(raw) as EmailAccount[]
-    return Array.isArray(parsed) ? parsed : []
+    const parsed = raw ? (JSON.parse(raw) as EmailAccount[]) : []
+    const list = Array.isArray(parsed) ? parsed : []
+    const merged = mergeDemoAccounts(list)
+    if (JSON.stringify(list) !== JSON.stringify(merged)) {
+      writeList(merged)
+    }
+    return merged
   } catch {
-    return []
+    writeList(DEMO_STAFF_ACCOUNTS)
+    return DEMO_STAFF_ACCOUNTS
   }
 }
 
 function writeList(accounts: EmailAccount[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts))
+}
+
+export function listAccounts(): EmailAccount[] {
+  return readList()
+}
+
+export function countAdmins(accounts: EmailAccount[] = readList()): number {
+  return accounts.filter((account) => account.workspaceRole === 'admin').length
+}
+
+export function updateAccountRole(accountId: string, workspaceRole: EmailAccount['workspaceRole']): void {
+  const accounts = readList()
+  const index = accounts.findIndex((account) => account.id === accountId)
+  if (index < 0) {
+    throw new Error('계정을 찾을 수 없습니다.')
+  }
+  const current = accounts[index]
+  if (current.workspaceRole === 'admin' && workspaceRole !== 'admin' && countAdmins(accounts) <= 1) {
+    throw new Error('마지막 ADMIN 계정은 내릴 수 없습니다.')
+  }
+  accounts[index] = { ...accounts[index], workspaceRole }
+  writeList(accounts)
 }
 
 export function findAccountByEmail(email: string): EmailAccount | undefined {
@@ -48,6 +96,17 @@ export function deleteAccount(accountId: string): void {
   writeList(readList().filter((account) => account.id !== accountId))
 }
 
+export function updateAccountWorkshop(
+  accountId: string,
+  claim: { sellerId: string; sellerBizNo: string; sellerVerified: boolean; workspaceRole: 'seller' },
+): void {
+  const accounts = readList()
+  const index = accounts.findIndex((account) => account.id === accountId)
+  if (index < 0) return
+  accounts[index] = { ...accounts[index], ...claim }
+  writeList(accounts)
+}
+
 export function createAccount(input: { email: string; password: string; nickname: string }): EmailAccount {
   const email = input.email.trim().toLowerCase()
   if (findAccountByEmail(email)) {
@@ -59,6 +118,7 @@ export function createAccount(input: { email: string; password: string; nickname
     email,
     password: input.password,
     nickname: input.nickname.trim(),
+    workspaceRole: 'member',
   }
   writeList([...readList(), account])
   return account
