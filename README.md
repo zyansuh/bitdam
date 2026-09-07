@@ -49,7 +49,7 @@
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
 | **라우팅** | react-router-dom — `/` · `/story` · `/ir` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/mypage` · `/account` · `/login` · `/signup` · `/terms` · `/privacy` |
-| **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
+| **상태** | mock 카탈로그 · 계정/주문은 localStorage · 공지·커뮤니티는 IndexedDB API 레이어 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
 ### 브랜드 핵심 메시지
@@ -88,7 +88,7 @@
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 구매 · 리뷰 탭 |
 | `/products/:id/review` | `WriteReviewPage` | 별점 · 태그 · 본문 · 사진 후기 |
-| `/cart` | `CartPage` | 장바구니 · 결제 시 라운지·마이페이지 동일 주문 |
+| `/cart` | `CartPage` | 장바구니 · 지갑 쿠폰 차감 · 라운지·마이페이지 동일 주문 |
 | `/wishlist` | `WishlistPage` | 헤더·마이페이지와 동기화된 위시 |
 | `/order/complete/:id` | `OrderCompletePage` | 결제 완료 · 배송 스테퍼 |
 | `/mypage/orders/:id` | `OrderDetailPage` | 주문 상세 · 배송 상태 |
@@ -99,16 +99,17 @@
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
 | `/tours` | `TourReservePage` | 권역별 양조장 정보 · 예약 창 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 포함 사항 · 날짜·타임·인원 예약 카드 |
-| `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
-| `/community` | `CommunityPage` | 본인 글 목록(ADMIN은 전체) · 분류 · 해시태그 |
+| `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약 시 마이페이지 내역 |
+| `/community` | `CommunityPage` | 공개 피드 · 분류 · 해시태그 · ADMIN 검수 |
 | `/community/new` | `CommunityWritePage` | 글쓰기 · 임시저장 · 사진 첨부 |
 | `/community/:id/edit` | `CommunityEditPage` | 본인 글 수정(ADMIN은 전체) |
-| `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 |
+| `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 · ADMIN 숨김 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
 | `/mypage` | `MypagePage` | 주문 요약 · 최근 주문 · NFT 보증서 |
 | `/mypage/certificates` | `MypageCertificatesPage` | 전통주 인증서(NFT) |
-| `/mypage/coupons` | `MypageCouponsPage` | 쿠폰 및 혜택 |
+| `/mypage/coupons` | `MypageCouponsPage` | 지갑 쿠폰 · 사용/만료 |
+| `/mypage/reservations` | `MypageReservationsPage` | 양조장 투어·클래스 예약 내역 |
 | `/mypage/addresses` | `MypageAddressesPage` | 배송지 관리 |
 | `/mypage/payments` | `MypagePaymentsPage` | 결제수단 관리 |
 | `/mypage/support` | `MypageSupportPage` | 1:1 고객센터 |
@@ -204,13 +205,14 @@ flowchart LR
 
 ### ✍️ 커뮤니티 (`/community`)
 
-프로필(사람) 아이콘을 누르면 「커뮤니티 · 내 글 목록」이 열립니다. 일반 회원은 본인 글만 보이고, **ADMIN**(`admin@bitdam.kr`)은 모든 글을 보고 수정·삭제할 수 있습니다. 브라우저 `localStorage`에 저장됩니다.
+햄버거 「공개 피드」로 들어갑니다. 게스트도 **공개 글**을 읽고, 글쓰기는 로그인 회원만 가능합니다. **ADMIN**(`admin@bitdam.kr`)은 숨김 글까지 보고 숨김/공개·수정·삭제를 합니다. 저장은 IndexedDB(`noticeApi`와 같은 `bitdam` DB)입니다.
 
 | 기능 | 설명 |
 |------|------|
-| **글 목록** | 좌측(모바일은 상단) 제목 목록 · 본문 앵커로 이동 |
-| **작성** | 제목 · 본문 · 게시하기 |
-| **비로그인** | 로그인 안내 |
+| **공개 피드** | 숨기지 않은 글 · 분류 · 해시태그 |
+| **작성** | 제목 · 본문 · 사진 · 공개 피드에 즉시 게시 |
+| **검수** | ADMIN 상세에서 숨김/공개 |
+| **비로그인** | 피드는 보임 · 글쓰기는 로그인 안내 |
 
 ### 🍶 상품 목록 (`/products`)
 
@@ -218,15 +220,15 @@ flowchart LR
 
 | 기능 | 설명 |
 |------|------|
-| **검색** | 상품명 · 지역 · 카테고리 텍스트 필터 |
+| **검색** | 이름 · 양조장 · 지역 · 맛 · 스토리 · 도수/용량/가격(숫자) · URL `q` 유지 |
 | **카테고리 칩** | 탁주/막걸리 · 청주/약주 · 증류식소주 · 과실주 · 리큐르/기타 |
-| **상세 필터** | 지역 체크박스 · 가격 슬라이더 · 맛 프로필 태그 |
-| **정렬** | 인기순 · 낮은/높은 가격순 · 평점순 |
+| **상세 필터** | 지역 체크박스 · 가격 슬라이더 · 맛 태그 AND |
+| **정렬** | 인기순(`rating × log10(1+리뷰)`) · 낮은/높은 가격순 · 평점순 |
 | **상품 카드** | 지역 · 도수 · 가격(골드) · 평점 · 클릭 시 `/products/:id` · 하트로 위시 |
 
 ### 🍾 상품 상세 · 장바구니 (`/products/:id` · `/cart`)
 
-목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 구매하면 `bitdam.shop.orders`에 쌓여 **마이페이지**와 **셀러 라운지 주문**이 같은 주문번호를 봅니다. 헤더 하트와 마이페이지 위시리스트는 `bitdam.wishlist`를 공유합니다.
+목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 구매하면 `bitdam.shop.orders`에 쌓여 **마이페이지**와 **셀러 라운지 주문**이 같은 주문번호를 봅니다. 장바구니에서 지갑 쿠폰을 고르면 할인·무료배송이 적용되고 결제 시 사용 처리됩니다. 헤더 하트와 마이페이지 위시리스트는 `bitdam.wishlist`를 공유합니다. 양조장 투어·클래스 예약은 `/mypage/reservations`에 모입니다.
 
 ### 📂 카테고리 상세 (`/category/:slug`)
 
@@ -352,11 +354,11 @@ BITDAM/
     │   ├── auth/                  # pages · components · data · styles
     │   ├── catalog/               # pages · components · hooks · data · styles · types
     │   ├── brewery/               # 지도 · 상세 · 클래스 · 투어 헤더
-    │   ├── community/             # 본인 글 블로그
+    │   ├── community/             # 공개 피드 · api · IndexedDB
     │   ├── account/               # 마이페이지 · 개인정보 설정
     │   ├── help/                  # 고객센터 FAQ
     │   ├── notify/                # 알림 센터
-    │   ├── notice/                # 공지사항
+    │   ├── notice/                # 공지사항 · api · IndexedDB
     │   ├── chat/                  # 빚담 추천 AI
     │   ├── ir/                    # 투자 IR · KPI · 프리 A
     │   ├── lounge/                # 셀러 라운지 · 직원 ADMIN 스코프
@@ -382,6 +384,7 @@ BITDAM/
 |------|------|------|
 | **styles** | `shared/styles/`, `features/*/styles/` | Tailwind `@apply` · 시맨틱 클래스. 컴포넌트에 유틸 클래스 나열 금지 |
 | **hooks** | `shared/hooks/`, `features/*/hooks/` | `use{Name}` · UI 반환 없음 |
+| **api** | `features/*/api/` | IndexedDB 등 비동기 list/get/save. 훅·UI와 분리 |
 | **components** | `shared/components/`, `features/*/components/` | JSX만. 스타일·데이터·훅은 각각 해당 폴더 |
 | **data** | `src/data/`, `features/*/data/` | mock · 링크 · 카피 |
 | **routing** | `src/routing/routes.tsx` | 라우트 정의만 |
@@ -398,7 +401,7 @@ BITDAM/
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
 | **components/feed/** | `InfiniteProductFeed` · `InfiniteStoryFeed` · `StoryCard` · `FeedStatus` |
-| **utils/** | `breakpoints` · `responsive` · `formatWon` |
+| **utils/** | `breakpoints` · `responsive` · `formatWon` · `bitdamIdb` |
 
 ### `src/features/`
 
@@ -408,16 +411,16 @@ BITDAM/
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
 | **product** | `ProductDetailPage` | `product-detail.css` | PDP 갤러리 · 맛 바 · 구매 |
-| **cart** | `CartPage` | `cart.css` | 장바구니 · ShopOrder 결제 |
+| **cart** | `CartPage` | `cart.css` | 장바구니 · 쿠폰 차감 · ShopOrder 결제 |
 | **order** | `OrderCompletePage` · `OrderDetailPage` | `order-complete.css` | 결제완료 · 배송 상태 |
 | **review** | `WriteReviewPage` | `review.css` | 상품 후기 작성 |
 | **wishlist** | `WishlistPage` | `wishlist.css` | 헤더·마이페이지 동기화 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
-| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 수정 · 상세 · localStorage |
-| **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
+| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 공개 피드 · 글쓰기 · ADMIN 숨김 · IndexedDB |
+| **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 쿠폰 지갑 · 예약 내역 · 개인정보 설정 |
 | **help** | `HelpCategoryPage` · `HelpChatPage` | `help.css` | 고객센터 FAQ 분류 |
 | **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
-| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeEditPage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·ADMIN 수정·모아보기 |
+| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeEditPage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·ADMIN 수정·IndexedDB |
 | **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
 | **custom** | `CustomLabelPage` | `custom.css` | 기념주 4단계 · 실시간 견적 |
 | **gift** | `GiftPage` | `shop.css` | 상품 선택 → 메시지 → 결제 (순서 강제) |
@@ -710,6 +713,7 @@ import { getProductsPage } from '../../../data/products';
 - [x] 마이페이지 · 개인정보 설정(`/mypage` · `/account`)
 - [x] 상품 단위 상세(PDP) 페이지
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
+- [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
 - [ ] 네이버 · Apple OAuth 연동
 - [ ] `npm run lint` 통과 · GitHub Actions CI
@@ -719,6 +723,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 쿠폰 결제 차감 · 카탈로그 검색 AND · 예약 내역 · 공개 피드 · 공지/커뮤니티 IndexedDB |
 | **2026-09-07** | PDP · 장바구니·라운지 주문 · 결제완료/배송 · 리뷰 · 위시리스트 |
 | **2026-09-07** | ADMIN 공지·커뮤니티 전체 글 수정·삭제 |
 | **2026-09-07** | 직원·팀장 등급 · ADMIN 권한 부여 · 성과 보드 |
