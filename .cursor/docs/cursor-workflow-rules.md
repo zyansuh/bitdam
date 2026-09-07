@@ -14,6 +14,7 @@
 3. 커밋 메시지는 영어로, 상세하게 작성한다. (아래 "2. 커밋 메시지 규칙" 참고)
 4. 기능 단위 작업이 끝나면 README를 항상 갱신한다. (아래 "4. README 갱신 규칙" 참고)
 5. **브랜치·PR 기본값은 잘게 나누기.** 새 관심사가 시작되면 `feat|fix|chore|docs/{kebab}` 브랜치를 자동으로 만든다. 기능이 둘 이상이면 브랜치도 PR도 스택으로 나눈다. 사용자가 PR을 요청하면 push + PR 생성. force push 금지.
+6. **GitHub PR titles are English** Conventional Commits. PR bodies may be Korean. Do not use a Korean-only title unless a proper noun cannot be translated.
 
 ---
 
@@ -257,6 +258,7 @@ Cursor는 **폴더 구조를 바꾸거나 새 기능을 추가할 때마다** RE
 - [ ] 이 커밋이 "3. Push 단위 그룹핑" 표의 어느 그룹에 속하는지 명확한가?
 - [ ] 폴더 구조나 기능이 바뀌었다면 README도 같은 세션에서 갱신했는가?
 - [ ] PR 요청 시 관심사별 스택 PR을 열었는가? (한 방에 섞지 않았는가?)
+- [ ] PR Title이 영어 Conventional Commits인가?
 
 ---
 
