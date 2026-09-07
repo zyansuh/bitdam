@@ -12,6 +12,6 @@ export const hamburgerAccountLinks: NavLinkItem[] = [
   { label: '고객센터', to: '/help' },
   { label: '1:1 문의', to: '/mypage/support' },
   ...settingsNav,
-  { label: '내 글 목록', to: '/community' },
+  { label: '공개 피드', to: '/community' },
   { label: '글쓰기', to: '/community/new' },
 ]
