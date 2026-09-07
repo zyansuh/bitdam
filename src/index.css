@@ -26,6 +26,7 @@
 @import './features/auth/styles/auth-notice.css';
 @import './features/catalog/styles/catalog.css';
 @import './features/product/styles/product-detail.css';
+@import './features/cart/styles/cart.css';
 @import './features/brewery/styles/brewery-map.css';
 @import 'maplibre-gl/dist/maplibre-gl.css';
 @import './features/brewery/styles/brewery-detail.css';
