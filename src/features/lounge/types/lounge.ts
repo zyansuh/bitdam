@@ -3,6 +3,15 @@ export interface SellerShop {
   name: string
   owner: string
   region: string
+  address: string
+  image: string
+  bizNo: string
+}
+
+export interface SellerLicense {
+  breweryId: string
+  bizNo: string
+  owner: string
 }
 
 export interface LoungeNavItem {
