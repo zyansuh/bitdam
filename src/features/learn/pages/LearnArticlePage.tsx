@@ -11,6 +11,7 @@ import { isLearnCatalogLocked } from '../data/learnDaily'
 import LearnArticleBody from '../components/LearnArticleBody'
 import LearnCover from '../components/LearnCover'
 import LearnRelatedLinks from '../components/LearnRelatedLinks'
+import LearnSiblingCards from '../components/LearnSiblingCards'
 import LearnSaveButton from '../components/LearnSaveButton'
 import LearnTagBadge from '../components/LearnTagBadge'
 import LearnToneNote from '../components/LearnToneNote'
@@ -77,21 +78,7 @@ export default function LearnArticlePage() {
           <LearnArticleBody article={article} />
         </article>
         <LearnRelatedLinks article={article} />
-        {siblings.length > 0 ? (
-          <aside className="learn-more">
-            <h2>같은 분류의 다른 글</h2>
-            <ul>
-              {siblings.map((item) => (
-                <li key={item.slug}>
-                  <Link to={`/learn/${item.slug}`}>{item.title}</Link>
-                </li>
-              ))}
-            </ul>
-            <Link to="/learn" className="shop-gold-btn">
-              술 상식 전체 보기
-            </Link>
-          </aside>
-        ) : null}
+        <LearnSiblingCards articles={siblings} />
       </main>
       <Footer />
     </PageLayout>
