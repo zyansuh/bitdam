@@ -26,5 +26,6 @@ export function article(
     featured,
     sections,
     takeaways,
+    cover: `/images/learn/${category}.svg`,
   }
 }
