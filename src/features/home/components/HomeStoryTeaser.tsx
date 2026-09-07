@@ -3,9 +3,11 @@ import { listFeaturedLearn } from '../../learn/data/learnArticles'
 import LearnArticleCard from '../../learn/components/LearnArticleCard'
 import LearnDailyCard from '../../learn/components/LearnDailyCard'
 import { useLearnDaily } from '../../learn/hooks/useLearnDaily'
+import { useLearnDailyNotice } from '../../learn/hooks/useLearnDailyNotice'
 
 export default function HomeStoryTeaser() {
   const daily = useLearnDaily()
+  useLearnDailyNotice()
   const articles = listFeaturedLearn().filter((item) => item.slug !== daily.slug).slice(0, 3)
 
   return (
