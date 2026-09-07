@@ -15,6 +15,16 @@ export default function LearnArticleBody({ article }: LearnArticleBodyProps) {
           ))}
         </section>
       ))}
+      {article.takeaways.length > 0 ? (
+        <section className="learn-article__takeaways">
+          <h2>핵심 정리</h2>
+          <ul>
+            {article.takeaways.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   )
 }
