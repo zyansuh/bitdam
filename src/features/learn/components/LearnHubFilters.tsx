@@ -45,7 +45,7 @@ export default function LearnHubFilters({ query, count, onChange }: LearnHubFilt
           ))}
         </select>
       </label>
-      <p className="learn-filters__count">검색 결과 {count}장</p>
+      <p className="learn-filters__count">지금까지 열린 상식 {count}장 · 하루 한 장씩 목록에 더해집니다</p>
     </form>
   )
 }
