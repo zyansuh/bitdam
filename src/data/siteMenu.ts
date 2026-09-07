@@ -75,6 +75,11 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
       label: '이야기',
       to: '/story',
       items: [
+        { label: '술 상식 · 빚는 이야기', to: '/learn' },
+        { label: '양조 기초', to: '/learn#brew' },
+        { label: '증류주 이야기', to: '/learn#distill' },
+        { label: '술 종류와 차이', to: '/learn#kinds' },
+        { label: '이름과 역사', to: '/learn#names' },
         { label: '브랜드 스토리', to: '/story' },
         { label: '글 목록', to: '/community' },
         { label: '글쓰기', to: '/community/new' },
