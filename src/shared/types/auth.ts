@@ -8,7 +8,7 @@ export interface AuthUser {
   phone?: string
   birth?: string
   interests?: string[]
-  provider: 'kakao' | 'email'
+  provider: 'kakao' | 'naver' | 'email'
   workspaceRole?: WorkspaceRole
   sellerId?: string
   sellerBizNo?: string
