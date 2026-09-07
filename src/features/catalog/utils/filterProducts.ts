@@ -40,7 +40,13 @@ function sortProducts(products: Product[], sort: ProductFilterState['sort']): Pr
   const next = [...products]
   if (sort === 'priceAsc') return next.sort((a, b) => a.price - b.price)
   if (sort === 'priceDesc') return next.sort((a, b) => b.price - a.price)
-  if (sort === 'rating') return next.sort((a, b) => b.rating - a.rating)
+  if (sort === 'newest') return next.sort((a, b) => b.id - a.id)
+  if (sort === 'recommend') {
+    return next.sort((a, b) => {
+      const score = (item: Product) => item.rating * 10 + item.awards.length * 4 + Math.min(item.reviewCount, 40)
+      return score(b) - score(a)
+    })
+  }
   return next.sort((a, b) => b.rating * Math.log10(1 + b.reviewCount) - a.rating * Math.log10(1 + a.reviewCount))
 }
 
