@@ -20,21 +20,23 @@ export default function GiftSummary({ draft, total }: GiftSummaryProps) {
         <p>{draft.message || '메시지를 작성하면 이 자리에 보입니다.'}</p>
       </blockquote>
       {product ? (
-        <div className="gift-summary__item">
-          <img src={product.image} alt="" />
-          <div>
-            <strong>{product.name}</strong>
-            <p>
-              수량: {draft.qty}개 / {wrap?.label} 포함
-            </p>
+        <>
+          <div className="gift-summary__item">
+            <img src={product.image} alt="" />
+            <div>
+              <strong>{product.name}</strong>
+              <p>
+                수량: {draft.qty}개 / {wrap?.label} 포함
+              </p>
+            </div>
           </div>
-        </div>
-        {wrap ? (
-          <div className="gift-summary__wrap">
-            <img src={wrap.image} alt="" />
-            <p>{wrap.detail}</p>
-          </div>
-        ) : null}
+          {wrap ? (
+            <div className="gift-summary__wrap">
+              <img src={wrap.image} alt="" />
+              <p>{wrap.detail}</p>
+            </div>
+          ) : null}
+        </>
       ) : (
         <p className="gift-summary__empty">상품을 먼저 골라 주세요.</p>
       )}
