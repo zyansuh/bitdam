@@ -15,7 +15,7 @@ function mergeDemoAccounts(accounts: EmailAccount[]): EmailAccount[] {
 
     byEmail.set(demo.email, {
       ...existing,
-      workspaceRole: demo.workspaceRole,
+      workspaceRole: existing.workspaceRole ?? demo.workspaceRole,
       nickname: existing.nickname || demo.nickname,
     })
   }
@@ -41,6 +41,28 @@ function readList(): EmailAccount[] {
 
 function writeList(accounts: EmailAccount[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts))
+}
+
+export function listAccounts(): EmailAccount[] {
+  return readList()
+}
+
+export function countAdmins(accounts: EmailAccount[] = readList()): number {
+  return accounts.filter((account) => account.workspaceRole === 'admin').length
+}
+
+export function updateAccountRole(accountId: string, workspaceRole: EmailAccount['workspaceRole']): void {
+  const accounts = readList()
+  const index = accounts.findIndex((account) => account.id === accountId)
+  if (index < 0) {
+    throw new Error('계정을 찾을 수 없습니다.')
+  }
+  const current = accounts[index]
+  if (current.workspaceRole === 'admin' && workspaceRole !== 'admin' && countAdmins(accounts) <= 1) {
+    throw new Error('마지막 ADMIN 계정은 내릴 수 없습니다.')
+  }
+  accounts[index] = { ...accounts[index], workspaceRole }
+  writeList(accounts)
 }
 
 export function findAccountByEmail(email: string): EmailAccount | undefined {
