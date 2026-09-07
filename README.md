@@ -111,6 +111,7 @@
 | `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 · ADMIN 숨김 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
+| `*` | `NotFoundPage` | 잘못된 경로 404 |
 | `/mypage` | `MypagePage` | 주문 요약 · 최근 주문 · NFT 보증서 |
 | `/mypage/certificates` | `MypageCertificatesPage` | 전통주 인증서(NFT) |
 | `/mypage/coupons` | `MypageCouponsPage` | 지갑 쿠폰 · 사용/만료 |
@@ -276,7 +277,7 @@ flowchart LR
 | **반응형** | `breakpoints.ts` · `Responsive.value<T>()` · Tailwind grid |
 | **무한 스크롤** | `useInfiniteScroll` + sentinel ref |
 | **페이지 스크롤** | `PageLayout` — `min-h-dvh`, `overflow-y: auto` |
-| **폰트** | 제목 `--font-heading`(MaruBuri → Pretendard·시스템 한글). 본문 Pretendard. 로고 나눔명조. 영문 킥커 국민대 숭곡(한글 fallback 포함) |
+| **폰트** | 제목 `--font-heading`(나눔명조 셀프호스트 → MaruBuri → Pretendard). 본문 Pretendard(`public/fonts`). 영문 킥커 국민대 숭곡 |
 | **이미지** | `SafeImage` + `src/data/mockImages.ts` · `public/images/mock-*.svg`. 로드 실패 시 병/양조장 플레이스홀더 |
 | **직원 주문 알림** | ADMIN·팀장·직원만. `bitdam.shop.orders` CustomEvent / BroadcastChannel / storage 폴링. 백엔드·Supabase 없음 |
 
@@ -658,6 +659,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | `npm run build` | `tsc -b && vite build` → `dist/` |
 | `npm run preview` | 빌드 결과물 로컬 프리뷰 |
 | `npm run lint` | oxlint |
+| `npm run test` | vitest (정렬·이미지·토스트 권한) |
 
 ---
 
@@ -720,7 +722,7 @@ import { getProductsPage } from '../../../data/products';
 | Git `dubious ownership` (Windows) | `git config --global --add safe.directory E:/frontend_project/BITDAM` |
 | PR diff 없음 | `main`과 `feat/*`가 동일 커밋인지 확인 |
 | 무한 스크롤 안 됨 | sentinel ref가 viewport에 진입하는지 · `hasMore` 상태 확인 |
-| 이미지 안 보임 | `SafeImage`가 `public/images/mock-bottle.svg`로 대체. 원본은 `src/data/mockImages.ts`에서 교체 |
+| 이미지 안 보임 | `catalogPhoto()` / `public/images/catalog` · 실패 시 SafeImage 병 SVG |
 | 카카오 KOE101 | REST API 키가 맞는지 확인 · 카카오 로그인 활성화 ON · Redirect URI 등록 후 `npm run dev` 재시작 |
 | 배포에서 카카오 키 없음 | Vercel에 `VITE_KAKAO_REST_API_KEY` 추가 후 **Redeploy**. 로컬 `.env`는 배포에 포함되지 않음 |
 | 로그인 후 다크모드 해제 | 카카오는 `state`·쿠키·`bitdam.theme` 순으로 복구. 머지 후 하드 리프레시 |
@@ -736,8 +738,8 @@ import { getProductsPage } from '../../../data/products';
 - [x] 양조장 투어 헤더·목록 · 블로그형 커뮤니티(`/community`)
 - [x] 마이페이지 · 개인정보 설정(`/mypage` · `/account`)
 - [x] 상품 단위 상세(PDP) 페이지
-- [ ] 카탈로그 Unsplash URL → 실제 상품·양조장·대표자 사진으로 교체 (`SafeImage` fallback은 유지)
-- [ ] 제목용 한글 폰트 확정 시 눈누에서 받아 `src/assets`에 셀프호스트 (라이선스 확인)
+- [x] 카탈로그·양조장·IR 이미지를 로컬 SVG로 교체 (`SafeImage` 유지)
+- [x] 제목 한글은 셀프호스트 나눔명조(OFL). 눈누 리디바탕은 라이선스 확인 후 추가
 - [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
 - [x] 네이버 OAuth (`/login/naver/callback` · Vite/Vercel 프록시)
@@ -750,6 +752,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | 로컬 카탈로그/양조장/IR 이미지 · 선물 WebP · 나눔명조 셀프호스트 · 정렬 URL · 404 · 주문/일지 필터 · vitest |
 | **2026-09-08** | SafeImage MOCK · 제목 한글 fallback · 직원 주문 토스트 · PR 제목 영어 규칙 |
 | **2026-09-08** | 홈 스토리 티저 · 버튼 간격 · 선물 미리보기 · 카탈로그 정렬 · 업무일지 · 주문 모달 · CMS |
 | **2026-09-08** | 라운지 정산←ShopOrder · 판매 중지 · CI · 셸 포커스 트랩 · 네이버 OAuth |
