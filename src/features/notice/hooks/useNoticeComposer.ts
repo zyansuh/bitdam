@@ -73,6 +73,8 @@ export function useNoticeComposer(editId?: string) {
       important: canMarkNoticeImportant(role) ? important : false,
       date: existing?.date ?? date,
       views: existing?.views ?? 0,
+      authorId: existing?.authorId ?? user?.id,
+      authorName: existing?.authorName ?? user?.nickname,
     })
     navigate(`/notices/${id}`)
   }
