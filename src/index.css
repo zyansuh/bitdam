@@ -27,6 +27,7 @@
 @import './features/catalog/styles/catalog.css';
 @import './features/product/styles/product-detail.css';
 @import './features/review/styles/review.css';
+@import './features/wishlist/styles/wishlist.css';
 @import './features/cart/styles/cart.css';
 @import './features/order/styles/order-complete.css';
 @import './features/brewery/styles/brewery-map.css';
