@@ -18,6 +18,7 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '단체 · 기업 선물', to: '/corporate' },
     { label: '투자 IR', to: '/ir' },
     { label: '커뮤니티', to: '/community' },
+    { label: '술 상식', to: '/learn' },
   ],
   고객지원: [
     { label: '공지사항', to: '/notices' },
