@@ -33,6 +33,8 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
       <button
         type="button"
         aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+        aria-expanded={menuOpen}
+        aria-controls="site-hamburger-menu"
         className="navbar__menu-button"
         onClick={onToggleMenu}
       >
