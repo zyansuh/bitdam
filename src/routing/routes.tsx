@@ -57,6 +57,7 @@ import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
 import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
 import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
 import IrPage from '../features/ir/pages/IrPage'
+import NotFoundPage from '../features/error/pages/NotFoundPage'
 import LoungeDashboardPage from '../features/lounge/pages/LoungeDashboardPage'
 import LoungeProductsPage from '../features/lounge/pages/LoungeProductsPage'
 import LoungeProductNewPage from '../features/lounge/pages/LoungeProductNewPage'
@@ -163,6 +164,7 @@ export function AppRoutes() {
       <Route path="/ir" element={<IrPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }
