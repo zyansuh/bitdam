@@ -14,7 +14,8 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
   const [category, setCategory] = useState<CommunityCategoryId>('all')
 
   const mine = user ? posts.filter((post) => post.authorId === user.id) : []
-  const visible = moderate ? posts : mine
+  const publicFeed = posts.filter((post) => post.visibility !== 'hidden')
+  const visible = moderate ? posts : publicFeed
   const shown = visible.filter((post) => {
     if (category !== 'all' && post.category !== category) return false
     if (tag && !`${post.title} ${post.body} ${post.tags.join(' ')}`.includes(tag.replace('#', ''))) {
@@ -49,6 +50,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
       likes: 0,
       comments: [],
       createdAt: new Date().toISOString(),
+      visibility: 'public',
     }
     persist([post, ...posts])
     return post.id
@@ -116,6 +118,11 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
     )
   }
 
+  function setVisibility(id: string, visibility: CommunityPost['visibility']) {
+    if (!moderate) return
+    persist(posts.map((post) => (post.id === id ? { ...post, visibility } : post)))
+  }
+
   function getPost(id: string) {
     return visible.find((post) => post.id === id)
   }
@@ -133,6 +140,7 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
     removePost,
     likePost,
     addComment,
+    setVisibility,
     getPost,
   }
 }
