@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
 
@@ -8,6 +9,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card">
+      <Link to={`/products/${product.id}`} className="product-card__link">
       <div className="product-card__media">
         <img
           src={product.image}
@@ -28,6 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.rating}
         </span>
       </div>
+      </Link>
     </article>
   )
 }
