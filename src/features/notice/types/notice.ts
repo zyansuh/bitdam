@@ -8,4 +8,6 @@ export interface SiteNoticePost {
   date: string
   views: number
   important: boolean
+  authorId?: string
+  authorName?: string
 }
