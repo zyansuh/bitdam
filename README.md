@@ -86,6 +86,12 @@
 | `/mypage/admin/people` | `AdminPeoplePage` | ADMIN이 가입 계정에 직원·팀장 등급 부여 |
 | `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원·팀장 성과 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
+| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 구매 · 리뷰 탭 |
+| `/products/:id/review` | `WriteReviewPage` | 별점 · 태그 · 본문 · 사진 후기 |
+| `/cart` | `CartPage` | 장바구니 · 결제 시 라운지·마이페이지 동일 주문 |
+| `/wishlist` | `WishlistPage` | 헤더·마이페이지와 동기화된 위시 |
+| `/order/complete/:id` | `OrderCompletePage` | 결제 완료 · 배송 스테퍼 |
+| `/mypage/orders/:id` | `OrderDetailPage` | 주문 상세 · 배송 상태 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
@@ -216,7 +222,11 @@ flowchart LR
 | **카테고리 칩** | 탁주/막걸리 · 청주/약주 · 증류식소주 · 과실주 · 리큐르/기타 |
 | **상세 필터** | 지역 체크박스 · 가격 슬라이더 · 맛 프로필 태그 |
 | **정렬** | 인기순 · 낮은/높은 가격순 · 평점순 |
-| **상품 카드** | 지역 · 도수 · 가격(골드) · 평점 · 클릭 시 카테고리 상세 |
+| **상품 카드** | 지역 · 도수 · 가격(골드) · 평점 · 클릭 시 `/products/:id` · 하트로 위시 |
+
+### 🍾 상품 상세 · 장바구니 (`/products/:id` · `/cart`)
+
+목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 구매하면 `bitdam.shop.orders`에 쌓여 **마이페이지**와 **셀러 라운지 주문**이 같은 주문번호를 봅니다. 헤더 하트와 마이페이지 위시리스트는 `bitdam.wishlist`를 공유합니다.
 
 ### 📂 카테고리 상세 (`/category/:slug`)
 
@@ -397,6 +407,11 @@ BITDAM/
 | **home** | `HomeLanding` | `hero.css` · `stats.css` · `promo-banner.css` | Hero · Stats · PromoBanner |
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
+| **product** | `ProductDetailPage` | `product-detail.css` | PDP 갤러리 · 맛 바 · 구매 |
+| **cart** | `CartPage` | `cart.css` | 장바구니 · ShopOrder 결제 |
+| **order** | `OrderCompletePage` · `OrderDetailPage` | `order-complete.css` | 결제완료 · 배송 상태 |
+| **review** | `WriteReviewPage` | `review.css` | 상품 후기 작성 |
+| **wishlist** | `WishlistPage` | `wishlist.css` | 헤더·마이페이지 동기화 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
 | **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 수정 · 상세 · localStorage |
 | **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
@@ -573,6 +588,9 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 |-----|------|
 | http://localhost:5173/ | 홈 랜딩 |
 | http://localhost:5173/products | 상품 목록 (검색·필터) |
+| http://localhost:5173/products/1 | 상품 상세(PDP) |
+| http://localhost:5173/cart | 장바구니 |
+| http://localhost:5173/wishlist | 위시리스트 |
 | http://localhost:5173/category/takju | 카테고리 상세 (막걸리) |
 | http://localhost:5173/login | 로그인 |
 | http://localhost:5173/signup | 회원가입 |
@@ -690,7 +708,7 @@ import { getProductsPage } from '../../../data/products';
 - [x] `src/` → `shared/` + `features/` 폴더 구조 리팩터 · CSS/훅/컴포넌트 분리
 - [x] 양조장 투어 헤더·목록 · 블로그형 커뮤니티(`/community`)
 - [x] 마이페이지 · 개인정보 설정(`/mypage` · `/account`)
-- [ ] 상품 단위 상세(PDP) 페이지
+- [x] 상품 단위 상세(PDP) 페이지
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
 - [ ] 네이버 · Apple OAuth 연동
@@ -701,6 +719,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | PDP · 장바구니·라운지 주문 · 결제완료/배송 · 리뷰 · 위시리스트 |
 | **2026-09-07** | ADMIN 공지·커뮤니티 전체 글 수정·삭제 |
 | **2026-09-07** | 직원·팀장 등급 · ADMIN 권한 부여 · 성과 보드 |
 | **2026-09-07** | 셀러 사업자 인증 모달 · 인증 후 본인 양조장만 표시 |

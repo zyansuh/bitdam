@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { allProducts } from '../../../data/products'
 import { PRICE_BOUND } from '../data/filterOptions'
 import type { ProductFilterState, SortKey } from '../types/catalog'
@@ -20,8 +21,10 @@ function toggleItem(list: string[], value: string): string[] {
 }
 
 export function useProductFilters(overrides?: Partial<ProductFilterState>) {
+  const [params, setParams] = useSearchParams()
   const [filters, setFilters] = useState<ProductFilterState>({
     ...DEFAULT_FILTERS,
+    query: params.get('q') ?? '',
     ...overrides,
   })
 
@@ -43,7 +46,13 @@ export function useProductFilters(overrides?: Partial<ProductFilterState>) {
   return {
     filters: applied,
     products,
-    setQuery: (query: string) => setFilters((prev) => ({ ...prev, query })),
+    setQuery: (query: string) => {
+      setFilters((prev) => ({ ...prev, query }))
+      const next = new URLSearchParams(params)
+      if (query.trim()) next.set('q', query.trim())
+      else next.delete('q')
+      setParams(next, { replace: true })
+    },
     setCategorySlug: (categorySlug: string | null) =>
       setFilters((prev) => ({ ...prev, categorySlug })),
     toggleRegion: (region: string) =>

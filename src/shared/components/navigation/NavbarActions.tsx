@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
-import { Menu, Search, ShoppingCart, X } from 'lucide-react'
+import { Menu, Search, X } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 import ThemeToggle from './ThemeToggle'
 import SignupLink from './SignupLink'
 import AccountMenu from './AccountMenu'
+import CartLink from './CartLink'
+import WishlistLink from './WishlistLink'
 
 interface NavbarActionsProps {
   menuOpen: boolean
@@ -25,10 +27,8 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
         <Search size={20} strokeWidth={1.5} />
       </Link>
       <ThemeToggle />
-      <button type="button" aria-label="장바구니" className="navbar__cart">
-        <ShoppingCart size={20} strokeWidth={1.5} />
-        <span className="navbar__cart-dot" />
-      </button>
+      <WishlistLink className="navbar__cart" badgeClassName="navbar__cart-dot" />
+      <CartLink className="navbar__cart" badgeClassName="navbar__cart-dot" />
       <AccountMenu triggerClassName="account-menu__trigger navbar__account" />
       <button
         type="button"

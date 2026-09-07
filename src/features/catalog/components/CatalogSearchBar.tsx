@@ -14,7 +14,7 @@ export default function CatalogSearchBar({ value, onChange }: CatalogSearchBarPr
           type="search"
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="어떤 전통주를 찾고 계신가요?"
+          placeholder="이름 · 양조장 · 지역 · 맛 · 도수"
           className="catalog-search__input"
         />
       </label>

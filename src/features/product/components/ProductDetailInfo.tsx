@@ -1,6 +1,7 @@
 import { Minus, Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../../../data/products'
+import WishHeartButton from '../../../shared/components/product/WishHeartButton'
 import { formatWon } from '../../../shared/utils/formatWon'
 import { useItemQuantity } from '../hooks/useItemQuantity'
 import TasteBars from './TasteBars'
@@ -42,6 +43,10 @@ export default function ProductDetailInfo({ product, similar }: ProductDetailInf
         </div>
         <Link to={`/cart?product=${product.id}&qty=${quantity}`} className="pdp-info__cart">
           구매하기 · {formatWon(product.price * quantity)}
+        </Link>
+        <WishHeartButton productId={product.id} />
+        <Link to="/wishlist" className="pdp-info__compare">
+          위시리스트
         </Link>
       </div>
       {similar.length > 0 ? (

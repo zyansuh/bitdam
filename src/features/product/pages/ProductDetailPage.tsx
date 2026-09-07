@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import CatalogHeader from '../../catalog/components/CatalogHeader'
+import { useProductReviews } from '../../../shared/hooks/useProductReviews'
 import ProductDetailGallery from '../components/ProductDetailGallery'
 import ProductDetailInfo from '../components/ProductDetailInfo'
 import ProductDetailStory from '../components/ProductDetailStory'
@@ -9,6 +10,7 @@ import { useProductDetail } from '../hooks/useProductDetail'
 
 export default function ProductDetailPage() {
   const { product, similar } = useProductDetail()
+  const reviews = useProductReviews(product?.id ?? 0)
 
   if (!product) {
     return (
@@ -31,7 +33,7 @@ export default function ProductDetailPage() {
           <ProductDetailGallery product={product} />
           <ProductDetailInfo product={product} similar={similar} />
         </div>
-        <ProductDetailStory product={product} reviews={[]} />
+        <ProductDetailStory product={product} reviews={reviews} />
       </main>
       <Footer />
     </PageLayout>
