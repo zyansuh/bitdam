@@ -43,4 +43,5 @@ export interface LearnArticle {
   featured?: boolean
   sections: LearnSection[]
   takeaways: string[]
+  cover: string
 }
