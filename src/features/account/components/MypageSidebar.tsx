@@ -2,14 +2,17 @@ import { useAuth } from '../../../shared/hooks/useAuth'
 import { formatUserHonorific } from '../../../shared/utils/formatUserHonorific'
 import {
   canManagePeople,
+  canOpenCmsStudio,
   canOpenLounge,
   canReplySupport,
   canViewStaffPerformance,
+  canWriteWorkReport,
   resolveWorkspaceRole,
   workspaceRoleLabel,
 } from '../../../shared/utils/workspaceRole'
 import { mypageNav } from '../data/mypageNav'
 import AccountNavList from './AccountNavList'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function MypageSidebar() {
   const { user } = useAuth()
@@ -17,8 +20,10 @@ export default function MypageSidebar() {
   const role = resolveWorkspaceRole(user)
   const extras = [
     ...(canManagePeople(role) ? [{ label: '구성원 권한', to: '/mypage/admin/people' }] : []),
+    ...(canOpenCmsStudio(role) ? [{ label: '콘텐츠 관리', to: '/mypage/admin/content' }] : []),
     ...(canViewStaffPerformance(role) ? [{ label: '직원 성과', to: '/mypage/admin/performance' }] : []),
     ...(canReplySupport(role) ? [{ label: '1:1 문의 답변', to: '/mypage/admin/support' }] : []),
+    ...(canWriteWorkReport(role) ? [{ label: '업무 보고', to: '/mypage/staff/work-reports' }] : []),
     ...(canOpenLounge(role) ? [{ label: '셀러 라운지', to: '/mypage/lounge' }] : []),
   ]
   const items = extras.length ? [...extras, ...mypageNav] : mypageNav
@@ -27,7 +32,7 @@ export default function MypageSidebar() {
     <aside className="account-aside">
       <section className="mypage-profile">
         {user?.profileImage ? (
-          <img src={user.profileImage} alt="" className="mypage-profile__photo" referrerPolicy="no-referrer" />
+          <SafeImage src={user.profileImage} alt="" className="mypage-profile__photo" referrerPolicy="no-referrer" />
         ) : (
           <span className="mypage-profile__photo mypage-profile__photo--empty" />
         )}

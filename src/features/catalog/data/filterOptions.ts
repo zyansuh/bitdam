@@ -20,5 +20,6 @@ export const SORT_OPTIONS: { key: SortKey; label: string }[] = [
   { key: 'popular', label: '인기순' },
   { key: 'priceAsc', label: '낮은 가격순' },
   { key: 'priceDesc', label: '높은 가격순' },
-  { key: 'rating', label: '평점순' },
+  { key: 'newest', label: '최신순' },
+  { key: 'recommend', label: '추천순' },
 ]

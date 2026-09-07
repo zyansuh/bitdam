@@ -1,4 +1,5 @@
 import type { ProductDraft } from '../types/lounge'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface LoungeProductBasicsProps {
   draft: ProductDraft
@@ -35,11 +36,11 @@ export default function LoungeProductBasics({
       </div>
       <div className="lounge-form__images">
         <figure>
-          <img src={draft.image} alt="" />
+          <SafeImage src={draft.image} alt="" />
           <figcaption>대표 이미지 · 1000×1000 권장</figcaption>
         </figure>
         {draft.extras.map((src) => (
-          <img key={src} src={src} alt="" />
+          <SafeImage key={src} src={src} alt="" />
         ))}
       </div>
       <label>

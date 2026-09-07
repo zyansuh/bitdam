@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import EmptyState from '../../../shared/components/feedback/EmptyState'
 import { formatWon } from '../../../shared/utils/formatWon'
 import { useMypageOrders } from '../hooks/useMypageOrders'
 
@@ -22,7 +23,14 @@ export default function MypageOrderTable({ compact = false }: MypageOrderTablePr
           </tr>
         </thead>
         <tbody>
-          {rows.map((order) => (
+          {rows.length === 0 ? (
+            <tr>
+              <td colSpan={4}>
+                <EmptyState title="최근 주문이 없습니다" body="결제하면 ShopOrder가 이 목록과 라운지에 같이 쌓입니다." />
+              </td>
+            </tr>
+          ) : (
+          rows.map((order) => (
             <tr key={order.id}>
               <td>
                 <p>{order.date}</p>
@@ -36,7 +44,8 @@ export default function MypageOrderTable({ compact = false }: MypageOrderTablePr
                 <span className="mypage-status">{order.status}</span>
               </td>
             </tr>
-          ))}
+          ))
+          )}
         </tbody>
       </table>
     </div>

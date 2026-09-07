@@ -1,5 +1,6 @@
 import { formatWon } from '../../../shared/utils/formatWon'
 import { FEATURED_DEAL } from '../data/timeSales'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function DealFeatured() {
   const item = FEATURED_DEAL
@@ -8,7 +9,7 @@ export default function DealFeatured() {
     <section className="deal-feature">
       <h2>놓치면 후회하는 마감 임박 딜</h2>
       <article className="deal-feature__card">
-        <img src={item.image} alt="" />
+        <SafeImage src={item.image} alt="" />
         <div>
           <span className="deal-badge">Last {item.remain} units</span>
           <h3>{item.name}</h3>

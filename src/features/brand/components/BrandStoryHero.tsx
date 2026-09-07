@@ -1,4 +1,5 @@
 import { brandStoryHero } from '../data/brandStory'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface BrandStoryHeroProps {
   title?: string
@@ -9,7 +10,7 @@ export default function BrandStoryHero({ title, lead }: BrandStoryHeroProps) {
   return (
     <header className="brand-story-hero">
       <div className="brand-story-hero__media">
-        <img src={brandStoryHero.image} alt={brandStoryHero.imageAlt} className="brand-story-hero__image" />
+        <SafeImage src={brandStoryHero.image} alt={brandStoryHero.imageAlt} className="brand-story-hero__image" />
         <div className="brand-story-hero__shade" />
       </div>
       <div className="brand-story-hero__copy">

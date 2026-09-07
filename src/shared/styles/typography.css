@@ -1,4 +1,7 @@
-/* Title: MaruBuri. Body / UI: Pretendard. Logo: Nanum Myeongjo. EN kicker: KMU Sunggok. */
+/* Title: MaruBuri with Hangul-safe fallbacks. Body: Pretendard.
+   Generic `serif` (Times) tofued Korean when MaruBuri CDN failed.
+   English kickers only: --font-en (KMU Sunggok has little Hangul).
+   Noonnu candidates if we self-host later: 리디바탕, 본명조, 고운돋움. Do not bundle until license is confirmed. */
 
 h1,
 h2,
@@ -6,8 +9,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-weight: 600;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 p,

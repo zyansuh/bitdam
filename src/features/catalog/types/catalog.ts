@@ -1,4 +1,4 @@
-export type SortKey = 'popular' | 'priceAsc' | 'priceDesc' | 'rating'
+export type SortKey = 'popular' | 'priceAsc' | 'priceDesc' | 'newest' | 'recommend'
 
 export type FilterSection = 'region' | 'price' | 'taste' | 'abv'
 

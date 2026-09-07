@@ -4,7 +4,7 @@ export default function HolidayTourHero() {
       className="htour-hero"
       style={{
         backgroundImage:
-          'url(https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&h=800&fit=crop&q=80)',
+          'url(/images/tour-hero.svg',
       }}
     >
       <div>

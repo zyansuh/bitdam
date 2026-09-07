@@ -10,6 +10,7 @@ import CommunityCommentBox from '../components/CommunityCommentBox'
 import CommunityIndexList from '../components/CommunityIndexList'
 import CommunityPromoCard from '../components/CommunityPromoCard'
 import { useCommunityPosts } from '../hooks/useCommunityPosts'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function CommunityPostPage() {
   const { id = '' } = useParams()
@@ -51,7 +52,7 @@ export default function CommunityPostPage() {
                 {post.authorName} · {new Date(post.createdAt).toLocaleString('ko-KR')}
                 {post.visibility === 'hidden' ? ' · 숨김' : ''}
               </p>
-              {post.image ? <img src={post.image} alt="" className="community-detail__photo" /> : null}
+              {post.image ? <SafeImage src={post.image} alt="" className="community-detail__photo" /> : null}
               <p className="community-detail__body">{post.body}</p>
               {post.tags.length > 0 ? (
                 <p className="community-detail__tags">{post.tags.join(' ')}</p>

@@ -4,8 +4,7 @@ export const breweryProfiles: Record<string, BreweryProfile> = {
   hansan: {
     subtitle: '충남 서천 · 백제 전통 가양주',
     heroTitle: '1500년 전통, 한산소곡주 양조원',
-    heroImage:
-      'https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?w=1600&h=720&fit=crop&q=80',
+    heroImage: '/images/brewery-hero.svg',
     storyTitle: '백제의 향과 흥을 담아온 양조장 이야기',
     story: [
       '한산 소곡주는 백제 때부터 이어져 온 가양주로, 누룩과 찹쌀을 겹겹이 쌓아 천천히 익힙니다. 진한 황금빛과 은은한 국화 향이 특징이며, 잔을 기울일수록 단맛과 산미가 층을 이룹니다.',
@@ -15,8 +14,7 @@ export const breweryProfiles: Record<string, BreweryProfile> = {
     masterRole: '무형문화재 우희열 명인',
     masterQuote:
       '소곡주는 서두르면 향이 달아납니다. 항아리가 스스로 숨 쉴 때까지 기다리는 것이 우리 일의 전부입니다.',
-    masterPhoto:
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=240&h=240&fit=crop&q=80',
+    masterPhoto: '/images/people/master.svg',
     awards: [
       '국가 지정 무형문화재 제3호',
       '우리술 품평회 대상',
@@ -32,8 +30,7 @@ export const breweryProfiles: Record<string, BreweryProfile> = {
   samhae: {
     subtitle: '경기 김포 · 삼해주 증류',
     heroTitle: '서울 삼해주의 맥을 잇는 김포 도가',
-    heroImage:
-      'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1600&h=720&fit=crop&q=80',
+    heroImage: '/images/brewery-hero.svg',
     storyTitle: '밑술에서 증류까지, 삼해의 결을 지키는 이야기',
     story: [
       '삼해소주는 겨울 한파에 밑술을 빚고, 봄이 오기 전 증류해 맑은 잔을 만듭니다. 김포 도가는 옛 서울 삼해주의 레시피를 현대 설비로 정밀하게 되살렸습니다.',
@@ -42,8 +39,7 @@ export const breweryProfiles: Record<string, BreweryProfile> = {
     masterName: '김포 삼해 명인',
     masterRole: '삼해주 전수 명인',
     masterQuote: '증류는 온도가 아니라 인내입니다. 한 방울이 맑아질 때까지 불을 거두지 않습니다.',
-    masterPhoto:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=240&h=240&fit=crop&q=80',
+    masterPhoto: '/images/people/master.svg',
     awards: ['우리술 품평회 금상', '경기도 우수 전통주', '증류주 부문 선정'],
     programTitle: '체험 프로그램 안내',
     programDesc: '명인과 함께하는 삼해소주 증류 시연과 테이스팅. 홈브루잉 입문 클래스와 연계할 수 있습니다.',

@@ -1,5 +1,6 @@
 import { Heart, MessageCircle } from 'lucide-react'
 import type { CommunityPost } from '../types/communityPost'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface CommunityPostCardProps {
   post: CommunityPost
@@ -15,7 +16,7 @@ export default function CommunityPostCard({ post, onDelete, onLike }: CommunityP
       <div className="community-card__head">
         <div className="community-card__who">
           {post.authorImage ? (
-            <img src={post.authorImage} alt="" className="community-card__avatar" referrerPolicy="no-referrer" />
+            <SafeImage src={post.authorImage} alt="" className="community-card__avatar" referrerPolicy="no-referrer" />
           ) : (
             <span className="community-card__avatar community-card__avatar--empty" />
           )}
@@ -31,7 +32,7 @@ export default function CommunityPostCard({ post, onDelete, onLike }: CommunityP
         </button>
       </div>
       <p className="community-card__body">{post.body}</p>
-      {post.image ? <img src={post.image} alt="" className="community-card__photo" /> : null}
+      {post.image ? <SafeImage src={post.image} alt="" className="community-card__photo" /> : null}
       <div className="community-card__actions">
         <button type="button" className="community-card__react" onClick={() => onLike(post.id)}>
           <Heart size={16} strokeWidth={1.6} />

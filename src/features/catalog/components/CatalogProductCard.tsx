@@ -3,6 +3,7 @@ import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
 import { isSoldOut } from '../../../data/products'
 import WishHeartButton from '../../../shared/components/product/WishHeartButton'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface CatalogProductCardProps {
   product: Product
@@ -17,7 +18,7 @@ export default function CatalogProductCard({ product }: CatalogProductCardProps)
       <Link to={to} className="catalog-card__link">
         <div className="catalog-card__media">
           <WishHeartButton productId={product.id} overlay />
-          <img src={product.image} alt={product.name} className="catalog-card__image" />
+          <SafeImage src={product.image} alt={product.name} className="catalog-card__image" />
           {soldOut ? <span className="catalog-card__sold">품절</span> : null}
         </div>
         <p className="catalog-card__region">

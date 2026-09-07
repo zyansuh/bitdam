@@ -1,3 +1,4 @@
+import SafeImage from '../../../shared/components/media/SafeImage'
 import { Link } from 'react-router-dom'
 import { promoBanner } from '../data/promo'
 
@@ -5,7 +6,7 @@ export default function PromoBanner() {
   return (
     <section className="promo-banner">
       <div className="promo-banner__frame">
-        <img src={promoBanner.image} alt={promoBanner.alt} className="promo-banner__image" />
+        <SafeImage src={promoBanner.image} alt={promoBanner.alt} className="promo-banner__image" />
         <div className="promo-banner__overlay" />
         <div className="promo-banner__content">
           <h3 className="promo-banner__title">

@@ -1,3 +1,5 @@
+import SafeImage from '../../../shared/components/media/SafeImage'
+
 interface CommunityProfileCardProps {
   name: string
   image?: string
@@ -8,7 +10,7 @@ export default function CommunityProfileCard({ name, image, postCount }: Communi
   return (
     <section className="community-profile">
       {image ? (
-        <img src={image} alt="" className="community-profile__photo" referrerPolicy="no-referrer" />
+        <SafeImage src={image} alt="" className="community-profile__photo" referrerPolicy="no-referrer" />
       ) : (
         <span className="community-profile__photo community-profile__photo--empty" />
       )}

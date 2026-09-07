@@ -47,9 +47,29 @@ export function canViewStaffPerformance(role: WorkspaceRole): boolean {
   return isAdminRole(role)
 }
 
+export function canWriteWorkReport(role: WorkspaceRole): boolean {
+  if (isAdminRole(role)) return true
+  return role === 'staff' || role === 'lead'
+}
+
+export function canReviewWorkReport(role: WorkspaceRole): boolean {
+  if (isAdminRole(role)) return true
+  return role === 'lead'
+}
+
 export function canReplySupport(role: WorkspaceRole): boolean {
   if (isAdminRole(role)) return true
   return role === 'staff' || role === 'lead'
+}
+
+export function canHearOrderAlerts(role: WorkspaceRole): boolean {
+  if (isAdminRole(role)) return true
+  return role === 'staff' || role === 'lead'
+}
+
+export function canOpenCmsStudio(role: WorkspaceRole): boolean {
+  if (isAdminRole(role)) return true
+  return role === 'lead'
 }
 
 export function canModerateContent(role: WorkspaceRole): boolean {

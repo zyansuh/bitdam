@@ -1,4 +1,5 @@
 import type { BreweryPin } from '../data/breweries'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface TourBreweryPickerProps {
   breweries: BreweryPin[]
@@ -20,7 +21,7 @@ export default function TourBreweryPicker({ breweries, selectedId, onSelect }: T
             className={`tour-desk__item${selectedId === item.id ? ' tour-desk__item--on' : ''}`}
             onClick={() => onSelect(item.id)}
           >
-            <img src={item.image} alt="" />
+            <SafeImage src={item.image} alt="" />
             <span>
               <strong>{item.name}</strong>
               <em>{item.region}</em>

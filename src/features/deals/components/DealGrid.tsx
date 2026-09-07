@@ -1,5 +1,6 @@
 import { formatWon } from '../../../shared/utils/formatWon'
 import type { TimeSaleItem } from '../types/timeSale'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface DealGridProps {
   items: TimeSaleItem[]
@@ -16,7 +17,7 @@ export default function DealGrid({ items }: DealGridProps) {
           <li key={item.id}>
             <article className="deal-card">
               <div className="deal-card__media">
-                <img src={item.image} alt="" />
+                <SafeImage src={item.image} alt="" />
                 <span>{item.discount}%</span>
               </div>
               <strong>{item.name}</strong>

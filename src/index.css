@@ -46,3 +46,7 @@
 @import './features/ir/styles/ir.css';
 @import './features/lounge/styles/lounge.css';
 @import './features/staff/styles/staff.css';
+@import './shared/styles/control-spacing.css';
+@import './shared/styles/feedback/order-toast.css';
+@import './shared/styles/feedback/empty-state.css';
+@import './features/error/styles/not-found.css';

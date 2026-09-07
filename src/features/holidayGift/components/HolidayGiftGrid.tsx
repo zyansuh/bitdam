@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { formatWon } from '../../../shared/utils/formatWon'
 import type { HolidayGiftSet } from '../types/holidayGift'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface HolidayGiftGridProps {
   items: HolidayGiftSet[]
@@ -16,7 +17,7 @@ export default function HolidayGiftGrid({ items }: HolidayGiftGridProps) {
         {items.map((item) => (
           <li key={item.id}>
             <article>
-              <img src={item.image} alt="" />
+              <SafeImage src={item.image} alt="" />
               <strong>{item.name}</strong>
               <em>{formatWon(item.price)}</em>
               <Link className="shop-gold-btn" to="/gift">

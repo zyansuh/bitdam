@@ -12,9 +12,15 @@ import IrMarketMix from '../components/IrMarketMix'
 import IrRound from '../components/IrRound'
 import { useIrHashScroll } from '../hooks/useIrHashScroll'
 import { useIrInquiry } from '../hooks/useIrInquiry'
+import { usePageMeta } from '../../../shared/hooks/usePageMeta'
 import { computeIrSnapshot } from '../utils/computeIrMetrics'
 
 export default function IrPage() {
+  usePageMeta({
+    title: '투자 IR | 빚담',
+    description: '빚담 프리 A 라운드, 리더십, 카탈로그 기반 KPI',
+    image: '/images/people/ceo.svg',
+  })
   useIrHashScroll()
   const snapshot = computeIrSnapshot()
   const inquiry = useIrInquiry()

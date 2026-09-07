@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Product } from '../../../data/products'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface ProductDetailGalleryProps {
   product: Product
@@ -12,7 +13,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
   return (
     <div className="pdp-gallery">
       <div className="pdp-gallery__stage">
-        <img src={current} alt={product.name} className="pdp-gallery__image" />
+        <SafeImage src={current} alt={product.name} className="pdp-gallery__image" />
       </div>
       <div className="pdp-gallery__thumbs">
         {product.gallery.map((src, index) => (
@@ -23,7 +24,7 @@ export default function ProductDetailGallery({ product }: ProductDetailGalleryPr
             onClick={() => setActive(index)}
             aria-label={`${product.name} 이미지 ${index + 1}`}
           >
-            <img src={src} alt="" className="pdp-gallery__thumb-image" />
+            <SafeImage src={src} alt="" className="pdp-gallery__thumb-image" />
           </button>
         ))}
       </div>

@@ -4,7 +4,7 @@ export default function CorporateHero() {
       className="corp-hero"
       style={{
         backgroundImage:
-          'url(https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1600&h=800&fit=crop&q=80)',
+          'url(/images/catalog/yakju-2.svg',
       }}
     >
       <div>

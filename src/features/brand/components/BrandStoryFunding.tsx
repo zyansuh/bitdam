@@ -1,4 +1,5 @@
 import { brandStoryFunding } from '../data/brandStory'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function BrandStoryFunding() {
   return (
@@ -7,7 +8,7 @@ export default function BrandStoryFunding() {
       <div className="brand-fund__grid">
         {brandStoryFunding.map((item) => (
           <article key={item.id} className="brand-fund__card">
-            <img src={item.image} alt="" className="brand-fund__image" />
+            <SafeImage src={item.image} alt="" className="brand-fund__image" />
             <div className="brand-fund__body">
               <p className="brand-fund__tag">{item.tag}</p>
               <h3>{item.title}</h3>

@@ -1,5 +1,6 @@
 import { listCatalogProducts } from '../../../data/products'
 import { formatWon } from '../../../shared/utils/formatWon'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface GiftProductPickProps {
   productId: number | null
@@ -24,7 +25,7 @@ export default function GiftProductPick({ productId, onPick, onNext }: GiftProdu
               className={`gift-pick__card${productId === item.id ? ' gift-pick__card--on' : ''}`}
               onClick={() => onPick(item.id)}
             >
-              <img src={item.image} alt="" />
+              <SafeImage src={item.image} alt="" />
               <strong>{item.name}</strong>
               <span>{item.region}</span>
               <em>{formatWon(item.price)}</em>

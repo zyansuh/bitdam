@@ -335,3 +335,36 @@
 .lounge-match .lounge-btn {
   @apply mt-3;
 }
+
+.lounge-order-link {
+  @apply text-left text-gold underline;
+}
+
+.lounge-order-modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+}
+
+.lounge-order-modal__backdrop {
+  @apply absolute inset-0 bg-navy/40;
+}
+
+.lounge-order-modal__panel {
+  @apply relative z-10 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface p-5 shadow-lg;
+}
+
+.lounge-order-modal__panel h3 {
+  @apply mt-4 mb-1 text-xs tracking-widest text-gold uppercase;
+}
+
+.lounge-order-filters {
+  @apply mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end;
+}
+
+.lounge-order-filters label {
+  @apply flex min-w-40 flex-col gap-1 text-xs text-muted;
+}
+
+.lounge-order-filters input,
+.lounge-order-filters select {
+  @apply rounded-md border border-line bg-surface px-3 py-2 text-sm text-charcoal;
+}

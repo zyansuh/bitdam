@@ -57,6 +57,7 @@ import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
 import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
 import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
 import IrPage from '../features/ir/pages/IrPage'
+import NotFoundPage from '../features/error/pages/NotFoundPage'
 import LoungeDashboardPage from '../features/lounge/pages/LoungeDashboardPage'
 import LoungeProductsPage from '../features/lounge/pages/LoungeProductsPage'
 import LoungeProductNewPage from '../features/lounge/pages/LoungeProductNewPage'
@@ -66,8 +67,14 @@ import LoungeReportsPage from '../features/lounge/pages/LoungeReportsPage'
 import LoungeCustomersPage from '../features/lounge/pages/LoungeCustomersPage'
 import LoungeSubscriptionsPage from '../features/lounge/pages/LoungeSubscriptionsPage'
 import LoungeVerifyPage from '../features/lounge/pages/LoungeVerifyPage'
+import CmsListPage from '../features/cms/pages/CmsListPage'
+import CmsIrLeadersPage from '../features/cms/pages/CmsIrLeadersPage'
+import CmsIrRoundPage from '../features/cms/pages/CmsIrRoundPage'
 import AdminPeoplePage from '../features/staff/pages/AdminPeoplePage'
 import AdminPerformancePage from '../features/staff/pages/AdminPerformancePage'
+import WorkReportListPage from '../features/staff/pages/WorkReportListPage'
+import WorkReportWritePage from '../features/staff/pages/WorkReportWritePage'
+import WorkReportDetailPage from '../features/staff/pages/WorkReportDetailPage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -112,8 +119,14 @@ export function AppRoutes() {
       <Route path="/mypage/support" element={<MypageSupportPage />} />
       <Route path="/mypage/lounge/verify" element={<LoungeVerifyPage />} />
       <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
+      <Route path="/mypage/admin/content/ir-leaders" element={<CmsIrLeadersPage />} />
+      <Route path="/mypage/admin/content/ir-round" element={<CmsIrRoundPage />} />
+      <Route path="/mypage/admin/content" element={<CmsListPage />} />
       <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
       <Route path="/mypage/admin/support" element={<AdminSupportPage />} />
+      <Route path="/mypage/staff/work-reports/new" element={<WorkReportWritePage />} />
+      <Route path="/mypage/staff/work-reports/:id" element={<WorkReportDetailPage />} />
+      <Route path="/mypage/staff/work-reports" element={<WorkReportListPage />} />
       <Route path="/mypage/lounge" element={<LoungeDashboardPage />} />
       <Route path="/mypage/lounge/products/new" element={<LoungeProductNewPage />} />
       <Route path="/mypage/lounge/products" element={<LoungeProductsPage />} />
@@ -151,6 +164,7 @@ export function AppRoutes() {
       <Route path="/ir" element={<IrPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

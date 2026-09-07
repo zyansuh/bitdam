@@ -1,4 +1,5 @@
 import type { ClassSession } from '../types/classSession'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface ClassFeaturedCardProps {
   session: ClassSession
@@ -12,7 +13,7 @@ export default function ClassFeaturedCard({ session, booked, onBook }: ClassFeat
 
   return (
     <article className="class-featured">
-      <img src={session.image} alt="" className="class-featured__image" />
+      <SafeImage src={session.image} alt="" className="class-featured__image" />
       <div className="class-featured__copy">
         <p className="class-featured__kicker">{session.featuredKicker ?? '추천 클래스'}</p>
         <h2 className="class-featured__title">{session.title}</h2>

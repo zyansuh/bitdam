@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { hamburgerAccountLinks } from '../../../data/headerAccountLinks'
 import { getSiteMenuBranches } from '../../../data/siteMenu'
 import { useAuth } from '../../hooks/useAuth'
+import { canOpenCmsStudio, resolveWorkspaceRole } from '../../utils/workspaceRole'
 import { useFocusTrap } from '../../hooks/useFocusTrap'
 import LoginLink from './LoginLink'
 import SignupLink from './SignupLink'
@@ -16,7 +17,8 @@ interface SiteHamburgerMenuProps {
 }
 
 export default function SiteHamburgerMenu({ onClose, tone = 'light' }: SiteHamburgerMenuProps) {
-  const { isLoggedIn, logout } = useAuth()
+  const { isLoggedIn, logout, user } = useAuth()
+  const role = resolveWorkspaceRole(user)
   const menuRef = useRef<HTMLElement>(null)
   useFocusTrap(true, menuRef)
   const root = tone === 'navy' ? 'site-menu site-menu--navy' : 'site-menu'
@@ -28,6 +30,15 @@ export default function SiteHamburgerMenu({ onClose, tone = 'light' }: SiteHambu
         {getSiteMenuBranches().map((branch) => (
           <SiteMenuBranchSection key={branch.id} branch={branch} onClose={onClose} />
         ))}
+        {canOpenCmsStudio(role) ? (
+          <section className="site-menu__branch">
+            <h2 className="site-menu__title">콘텐츠 관리</h2>
+            <SiteMenuLinkList
+              items={[{ label: '전체 글 관리', to: '/mypage/admin/content' }]}
+              onClose={onClose}
+            />
+          </section>
+        ) : null}
         <section className="site-menu__branch">
           <h2 className="site-menu__title">내 계정</h2>
           <SiteMenuLinkList items={accountItems} onClose={onClose} />

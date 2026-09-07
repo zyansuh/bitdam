@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import {
   canOpenAdminScope,
+  canOpenCmsStudio,
   canOpenLounge,
   canPickAllShops,
   canViewStaffPerformance,
   canWriteNotice,
+  canWriteWorkReport,
   needsWorkshopVerify,
   resolveWorkspaceRole,
   workspaceRoleLabel,
@@ -22,6 +24,13 @@ export default function MypageWorkspaceCards() {
 
   return (
     <section className="lounge-mypage-cards">
+      {canOpenCmsStudio(role) ? (
+        <Link to="/mypage/admin/content" className="lounge-mypage-card lounge-mypage-card--admin">
+          <p className="lounge-mypage-card__kicker">{isAdmin ? 'ADMIN' : '팀장'}</p>
+          <h2>콘텐츠 관리</h2>
+          <p>IR 대표자 사진·이름 등 사이트 카피를 고칩니다.</p>
+        </Link>
+      ) : null}
       {isAdmin ? (
         <>
           <Link to="/mypage/admin/people" className="lounge-mypage-card lounge-mypage-card--admin">
@@ -49,11 +58,22 @@ export default function MypageWorkspaceCards() {
           </p>
         </Link>
       ) : null}
+      {canWriteWorkReport(role) ? (
+        <Link to="/mypage/staff/work-reports" className="lounge-mypage-card">
+          <p className="lounge-mypage-card__kicker">{workspaceRoleLabel(role)}</p>
+          <h2>업무 보고</h2>
+          <p>라운지·시설 점검과 내부 보고를 등록합니다. 팀장·ADMIN은 전체를 확인합니다.</p>
+        </Link>
+      ) : null}
       {canWriteNotice(role) ? (
         <Link to="/notices/new" className="lounge-mypage-card">
           <p className="lounge-mypage-card__kicker">{workspaceRoleLabel(role)}</p>
           <h2>공지 작성</h2>
-          <p>{role === 'staff' ? '직원은 공지를 등록할 수 있습니다. 중요 공지는 팀장·ADMIN만 표시합니다.' : '공지와 중요 표시를 포함해 작성할 수 있습니다.'}</p>
+          <p>
+            {role === 'staff'
+              ? '직원은 공지를 등록할 수 있습니다. 중요 공지는 팀장·ADMIN만 표시합니다.'
+              : '공지와 중요 표시를 포함해 작성할 수 있습니다.'}
+          </p>
         </Link>
       ) : null}
       {needsWorkshopVerify(user) || role === 'member' ? (

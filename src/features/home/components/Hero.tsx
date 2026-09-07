@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import SafeImage from '../../../shared/components/media/SafeImage'
+import { MOCK_IMAGES } from '../../../data/mockImages'
 import { heroContent } from '../data/hero'
 
 export default function Hero() {
@@ -29,8 +31,9 @@ export default function Hero() {
         <div className="hero__media-wrap">
           <div className="hero__media">
             <div className="hero__image-frame">
-              <img
+              <SafeImage
                 src={heroContent.image}
+                fallbackSrc={MOCK_IMAGES.hero}
                 alt={heroContent.imageAlt}
                 className="hero__image"
                 width={800}

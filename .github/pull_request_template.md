@@ -1,4 +1,4 @@
-> 🚀 <!-- Feature: 한 줄 요약 (예: 홈 랜딩 Hero 섹션 반응형 레이아웃 개선) -->
+> 🚀 <!-- English Conventional Commits title, e.g. feat: add real-time order notifications -->
 
 ## 📌 PR Summary
 - <!-- 이 PR이 하는 일을 3~5줄로 요약 -->

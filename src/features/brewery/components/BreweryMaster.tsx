@@ -1,4 +1,5 @@
 import type { BreweryDetail } from '../types/breweryDetail'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface BreweryMasterProps {
   brewery: BreweryDetail
@@ -7,7 +8,7 @@ interface BreweryMasterProps {
 export default function BreweryMaster({ brewery }: BreweryMasterProps) {
   return (
     <section className="brewery-master">
-      <img src={brewery.masterPhoto} alt="" className="brewery-master__photo" />
+      <SafeImage src={brewery.masterPhoto} alt="" className="brewery-master__photo" />
       <div>
         <p className="brewery-master__role">{brewery.masterRole}</p>
         <p className="brewery-master__quote">“{brewery.masterQuote}”</p>

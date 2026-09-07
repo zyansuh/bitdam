@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
 import { isSoldOut } from '../../../data/products'
+import SafeImage from '../../components/media/SafeImage'
 
 interface ProductCardProps {
   product: Product
@@ -14,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <article className="product-card">
       <Link to={`/products/${product.id}`} className="product-card__link">
       <div className="product-card__media">
-        <img
+        <SafeImage
           src={product.image}
           alt={product.name}
           className="product-card__image"
