@@ -1,15 +1,42 @@
 import type { EmailAccount } from '../types/account'
+import { DEMO_STAFF_ACCOUNTS } from '../data/demoStaff'
 
 const STORAGE_KEY = 'bitdam.auth.accounts'
+
+function mergeDemoAccounts(accounts: EmailAccount[]): EmailAccount[] {
+  const byEmail = new Map(accounts.map((account) => [account.email, account]))
+
+  for (const demo of DEMO_STAFF_ACCOUNTS) {
+    const existing = byEmail.get(demo.email)
+    if (!existing) {
+      byEmail.set(demo.email, demo)
+      continue
+    }
+
+    byEmail.set(demo.email, {
+      ...existing,
+      workspaceRole: demo.workspaceRole,
+      sellerId: demo.sellerId,
+      nickname: existing.nickname || demo.nickname,
+    })
+  }
+
+  return [...byEmail.values()]
+}
 
 function readList(): EmailAccount[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
-    const parsed = JSON.parse(raw) as EmailAccount[]
-    return Array.isArray(parsed) ? parsed : []
+    const parsed = raw ? (JSON.parse(raw) as EmailAccount[]) : []
+    const list = Array.isArray(parsed) ? parsed : []
+    const merged = mergeDemoAccounts(list)
+    if (JSON.stringify(list) !== JSON.stringify(merged)) {
+      writeList(merged)
+    }
+    return merged
   } catch {
-    return []
+    writeList(DEMO_STAFF_ACCOUNTS)
+    return DEMO_STAFF_ACCOUNTS
   }
 }
 
@@ -59,6 +86,7 @@ export function createAccount(input: { email: string; password: string; nickname
     email,
     password: input.password,
     nickname: input.nickname.trim(),
+    workspaceRole: 'member',
   }
   writeList([...readList(), account])
   return account
