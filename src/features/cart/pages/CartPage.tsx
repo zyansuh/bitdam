@@ -67,7 +67,7 @@ export default function CartPage() {
                   return
                 }
                 const order = checkout(payment)
-                if (order) navigate('/mypage')
+                if (order) navigate(`/order/complete/${order.id}`)
               }}
             />
           </div>
