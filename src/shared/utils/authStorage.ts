@@ -9,7 +9,9 @@ function hydrateWorkspace(user: AuthUser): AuthUser {
     return {
       ...user,
       workspaceRole: staff.workspaceRole,
-      sellerId: staff.sellerId,
+      sellerId: user.sellerVerified ? user.sellerId : undefined,
+      sellerVerified: user.sellerVerified === true,
+      sellerBizNo: user.sellerVerified ? user.sellerBizNo : undefined,
     }
   }
 
