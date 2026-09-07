@@ -26,7 +26,7 @@ export const brandStoryUglyFruit = {
     '/images/catalog/soju-1.svg',
   imageAlt: '나무 위에 놓인 못난이 과일과 잘린 과육',
   primary: { label: '지금 동참하기', to: '/custom' },
-  secondary: { label: '스토리 전체 보기', to: '#brand-story-body' },
+  secondary: { label: '여섯 장 읽기', to: '#brand-story-essay' },
 }
 
 export const brandStoryPhilosophies: BrandStoryCard[] = [
@@ -105,9 +105,9 @@ export const brandStoryChapters: BrandStoryChapter[] = [
   {
     id: 'time',
     number: '01',
-    titleLines: [],
+    tocLabel: '한 병의 시간',
+    titleLines: ['좋은 술에는', '시간이 필요합니다.'],
     blocks: [
-      { type: 'paragraph', text: '좋은 술에는 시간이 필요합니다.' },
       {
         type: 'scenes',
         items: [
@@ -130,6 +130,7 @@ export const brandStoryChapters: BrandStoryChapter[] = [
   {
     id: 'origin',
     number: '02',
+    tocLabel: '시작',
     titleLines: ['술을 마시는 것보다,', '술이 만들어지는 시간을 좋아했습니다.'],
     blocks: [
       {
@@ -168,6 +169,7 @@ export const brandStoryChapters: BrandStoryChapter[] = [
   {
     id: 'brewery',
     number: '03',
+    tocLabel: '작은 양조장',
     titleLines: ['작은 양조장의 좋은 술이', '작은 이름으로 남지 않도록.'],
     blocks: [
       {
@@ -200,6 +202,7 @@ export const brandStoryChapters: BrandStoryChapter[] = [
   {
     id: 'fruit',
     number: '04',
+    tocLabel: '못난이 과일',
     titleLines: ['못생긴 과일은 있어도,', '가치 없는 과일은 없습니다.'],
     blocks: [
       {
@@ -244,6 +247,7 @@ export const brandStoryChapters: BrandStoryChapter[] = [
   {
     id: 'heritage',
     number: '05',
+    tocLabel: '전통',
     titleLines: ['전통을 지킨다는 건,', '계속 만나게 하는 것.'],
     blocks: [
       {
@@ -280,6 +284,7 @@ export const brandStoryChapters: BrandStoryChapter[] = [
   {
     id: 'stories',
     number: '06',
+    tocLabel: '이야기',
     titleLines: ['우리는 술보다', '술에 담길 이야기를 생각합니다.'],
     blocks: [
       {
