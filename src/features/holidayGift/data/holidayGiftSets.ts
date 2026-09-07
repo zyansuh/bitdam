@@ -1,0 +1,66 @@
+import type { HolidayGiftSet } from '../types/holidayGift'
+
+export const HOLIDAY_GIFT_END = '2026-10-06T23:59:59+09:00'
+
+export const HOLIDAY_GIFT_SETS: HolidayGiftSet[] = [
+  {
+    id: 'palace',
+    name: '명가 궁(宮) 세트',
+    price: 185000,
+    image: 'https://images.unsplash.com/photo-1551024601-b78d007933a0?w=800&h=640&fit=crop&q=80',
+    occasion: 'hyo',
+    priceBand: 'vip',
+    compose: 'package',
+    recipient: 'family',
+  },
+  {
+    id: 'hansan',
+    name: '한산 소곡 효도 세트',
+    price: 68000,
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=640&fit=crop&q=80',
+    occasion: 'hyo',
+    priceBand: 'mid',
+    compose: 'spirit',
+    recipient: 'family',
+  },
+  {
+    id: 'biz',
+    name: '안동 명인 비즈니스 함',
+    price: 128000,
+    image: 'https://images.unsplash.com/photo-1569529465841-df988a64df86?w=800&h=640&fit=crop&q=80',
+    occasion: 'biz',
+    priceBand: 'high',
+    compose: 'package',
+    recipient: 'partner',
+  },
+  {
+    id: 'couple',
+    name: '보름달 연인 잔 세트',
+    price: 42000,
+    image: 'https://images.unsplash.com/photo-1567696912547-6a89454f4b0a?w=800&h=640&fit=crop&q=80',
+    occasion: 'couple',
+    priceBand: 'mid',
+    compose: 'glass',
+    recipient: 'friend',
+  },
+  {
+    id: 'friend',
+    name: '못난이 과일 친구 보자기',
+    price: 28000,
+    image: 'https://images.unsplash.com/photo-1567696912547-6a89454f4b0a?w=800&h=640&fit=crop&q=80',
+    occasion: 'friend',
+    priceBand: 'under30',
+    compose: 'takju',
+    recipient: 'friend',
+  },
+  {
+    id: 'teacher',
+    name: '스승께 올리는 약주 함',
+    price: 89000,
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=640&fit=crop&q=80',
+    occasion: 'hyo',
+    priceBand: 'high',
+    compose: 'spirit',
+    recipient: 'teacher',
+  },
+]

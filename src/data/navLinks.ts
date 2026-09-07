@@ -4,6 +4,7 @@ import { getCampaignNavLinks } from './campaignNav'
 export const navLinks: NavLinkItem[] = [
   { label: '전통주', to: '/products' },
   { label: '선물하기', to: '/gift' },
+  { label: '추석 특별관', to: '/holiday/gifts' },
   ...getCampaignNavLinks(),
   { label: '기념주', to: '/custom' },
 ]
