@@ -87,6 +87,8 @@
 | `/mypage/admin/people` | `AdminPeoplePage` | ADMIN이 가입 계정에 직원·팀장 등급 부여 |
 | `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원 성과(공지·커뮤니티·공방 수 집계) |
 | `/mypage/admin/support` | `AdminSupportPage` | 직원·팀장·ADMIN 1:1 문의 답변 |
+| `/mypage/admin/content` | `CmsListPage` | IR 리더십·프리 A 카피 CMS (ADMIN·부여된 팀장) |
+| `/mypage/staff/work-reports` | `WorkReportListPage` | 직원 업무일지 · 팀장/ADMIN 확인 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 재고/품절/판매중지 · 구매 · 리뷰 탭 |
 | `/products/:id/review` | `WriteReviewPage` | 별점 · 태그 · 본문 · 사진 후기 |
@@ -191,7 +193,7 @@ flowchart LR
 | 통계 | `Stats` | 31곳 · 9개 권역 · 5개 · 100+ 명 |
 | 급상승 술 | `InfiniteProductFeed` | 8개씩 paginate · Intersection Observer 무한 스크롤 |
 | 프로모션 | `PromoBanner` | 성수동 삼해소주 가옥 · CTA → `/classes?brewery=samhae` |
-| 스토리 | `InfiniteStoryFeed` | 빚담 이야기 카드 · 4개씩 추가 로드 |
+| 스토리 | `HomeStoryTeaser` | 홈에서는 4장 + `/story`·`/community` 더보기. 로그인 하단은 `InfiniteStoryFeed` |
 | 푸터 | `Footer` | **남색(`navy`)** 배경 · 서비스·고객지원·법적 고지 · Instagram/Facebook |
 
 ### 🗺️ 양조장 (`/breweries`)
@@ -274,7 +276,9 @@ flowchart LR
 | **반응형** | `breakpoints.ts` · `Responsive.value<T>()` · Tailwind grid |
 | **무한 스크롤** | `useInfiniteScroll` + sentinel ref |
 | **페이지 스크롤** | `PageLayout` — `min-h-dvh`, `overflow-y: auto` |
-| **폰트** | 제목 MaruBuri · 본문/UI Pretendard · 로고 나눔명조 · 영문 킥커 국민대 숭곡 |
+| **폰트** | 제목 `--font-heading`(MaruBuri → Pretendard·시스템 한글). 본문 Pretendard. 로고 나눔명조. 영문 킥커 국민대 숭곡(한글 fallback 포함) |
+| **이미지** | `SafeImage` + `src/data/mockImages.ts` · `public/images/mock-*.svg`. 로드 실패 시 병/양조장 플레이스홀더 |
+| **직원 주문 알림** | ADMIN·팀장·직원만. `bitdam.shop.orders` CustomEvent / BroadcastChannel / storage 폴링. 백엔드·Supabase 없음 |
 
 ---
 
@@ -381,7 +385,9 @@ BITDAM/
             ├── brand/
             ├── icons/
             ├── product/
-            └── feed/
+            ├── feed/
+            ├── media/               # SafeImage
+            └── feedback/            # StaffOrderToast |
 ```
 
 ### 파일 분류 (종류별 분리)
@@ -407,7 +413,10 @@ BITDAM/
 | **components/icons/** | `InstagramIcon` · `FacebookIcon` |
 | **components/product/** | `ProductCard` |
 | **components/feed/** | `InfiniteProductFeed` · `InfiniteStoryFeed` · `StoryCard` · `FeedStatus` |
-| **utils/** | `breakpoints` · `responsive` · `formatWon` · `bitdamIdb` |
+| **utils/** | `breakpoints` · `responsive` · `formatWon` · `bitdamIdb` · `shopOrderStorage` · `workspaceRole` |
+| **components/media/** | `SafeImage` |
+| **components/feedback/** | `StaffOrderToast` · `StaffOrderAlertHost` |
+| **data/mockImages.ts** | 교체 가능한 MOCK 히어로·병·양조장 URL |
 
 ### `src/features/`
 
@@ -699,7 +708,7 @@ import { getProductsPage } from '../../../data/products';
 | `main` | 베이스 / merge 대상 |
 | `feat/*` | 기능 단위 PR |
 
-> Cursor는 `git commit`까지만 수행 · **`git push`는 직접** 수행
+> Cursor는 사용자가 PR을 요청하면 스택을 푸시하고 PR을 연다. **PR Title은 영어** Conventional Commits (`feat: add …`). 본문은 한국어 가능. `git push --force` 금지.
 
 ---
 
@@ -711,7 +720,7 @@ import { getProductsPage } from '../../../data/products';
 | Git `dubious ownership` (Windows) | `git config --global --add safe.directory E:/frontend_project/BITDAM` |
 | PR diff 없음 | `main`과 `feat/*`가 동일 커밋인지 확인 |
 | 무한 스크롤 안 됨 | sentinel ref가 viewport에 진입하는지 · `hasMore` 상태 확인 |
-| 이미지 안 보임 | Unsplash URL placeholder — 네트워크·CORS 확인 |
+| 이미지 안 보임 | `SafeImage`가 `public/images/mock-bottle.svg`로 대체. 원본은 `src/data/mockImages.ts`에서 교체 |
 | 카카오 KOE101 | REST API 키가 맞는지 확인 · 카카오 로그인 활성화 ON · Redirect URI 등록 후 `npm run dev` 재시작 |
 | 배포에서 카카오 키 없음 | Vercel에 `VITE_KAKAO_REST_API_KEY` 추가 후 **Redeploy**. 로컬 `.env`는 배포에 포함되지 않음 |
 | 로그인 후 다크모드 해제 | 카카오는 `state`·쿠키·`bitdam.theme` 순으로 복구. 머지 후 하드 리프레시 |
@@ -727,7 +736,8 @@ import { getProductsPage } from '../../../data/products';
 - [x] 양조장 투어 헤더·목록 · 블로그형 커뮤니티(`/community`)
 - [x] 마이페이지 · 개인정보 설정(`/mypage` · `/account`)
 - [x] 상품 단위 상세(PDP) 페이지
-- [ ] Unsplash placeholder → 실제 디자인 에셋 교체
+- [ ] 카탈로그 Unsplash URL → 실제 상품·양조장·대표자 사진으로 교체 (`SafeImage` fallback은 유지)
+- [ ] 제목용 한글 폰트 확정 시 눈누에서 받아 `src/assets`에 셀프호스트 (라이선스 확인)
 - [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
 - [x] 네이버 OAuth (`/login/naver/callback` · Vite/Vercel 프록시)
@@ -740,6 +750,8 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | SafeImage MOCK · 제목 한글 fallback · 직원 주문 토스트 · PR 제목 영어 규칙 |
+| **2026-09-08** | 홈 스토리 티저 · 버튼 간격 · 선물 미리보기 · 카탈로그 정렬 · 업무일지 · 주문 모달 · CMS |
 | **2026-09-08** | 라운지 정산←ShopOrder · 판매 중지 · CI · 셸 포커스 트랩 · 네이버 OAuth |
 | **2026-09-07** | 직원 성과 실집계 · 셀러 상품 카탈로그 · 재고/품절 · 1:1 답변 · 알림 연동 |
 | **2026-09-07** | 쿠폰 결제 차감 · 카탈로그 검색 AND · 예약 내역 · 공개 피드 · 공지/커뮤니티 IndexedDB |
