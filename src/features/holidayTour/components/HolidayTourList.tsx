@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { HOLIDAY_TOURS } from '../data/holidayTours'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function HolidayTourList() {
   return (
@@ -10,7 +11,7 @@ export default function HolidayTourList() {
       <ul>
         {HOLIDAY_TOURS.map((item) => (
           <li key={item.id}>
-            <img src={item.image} alt="" />
+            <SafeImage src={item.image} alt="" />
             <div>
               <h3>{item.title}</h3>
               <span>잔여 {item.remain}석</span>

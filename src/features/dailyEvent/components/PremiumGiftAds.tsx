@@ -1,5 +1,6 @@
 import { formatWon } from '../../../shared/utils/formatWon'
 import { PREMIUM_GIFT_ADS } from '../data/dailyEventCopy'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface PremiumGiftAdsProps {
   sharedToday: boolean
@@ -14,7 +15,7 @@ export default function PremiumGiftAds({ sharedToday, shareDone, onShare }: Prem
       <ul>
         {PREMIUM_GIFT_ADS.map((item) => (
           <li key={item.id}>
-            <img src={item.image} alt="" />
+            <SafeImage src={item.image} alt="" />
             <div>
               <strong>{item.name}</strong>
               <em>{formatWon(item.price)}</em>

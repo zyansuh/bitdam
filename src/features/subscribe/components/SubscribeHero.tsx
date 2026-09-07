@@ -1,3 +1,6 @@
+import SafeImage from '../../../shared/components/media/SafeImage'
+import { MOCK_IMAGES } from '../../../data/mockImages'
+
 export default function SubscribeHero() {
   return (
     <section className="sub-hero">
@@ -9,10 +12,7 @@ export default function SubscribeHero() {
           지금 구독 시작하기
         </a>
       </div>
-      <img
-        src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=900&h=640&fit=crop&q=80"
-        alt=""
-      />
+      <SafeImage src={MOCK_IMAGES.placeholder} alt="" />
     </section>
   )
 }
