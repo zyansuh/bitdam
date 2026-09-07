@@ -8,7 +8,7 @@ function hydrateWorkspace(user: AuthUser): AuthUser {
   if (staff) {
     return {
       ...user,
-      workspaceRole: staff.workspaceRole,
+      workspaceRole: user.workspaceRole ?? staff.workspaceRole,
       sellerId: user.sellerVerified ? user.sellerId : undefined,
       sellerVerified: user.sellerVerified === true,
       sellerBizNo: user.sellerVerified ? user.sellerBizNo : undefined,

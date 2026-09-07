@@ -55,6 +55,8 @@ import LoungeReportsPage from '../features/lounge/pages/LoungeReportsPage'
 import LoungeCustomersPage from '../features/lounge/pages/LoungeCustomersPage'
 import LoungeSubscriptionsPage from '../features/lounge/pages/LoungeSubscriptionsPage'
 import LoungeVerifyPage from '../features/lounge/pages/LoungeVerifyPage'
+import AdminPeoplePage from '../features/staff/pages/AdminPeoplePage'
+import AdminPerformancePage from '../features/staff/pages/AdminPerformancePage'
 
 const BreweryMapPage = lazy(() => import('../features/brewery/pages/BreweryMapPage'))
 
@@ -89,6 +91,8 @@ export function AppRoutes() {
       <Route path="/mypage/payments" element={<MypagePaymentsPage />} />
       <Route path="/mypage/support" element={<MypageSupportPage />} />
       <Route path="/mypage/lounge/verify" element={<LoungeVerifyPage />} />
+      <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
+      <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
       <Route path="/mypage/lounge" element={<LoungeDashboardPage />} />
       <Route path="/mypage/lounge/products/new" element={<LoungeProductNewPage />} />
       <Route path="/mypage/lounge/products" element={<LoungeProductsPage />} />
