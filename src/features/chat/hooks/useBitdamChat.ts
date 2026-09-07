@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { ChatMessage, ChatThread } from '../types/chat'
-import { askBitdamModel, attachProducts, getOpenAiKey } from '../services/askBitdamModel'
+import { probeOpenAi } from '../../../shared/utils/openaiProxy'
+import { askBitdamModel, attachProducts } from '../services/askBitdamModel'
 import { loadChatThreads, saveChatThreads } from '../utils/chatStorage'
 
 function stamp() {
@@ -31,7 +32,11 @@ export function useBitdamChat() {
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  const hasKey = Boolean(getOpenAiKey())
+  const [hasKey, setHasKey] = useState(false)
+
+  useEffect(() => {
+    void probeOpenAi().then(setHasKey)
+  }, [])
 
   const active = useMemo(
     () => threads.find((item) => item.id === activeId) ?? threads[0],
