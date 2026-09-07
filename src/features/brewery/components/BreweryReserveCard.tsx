@@ -1,5 +1,7 @@
 import type { BreweryDetail } from '../types/breweryDetail'
 import { TOUR_GIFT_LABEL, TOUR_TIME_SLOTS } from '../data/tourBooking'
+import { useAuth } from '../../../shared/hooks/useAuth'
+import { appendBooking } from '../../../shared/utils/bookingStorage'
 import { useTourReservation } from '../hooks/useTourReservation'
 
 interface BreweryReserveCardProps {
@@ -8,6 +10,7 @@ interface BreweryReserveCardProps {
 
 export default function BreweryReserveCard({ brewery }: BreweryReserveCardProps) {
   const booking = useTourReservation(brewery.programPrice)
+  const { user } = useAuth()
 
   return (
     <section className="brewery-reserve">
@@ -69,7 +72,27 @@ export default function BreweryReserveCard({ brewery }: BreweryReserveCardProps)
           <dd>{booking.total.toLocaleString()}원</dd>
         </div>
       </dl>
-      <button type="button" className="brewery-reserve__cta" onClick={booking.submit}>
+      <button
+        type="button"
+        className="brewery-reserve__cta"
+        onClick={() => {
+          if (!booking.dateKey || !booking.time) return
+          booking.submit()
+          if (!user) return
+          appendBooking({
+            id: crypto.randomUUID(),
+            userId: user.id,
+            kind: 'tour',
+            title: brewery.programTitle,
+            place: brewery.name,
+            date: booking.dateKey,
+            time: booking.time,
+            guests: booking.guests,
+            amount: booking.total,
+            createdAt: new Date().toISOString(),
+          })
+        }}
+      >
         {booking.submitted ? '예약 신청이 접수되었습니다' : '실시간 예약 신청하기'}
       </button>
     </section>
