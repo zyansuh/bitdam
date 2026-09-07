@@ -3,15 +3,23 @@ import { noticeCategoryLabel } from '../data/noticeTabs'
 import NoticeLayout from '../components/NoticeLayout'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { canModerateContent, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
+import { deleteNotice } from '../api/noticeApi'
 import { useNoticeDetail } from '../hooks/useNoticeDetail'
-import { deleteNotice } from '../utils/noticeStorage'
 
 export default function NoticeDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { user } = useAuth()
-  const post = useNoticeDetail(id)
+  const { post, ready } = useNoticeDetail(id)
   const canModerate = canModerateContent(resolveWorkspaceRole(user))
+
+  if (!ready) {
+    return (
+      <NoticeLayout>
+        <p className="notice-error">공지를 불러오는 중입니다.</p>
+      </NoticeLayout>
+    )
+  }
 
   if (!post) {
     return <Navigate to="/notices" replace />
@@ -39,8 +47,7 @@ export default function NoticeDetailPage() {
                 type="button"
                 className="notice-tool"
                 onClick={() => {
-                  deleteNotice(post.id)
-                  navigate('/notices')
+                  void deleteNotice(post.id).then(() => navigate('/notices'))
                 }}
               >
                 삭제
