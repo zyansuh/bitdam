@@ -1,4 +1,10 @@
 {
+  "crons": [
+    {
+      "path": "/api/learn-daily",
+      "schedule": "0 0 * * *"
+    }
+  ],
   "rewrites": [
     {
       "source": "/kakao-oauth/:path*",
@@ -17,7 +23,7 @@
       "destination": "https://openapi.naver.com/:path*"
     },
     {
-      "source": "/((?!kakao-oauth|kakao-api|naver-oauth|naver-api|assets|favicon).*)",
+      "source": "/((?!api|kakao-oauth|kakao-api|naver-oauth|naver-api|assets|favicon).*)",
       "destination": "/index.html"
     }
   ]
