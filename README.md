@@ -81,6 +81,7 @@
 | `/holiday/tours` | `HolidayTourPage` | 명절 전용 양조장 투어 |
 | `/limited` | `LimitedEditionPage` | 크리에이터 한정판 · 테이스팅 · 펀딩 선예약 |
 | `/ir` | `IrPage` | 투자 IR · 카탈로그 기반 KPI · 프리 A · 문의 |
+| `/mypage/lounge` | `LoungeDashboardPage` | 셀러·직원 라운지 · 공방 스코프 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
@@ -343,6 +344,7 @@ BITDAM/
     │   ├── notice/                # 공지사항
     │   ├── chat/                  # 빚담 추천 AI
     │   ├── ir/                    # 투자 IR · KPI · 프리 A
+    │   ├── lounge/                # 셀러 라운지 · 직원 ADMIN 스코프
     │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
@@ -407,6 +409,7 @@ BITDAM/
 | **holidayTour** | `HolidayTourPage` | `campaign-pages.css` | 명절 전용 투어 |
 | **limited** | `LimitedEditionPage` | `campaign-pages.css` | 테이스팅 · 펀딩 선예약 |
 | **ir** | `IrPage` | `ir.css` | 카탈로그 KPI · 프리 A · 리더십 · 문의 |
+| **lounge** | `LoungeDashboardPage` 외 | `lounge.css` | 셀러 SELLER · 직원 ADMIN 공방 조회 |
 | **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -416,6 +419,7 @@ BITDAM/
 |------|------|
 | `products.ts` | `Product` 타입 · 48종 mock · 지역/도수/맛 태그 |
 | `navLinks.ts` | 헤더: 전통주 · 추석 · 복주머니 · 한정판 · 선물 · 투어 · 스토리 · IR |
+| `staffRoster.ts` | 데모 직원·셀러 이메일과 workspace 역할 |
 | `campaignNav.ts` | 활성 명절 라벨을 헤더에 넣는 헬퍼 |
 | `settingsNav.ts` · `headerAccountLinks.ts` · `helpNav.ts` | 설정·계정 메뉴·FAQ 분류 |
 | `footerLinks.ts` | 푸터 컬럼 링크 |
@@ -587,6 +591,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/holiday/tours | 명절 양조장 투어 |
 | http://localhost:5173/limited | 크리에이터 한정판 |
 | http://localhost:5173/ir | 투자 IR |
+| http://localhost:5173/mypage/lounge | 셀러 라운지 (직원·셀러 로그인) |
 | http://localhost:5173/story | 브랜드 스토리 |
 
 ---
@@ -687,6 +692,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 마이페이지 셀러 라운지 · ADMIN 전체 공방 조회 |
 | **2026-09-07** | `/ir` 투자 IR · 햄버거 전용 가지 · 카탈로그 KPI |
 | **2026-09-07** | 명절 세트전 · 복주머니 · 명절 투어 · 크리에이터 한정판 |
 | **2026-09-07** | 선물 3단계 · 추석 특별전 · 타임 특가 · 구독 · 기업선물 |
