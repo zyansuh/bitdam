@@ -82,21 +82,23 @@
 | `/limited` | `LimitedEditionPage` | 크리에이터 한정판 · 테이스팅 · 펀딩 선예약 |
 | `/ir` | `IrPage` | 투자 IR · 카탈로그 기반 KPI · 프리 A · 문의 |
 | `/mypage/lounge` | `LoungeDashboardPage` | 셀러·직원 라운지 · 인증된 본인 공방 또는 전체 공방 |
+| `/mypage/lounge/settlements` | `LoungeSettlementsPage` | ShopOrder 기준 수수료 11% · 정산대기/완료 |
 | `/mypage/lounge/verify` | `LoungeVerifyPage` | 사업자번호·대표자 인증 후 양조장 지정 |
 | `/mypage/admin/people` | `AdminPeoplePage` | ADMIN이 가입 계정에 직원·팀장 등급 부여 |
 | `/mypage/admin/performance` | `AdminPerformancePage` | ADMIN 전용 직원 성과(공지·커뮤니티·공방 수 집계) |
 | `/mypage/admin/support` | `AdminSupportPage` | 직원·팀장·ADMIN 1:1 문의 답변 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
-| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 재고/품절 · 구매 · 리뷰 탭 |
+| `/products/:id` | `ProductDetailPage` | 갤러리 · 맛 프로필 · 재고/품절/판매중지 · 구매 · 리뷰 탭 |
 | `/products/:id/review` | `WriteReviewPage` | 별점 · 태그 · 본문 · 사진 후기 |
 | `/cart` | `CartPage` | 장바구니 · 쿠폰 차감 · 재고 확인 · 라운지·마이페이지 동일 주문 |
 | `/wishlist` | `WishlistPage` | 헤더·마이페이지와 동기화된 위시 |
 | `/order/complete/:id` | `OrderCompletePage` | 결제 완료 · 배송 스테퍼 |
 | `/mypage/orders/:id` | `OrderDetailPage` | 주문 상세 · 배송 상태 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
-| `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
+| `/login` | `Login` | 이메일 · 카카오 · 네이버 OAuth · Apple은 안내 다이얼로그 |
 | `/signup` | `SignupPage` | 닉네임·이메일·비밀번호 일반 회원가입 |
 | `/login/kakao/callback` | `KakaoCallbackPage` | 카카오 OAuth 콜백 |
+| `/login/naver/callback` | `NaverCallbackPage` | 네이버 OAuth 콜백 |
 | `/breweries` | `BreweryMapPage` | 권역 탭 · MapLibre 지도 · 추천 양조장 |
 | `/tours` | `TourReservePage` | 권역별 양조장 정보 · 예약 창 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 포함 사항 · 날짜·타임·인원 예약 카드 |
@@ -229,7 +231,9 @@ flowchart LR
 
 ### 🍾 상품 상세 · 장바구니 (`/products/:id` · `/cart`)
 
-목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 셀러 라운지에서 등록한 병은 `bitdam.catalog.seller`에 붙어 `/products`에 나옵니다. 재고는 시드+오버레이(`bitdam.catalog.stock`)이며 품절 SKU는 구매가 막힙니다. 결제하면 재고가 줄고 알림 센터에 주문 알림이 쌓입니다.
+목록·홈 피드·채팅 추천이 PDP로 연결됩니다. 셀러 라운지에서 등록한 병은 `bitdam.catalog.seller`에 붙어 `/products`에 나옵니다. 재고는 시드+오버레이(`bitdam.catalog.stock`)이며 품절 SKU는 구매가 막힙니다. 라운지에서 **판매 중지**한 병은 `bitdam.catalog.paused`에 들어가 카탈로그 목록에서 빠지고 PDP·장바구니 구매가 막힙니다. 결제하면 재고가 줄고 알림 센터에 주문 알림이 쌓입니다.
+
+`/mypage/lounge/settlements`는 `LOUNGE_SETTLEMENTS` 목업이 아니라 `bitdam.shop.orders` 라인에서 매출·수수료(11%)·정산예정액을 만듭니다. 배송 완료 건은 정산완료, 그 외 결제 건은 정산대기입니다.
 
 ### 📂 카테고리 상세 (`/category/:slug`)
 
@@ -248,7 +252,7 @@ flowchart LR
 | 기능 | 설명 |
 |------|------|
 | **히어로 패널** | 데스크톱 좌측 50% sticky · 모바일 상단 배너 |
-| **소셜 로그인** | 카카오 공식 버튼 이미지 · OAuth 코드 플로우 (`/login/kakao/callback`) |
+| **소셜 로그인** | 카카오 · 네이버 OAuth 코드 플로우. Apple은 SPA에서 JWT를 못 서명해 안내만 |
 | **이메일 로그인** | 가입한 계정으로 localStorage 데모 로그인 |
 
 ### 🧾 회원가입 (`/signup`)
@@ -260,7 +264,7 @@ flowchart LR
 | **필드** | 닉네임 · 이메일 · 비밀번호(8자+) · 비밀번호 확인 |
 | **검증** | 중복 이메일 · 확인 불일치 · 약관 미동의 |
 | **이후** | 바로 로그인 처리 후 `from` 경로 또는 홈으로 이동 |
-| **기타 소셜 UI** | 네이버 · Apple 버튼 (OAuth **미연동**) |
+| **기타 소셜 UI** | Apple 버튼 → 서버 키 필요 안내 (Sign in with Apple 미연동) |
 | **하단 피드** | `InfiniteProductFeed` + `InfiniteStoryFeed` (스크롤 탐색) |
 
 ### 📱 공통
@@ -333,6 +337,7 @@ BITDAM/
 ├── index.html
 ├── .gitignore · .oxlintrc.json
 ├── .github/
+│   ├── workflows/ci.yml           # npm ci · oxlint · build
 │   ├── pull_request_template.md
 │   └── docs/
 │       ├── pr-001-initial-frontend.md
@@ -395,7 +400,7 @@ BITDAM/
 | 경로 | 설명 |
 |------|------|
 | **styles/** | `tokens.css` · `global.css` · footer/navbar/feed/product CSS |
-| **hooks/** | `useMobileMenu` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
+| **hooks/** | `useMobileMenu` · `useFocusTrap` · `useFilterPanel` · `usePaginatedProducts` · `usePaginatedStories` · `useInfiniteScroll` · `useResponsiveBreakpoint` |
 | **components/layout/footer/** | `Footer` · `FooterBrand` · `FooterLinkColumn` · `FooterBottom` |
 | **components/navigation/** | `SiteHeader` · `Navbar` · `NavbarActions` · `NavbarDesktopLinks` · `SiteHamburgerMenu` · `AccountMenu` |
 | **components/brand/** | `BrandLogo` |
@@ -550,7 +555,7 @@ Node.js 20+, npm 9+
 git clone https://github.com/zyansuh/bitdam.git
 cd bitdam
 npm install
-cp .env.example .env   # VITE_KAKAO_REST_API_KEY 입력
+cp .env.example .env   # VITE_KAKAO_REST_API_KEY · (선택) VITE_NAVER_CLIENT_ID 입력
 npm run dev          # http://localhost:5173
 ```
 
@@ -558,6 +563,11 @@ npm run dev          # http://localhost:5173
 
 - `http://localhost:5173/login/kakao/callback`
 - (배포 시) `https://<배포 도메인>/login/kakao/callback` 예: `https://bitdam.vercel.app/login/kakao/callback`
+
+네이버는 개발자 센터 **Callback URL**에 아래를 등록합니다.
+
+- `http://localhost:5173/login/naver/callback`
+- (배포 시) `https://<배포 도메인>/login/naver/callback`
 
 ### Vercel 환경 변수 (카카오 로그인)
 
@@ -569,6 +579,8 @@ Vite는 `VITE_*` 값을 **빌드 시점**에 넣습니다. 대시보드에 키�
 | `VITE_KAKAO_JAVASCRIPT_KEY` | 아니오 | JS SDK용. 현재 REST 플로우에는 필수는 아님 |
 | `VITE_KAKAO_REDIRECT_URI` | 쓰지 않음 | 넣으면 배포에서도 localhost로 고정됨. **Vercel에서 삭제** |
 | `VITE_KAKAO_CLIENT_SECRET` | 아니오 | 콘솔에서 Client Secret을 켠 경우에만 |
+| `VITE_NAVER_CLIENT_ID` | 네이버 사용 시 | 네이버 로그인 애플리케이션 Client ID |
+| `VITE_NAVER_CLIENT_SECRET` | 네이버 사용 시 | 토큰 교환용. **SPA 빌드에 포함됨** |
 | `VITE_OPENAI_API_KEY` | 아니오 | 있으면 `/chat`이 OpenAI `gpt-4o-mini`를 호출. **프론트에 노출됨** |
 
 Vercel → Project → Settings → Environment Variables에서 Production / Preview / Development에 추가한 뒤 Redeploy 합니다. 잘못된 이름(`VITE_KAKO_API_KEY` 등)만 있어도 빌드에 키가 안 들어갑니다. 코드는 `VITE_KAKAO_API_KEY`, `VITE_KAKO_API_KEY`를 보조로 읽지만 **정식 이름은 `VITE_KAKAO_REST_API_KEY`** 입니다.
@@ -601,6 +613,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/terms | 서비스 운영정책 |
 | http://localhost:5173/privacy | 개인정보처리방침 |
 | http://localhost:5173/login/kakao/callback | 카카오 OAuth 콜백 |
+| http://localhost:5173/login/naver/callback | 네이버 OAuth 콜백 |
 | http://localhost:5173/breweries | 양조장 지도 |
 | http://localhost:5173/tours | 지역별 투어 예약 |
 | http://localhost:5173/breweries/samhae | 양조장 상세 (삼해소주 예시) |
@@ -620,6 +633,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/limited | 크리에이터 한정판 |
 | http://localhost:5173/ir | 투자 IR |
 | http://localhost:5173/mypage/lounge | 셀러 라운지 (인증된 공방만) |
+| http://localhost:5173/mypage/lounge/settlements | ShopOrder 정산 |
 | http://localhost:5173/mypage/lounge/verify | 사업자 인증 · 내 양조장 지정 |
 | http://localhost:5173/mypage/admin/people | 구성원 권한 (ADMIN) |
 | http://localhost:5173/mypage/admin/performance | 직원 성과 (ADMIN) |
@@ -716,14 +730,17 @@ import { getProductsPage } from '../../../data/products';
 - [ ] Unsplash placeholder → 실제 디자인 에셋 교체
 - [ ] 공지·커뮤니티 IndexedDB → 서버 API/DB
 - [x] 카카오 로그인 OAuth (공식 버튼 이미지)
-- [ ] 네이버 · Apple OAuth 연동
-- [ ] `npm run lint` 통과 · GitHub Actions CI
+- [x] 네이버 OAuth (`/login/naver/callback` · Vite/Vercel 프록시)
+- [ ] Apple Sign In (서버 JWT `client_secret` 필요)
+- [x] `npm run lint`(oxlint) · GitHub Actions CI
 - [ ] 프로덕션 배포 (Vercel 등)
+- [ ] 전 페이지 대체 텍스트·포커스 링 (셸 모달·햄버거는 적용됨)
 
 ### Changelog
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | 라운지 정산←ShopOrder · 판매 중지 · CI · 셸 포커스 트랩 · 네이버 OAuth |
 | **2026-09-07** | 직원 성과 실집계 · 셀러 상품 카탈로그 · 재고/품절 · 1:1 답변 · 알림 연동 |
 | **2026-09-07** | 쿠폰 결제 차감 · 카탈로그 검색 AND · 예약 내역 · 공개 피드 · 공지/커뮤니티 IndexedDB |
 | **2026-09-07** | PDP · 장바구니·라운지 주문 · 결제완료/배송 · 리뷰 · 위시리스트 |
