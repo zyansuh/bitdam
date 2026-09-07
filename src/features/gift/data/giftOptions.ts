@@ -1,11 +1,11 @@
 import type { GiftSkin, GiftStepId, GiftWrap } from '../types/gift'
-import skinCelebrate from '../../../assets/gift/skin-celebrate.png'
-import skinClassic from '../../../assets/gift/skin-classic.png'
-import skinModern from '../../../assets/gift/skin-modern.png'
-import skinThanks from '../../../assets/gift/skin-thanks.png'
-import wrapBox from '../../../assets/gift/wrap-box.png'
-import wrapHanji from '../../../assets/gift/wrap-hanji.png'
-import wrapRoyal from '../../../assets/gift/wrap-royal.png'
+import skinCelebrate from '../../../assets/gift/skin-celebrate.webp'
+import skinClassic from '../../../assets/gift/skin-classic.webp'
+import skinModern from '../../../assets/gift/skin-modern.webp'
+import skinThanks from '../../../assets/gift/skin-thanks.webp'
+import wrapBox from '../../../assets/gift/wrap-box.webp'
+import wrapHanji from '../../../assets/gift/wrap-hanji.webp'
+import wrapRoyal from '../../../assets/gift/wrap-royal.webp'
 
 export const GIFT_STEPS: { id: GiftStepId; title: string }[] = [
   { id: 1, title: '상품 선택' },
