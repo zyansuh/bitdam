@@ -1,0 +1,91 @@
+.wish-page {
+  @apply mx-auto max-w-7xl px-0 py-8 sm:py-10;
+}
+
+.wish-page__head {
+  @apply mb-8 flex flex-col gap-4 min-[600px]:flex-row min-[600px]:items-end min-[600px]:justify-between;
+}
+
+.wish-page__title {
+  @apply font-serif text-2xl font-semibold text-charcoal sm:text-3xl;
+}
+
+.wish-page__lead {
+  @apply mt-2 max-w-xl text-sm text-muted;
+}
+
+.wish-toolbar {
+  @apply flex items-center gap-4 text-sm;
+}
+
+.wish-toolbar__count {
+  @apply text-muted;
+}
+
+.wish-toolbar__sort select {
+  @apply rounded-md border border-cream-dark bg-surface px-3 py-2 text-sm outline-none focus:border-gold;
+}
+
+.wish-page__grid {
+  @apply grid grid-cols-2 gap-x-4 gap-y-10 min-[1000px]:grid-cols-4 min-[1000px]:gap-x-6;
+}
+
+.wish-page__empty {
+  @apply rounded-xl border border-dashed border-cream-dark bg-surface px-6 py-16 text-sm text-muted;
+}
+
+.wish-page__empty a {
+  @apply mt-3 inline-block font-semibold text-gold;
+}
+
+.wish-card__media {
+  @apply relative mb-3 overflow-hidden rounded-xl bg-cream-dark;
+}
+
+.wish-card__image {
+  @apply aspect-[4/5] w-full object-cover;
+}
+
+.wish-card__brewery {
+  @apply text-xs text-muted;
+}
+
+.wish-card__name {
+  @apply mt-1 block font-semibold text-charcoal hover:text-gold;
+}
+
+.wish-card__rating {
+  @apply mt-1 flex items-center gap-1 text-xs text-muted;
+}
+
+.wish-card__star {
+  @apply fill-gold text-gold;
+}
+
+.wish-card__price {
+  @apply mt-2 text-sm font-semibold text-charcoal;
+}
+
+.wish-card__cart {
+  @apply mt-3 w-full rounded-md bg-navy py-2.5 text-sm font-semibold text-white hover:bg-navy-light;
+}
+
+.wish-heart {
+  @apply flex items-center justify-center text-gold;
+}
+
+.wish-heart--overlay {
+  @apply absolute top-2 right-2 z-10 h-9 w-9 rounded-full bg-surface/90 text-charcoal shadow-sm;
+}
+
+.wish-heart--overlay.wish-heart--on {
+  @apply text-gold;
+}
+
+.wish-heart--plain {
+  @apply rounded-sm border border-cream-dark p-2.5 text-charcoal/70 hover:text-gold;
+}
+
+.wish-heart--plain.wish-heart--on {
+  @apply border-gold text-gold;
+}
