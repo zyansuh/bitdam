@@ -7,6 +7,7 @@ import CatalogHeader from '../../catalog/components/CatalogHeader'
 import OrderShippingBlock from '../components/OrderShippingBlock'
 import OrderStepper from '../components/OrderStepper'
 import { ORDER_STEPS } from '../data/orderSteps'
+import EmptyState from '../../../shared/components/feedback/EmptyState'
 import { useShopOrderParam } from '../hooks/useShopOrderParam'
 
 export default function OrderDetailPage() {
@@ -18,8 +19,11 @@ export default function OrderDetailPage() {
         <CatalogHeader />
         <main className="order-complete">
           <div className="order-complete__empty">
-            <p>주문을 찾을 수 없습니다.</p>
-            <Link to="/mypage">마이페이지</Link>
+            <EmptyState
+              title="주문을 찾을 수 없습니다"
+              body="주문 번호가 없거나 이 브라우저에 기록이 없습니다."
+              action={{ href: '/mypage', label: '마이페이지' }}
+            />
           </div>
         </main>
         <Footer />
