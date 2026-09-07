@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { LearnArticle } from '../types/learn'
+import LearnCover from './LearnCover'
 import LearnTagBadge from './LearnTagBadge'
 
 interface LearnArticleCardProps {
@@ -10,6 +11,7 @@ export default function LearnArticleCard({ article }: LearnArticleCardProps) {
   return (
     <article className="learn-card">
       <Link to={`/learn/${article.slug}`} className="learn-card__link">
+        <LearnCover src={article.cover} alt="" />
         <LearnTagBadge tag={article.tag} />
         <h3 className="learn-card__title">{article.title}</h3>
         <p className="learn-card__lead">{article.lead}</p>
