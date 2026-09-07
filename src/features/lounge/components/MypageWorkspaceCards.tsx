@@ -6,6 +6,7 @@ import {
   canPickAllShops,
   canViewStaffPerformance,
   canWriteNotice,
+  canWriteWorkReport,
   needsWorkshopVerify,
   resolveWorkspaceRole,
   workspaceRoleLabel,
@@ -47,6 +48,13 @@ export default function MypageWorkspaceCards() {
               ? '직원·팀장·ADMIN은 전체 공방을 골라 볼 수 있습니다.'
               : `${shop?.name ?? '내 공방'}만 보입니다.`}
           </p>
+        </Link>
+      ) : null}
+      {canWriteWorkReport(role) ? (
+        <Link to="/mypage/staff/work-reports" className="lounge-mypage-card">
+          <p className="lounge-mypage-card__kicker">{workspaceRoleLabel(role)}</p>
+          <h2>업무 보고</h2>
+          <p>라운지·시설 점검과 내부 보고를 등록합니다. 팀장·ADMIN은 전체를 확인합니다.</p>
         </Link>
       ) : null}
       {canWriteNotice(role) ? (
