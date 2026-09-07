@@ -3,6 +3,7 @@ import { settingsNav } from './settingsNav'
 
 export const headerAccountLinks: NavLinkItem[] = [
   { label: '마이페이지', to: '/mypage' },
+  { label: '위시리스트', to: '/wishlist' },
   { label: '알림 센터', to: '/notifications' },
 ]
 
