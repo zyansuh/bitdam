@@ -26,6 +26,38 @@
   @apply rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-charcoal hover:border-gold hover:text-gold;
 }
 
+.learn-tag {
+  @apply inline-block rounded-full bg-gold/10 px-2.5 py-0.5 text-[11px] font-medium text-gold;
+}
+
+.learn-daily {
+  @apply mb-10 rounded-2xl border border-gold/30 bg-surface px-5 py-6;
+}
+
+.learn-daily__kicker {
+  @apply mb-2 text-xs tracking-[0.18em] text-gold;
+}
+
+.learn-daily__title {
+  @apply mt-2 font-serif text-2xl text-charcoal;
+}
+
+.learn-daily__lead {
+  @apply mt-2 max-w-2xl text-sm text-muted;
+}
+
+.learn-daily__meta {
+  @apply mt-3 text-xs text-muted;
+}
+
+.learn-tone {
+  @apply mb-8 rounded-xl border border-line bg-surface px-4 py-3 text-sm text-muted;
+}
+
+.learn-tone__label {
+  @apply mb-1 text-xs font-medium tracking-wide text-gold;
+}
+
 .learn-block {
   @apply mb-14 scroll-mt-24;
 }
@@ -92,6 +124,14 @@
 
 .learn-article__body h2 {
   @apply mb-2 font-serif text-xl text-charcoal;
+}
+
+.learn-article__takeaways {
+  @apply rounded-xl border border-line bg-surface px-5 py-4;
+}
+
+.learn-article__takeaways ul {
+  @apply list-disc space-y-2 pl-5 text-sm text-charcoal;
 }
 
 .learn-more {
