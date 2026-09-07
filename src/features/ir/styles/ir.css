@@ -1,0 +1,178 @@
+.ir-hero {
+  @apply bg-navy px-6 py-16 text-center text-white;
+}
+
+.ir-hero__mark {
+  @apply mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold font-serif text-navy;
+}
+
+.ir-hero h1 {
+  @apply mx-auto max-w-3xl font-serif text-3xl md:text-4xl;
+}
+
+.ir-hero p {
+  @apply mx-auto mt-4 max-w-2xl text-sm text-white/80;
+}
+
+.ir-page {
+  @apply bg-cream-dark pb-16;
+}
+
+.ir-block {
+  @apply mx-auto max-w-6xl px-4 py-10;
+}
+
+.ir-block h2,
+.ir-card h2,
+.ir-card h3 {
+  @apply mb-4 font-serif text-navy;
+}
+
+.ir-kicker {
+  @apply mb-1 text-xs tracking-[0.2em] text-gold uppercase;
+}
+
+.ir-kicker--mute {
+  @apply text-muted;
+}
+
+.ir-kpis,
+.ir-canvas,
+.ir-leaders {
+  @apply grid gap-4 md:grid-cols-2 lg:grid-cols-4;
+}
+
+.ir-kpis li,
+.ir-card {
+  @apply rounded-2xl bg-surface p-5 shadow-sm;
+}
+
+.ir-kpis__value {
+  @apply my-2 block font-serif text-3xl;
+}
+
+.ir-kpis__value--gold,
+.ir-gold {
+  @apply text-gold;
+}
+
+.ir-kpis__value--navy {
+  @apply text-navy;
+}
+
+.ir-kpis__value--green,
+.ir-green {
+  @apply text-emerald-700;
+}
+
+.ir-kpis span,
+.ir-sources {
+  @apply text-xs text-muted;
+}
+
+.ir-round {
+  @apply grid gap-6 rounded-2xl bg-surface p-6 shadow-sm lg:grid-cols-[minmax(0,1fr)_280px];
+}
+
+.ir-round__badge {
+  @apply mb-3 inline-block rounded-full bg-gold px-3 py-1 text-xs text-navy;
+}
+
+.ir-round dl {
+  @apply space-y-3;
+}
+
+.ir-round dt {
+  @apply text-xs text-muted;
+}
+
+.ir-round dd {
+  @apply font-serif text-2xl text-navy;
+}
+
+.ir-split {
+  @apply grid gap-4 lg:grid-cols-2;
+}
+
+.ir-venn {
+  @apply relative mx-auto h-56 w-56;
+}
+
+.ir-venn span {
+  @apply absolute flex items-center justify-center rounded-full text-xs font-semibold text-navy;
+}
+
+.ir-venn__tam {
+  @apply top-2 left-4 h-40 w-40 bg-amber-200/80;
+}
+
+.ir-venn__sam {
+  @apply top-8 right-0 h-32 w-32 bg-rose-200/80;
+}
+
+.ir-venn__som {
+  @apply bottom-4 left-16 h-20 w-20 bg-emerald-300;
+}
+
+.ir-market-list,
+.ir-canvas ul,
+.ir-sources {
+  @apply mt-4 space-y-2 text-sm;
+}
+
+.ir-bars {
+  @apply space-y-4;
+}
+
+.ir-bars p {
+  @apply mb-1 flex justify-between text-sm;
+}
+
+.ir-bars__track {
+  @apply h-3 overflow-hidden rounded-full bg-cream;
+}
+
+.ir-bars__fill {
+  @apply block h-full rounded-full;
+}
+
+.ir-bars__fill--d2c {
+  @apply bg-gold;
+}
+
+.ir-bars__fill--sub {
+  @apply bg-emerald-600;
+}
+
+.ir-bars__fill--exp {
+  @apply bg-navy;
+}
+
+.ir-leaders img {
+  @apply mx-auto mb-3 h-28 w-28 rounded-full object-cover;
+}
+
+.ir-advisors {
+  @apply grid gap-4 md:grid-cols-3;
+}
+
+.ir-advisors__item {
+  @apply flex items-center gap-3;
+}
+
+.ir-advisors span {
+  @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold font-serif text-navy;
+}
+
+.ir-card label {
+  @apply mt-3 block text-sm text-muted;
+}
+
+.ir-card input {
+  @apply mt-1 w-full rounded-xl border border-line bg-cream px-3 py-3 text-sm text-navy;
+}
+
+.ir-card .shop-gold-btn,
+.ir-card .shop-navy-btn {
+  @apply mt-4 w-full;
+}
