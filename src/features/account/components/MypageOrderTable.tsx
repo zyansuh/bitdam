@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { formatWon } from '../../../shared/utils/formatWon'
 import { useMypageOrders } from '../hooks/useMypageOrders'
 
@@ -25,7 +26,9 @@ export default function MypageOrderTable({ compact = false }: MypageOrderTablePr
             <tr key={order.id}>
               <td>
                 <p>{order.date}</p>
-                <p className="mypage-table__sub">{order.id}</p>
+                <p className="mypage-table__sub">
+                  <Link to={`/mypage/orders/${order.id}`}>{order.id}</Link>
+                </p>
               </td>
               <td>{order.name}</td>
               <td>{formatWon(order.amount)}</td>
