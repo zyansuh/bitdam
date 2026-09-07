@@ -1,11 +1,8 @@
 import { OPENAI_MODEL } from '../data/chatPrompt'
 import type { ChatMessage } from '../types/chat'
 import { pickChatProducts } from '../utils/pickChatProducts'
+import { postOpenAiChat } from '../../../shared/utils/openaiProxy'
 import { buildBitdamSystemPrompt } from './buildPrompt'
-
-export function getOpenAiKey(): string {
-  return (import.meta.env.VITE_OPENAI_API_KEY ?? '').trim()
-}
 
 function localReply(prompt: string): string {
   if (prompt.includes('미성년') || prompt.includes('19세')) {
@@ -39,32 +36,21 @@ function localReply(prompt: string): string {
 }
 
 export async function askBitdamModel(history: ChatMessage[], prompt: string): Promise<string> {
-  const key = getOpenAiKey()
-  if (!key) {
-    return localReply(prompt)
-  }
-
   const messages = [
     { role: 'system' as const, content: buildBitdamSystemPrompt() },
     ...history.map((item) => ({ role: item.role, content: item.text })),
     { role: 'user' as const, content: prompt },
   ]
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: OPENAI_MODEL,
-      temperature: 0.6,
-      messages,
-    }),
+  const response = await postOpenAiChat({
+    model: OPENAI_MODEL,
+    temperature: 0.6,
+    messages,
   })
 
   if (!response.ok) {
-    throw new Error('OpenAI 응답에 실패했습니다. 키와 모델 권한을 확인해 주세요.')
+    if (response.status === 501) return localReply(prompt)
+    throw new Error('OpenAI 응답에 실패했습니다. 서버 OPENAI_API_KEY를 확인해 주세요.')
   }
 
   const data = (await response.json()) as { choices?: { message?: { content?: string } }[] }
