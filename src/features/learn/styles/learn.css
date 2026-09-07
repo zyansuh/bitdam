@@ -1,0 +1,151 @@
+.learn-page {
+  @apply mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8;
+}
+
+.learn-hero {
+  @apply mb-10 max-w-3xl;
+}
+
+.learn-hero__kicker {
+  @apply mb-3 text-xs tracking-[0.2em] text-gold uppercase;
+}
+
+.learn-hero__title {
+  @apply font-serif text-3xl leading-tight text-charcoal sm:text-4xl;
+}
+
+.learn-hero__lead {
+  @apply mt-4 text-sm leading-relaxed text-muted sm:text-base;
+}
+
+.learn-toc {
+  @apply mb-12 flex flex-wrap gap-3 border-b border-line pb-6;
+}
+
+.learn-toc a {
+  @apply rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-charcoal hover:border-gold hover:text-gold;
+}
+
+.learn-tag {
+  @apply inline-block rounded-full bg-gold/10 px-2.5 py-0.5 text-[11px] font-medium text-gold;
+}
+
+.learn-daily {
+  @apply mb-10 rounded-2xl border border-gold/30 bg-surface px-5 py-6;
+}
+
+.learn-daily__kicker {
+  @apply mb-2 text-xs tracking-[0.18em] text-gold;
+}
+
+.learn-daily__title {
+  @apply mt-2 font-serif text-2xl text-charcoal;
+}
+
+.learn-daily__lead {
+  @apply mt-2 max-w-2xl text-sm text-muted;
+}
+
+.learn-daily__meta {
+  @apply mt-3 text-xs text-muted;
+}
+
+.learn-tone {
+  @apply mb-8 rounded-xl border border-line bg-surface px-4 py-3 text-sm text-muted;
+}
+
+.learn-tone__label {
+  @apply mb-1 text-xs font-medium tracking-wide text-gold;
+}
+
+.learn-block {
+  @apply mb-14 scroll-mt-24;
+}
+
+.learn-block__kicker {
+  @apply text-xs tracking-[0.18em] text-gold;
+}
+
+.learn-block__title {
+  @apply mt-1 font-serif text-2xl text-charcoal;
+}
+
+.learn-block__lead {
+  @apply mt-2 mb-6 max-w-2xl text-sm text-muted;
+}
+
+.learn-block__grid {
+  @apply grid gap-4 sm:grid-cols-2;
+}
+
+.learn-card {
+  @apply rounded-xl border border-line bg-surface transition-colors hover:border-gold/50;
+}
+
+.learn-card__link {
+  @apply block p-5 text-inherit no-underline;
+}
+
+.learn-card__kicker {
+  @apply text-[11px] font-medium text-gold;
+}
+
+.learn-card__title {
+  @apply mt-2 font-serif text-lg leading-snug text-charcoal;
+}
+
+.learn-card__lead {
+  @apply mt-2 text-sm leading-relaxed text-muted;
+}
+
+.learn-card__meta {
+  @apply mt-3 text-xs text-muted;
+}
+
+.learn-article h1 {
+  @apply font-serif text-3xl leading-tight text-charcoal sm:text-4xl;
+}
+
+.learn-article__kicker {
+  @apply mb-3 text-xs text-gold;
+}
+
+.learn-article__lead {
+  @apply mt-4 text-base leading-relaxed text-muted;
+}
+
+.learn-article__meta {
+  @apply mt-2 mb-8 text-xs text-muted;
+}
+
+.learn-article__body {
+  @apply flex flex-col gap-8 text-[0.975rem] leading-relaxed text-charcoal;
+}
+
+.learn-article__body h2 {
+  @apply mb-2 font-serif text-xl text-charcoal;
+}
+
+.learn-article__takeaways {
+  @apply rounded-xl border border-line bg-surface px-5 py-4;
+}
+
+.learn-article__takeaways ul {
+  @apply list-disc space-y-2 pl-5 text-sm text-charcoal;
+}
+
+.learn-more {
+  @apply mt-16 border-t border-line pt-8;
+}
+
+.learn-more h2 {
+  @apply mb-3 font-serif text-lg;
+}
+
+.learn-more ul {
+  @apply mb-6 flex flex-col gap-2 text-sm;
+}
+
+.learn-more a {
+  @apply text-charcoal hover:text-gold;
+}

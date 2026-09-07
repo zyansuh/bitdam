@@ -7,6 +7,7 @@ export const navLinks: NavLinkItem[] = [
   { label: '한정판', to: '/limited' },
   { label: '선물세트', to: '/gift' },
   { label: '명절 투어', to: '/holiday/tours' },
+  { label: '술 상식', to: '/learn' },
   { label: '스토리', to: '/story' },
   { label: 'IR', to: '/ir' },
 ]

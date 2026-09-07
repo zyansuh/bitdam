@@ -57,6 +57,9 @@ import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
 import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
 import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
 import IrPage from '../features/ir/pages/IrPage'
+import LearnIndexPage from '../features/learn/pages/LearnIndexPage'
+import LearnArticlePage from '../features/learn/pages/LearnArticlePage'
+import LearnDeskPage from '../features/learn/pages/LearnDeskPage'
 import NotFoundPage from '../features/error/pages/NotFoundPage'
 import LoungeDashboardPage from '../features/lounge/pages/LoungeDashboardPage'
 import LoungeProductsPage from '../features/lounge/pages/LoungeProductsPage'
@@ -83,6 +86,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomeLanding />} />
       <Route path="/story" element={<BrandStoryPage />} />
+      <Route path="/learn" element={<LearnIndexPage />} />
+      <Route path="/learn/:slug" element={<LearnArticlePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
@@ -121,6 +126,7 @@ export function AppRoutes() {
       <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
       <Route path="/mypage/admin/content/ir-leaders" element={<CmsIrLeadersPage />} />
       <Route path="/mypage/admin/content/ir-round" element={<CmsIrRoundPage />} />
+      <Route path="/mypage/admin/content/learn" element={<LearnDeskPage />} />
       <Route path="/mypage/admin/content" element={<CmsListPage />} />
       <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
       <Route path="/mypage/admin/support" element={<AdminSupportPage />} />
