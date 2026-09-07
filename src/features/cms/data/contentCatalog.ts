@@ -21,4 +21,11 @@ export const CMS_DOCUMENTS: CmsDocument[] = [
     viewTo: '/ir#round',
     editTo: '/mypage/admin/content/ir-round',
   },
+  {
+    id: 'learn.desk',
+    title: '술 상식 하루 한 장',
+    summary: 'AI 초안을 받아 날짜에 맞춰 공개',
+    viewTo: '/learn',
+    editTo: '/mypage/admin/content/learn',
+  },
 ]
