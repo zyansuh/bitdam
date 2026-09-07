@@ -7,7 +7,11 @@ export const footerLinks: Record<string, FooterNavLink[]> = {
     { label: '브랜드 스토어', to: '/products' },
     { label: '클래스', to: '/classes' },
     { label: '기념주 제작', to: '/custom' },
-    { label: '이벤트' },
+    { label: '선물하기', to: '/gift' },
+    { label: '추석 특별전', to: '/events/chuseok' },
+    { label: '타임 특가', to: '/deals' },
+    { label: '정기 구독', to: '/subscribe' },
+    { label: '단체 · 기업 선물', to: '/corporate' },
     { label: '커뮤니티', to: '/community' },
   ],
   고객지원: [

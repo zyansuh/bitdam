@@ -14,8 +14,22 @@ const shopItems: SiteMenuLinkItem[] = [
 export function getSiteMenuBranches(): SiteMenuBranch[] {
   return [
     {
+      id: 'gift',
+      label: '선물 · 특가',
+      to: '/gift',
+      items: [
+        { label: '선물하기', to: '/gift' },
+        { label: '추석 특별전', to: '/events/chuseok' },
+        { label: '설날 특별전', to: '/events/seollal' },
+        { label: '타임 특가', to: '/deals' },
+        { label: '정기 구독', to: '/subscribe' },
+        { label: '단체 · 기업 선물', to: '/corporate' },
+      ],
+      clusters: [],
+    },
+    {
       id: 'shop',
-      label: '전통주',
+      label: '전통주 마켓',
       to: '/products',
       items: shopItems,
       clusters: [],
@@ -60,7 +74,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '브랜드 스토리', to: '/story' },
         { label: '글 목록', to: '/community' },
         { label: '글쓰기', to: '/community/new' },
-        { label: '이벤트', to: '/' },
+        { label: '명절 특별전', to: '/events/chuseok' },
       ],
       clusters: [],
     },

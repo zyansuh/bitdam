@@ -7,7 +7,7 @@
 }
 
 .navbar__desktop {
-  @apply hidden items-center gap-8 min-[1000px]:flex lg:gap-10;
+  @apply hidden items-center gap-3 min-[1000px]:flex lg:gap-5;
 }
 
 .navbar--navy {

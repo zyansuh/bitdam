@@ -19,6 +19,8 @@
 @import './features/home/styles/promo-banner.css';
 @import './features/brand/styles/brand-story.css';
 @import './features/custom/styles/custom.css';
+@import './shared/styles/shop.css';
+@import './shared/styles/campaign-pages.css';
 @import './features/auth/styles/login.css';
 @import './features/auth/styles/kakao.css';
 @import './features/auth/styles/auth-notice.css';

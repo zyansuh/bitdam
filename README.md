@@ -71,6 +71,11 @@
 | `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 스토리 피드 |
 | `/story` | `BrandStoryPage` | 시간이 흐를수록 · 못난이 과일 · 철학·펀딩·여정 |
 | `/custom` | `CustomLabelPage` | 기념주 라벨 4단계 맞춤 · 실시간 견적 |
+| `/gift` | `GiftPage` | 선물 3단계: 상품 선택 → 메시지 → 결제 |
+| `/events` · `/events/:slug` | `HolidayEventPage` | 명절 특별전 · TIME REMAINING · 응모 인원 |
+| `/deals` | `TimeSalePage` | 상시 타임 특가 · 카운트다운 · 할인 필터 |
+| `/subscribe` | `SubscribePage` | 상시 정기 구독 플랜 · 가이드 · FAQ |
+| `/corporate` | `CorporateGiftPage` | 상시 단체·기업 선물 · 수량 할인 · 견적 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
@@ -386,6 +391,11 @@ BITDAM/
 | **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·모아보기 |
 | **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
 | **custom** | `CustomLabelPage` | `custom.css` | 기념주 4단계 · 실시간 견적 |
+| **gift** | `GiftPage` | `shop.css` | 상품 선택 → 메시지 → 결제 (순서 강제) |
+| **event** | `HolidayEventPage` | `shop.css` | 추석·설 등 명절 특별전 · 응모 |
+| **deals** | `TimeSalePage` | `shop.css` | 상시 타임 특가 |
+| **subscribe** | `SubscribePage` | `shop.css` | 상시 빚담박스 구독 |
+| **corporate** | `CorporateGiftPage` | `shop.css` | 상시 단체·기업 선물 |
 | **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -394,7 +404,8 @@ BITDAM/
 | 파일 | 설명 |
 |------|------|
 | `products.ts` | `Product` 타입 · 48종 mock · 지역/도수/맛 태그 |
-| `navLinks.ts` | 기본 헤더 링크 (고객센터 포함) |
+| `navLinks.ts` | 헤더: 전통주 마켓 · 선물 · 명절 · 특가 · 구독 · 기업 · 기념주 |
+| `campaignNav.ts` | 활성 명절 라벨을 헤더에 넣는 헬퍼 |
 | `settingsNav.ts` · `headerAccountLinks.ts` · `helpNav.ts` | 설정·계정 메뉴·FAQ 분류 |
 | `footerLinks.ts` | 푸터 컬럼 링크 |
 | `stories.ts` | 스토리 피드 mock |
@@ -555,6 +566,11 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/notices | 공지사항 |
 | http://localhost:5173/chat | 빚담 추천 AI |
 | http://localhost:5173/custom | 기념주 라벨 맞춤 |
+| http://localhost:5173/gift | 전통주 선물하기 |
+| http://localhost:5173/events/chuseok | 추석 특별전 |
+| http://localhost:5173/deals | 타임 특가 |
+| http://localhost:5173/subscribe | 정기 구독 |
+| http://localhost:5173/corporate | 단체 · 기업 선물 |
 | http://localhost:5173/story | 브랜드 스토리 |
 
 ---
@@ -655,6 +671,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 선물 3단계 · 추석 특별전 · 타임 특가 · 구독 · 기업선물 |
 | **2026-09-07** | 채팅 프롬프트를 정책 파일 + `buildPrompt`로 분리 |
 | **2026-09-07** | `/tours` 권역별 예약 · 기념주 도자기 병(소주·약주·과실주, 막걸리 제외) |
 | **2026-09-07** | 스토리 못난이 과일 · 시간이 흐를수록 히어로 |

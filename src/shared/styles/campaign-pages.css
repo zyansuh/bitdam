@@ -1,0 +1,180 @@
+.hgift-hero,
+.htour-hero,
+.limited-hero {
+  @apply bg-cover bg-center;
+}
+
+.hgift-hero__veil,
+.htour-hero > div,
+.limited-hero > div {
+  @apply flex min-h-[320px] flex-col justify-end bg-navy/60 px-6 py-12 text-white;
+}
+
+.hgift-hero__veil {
+  @apply gap-6 lg:flex-row lg:items-end lg:justify-between;
+}
+
+.hgift-hero__script {
+  @apply font-serif text-6xl text-gold;
+}
+
+.hgift-page {
+  @apply mx-auto grid max-w-6xl gap-6 px-4 py-8 lg:grid-cols-[220px_minmax(0,1fr)];
+}
+
+.hgift-tabs {
+  @apply col-span-full flex flex-wrap gap-3;
+}
+
+.hgift-tabs .is-on,
+.lucky-stamps .is-on {
+  @apply text-gold;
+}
+
+.hgift-filters {
+  @apply rounded-2xl bg-surface p-4 text-sm;
+}
+
+.hgift-filters h3,
+.lucky-ads h2,
+.lucky-notes h2,
+.htour-list h2,
+.limited-story h2,
+.limited-story h3 {
+  @apply mt-4 mb-2 font-serif text-navy;
+}
+
+.hgift-filters label {
+  @apply mt-1 flex items-center gap-2;
+}
+
+.hgift-grid {
+  @apply grid gap-4 sm:grid-cols-2;
+}
+
+.hgift-grid article,
+.lucky-ads li,
+.htour-list li,
+.limited-buy,
+.lucky-panel,
+.lucky-ads,
+.lucky-notes {
+  @apply rounded-2xl bg-surface p-4 shadow-sm;
+}
+
+.hgift-grid img,
+.htour-list img,
+.lucky-ads img {
+  @apply mb-3 h-40 w-full rounded-xl object-cover;
+}
+
+.hgift-grid em,
+.limited-buy__price strong {
+  @apply block text-gold;
+}
+
+.lucky-page,
+.limited-page,
+.htour-list__inner {
+  @apply mx-auto max-w-6xl px-4 py-10;
+}
+
+.lucky-split,
+.limited-page,
+.limited-taste__row {
+  @apply grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px];
+}
+
+.lucky-bag {
+  @apply mt-6 rounded-2xl bg-cream p-6 text-center;
+}
+
+.lucky-bag span {
+  @apply mx-auto mb-3 flex h-24 w-24 items-center justify-center rounded-full bg-gold font-serif text-3xl text-navy;
+}
+
+.lucky-stamps {
+  @apply mt-4 flex flex-wrap gap-2;
+}
+
+.lucky-stamps li {
+  @apply flex h-10 w-10 items-center justify-center rounded-full border border-gold;
+}
+
+.lucky-share {
+  @apply mt-6 rounded-xl bg-cream p-4;
+}
+
+.lucky-notes li {
+  @apply mb-2 list-disc text-sm text-muted;
+}
+
+.htour-list {
+  @apply bg-navy text-white;
+}
+
+.htour-list ul {
+  @apply mt-8 grid gap-4 md:grid-cols-3;
+}
+
+.htour-list li {
+  @apply text-navy;
+}
+
+.htour-list span {
+  @apply rounded-full bg-rose-800 px-2 py-1 text-xs text-white;
+}
+
+.limited-hero span {
+  @apply mr-2 rounded-full bg-gold px-2 py-1 text-xs text-navy;
+}
+
+.limited-spec {
+  @apply rounded-2xl bg-cream p-4;
+}
+
+.limited-spec dl div {
+  @apply mb-2 flex gap-3 text-sm;
+}
+
+.limited-spec dt {
+  @apply w-24 text-muted;
+}
+
+.taste-radar {
+  @apply m-0;
+}
+
+.taste-radar svg {
+  @apply h-56 w-56;
+}
+
+.taste-radar__grid,
+.taste-radar__frame {
+  fill: none;
+  stroke: #d9d0c8;
+}
+
+.taste-radar__fill {
+  fill: rgb(197 153 76 / 0.35);
+  stroke: #c5994c;
+}
+
+.taste-radar__label {
+  fill: #2c2c2c;
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.limited-buy {
+  @apply h-fit;
+}
+
+.limited-buy .shop-gold-btn,
+.limited-buy .shop-ghost-btn {
+  @apply mt-3 w-full;
+}
+
+.limited-fund {
+  @apply my-3 rounded-xl bg-emerald-50 p-3 text-sm;
+}
