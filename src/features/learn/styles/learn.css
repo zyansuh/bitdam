@@ -149,3 +149,68 @@
 .learn-more a {
   @apply text-charcoal hover:text-gold;
 }
+
+.learn-filters {
+  @apply mb-10 grid gap-4 border-b border-line pb-8 sm:grid-cols-3;
+}
+
+.learn-filters__field {
+  @apply flex flex-col gap-1 text-xs text-muted;
+}
+
+.learn-filters__field input,
+.learn-filters__field select {
+  @apply rounded-lg border border-line bg-surface px-3 py-2 text-sm text-charcoal;
+}
+
+.learn-filters__count {
+  @apply self-end text-xs text-muted sm:col-span-3;
+}
+
+.learn-cover {
+  @apply mb-4 overflow-hidden rounded-xl border border-line;
+}
+
+.learn-cover__img {
+  @apply h-40 w-full sm:h-48;
+}
+
+.learn-save {
+  @apply mb-6 rounded-full border border-gold px-3 py-1 text-xs text-gold hover:bg-gold/10;
+}
+
+.learn-related {
+  @apply mt-12 rounded-xl border border-line bg-surface px-5 py-4;
+}
+
+.learn-related h2 {
+  @apply mb-2 font-serif text-lg text-charcoal;
+}
+
+.learn-related ul {
+  @apply mt-3 flex flex-col gap-2 text-sm;
+}
+
+.learn-card__link:focus-visible,
+.learn-save:focus-visible,
+.learn-filters__field input:focus-visible,
+.learn-filters__field select:focus-visible {
+  @apply outline-2 outline-offset-2 outline-gold;
+}
+
+:root[data-theme='dark'] .learn-tag {
+  @apply border border-gold/50 bg-surface text-gold;
+}
+
+:root[data-theme='dark'] .learn-tone,
+:root[data-theme='dark'] .learn-daily,
+:root[data-theme='dark'] .learn-related,
+:root[data-theme='dark'] .learn-card {
+  @apply border-line-strong text-charcoal;
+}
+
+:root[data-theme='dark'] .learn-card__lead,
+:root[data-theme='dark'] .learn-tone,
+:root[data-theme='dark'] .learn-filters__count {
+  @apply text-muted;
+}
