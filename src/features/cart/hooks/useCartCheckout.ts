@@ -4,6 +4,7 @@ import { calcCartTotals } from '../../../shared/utils/cartTotals'
 import { couponEffect } from '../../../shared/utils/couponEffect'
 import { markCouponUsed } from '../../../shared/utils/couponStorage'
 import { consumeCatalogStock, isSoldOut } from '../../../data/products'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import { appendShopOrder, createShopOrderId } from '../../../shared/utils/shopOrderStorage'
 import type { ShopOrder } from '../../../shared/types/shopOrder'
 import type { WalletCoupon } from '../../../shared/types/coupon'
@@ -48,6 +49,16 @@ export function useCartCheckout(coupon?: WalletCoupon) {
     }
     appendShopOrder(order)
     consumeCatalogStock(order.lines.map((line) => ({ productId: line.productId, quantity: line.quantity })))
+    appendSiteNotice(
+      makeSiteNotice({
+        kind: 'shipping',
+        title: `${order.lines[0]?.name ?? '주문'} 결제가 완료되었습니다`,
+        body: `주문 ${order.id} · ${order.lines.length}종이 결제 확인입니다. 출고되면 배송 조회가 열립니다.`,
+        actionLabel: '주문 상세',
+        actionTo: `/mypage/orders/${order.id}`,
+        audienceId: user.id,
+      }),
+    )
     if (coupon) markCouponUsed(coupon.id, order.id)
     clearCart()
     return order
