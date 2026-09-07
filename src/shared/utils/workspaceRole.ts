@@ -17,3 +17,7 @@ export function workspaceRoleLabel(role: WorkspaceRole): string {
   if (role === 'seller') return '입점 셀러 (SELLER)'
   return '일반 회원'
 }
+
+export function needsWorkshopVerify(user: AuthUser | null | undefined): boolean {
+  return resolveWorkspaceRole(user) === 'seller' && user?.sellerVerified !== true
+}
