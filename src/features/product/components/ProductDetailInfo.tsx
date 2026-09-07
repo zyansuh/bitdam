@@ -2,6 +2,7 @@ import { Minus, Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../../../data/products'
 import { isSoldOut } from '../../../data/products'
+import { isCatalogPaused } from '../../../shared/utils/catalogPauseStorage'
 import WishHeartButton from '../../../shared/components/product/WishHeartButton'
 import { formatWon } from '../../../shared/utils/formatWon'
 import { useItemQuantity } from '../hooks/useItemQuantity'
@@ -15,6 +16,7 @@ interface ProductDetailInfoProps {
 export default function ProductDetailInfo({ product, similar }: ProductDetailInfoProps) {
   const { quantity, decrease, increase } = useItemQuantity(1, product.stock ?? 9)
   const soldOut = isSoldOut(product)
+  const paused = isCatalogPaused(product.id)
 
   return (
     <div className="pdp-info">
@@ -44,7 +46,9 @@ export default function ProductDetailInfo({ product, similar }: ProductDetailInf
             <Plus size={16} />
           </button>
         </div>
-        {soldOut ? (
+        {paused ? (
+          <span className="pdp-info__cart pdp-info__cart--sold">판매 중지</span>
+        ) : soldOut ? (
           <span className="pdp-info__cart pdp-info__cart--sold">품절</span>
         ) : (
           <Link to={`/cart?product=${product.id}&qty=${quantity}`} className="pdp-info__cart">
