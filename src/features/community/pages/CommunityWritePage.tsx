@@ -35,8 +35,8 @@ export default function CommunityWritePage() {
               <CommunityWriteForm
                 hint={
                   moderate
-                    ? 'ADMIN은 모든 커뮤니티 글을 보고 수정할 수 있습니다.'
-                    : '커뮤니티 예의를 지켜 주세요. 본인 글만 목록에 보입니다.'
+                    ? 'ADMIN은 공개 피드를 검수하고 숨기거나 고칠 수 있습니다.'
+                    : '커뮤니티 예의를 지켜 주세요. 글은 회원 공개 피드에 올라가고 ADMIN이 검수할 수 있습니다.'
                 }
                 initialTitle={draft?.title}
                 initialBody={draft?.body}
