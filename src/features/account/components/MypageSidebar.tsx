@@ -2,6 +2,7 @@ import { useAuth } from '../../../shared/hooks/useAuth'
 import { formatUserHonorific } from '../../../shared/utils/formatUserHonorific'
 import {
   canManagePeople,
+  canOpenCmsStudio,
   canOpenLounge,
   canReplySupport,
   canViewStaffPerformance,
@@ -18,6 +19,7 @@ export default function MypageSidebar() {
   const role = resolveWorkspaceRole(user)
   const extras = [
     ...(canManagePeople(role) ? [{ label: '구성원 권한', to: '/mypage/admin/people' }] : []),
+    ...(canOpenCmsStudio(role) ? [{ label: '콘텐츠 관리', to: '/mypage/admin/content' }] : []),
     ...(canViewStaffPerformance(role) ? [{ label: '직원 성과', to: '/mypage/admin/performance' }] : []),
     ...(canReplySupport(role) ? [{ label: '1:1 문의 답변', to: '/mypage/admin/support' }] : []),
     ...(canWriteWorkReport(role) ? [{ label: '업무 보고', to: '/mypage/staff/work-reports' }] : []),

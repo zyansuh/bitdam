@@ -50,3 +50,27 @@
 .staff-story textarea {
   @apply rounded-lg border border-line px-3 py-2 text-charcoal;
 }
+
+.cms-list {
+  @apply mt-4 flex flex-col gap-3;
+}
+
+.cms-list__item {
+  @apply flex flex-wrap items-center justify-between gap-4 rounded-xl border border-line p-4;
+}
+
+.cms-list__actions {
+  @apply flex flex-wrap gap-3;
+}
+
+.cms-person {
+  @apply mb-4 rounded-xl border border-line p-4;
+}
+
+.cms-person__photo {
+  @apply mt-2 h-24 w-24 rounded-full object-cover;
+}
+
+.cms-grants {
+  @apply flex flex-col gap-1 text-xs;
+}
