@@ -130,3 +130,19 @@
 .cart-empty__link {
   @apply mt-3 mr-4 inline-block font-semibold text-gold;
 }
+
+.cart-coupon {
+  @apply mt-4;
+}
+
+.cart-coupon__label {
+  @apply flex flex-col gap-1 text-xs font-medium text-muted;
+}
+
+.cart-coupon__label select {
+  @apply rounded-md border border-cream-dark bg-surface px-3 py-2 text-sm text-charcoal;
+}
+
+.cart-coupon__reason {
+  @apply mt-1 text-xs text-red-700;
+}
