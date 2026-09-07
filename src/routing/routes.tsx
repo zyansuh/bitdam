@@ -66,6 +66,9 @@ import LoungeReportsPage from '../features/lounge/pages/LoungeReportsPage'
 import LoungeCustomersPage from '../features/lounge/pages/LoungeCustomersPage'
 import LoungeSubscriptionsPage from '../features/lounge/pages/LoungeSubscriptionsPage'
 import LoungeVerifyPage from '../features/lounge/pages/LoungeVerifyPage'
+import CmsListPage from '../features/cms/pages/CmsListPage'
+import CmsIrLeadersPage from '../features/cms/pages/CmsIrLeadersPage'
+import CmsIrRoundPage from '../features/cms/pages/CmsIrRoundPage'
 import AdminPeoplePage from '../features/staff/pages/AdminPeoplePage'
 import AdminPerformancePage from '../features/staff/pages/AdminPerformancePage'
 import WorkReportListPage from '../features/staff/pages/WorkReportListPage'
@@ -115,6 +118,9 @@ export function AppRoutes() {
       <Route path="/mypage/support" element={<MypageSupportPage />} />
       <Route path="/mypage/lounge/verify" element={<LoungeVerifyPage />} />
       <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
+      <Route path="/mypage/admin/content/ir-leaders" element={<CmsIrLeadersPage />} />
+      <Route path="/mypage/admin/content/ir-round" element={<CmsIrRoundPage />} />
+      <Route path="/mypage/admin/content" element={<CmsListPage />} />
       <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
       <Route path="/mypage/admin/support" element={<AdminSupportPage />} />
       <Route path="/mypage/staff/work-reports/new" element={<WorkReportWritePage />} />
