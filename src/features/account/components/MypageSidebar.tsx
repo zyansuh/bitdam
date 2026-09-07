@@ -1,6 +1,6 @@
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { formatUserHonorific } from '../../../shared/utils/formatUserHonorific'
-import { canOpenLounge, resolveWorkspaceRole, workspaceRoleLabel } from '../../../shared/utils/workspaceRole'
+import { canManagePeople, canOpenLounge, canViewStaffPerformance, resolveWorkspaceRole, workspaceRoleLabel } from '../../../shared/utils/workspaceRole'
 import { mypageNav } from '../data/mypageNav'
 import AccountNavList from './AccountNavList'
 
@@ -8,9 +8,12 @@ export default function MypageSidebar() {
   const { user } = useAuth()
   const name = user ? formatUserHonorific(user.nickname) : '게스트'
   const role = resolveWorkspaceRole(user)
-  const items = canOpenLounge(role)
-    ? [{ label: '셀러 라운지', to: '/mypage/lounge' }, ...mypageNav]
-    : mypageNav
+  const extras = [
+    ...(canManagePeople(role) ? [{ label: '구성원 권한', to: '/mypage/admin/people' }] : []),
+    ...(canViewStaffPerformance(role) ? [{ label: '직원 성과', to: '/mypage/admin/performance' }] : []),
+    ...(canOpenLounge(role) ? [{ label: '셀러 라운지', to: '/mypage/lounge' }] : []),
+  ]
+  const items = extras.length ? [...extras, ...mypageNav] : mypageNav
 
   return (
     <aside className="account-aside">
