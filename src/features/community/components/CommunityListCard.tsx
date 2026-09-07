@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Heart, MessageCircle } from 'lucide-react'
 import { communityCategoryLabel } from '../data/communityCategories'
 import type { CommunityPost } from '../types/communityPost'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface CommunityListCardProps {
   post: CommunityPost
@@ -15,7 +16,7 @@ export default function CommunityListCard({ post }: CommunityListCardProps) {
     <article className="community-list-card">
       {post.image ? (
         <Link to={`/community/${post.id}`} className="community-list-card__media">
-          <img src={post.image} alt="" />
+          <SafeImage src={post.image} alt="" />
         </Link>
       ) : null}
       <div className="community-list-card__body">
