@@ -17,7 +17,7 @@ export default function CartPage() {
   const { unused } = useCouponWallet()
   const [couponId, setCouponId] = useState('')
   const selected = unused.find((coupon) => coupon.id === couponId)
-  const { totals, checkout, couponReason } = useCartCheckout(selected)
+  const { totals, checkout, couponReason, stockReason } = useCartCheckout(selected)
   const [payment, setPayment] = useState('신용카드')
   const [params] = useSearchParams()
   const navigate = useNavigate()
@@ -65,13 +65,13 @@ export default function CartPage() {
               totals={totals}
               payment={payment}
               onPayment={setPayment}
-              canCheckout={items.length > 0 && isLoggedIn && !couponReason}
+              canCheckout={items.length > 0 && isLoggedIn && !couponReason && !stockReason}
               couponSlot={
                 <CartCoupon
                   coupons={unused}
                   selectedId={couponId}
                   onSelect={setCouponId}
-                  reason={couponReason}
+                  reason={couponReason ?? stockReason}
                 />
               }
               onCheckout={() => {
