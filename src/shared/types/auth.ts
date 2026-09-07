@@ -1,4 +1,4 @@
-export type WorkspaceRole = 'member' | 'seller' | 'admin'
+export type WorkspaceRole = 'member' | 'seller' | 'staff' | 'lead' | 'admin'
 
 export interface AuthUser {
   id: string
