@@ -5,6 +5,7 @@ import ThemeToggle from './ThemeToggle'
 import SignupLink from './SignupLink'
 import AccountMenu from './AccountMenu'
 import CartLink from './CartLink'
+import WishlistLink from './WishlistLink'
 
 interface NavbarActionsProps {
   menuOpen: boolean
@@ -26,6 +27,7 @@ export default function NavbarActions({ menuOpen, onToggleMenu }: NavbarActionsP
         <Search size={20} strokeWidth={1.5} />
       </Link>
       <ThemeToggle />
+      <WishlistLink className="navbar__cart" badgeClassName="navbar__cart-dot" />
       <CartLink className="navbar__cart" badgeClassName="navbar__cart-dot" />
       <AccountMenu triggerClassName="account-menu__trigger navbar__account" />
       <button
