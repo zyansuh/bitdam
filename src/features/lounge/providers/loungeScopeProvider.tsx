@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
-import { canOpenAdminScope } from '../../../shared/utils/workspaceRole'
+import { canOpenAdminScope, canPickAllShops } from '../../../shared/utils/workspaceRole'
 import { SELLER_SHOPS } from '../data/sellerShops'
 import { useLoungeAccess } from '../hooks/useLoungeAccess'
 import { readLoungeScope, writeLoungeScope } from '../utils/loungeScopeStorage'
@@ -10,6 +10,7 @@ interface LoungeScopeValue {
   allowed: boolean
   role: WorkspaceRole
   isAdmin: boolean
+  canPickAll: boolean
   scopeId: string
   pickScope: (next: string) => void
   shops: SellerShop[]
@@ -21,19 +22,21 @@ const LoungeScopeContext = createContext<LoungeScopeValue | null>(null)
 export function LoungeScopeProvider({ children }: { children: ReactNode }) {
   const { user, role, allowed } = useLoungeAccess()
   const isAdmin = canOpenAdminScope(role)
+  const canPickAll = canPickAllShops(role)
   const lockedSellerId = user?.sellerVerified ? user.sellerId ?? '' : ''
 
   const [scopeId, setScopeId] = useState(() => {
-    if (!isAdmin) return lockedSellerId
-    return readLoungeScope() || 'all'
+    if (canPickAll) return readLoungeScope() || 'all'
+    return lockedSellerId
   })
 
   const value = useMemo<LoungeScopeValue>(() => {
-    const activeId = isAdmin ? scopeId : lockedSellerId
+    const activeId = canPickAll ? scopeId : lockedSellerId
     return {
       allowed,
       role,
       isAdmin,
+      canPickAll,
       scopeId: activeId,
       pickScope: (next: string) => {
         setScopeId(next)
@@ -41,13 +44,13 @@ export function LoungeScopeProvider({ children }: { children: ReactNode }) {
       },
       shops: SELLER_SHOPS,
       titleShop:
-        !isAdmin
+        !canPickAll
           ? SELLER_SHOPS.find((shop) => shop.id === lockedSellerId)
           : activeId === 'all'
             ? undefined
             : SELLER_SHOPS.find((shop) => shop.id === activeId),
     }
-  }, [allowed, isAdmin, lockedSellerId, role, scopeId])
+  }, [allowed, canPickAll, isAdmin, lockedSellerId, role, scopeId])
 
   return <LoungeScopeContext.Provider value={value}>{children}</LoungeScopeContext.Provider>
 }
