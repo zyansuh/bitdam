@@ -36,3 +36,9 @@ export function listPublishedDrafts(now = new Date()): LearnDraft[] {
   const today = todayKey(now)
   return readLearnDrafts().filter((item) => item.publishOn <= today)
 }
+
+export function isUnpublishedDraft(slug: string, now = new Date()): boolean {
+  const draft = readLearnDrafts().find((item) => item.slug === slug)
+  if (!draft) return false
+  return draft.publishOn > todayKey(now)
+}
