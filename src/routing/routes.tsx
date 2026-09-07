@@ -28,6 +28,7 @@ import MypageReservationsPage from '../features/account/pages/MypageReservations
 import MypageAddressesPage from '../features/account/pages/MypageAddressesPage'
 import MypagePaymentsPage from '../features/account/pages/MypagePaymentsPage'
 import MypageSupportPage from '../features/account/pages/MypageSupportPage'
+import AdminSupportPage from '../features/account/pages/AdminSupportPage'
 import SettingsProfilePage from '../features/account/pages/SettingsProfilePage'
 import SettingsSecurityPage from '../features/account/pages/SettingsSecurityPage'
 import SettingsNotificationsPage from '../features/account/pages/SettingsNotificationsPage'
@@ -110,6 +111,7 @@ export function AppRoutes() {
       <Route path="/mypage/lounge/verify" element={<LoungeVerifyPage />} />
       <Route path="/mypage/admin/people" element={<AdminPeoplePage />} />
       <Route path="/mypage/admin/performance" element={<AdminPerformancePage />} />
+      <Route path="/mypage/admin/support" element={<AdminSupportPage />} />
       <Route path="/mypage/lounge" element={<LoungeDashboardPage />} />
       <Route path="/mypage/lounge/products/new" element={<LoungeProductNewPage />} />
       <Route path="/mypage/lounge/products" element={<LoungeProductsPage />} />
