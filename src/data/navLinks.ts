@@ -8,4 +8,5 @@ export const navLinks: NavLinkItem[] = [
   { label: '선물세트', to: '/gift' },
   { label: '명절 투어', to: '/holiday/tours' },
   { label: '스토리', to: '/story' },
+  { label: 'IR', to: '/ir' },
 ]
