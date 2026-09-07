@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
 import { useFeaturedCarousel } from '../hooks/useFeaturedCarousel'
@@ -48,7 +49,9 @@ export default function FeaturedProduct({ products }: FeaturedProductProps) {
           <p className="featured__region">
             {current.region} · {current.abv}%
           </p>
-          <h3 className="featured__name">{current.name}</h3>
+          <Link to={`/products/${current.id}`} className="featured__name">
+            {current.name}
+          </Link>
         </div>
         <div className="featured__meta">
           <span className="featured__price">{current.price.toLocaleString()}원</span>
