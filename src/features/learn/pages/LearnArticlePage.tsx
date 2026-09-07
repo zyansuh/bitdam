@@ -7,6 +7,7 @@ import Navbar from '../../../shared/components/navigation/Navbar'
 import { usePageMeta } from '../../../shared/hooks/usePageMeta'
 import { LEARN_CATEGORIES } from '../data/learnCategories'
 import { listLearnByCategory } from '../data/learnArticles'
+import { isLearnCatalogLocked } from '../data/learnDaily'
 import LearnArticleBody from '../components/LearnArticleBody'
 import LearnCover from '../components/LearnCover'
 import LearnRelatedLinks from '../components/LearnRelatedLinks'
@@ -21,7 +22,9 @@ export default function LearnArticlePage() {
   const library = useLearnLibrary(article?.slug)
   const category = LEARN_CATEGORIES.find((item) => item.id === article?.category)
   const siblings = article
-    ? listLearnByCategory(article.category).filter((item) => item.slug !== article.slug)
+        ? listLearnByCategory(article.category).filter(
+            (item) => item.slug !== article.slug && !isLearnCatalogLocked(item.slug),
+          )
     : []
 
   usePageMeta({
@@ -43,7 +46,7 @@ export default function LearnArticlePage() {
             title={locked ? '아직 공개 전인 글입니다' : '글을 찾을 수 없습니다'}
             body={
               locked
-                ? '예약일 전에는 콘텐츠 관리 권한이 있는 직원만 볼 수 있습니다.'
+                ? '하루 한 장씩 목록에 더해집니다. 공개일 전에는 콘텐츠 관리 권한이 있는 직원만 볼 수 있습니다.'
                 : '주소가 바뀌었거나 아직 없는 술 상식입니다.'
             }
             action={{ href: '/learn', label: '술 상식 목록' }}
