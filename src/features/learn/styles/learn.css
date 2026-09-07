@@ -79,11 +79,11 @@
 }
 
 .learn-card {
-  @apply rounded-xl border border-line bg-surface transition-colors hover:border-gold/50;
+  @apply rounded-xl border border-line bg-surface transition-colors hover:border-gold hover:bg-gold/5;
 }
 
 .learn-card__link {
-  @apply block p-5 text-inherit no-underline;
+  @apply block min-h-[12rem] p-5 text-inherit no-underline;
 }
 
 .learn-card__kicker {
@@ -100,6 +100,10 @@
 
 .learn-card__meta {
   @apply mt-3 text-xs text-muted;
+}
+
+.learn-card__go {
+  @apply mt-4 inline-flex rounded-full bg-gold px-3 py-1.5 text-xs font-semibold text-navy;
 }
 
 .learn-article h1 {
@@ -135,19 +139,63 @@
 }
 
 .learn-more {
-  @apply mt-16 border-t border-line pt-8;
+  @apply mt-16 border-t border-line pt-10;
 }
 
-.learn-more h2 {
-  @apply mb-3 font-serif text-lg;
+.learn-more__head,
+.learn-next__head {
+  @apply mb-6 max-w-2xl;
 }
 
-.learn-more ul {
-  @apply mb-6 flex flex-col gap-2 text-sm;
+.learn-more__kicker,
+.learn-next__kicker {
+  @apply mb-2 text-xs tracking-[0.18em] text-gold;
 }
 
-.learn-more a {
-  @apply text-charcoal hover:text-gold;
+.learn-more h2,
+.learn-next h2 {
+  @apply font-serif text-2xl text-charcoal;
+}
+
+.learn-more__lead,
+.learn-next__lead {
+  @apply mt-2 text-sm leading-relaxed text-muted;
+}
+
+.learn-more__grid {
+  @apply mb-8 grid gap-4 sm:grid-cols-2;
+}
+
+.learn-more__all {
+  @apply no-underline;
+}
+
+.learn-next {
+  @apply mt-14;
+}
+
+.learn-next__grid {
+  @apply grid list-none gap-3 p-0 sm:grid-cols-2;
+}
+
+.learn-next__card {
+  @apply flex min-h-[11rem] flex-col rounded-2xl border border-line bg-surface px-5 py-5 text-inherit no-underline transition-colors hover:border-gold hover:bg-gold/5;
+}
+
+.learn-next__kind {
+  @apply text-[11px] font-medium tracking-wide text-gold;
+}
+
+.learn-next__name {
+  @apply mt-2 font-serif text-xl leading-snug text-charcoal;
+}
+
+.learn-next__hint {
+  @apply mt-2 flex-1 text-sm leading-relaxed text-muted;
+}
+
+.learn-next__go {
+  @apply mt-4 inline-flex w-fit rounded-full bg-gold px-3 py-1.5 text-xs font-semibold text-navy;
 }
 
 .learn-filters {
@@ -246,18 +294,7 @@
   @apply mb-6 rounded-full border border-gold px-3 py-1 text-xs text-gold hover:bg-gold/10;
 }
 
-.learn-related {
-  @apply mt-12 rounded-xl border border-line bg-surface px-5 py-4;
-}
-
-.learn-related h2 {
-  @apply mb-2 font-serif text-lg text-charcoal;
-}
-
-.learn-related ul {
-  @apply mt-3 flex flex-col gap-2 text-sm;
-}
-
+.learn-next__card:focus-visible,
 .learn-card__link:focus-visible,
 .learn-save:focus-visible,
 .learn-filters__field input:focus-visible,
@@ -271,7 +308,7 @@
 
 :root[data-theme='dark'] .learn-tone,
 :root[data-theme='dark'] .learn-daily,
-:root[data-theme='dark'] .learn-related,
+:root[data-theme='dark'] .learn-next__card,
 :root[data-theme='dark'] .learn-card,
 :root[data-theme='dark'] .learn-list__link,
 :root[data-theme='dark'] .learn-pager__btn,
