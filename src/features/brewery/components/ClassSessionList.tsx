@@ -4,7 +4,7 @@ import ClassSessionCard from './ClassSessionCard'
 interface ClassSessionListProps {
   sessions: ClassSession[]
   isBooked: (id: string) => boolean
-  onBook: (id: string) => void
+  onBook: (session: ClassSession) => void
 }
 
 export default function ClassSessionList({ sessions, isBooked, onBook }: ClassSessionListProps) {
