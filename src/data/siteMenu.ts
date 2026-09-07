@@ -24,6 +24,7 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '명절 양조장 투어', to: '/holiday/tours' },
         { label: '설날 복주머니', to: '/events/daily' },
         { label: '설날 특별전', to: '/events/seollal' },
+        { label: '크리에이터 한정판', to: '/limited' },
         { label: '타임 특가', to: '/deals' },
         { label: '정기 구독', to: '/subscribe' },
         { label: '단체 · 기업 선물', to: '/corporate' },
