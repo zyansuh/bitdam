@@ -110,6 +110,10 @@
   @apply inline-flex flex-1 items-center justify-center rounded-sm bg-gold px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-gold-dark;
 }
 
+.pdp-info__cart--sold {
+  @apply cursor-not-allowed bg-muted hover:bg-muted;
+}
+
 .pdp-info__links {
   @apply mt-3 flex flex-wrap gap-4;
 }

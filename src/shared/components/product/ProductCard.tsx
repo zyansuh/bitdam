@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import type { Product } from '../../../data/products'
+import { isSoldOut } from '../../../data/products'
 
 interface ProductCardProps {
   product: Product
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const soldOut = isSoldOut(product)
+
   return (
     <article className="product-card">
       <Link to={`/products/${product.id}`} className="product-card__link">
@@ -20,6 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           loading="lazy"
           decoding="async"
         />
+        {soldOut ? <span className="product-card__sold">품절</span> : null}
       </div>
       <p className="product-card__category">{product.category}</p>
       <h3 className="product-card__name">{product.name}</h3>

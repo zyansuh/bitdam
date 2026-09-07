@@ -50,25 +50,31 @@ export function CartProvider({ children }: CartProviderProps) {
       items,
       itemCount,
       addItem: (productId, quantity = 1) => {
+        const stock = getProductById(productId)?.stock ?? 0
+        if (stock <= 0) return
         const current = lines.find((line) => line.productId === productId)
+        const cap = Math.min(9, stock)
         if (current) {
           commit(
             lines.map((line) =>
-              line.productId === productId ? { ...line, quantity: Math.min(9, line.quantity + quantity) } : line,
+              line.productId === productId
+                ? { ...line, quantity: Math.min(cap, line.quantity + quantity) }
+                : line,
             ),
           )
           return
         }
-        commit([...lines, { productId, quantity: Math.min(9, quantity) }])
+        commit([...lines, { productId, quantity: Math.min(cap, quantity) }])
       },
       setQuantity: (productId, quantity) => {
         if (quantity < 1) {
           commit(lines.filter((line) => line.productId !== productId))
           return
         }
+        const stock = getProductById(productId)?.stock ?? 0
         commit(
           lines.map((line) =>
-            line.productId === productId ? { ...line, quantity: Math.min(9, quantity) } : line,
+            line.productId === productId ? { ...line, quantity: Math.min(9, stock, quantity) } : line,
           ),
         )
       },

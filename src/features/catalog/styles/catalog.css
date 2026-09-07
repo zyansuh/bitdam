@@ -250,6 +250,10 @@
   @apply fill-gold text-gold;
 }
 
+.catalog-card__sold {
+  @apply absolute left-3 top-3 rounded-sm bg-navy px-2 py-1 text-[11px] font-semibold text-white;
+}
+
 .catalog-grid {
   @apply grid grid-cols-2 gap-4 min-[600px]:grid-cols-2 min-[1000px]:grid-cols-3 min-[1000px]:gap-6;
 }

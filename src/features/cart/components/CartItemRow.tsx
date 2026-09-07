@@ -30,7 +30,11 @@ export default function CartItemRow({ item, onQuantity, onRemove }: CartItemRowP
             <Minus size={14} />
           </button>
           <span>{quantity}</span>
-          <button type="button" aria-label="수량 늘리기" onClick={() => onQuantity(quantity + 1)}>
+          <button
+            type="button"
+            aria-label="수량 늘리기"
+            onClick={() => onQuantity(Math.min(product.stock ?? 9, quantity + 1))}
+          >
             <Plus size={14} />
           </button>
         </div>

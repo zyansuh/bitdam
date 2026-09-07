@@ -1,4 +1,5 @@
 import { readSellerCatalog } from '../shared/utils/sellerCatalogStorage'
+import { readStockOverlay, writeStockOverlay } from '../shared/utils/stockStorage'
 
 export interface TasteProfile {
   sweet: number
@@ -67,13 +68,37 @@ export const allProducts: Product[] = Array.from({ length: 48 }, (_, i) => {
     price: base.price + (i % 3) * 1000,
     reviewCount: Math.round(base.rating * 18) + (i % 7),
     gallery: [base.image, base.image],
+    stock: i === 14 ? 0 : 12 + (i % 18),
   }
 })
 
 export const PAGE_SIZE = 8
 
+function fallbackStock(product: Product): number {
+  if (typeof product.stock === 'number') return product.stock
+  return product.id === 15 ? 0 : 12 + (product.id % 18)
+}
+
+function withStock(product: Product): Product {
+  const overlay = readStockOverlay()[String(product.id)]
+  return { ...product, stock: overlay ?? fallbackStock(product) }
+}
+
 export function listCatalogProducts(): Product[] {
-  return [...allProducts, ...readSellerCatalog()]
+  return [...allProducts, ...readSellerCatalog()].map(withStock)
+}
+
+export function isSoldOut(product: Product): boolean {
+  return (product.stock ?? 0) <= 0
+}
+
+export function consumeCatalogStock(lines: { productId: number; quantity: number }[]): void {
+  const overlay = { ...readStockOverlay() }
+  for (const line of lines) {
+    const current = getProductById(line.productId)?.stock ?? 0
+    overlay[String(line.productId)] = Math.max(0, current - line.quantity)
+    writeStockOverlay(overlay)
+  }
 }
 
 export function getProductById(id: number): Product | undefined {
