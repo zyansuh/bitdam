@@ -1,5 +1,5 @@
 import type { Product } from '../../../data/products'
-import { allProducts } from '../../../data/products'
+import { listCatalogProducts } from '../../../data/products'
 
 function tasteDistance(left: Product, right: Product): number {
   return (
@@ -11,7 +11,7 @@ function tasteDistance(left: Product, right: Product): number {
 }
 
 export function findSimilarProducts(product: Product, limit = 2): Product[] {
-  return allProducts
+  return listCatalogProducts()
     .filter((candidate) => candidate.id !== product.id)
     .map((candidate) => {
       let score = 0

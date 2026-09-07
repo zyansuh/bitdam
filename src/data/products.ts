@@ -1,3 +1,5 @@
+import { readSellerCatalog } from '../shared/utils/sellerCatalogStorage'
+
 export interface TasteProfile {
   sweet: number
   sour: number
@@ -25,6 +27,7 @@ export interface Product {
   tagline: string
   story: string
   awards: string[]
+  stock?: number
 }
 
 export const TASTE_SCORE_MAX = 5
@@ -69,15 +72,19 @@ export const allProducts: Product[] = Array.from({ length: 48 }, (_, i) => {
 
 export const PAGE_SIZE = 8
 
+export function listCatalogProducts(): Product[] {
+  return [...allProducts, ...readSellerCatalog()]
+}
+
 export function getProductById(id: number): Product | undefined {
-  return allProducts.find((item) => item.id === id)
+  return listCatalogProducts().find((item) => item.id === id)
 }
 
 export function getProductsPage(page: number, pageSize = PAGE_SIZE): Product[] {
   const start = page * pageSize
-  return allProducts.slice(start, start + pageSize)
+  return listCatalogProducts().slice(start, start + pageSize)
 }
 
 export function hasMoreProducts(page: number, pageSize = PAGE_SIZE): boolean {
-  return (page + 1) * pageSize < allProducts.length
+  return (page + 1) * pageSize < listCatalogProducts().length
 }

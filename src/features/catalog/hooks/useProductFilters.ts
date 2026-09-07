@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { allProducts } from '../../../data/products'
+import { listCatalogProducts } from '../../../data/products'
 import { PRICE_BOUND } from '../data/filterOptions'
 import type { ProductFilterState, SortKey } from '../types/catalog'
 import { filterProducts } from '../utils/filterProducts'
@@ -30,7 +30,7 @@ export function useProductFilters(overrides?: Partial<ProductFilterState>) {
 
   const applied: ProductFilterState = { ...filters, ...overrides }
   const products = useMemo(
-    () => filterProducts(allProducts, applied),
+    () => filterProducts(listCatalogProducts(), applied),
     [
       applied.query,
       applied.categorySlug,
