@@ -2,7 +2,7 @@ import type { LearnCategoryId } from '../types/learn'
 import { LEARN_CATEGORY_DEFAULTS } from '../data/learnTags'
 import { parseLearnDraftJson } from '../utils/parseLearnDraft'
 import type { LearnDraft } from '../types/learnDraft'
-import { getOpenAiKey } from '../../chat/services/askBitdamModel'
+import { postOpenAiChat } from '../../../shared/utils/openaiProxy'
 
 function localDraft(title: string, category: LearnCategoryId, publishOn: string): LearnDraft {
   const tone = LEARN_CATEGORY_DEFAULTS[category].tone
@@ -31,34 +31,22 @@ export async function askLearnDraft(
   category: LearnCategoryId,
   publishOn: string,
 ): Promise<LearnDraft> {
-  const key = getOpenAiKey()
   const tone = LEARN_CATEGORY_DEFAULTS[category].tone
-  if (!key) {
-    return localDraft(title, category, publishOn)
-  }
-
   const system =
     tone === 'principle'
       ? '당신은 빚담의 술 상식 에디터입니다. 증류·고도수 제조의 재료량·온도·따라하기 절차를 절대 적지 마세요. 원리와 양조장 공정, 면허·안전만 JSON으로 씁니다.'
       : '당신은 빚담의 술 상식 에디터입니다. 가정 제조·판매 레시피가 아니라 재료, 도가의 과정, 실패 포인트를 JSON으로 씁니다.'
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      temperature: 0.4,
-      messages: [
-        { role: 'system', content: system },
-        {
-          role: 'user',
-          content: `제목: ${title}\n분류: ${category}\nJSON만 출력: {"title","lead","sections":[{"heading","paragraphs":["",""]}],"takeaways":["","",""]}`,
-        },
-      ],
-    }),
+  const response = await postOpenAiChat({
+    model: 'gpt-4o-mini',
+    temperature: 0.4,
+    messages: [
+      { role: 'system', content: system },
+      {
+        role: 'user',
+        content: `제목: ${title}\n분류: ${category}\nJSON만 출력: {"title","lead","sections":[{"heading","paragraphs":["",""]}],"takeaways":["","",""]}`,
+      },
+    ],
   })
 
   if (!response.ok) {
