@@ -48,7 +48,7 @@
 | 구분 | 설명 |
 |------|------|
 | **프론트** | React 19 · Vite 6 · TypeScript · Tailwind CSS v4 |
-| **라우팅** | react-router-dom — `/` · `/story` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/mypage` · `/account` · `/login` · `/signup` · `/terms` · `/privacy` |
+| **라우팅** | react-router-dom — `/` · `/story` · `/ir` · `/products` · `/category/:slug` · `/breweries` · `/breweries/:id` · `/classes` · `/community` · `/mypage` · `/account` · `/login` · `/signup` · `/terms` · `/privacy` |
 | **상태** | 현재 mock 데이터 · API/OAuth 미연동 |
 | **배포** | (예정) Vercel / Netlify 등 정적 호스팅 |
 
@@ -80,6 +80,7 @@
 | `/events/daily` | `DailyEventPage` | 일상 복주머니 · 7일 쿠폰 · 공유 스탬프 |
 | `/holiday/tours` | `HolidayTourPage` | 명절 전용 양조장 투어 |
 | `/limited` | `LimitedEditionPage` | 크리에이터 한정판 · 테이스팅 · 펀딩 선예약 |
+| `/ir` | `IrPage` | 투자 IR · 카탈로그 기반 KPI · 프리 A · 문의 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
@@ -341,6 +342,7 @@ BITDAM/
     │   ├── notify/                # 알림 센터
     │   ├── notice/                # 공지사항
     │   ├── chat/                  # 빚담 추천 AI
+    │   ├── ir/                    # 투자 IR · KPI · 프리 A
     │   └── legal/                 # 운영정책 TermsPage
     └── shared/
         ├── styles/                # tokens · global · footer · navbar · feed …
@@ -404,6 +406,7 @@ BITDAM/
 | **dailyEvent** | `DailyEventPage` | `campaign-pages.css` | 복주머니 · 공유 스탬프 |
 | **holidayTour** | `HolidayTourPage` | `campaign-pages.css` | 명절 전용 투어 |
 | **limited** | `LimitedEditionPage` | `campaign-pages.css` | 테이스팅 · 펀딩 선예약 |
+| **ir** | `IrPage` | `ir.css` | 카탈로그 KPI · 프리 A · 리더십 · 문의 |
 | **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -412,7 +415,7 @@ BITDAM/
 | 파일 | 설명 |
 |------|------|
 | `products.ts` | `Product` 타입 · 48종 mock · 지역/도수/맛 태그 |
-| `navLinks.ts` | 헤더: 전통주 마켓 · 선물 · 명절 · 특가 · 구독 · 기업 · 기념주 |
+| `navLinks.ts` | 헤더: 전통주 · 추석 · 복주머니 · 한정판 · 선물 · 투어 · 스토리 · IR |
 | `campaignNav.ts` | 활성 명절 라벨을 헤더에 넣는 헬퍼 |
 | `settingsNav.ts` · `headerAccountLinks.ts` · `helpNav.ts` | 설정·계정 메뉴·FAQ 분류 |
 | `footerLinks.ts` | 푸터 컬럼 링크 |
@@ -583,6 +586,7 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/events/daily | 설날 복주머니 |
 | http://localhost:5173/holiday/tours | 명절 양조장 투어 |
 | http://localhost:5173/limited | 크리에이터 한정판 |
+| http://localhost:5173/ir | 투자 IR |
 | http://localhost:5173/story | 브랜드 스토리 |
 
 ---
@@ -683,6 +687,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | `/ir` 투자 IR · 햄버거 전용 가지 · 카탈로그 KPI |
 | **2026-09-07** | 명절 세트전 · 복주머니 · 명절 투어 · 크리에이터 한정판 |
 | **2026-09-07** | 선물 3단계 · 추석 특별전 · 타임 특가 · 구독 · 기업선물 |
 | **2026-09-07** | 채팅 프롬프트를 정책 파일 + `buildPrompt`로 분리 |
