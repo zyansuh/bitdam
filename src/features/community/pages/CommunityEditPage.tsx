@@ -14,7 +14,7 @@ export default function CommunityEditPage() {
   const { user } = useAuth()
   const navigate = useNavigate()
   const moderate = canModerateContent(resolveWorkspaceRole(user))
-  const { getPost, updatePost, category, setCategory, setTag, tag } = useCommunityPosts(user, { moderate })
+  const { ready, getPost, updatePost, category, setCategory, setTag, tag } = useCommunityPosts(user, { moderate })
   const post = getPost(id)
 
   return (
@@ -27,7 +27,11 @@ export default function CommunityEditPage() {
             <CommunityHashtags active={tag} onSelect={setTag} />
           </aside>
           <div>
-            {!post ? (
+            {!ready ? (
+              <div className="community-empty">
+                <p>글을 불러오는 중입니다.</p>
+              </div>
+            ) : !post ? (
               <div className="community-empty">
                 <p>수정할 글을 찾을 수 없습니다.</p>
                 <Link to="/community" className="community-prompt__link">
