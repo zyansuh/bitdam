@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import MypageWorkspaceCards from '../../lounge/components/MypageWorkspaceCards'
 import MypageCertGrid from '../components/MypageCertGrid'
 import MypageLayout from '../components/MypageLayout'
 import MypageOrderTable from '../components/MypageOrderTable'
@@ -7,6 +8,7 @@ import MypageStatCards from '../components/MypageStatCards'
 export default function MypagePage() {
   return (
     <MypageLayout>
+      <MypageWorkspaceCards />
       <MypageStatCards />
       <section className="account-panel">
         <div className="account-panel__head">
