@@ -16,8 +16,9 @@
   --color-line-strong: #d9d0c8;
   --color-divider: #ddd5cc;
   --color-surface: #ffffff;
-  --font-serif: 'MaruBuri', serif;
-  --font-sans: 'Pretendard', sans-serif;
-  --font-logo: 'Nanum Myeongjo', 'Batang', serif;
-  --font-en: 'KookminUniversitySunggokSemiSerif', serif;
+  --font-serif: 'MaruBuri', 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-heading: 'MaruBuri', 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-sans: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-logo: 'Nanum Myeongjo', 'MaruBuri', 'Batang', serif;
+  --font-en: 'KookminUniversitySunggokSemiSerif', 'MaruBuri', 'Pretendard', sans-serif;
 }
