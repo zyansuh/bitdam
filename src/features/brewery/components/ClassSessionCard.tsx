@@ -4,7 +4,7 @@ import type { ClassSession } from '../types/classSession'
 interface ClassSessionCardProps {
   session: ClassSession
   booked: boolean
-  onBook: (id: string) => void
+  onBook: (session: ClassSession) => void
 }
 
 export default function ClassSessionCard({ session, booked, onBook }: ClassSessionCardProps) {
@@ -33,7 +33,7 @@ export default function ClassSessionCard({ session, booked, onBook }: ClassSessi
           type="button"
           className="class-card__btn"
           disabled={closed || booked}
-          onClick={() => onBook(session.id)}
+          onClick={() => onBook(session)}
         >
           {label}
         </button>
