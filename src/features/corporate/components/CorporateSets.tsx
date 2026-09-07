@@ -1,5 +1,6 @@
 import { formatWon } from '../../../shared/utils/formatWon'
 import { CORPORATE_SETS } from '../data/corporateOffers'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function CorporateSets() {
   return (
@@ -9,7 +10,7 @@ export default function CorporateSets() {
       <ul>
         {CORPORATE_SETS.map((item) => (
           <li key={item.id}>
-            <img src={item.image} alt="" />
+            <SafeImage src={item.image} alt="" />
             <strong>{item.name}</strong>
             <p>{item.contents}</p>
             <em>

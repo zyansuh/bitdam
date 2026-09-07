@@ -1,4 +1,5 @@
 import { SUBSCRIBE_BOXES } from '../data/subscribePlans'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function SubscribeArchive() {
   return (
@@ -7,7 +8,7 @@ export default function SubscribeArchive() {
       <ul>
         {SUBSCRIBE_BOXES.map((box) => (
           <li key={box.id}>
-            <img src={box.image} alt="" />
+            <SafeImage src={box.image} alt="" />
             <p>{box.month}</p>
             <strong>{box.title}</strong>
           </li>

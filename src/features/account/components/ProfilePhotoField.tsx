@@ -1,3 +1,5 @@
+import SafeImage from '../../../shared/components/media/SafeImage'
+
 interface ProfilePhotoFieldProps {
   preview: string
   onPick: (file: File | undefined) => void
@@ -8,7 +10,7 @@ export default function ProfilePhotoField({ preview, onPick, onClear }: ProfileP
   return (
     <div className="settings-photo">
       {preview ? (
-        <img src={preview} alt="" className="settings-photo__image" referrerPolicy="no-referrer" />
+        <SafeImage src={preview} alt="" className="settings-photo__image" referrerPolicy="no-referrer" />
       ) : (
         <span className="settings-photo__image settings-photo__image--empty" />
       )}

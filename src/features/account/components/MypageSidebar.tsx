@@ -12,6 +12,7 @@ import {
 } from '../../../shared/utils/workspaceRole'
 import { mypageNav } from '../data/mypageNav'
 import AccountNavList from './AccountNavList'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function MypageSidebar() {
   const { user } = useAuth()
@@ -31,7 +32,7 @@ export default function MypageSidebar() {
     <aside className="account-aside">
       <section className="mypage-profile">
         {user?.profileImage ? (
-          <img src={user.profileImage} alt="" className="mypage-profile__photo" referrerPolicy="no-referrer" />
+          <SafeImage src={user.profileImage} alt="" className="mypage-profile__photo" referrerPolicy="no-referrer" />
         ) : (
           <span className="mypage-profile__photo mypage-profile__photo--empty" />
         )}

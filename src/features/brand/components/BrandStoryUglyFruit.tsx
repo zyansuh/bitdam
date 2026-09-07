@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { brandStoryUglyFruit } from '../data/brandStory'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function BrandStoryUglyFruit() {
   const block = brandStoryUglyFruit
@@ -20,7 +21,7 @@ export default function BrandStoryUglyFruit() {
           </a>
         </div>
       </div>
-      <img src={block.image} alt={block.imageAlt} className="brand-ugly__image" />
+      <SafeImage src={block.image} alt={block.imageAlt} className="brand-ugly__image" />
       </div>
     </section>
   )

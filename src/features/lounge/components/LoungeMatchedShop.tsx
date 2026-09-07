@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { SellerShop } from '../types/lounge'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface LoungeMatchedShopProps {
   shop: SellerShop
@@ -9,7 +10,7 @@ interface LoungeMatchedShopProps {
 export default function LoungeMatchedShop({ shop, onConfirm }: LoungeMatchedShopProps) {
   return (
     <article className="lounge-match">
-      <img src={shop.image} alt="" className="lounge-match__photo" />
+      <SafeImage src={shop.image} alt="" className="lounge-match__photo" />
       <div>
         <p className="lounge-match__kicker">인증된 공방 · 양조장</p>
         <h3>{shop.name}</h3>

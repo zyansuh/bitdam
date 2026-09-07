@@ -5,6 +5,7 @@ import type { IrPerson } from '../../ir/data/irPeople'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { canEditCmsDocument } from '../utils/canEditCmsDocument'
 import { readIrLeaders, writeIrLeaders } from '../utils/irContentStorage'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 export default function CmsIrLeadersPage() {
   const { user } = useAuth()
@@ -53,7 +54,7 @@ export default function CmsIrLeadersPage() {
                   사진 URL
                   <input value={person.image} onChange={(event) => patch(index, 'image', event.target.value)} />
                 </label>
-                {person.image ? <img src={person.image} alt="" className="cms-person__photo" /> : null}
+                {person.image ? <SafeImage src={person.image} alt="" className="cms-person__photo" /> : null}
               </fieldset>
             ))}
             <button type="submit" className="lounge-btn">

@@ -2,6 +2,7 @@ import { formatWon } from '../../../shared/utils/formatWon'
 import { GIFT_WRAPS } from '../data/giftOptions'
 import type { GiftDraft } from '../types/gift'
 import { getGiftProduct } from '../utils/giftQuote'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface GiftSummaryProps {
   draft: GiftDraft
@@ -22,7 +23,7 @@ export default function GiftSummary({ draft, total }: GiftSummaryProps) {
       {product ? (
         <>
           <div className="gift-summary__item">
-            <img src={product.image} alt="" />
+            <SafeImage src={product.image} alt="" />
             <div>
               <strong>{product.name}</strong>
               <p>
@@ -32,7 +33,7 @@ export default function GiftSummary({ draft, total }: GiftSummaryProps) {
           </div>
           {wrap ? (
             <div className="gift-summary__wrap">
-              <img src={wrap.image} alt="" />
+              <SafeImage src={wrap.image} alt="" />
               <p>{wrap.detail}</p>
             </div>
           ) : null}

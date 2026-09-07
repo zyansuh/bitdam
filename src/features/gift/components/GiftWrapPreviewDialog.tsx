@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useFocusTrap } from '../../../shared/hooks/useFocusTrap'
 import type { GiftWrap } from '../types/gift'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface GiftWrapPreviewDialogProps {
   wrap: GiftWrap | null
@@ -25,7 +26,7 @@ export default function GiftWrapPreviewDialog({ wrap, onClose }: GiftWrapPreview
     >
       <button type="button" className="gift-wrap-dialog__backdrop" aria-label="닫기" onClick={onClose} />
       <div className="gift-wrap-dialog__panel">
-        <img src={wrap.image} alt="" />
+        <SafeImage src={wrap.image} alt="" />
         <h2 id="gift-wrap-preview-title">{wrap.label}</h2>
         <p>{wrap.detail}</p>
         <button type="button" className="shop-gold-btn" onClick={onClose}>

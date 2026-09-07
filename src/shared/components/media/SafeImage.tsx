@@ -14,7 +14,7 @@ export default function SafeImage({ src, fallbackSrc = MOCK_IMAGES.placeholder, 
       {...rest}
       src={resolved}
       alt={alt}
-      className={className}
+      className={['object-cover', className].filter(Boolean).join(' ')}
       onError={() => {
         if (!failed) setFailed(true)
       }}

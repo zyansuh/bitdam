@@ -1,5 +1,6 @@
 import { CalendarDays, MapPin } from 'lucide-react'
 import type { ClassSession } from '../types/classSession'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface ClassSessionCardProps {
   session: ClassSession
@@ -13,7 +14,7 @@ export default function ClassSessionCard({ session, booked, onBook }: ClassSessi
 
   return (
     <article className={`class-card${closed ? ' class-card--closed' : ''}`}>
-      <img src={session.image} alt="" className="class-card__image" />
+      <SafeImage src={session.image} alt="" className="class-card__image" />
       <div className="class-card__body">
         <h3 className="class-card__title">{session.title}</h3>
         <p className="class-card__meta">

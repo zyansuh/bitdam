@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { BreweryDetail } from '../types/breweryDetail'
+import SafeImage from '../../../shared/components/media/SafeImage'
 
 interface TourBreweryInfoProps {
   brewery: BreweryDetail
@@ -8,7 +9,7 @@ interface TourBreweryInfoProps {
 export default function TourBreweryInfo({ brewery }: TourBreweryInfoProps) {
   return (
     <article className="tour-info">
-      <img src={brewery.heroImage} alt="" className="tour-info__image" />
+      <SafeImage src={brewery.heroImage} alt="" className="tour-info__image" />
       <p className="tour-info__kicker">{brewery.subtitle}</p>
       <h2 className="tour-info__title">{brewery.heroTitle}</h2>
       <p className="tour-info__meta">
