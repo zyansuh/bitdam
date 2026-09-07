@@ -40,5 +40,6 @@ export function normalizeCommunityPost(value: CommunityPost): CommunityPost {
     category: value.category ?? 'free',
     tags: Array.isArray(value.tags) ? value.tags : [],
     comments: Array.isArray(value.comments) ? value.comments : [],
+    visibility: value.visibility === 'hidden' ? 'hidden' : 'public',
   }
 }

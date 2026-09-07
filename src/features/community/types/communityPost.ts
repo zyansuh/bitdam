@@ -8,6 +8,8 @@ export interface CommunityComment {
   createdAt: string
 }
 
+export type CommunityPostVisibility = 'public' | 'hidden'
+
 export interface CommunityPost {
   id: string
   authorId: string
@@ -21,6 +23,7 @@ export interface CommunityPost {
   likes: number
   comments: CommunityComment[]
   createdAt: string
+  visibility: CommunityPostVisibility
 }
 
 export interface CommunityDraft {

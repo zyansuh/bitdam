@@ -16,7 +16,7 @@ export default function CommunityPostPage() {
   const { user, isLoggedIn } = useAuth()
   const navigate = useNavigate()
   const moderate = canModerateContent(resolveWorkspaceRole(user))
-  const { visible, getPost, likePost, addComment, removePost } = useCommunityPosts(user, { moderate })
+  const { visible, getPost, likePost, addComment, removePost, setVisibility } = useCommunityPosts(user, { moderate })
   const post = getPost(id)
   const canEdit = Boolean(post && user && (moderate || post.authorId === user.id))
 
@@ -29,7 +29,7 @@ export default function CommunityPostPage() {
             <p>
               {moderate
                 ? '글을 찾을 수 없습니다.'
-                : '글을 찾을 수 없습니다. 본인이 쓴 글만 볼 수 있습니다.'}
+                : '글을 찾을 수 없습니다. 숨긴 글은 ADMIN만 볼 수 있습니다.'}
             </p>
             <Link to="/community" className="community-prompt__link">
               목록으로
@@ -42,6 +42,7 @@ export default function CommunityPostPage() {
               <h1 className="community-detail__title">{post.title}</h1>
               <p className="community-detail__meta">
                 {post.authorName} · {new Date(post.createdAt).toLocaleString('ko-KR')}
+                {post.visibility === 'hidden' ? ' · 숨김' : ''}
               </p>
               {post.image ? <img src={post.image} alt="" className="community-detail__photo" /> : null}
               <p className="community-detail__body">{post.body}</p>
@@ -57,6 +58,15 @@ export default function CommunityPostPage() {
                   <MessageCircle size={16} strokeWidth={1.6} />
                   {post.comments.length}
                 </span>
+                {moderate ? (
+                  <button
+                    type="button"
+                    className="community-card__react"
+                    onClick={() => setVisibility(post.id, post.visibility === 'hidden' ? 'public' : 'hidden')}
+                  >
+                    {post.visibility === 'hidden' ? '공개' : '숨김'}
+                  </button>
+                ) : null}
                 {canEdit ? (
                   <Link to={`/community/${post.id}/edit`} className="community-card__react">
                     수정
