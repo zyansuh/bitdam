@@ -14,7 +14,7 @@ export default function StaffPerformanceBoard({ rows }: StaffPerformanceBoardPro
             <th>이름</th>
             <th>등급</th>
             <th>공지 기여</th>
-            <th>라운지 점검</th>
+            <th>커뮤니티 글</th>
             <th>담당 공방</th>
             <th>성과 점수</th>
           </tr>
@@ -25,7 +25,7 @@ export default function StaffPerformanceBoard({ rows }: StaffPerformanceBoardPro
               <td>{row.name}</td>
               <td>{workspaceRoleLabel(row.role)}</td>
               <td>{row.notices}건</td>
-              <td>{row.loungeReviews}회</td>
+              <td>{row.loungeReviews}건</td>
               <td>{row.shopsCovered}곳</td>
               <td>{row.score}</td>
             </tr>
