@@ -69,7 +69,7 @@
 | 경로 | 페이지 | 설명 |
 |------|--------|------|
 | `/` | `HomeLanding` | 브랜드 소개 · 통계 · 급상승 술 · 양조장 배너 · 술 상식 티저 |
-| `/learn` | `LearnIndexPage` | 100장 · 검색/태그 · 오늘의 카드 |
+| `/learn` | `LearnIndexPage` | 하루 한 장씩 쌓이는 목록 · 페이지네이션 · 검색/태그 |
 | `/learn/:slug` | `LearnArticlePage` | 본문 · 관련 상품/도가 · 예약 전 잠금 |
 | `/mypage/admin/content/learn` | `LearnDeskPage` | AI 초안 예약 공개 (ADMIN·CMS) |
 | `/story` | `BrandStoryPage` | 시간이 흐를수록 · 못난이 과일 · 철학·펀딩·여정 |
@@ -763,6 +763,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-08** | 술 상식 목록 페이지네이션 · 하루 한 장씩 열리는 아카이브 |
 | **2026-09-08** | 술 상식 검색·커버·관련 도가·초안 잠금·북마크·픽·`OPENAI_API_KEY` 서버 프록시 |
 | **2026-09-08** | 술 상식 100장 · 태그 · 오늘의 카드 · CMS AI 하루 한 장 예약 |
 | **2026-09-08** | `/learn` 술 상식 · 홈 빚담 이야기 카드가 개별 공부 글로 연결 |
