@@ -2,6 +2,7 @@ import type { AccountNavItem } from '../types/accountNav'
 
 export const mypageNav: AccountNavItem[] = [
   { label: '주문 내역', to: '/mypage' },
+  { label: '위시리스트', to: '/wishlist' },
   { label: '전통주 인증서 (NFT)', to: '/mypage/certificates' },
   { label: '쿠폰 및 혜택', to: '/mypage/coupons' },
   { label: '배송지 관리', to: '/mypage/addresses' },
