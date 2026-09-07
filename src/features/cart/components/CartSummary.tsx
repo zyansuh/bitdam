@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { CartTotals } from '../../../shared/utils/cartTotals'
 import { formatWon } from '../../../shared/utils/formatWon'
 import { CART_PAYMENTS } from '../data/cartOptions'
@@ -8,9 +9,17 @@ interface CartSummaryProps {
   onPayment: (method: string) => void
   onCheckout: () => void
   canCheckout: boolean
+  couponSlot?: ReactNode
 }
 
-export default function CartSummary({ totals, payment, onPayment, onCheckout, canCheckout }: CartSummaryProps) {
+export default function CartSummary({
+  totals,
+  payment,
+  onPayment,
+  onCheckout,
+  canCheckout,
+  couponSlot,
+}: CartSummaryProps) {
   return (
     <aside className="cart-summary">
       <h2 className="cart-summary__title">최종 결제 금액</h2>
@@ -23,7 +32,12 @@ export default function CartSummary({ totals, payment, onPayment, onCheckout, ca
           <dt>배송비</dt>
           <dd>{totals.shippingFee === 0 ? '무료' : formatWon(totals.shippingFee)}</dd>
         </div>
+        <div>
+          <dt>쿠폰 할인</dt>
+          <dd>{totals.discount > 0 ? `- ${formatWon(totals.discount)}` : formatWon(0)}</dd>
+        </div>
       </dl>
+      {couponSlot}
       <p className="cart-summary__total">
         <span>최종 결제 예정 금액</span>
         <strong>{formatWon(totals.payAmount)}</strong>
