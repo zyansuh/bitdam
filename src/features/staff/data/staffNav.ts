@@ -1,6 +1,7 @@
 import type { LoungeNavItem } from '../../lounge/types/lounge'
 
 export const staffNav: LoungeNavItem[] = [
+  { label: '콘텐츠 관리', to: '/mypage/admin/content' },
   { label: '구성원 권한', to: '/mypage/admin/people' },
   { label: '직원 성과', to: '/mypage/admin/performance' },
   { label: '1:1 문의', to: '/mypage/admin/support' },
