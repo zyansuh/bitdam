@@ -57,6 +57,8 @@ import DailyEventPage from '../features/dailyEvent/pages/DailyEventPage'
 import HolidayTourPage from '../features/holidayTour/pages/HolidayTourPage'
 import LimitedEditionPage from '../features/limited/pages/LimitedEditionPage'
 import IrPage from '../features/ir/pages/IrPage'
+import LearnIndexPage from '../features/learn/pages/LearnIndexPage'
+import LearnArticlePage from '../features/learn/pages/LearnArticlePage'
 import NotFoundPage from '../features/error/pages/NotFoundPage'
 import LoungeDashboardPage from '../features/lounge/pages/LoungeDashboardPage'
 import LoungeProductsPage from '../features/lounge/pages/LoungeProductsPage'
@@ -83,6 +85,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomeLanding />} />
       <Route path="/story" element={<BrandStoryPage />} />
+      <Route path="/learn" element={<LearnIndexPage />} />
+      <Route path="/learn/:slug" element={<LearnArticlePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login/kakao/callback" element={<KakaoCallbackPage />} />
