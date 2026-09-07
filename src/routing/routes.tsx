@@ -24,6 +24,7 @@ import PrivacyPage from '../features/legal/pages/PrivacyPage'
 import MypagePage from '../features/account/pages/MypagePage'
 import MypageCertificatesPage from '../features/account/pages/MypageCertificatesPage'
 import MypageCouponsPage from '../features/account/pages/MypageCouponsPage'
+import MypageReservationsPage from '../features/account/pages/MypageReservationsPage'
 import MypageAddressesPage from '../features/account/pages/MypageAddressesPage'
 import MypagePaymentsPage from '../features/account/pages/MypagePaymentsPage'
 import MypageSupportPage from '../features/account/pages/MypageSupportPage'
@@ -102,6 +103,7 @@ export function AppRoutes() {
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage/certificates" element={<MypageCertificatesPage />} />
       <Route path="/mypage/coupons" element={<MypageCouponsPage />} />
+      <Route path="/mypage/reservations" element={<MypageReservationsPage />} />
       <Route path="/mypage/addresses" element={<MypageAddressesPage />} />
       <Route path="/mypage/payments" element={<MypagePaymentsPage />} />
       <Route path="/mypage/support" element={<MypageSupportPage />} />
