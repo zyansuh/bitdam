@@ -14,22 +14,6 @@ const shopItems: SiteMenuLinkItem[] = [
 export function getSiteMenuBranches(): SiteMenuBranch[] {
   return [
     {
-      id: 'ir',
-      label: '투자 IR',
-      to: '/ir',
-      items: [
-        { label: 'IR 홈', to: '/ir' },
-        { label: '핵심 지표', to: '/ir#kpis' },
-        { label: '프리 A 요강', to: '/ir#round' },
-        { label: '시장·매출 구조', to: '/ir#market' },
-        { label: '비즈니스 모델', to: '/ir#canvas' },
-        { label: '리더십', to: '/ir#leaders' },
-        { label: '자문단', to: '/ir#advisors' },
-        { label: 'IR 자료·문의', to: '/ir#contact' },
-      ],
-      clusters: [],
-    },
-    {
       id: 'gift',
       label: '선물 · 특가',
       to: '/gift',
@@ -95,7 +79,22 @@ export function getSiteMenuBranches(): SiteMenuBranch[] {
         { label: '글 목록', to: '/community' },
         { label: '글쓰기', to: '/community/new' },
         { label: '명절 특별전', to: '/events/chuseok' },
-        { label: '투자 IR', to: '/ir' },
+      ],
+      clusters: [],
+    },
+    {
+      id: 'ir',
+      label: '투자 IR',
+      to: '/ir',
+      items: [
+        { label: 'IR 홈', to: '/ir' },
+        { label: '핵심 지표', to: '/ir#kpis' },
+        { label: '프리 A 요강', to: '/ir#round' },
+        { label: '시장·매출 구조', to: '/ir#market' },
+        { label: '비즈니스 모델', to: '/ir#canvas' },
+        { label: '리더십', to: '/ir#leaders' },
+        { label: '자문단', to: '/ir#advisors' },
+        { label: 'IR 자료·문의', to: '/ir#contact' },
       ],
       clusters: [],
     },
