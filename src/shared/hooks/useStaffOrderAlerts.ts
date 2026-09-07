@@ -41,7 +41,7 @@ export function useStaffOrderAlerts() {
       if (known.has(order.id)) return
       known.add(order.id)
       writeHeard(known)
-      setToasts((current) => [order, ...current.filter((item) => item.id !== order.id)].slice(0, 4))
+      setToasts((current) => [order, ...current.filter((item) => item.id !== order.id)].slice(0, 3))
     }
 
     function onCustom(event: Event) {
@@ -78,6 +78,16 @@ export function useStaffOrderAlerts() {
       channel?.close()
     }
   }, [allowed])
+
+  useEffect(() => {
+    if (toasts.length === 0) return
+    const id = toasts[0]?.id
+    if (!id) return
+    const timer = window.setTimeout(() => {
+      setToasts((current) => current.filter((item) => item.id !== id))
+    }, 8000)
+    return () => window.clearTimeout(timer)
+  }, [toasts])
 
   function dismiss(id: string) {
     setToasts((current) => current.filter((item) => item.id !== id))

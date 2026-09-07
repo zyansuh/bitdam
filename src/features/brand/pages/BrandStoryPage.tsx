@@ -17,9 +17,15 @@ import BrandStoryPhilosophies from '../components/BrandStoryPhilosophies'
 import BrandStoryProcess from '../components/BrandStoryProcess'
 import BrandStoryTimeline from '../components/BrandStoryTimeline'
 import BrandStoryUglyFruit from '../components/BrandStoryUglyFruit'
+import { usePageMeta } from '../../../shared/hooks/usePageMeta'
 import { brandStoryChapters } from '../data/brandStory'
 
 export default function BrandStoryPage() {
+  usePageMeta({
+    title: '빚담 이야기 | 빚담',
+    description: '시간이 흐를수록 깊어지는 우리 고유의 맛과 향',
+    image: '/images/brewery-hero.svg',
+  })
   const { user } = useAuth()
   const canEdit = canEditStory(resolveWorkspaceRole(user))
   const story = useStoryOverride()
