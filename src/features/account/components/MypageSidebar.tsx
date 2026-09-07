@@ -5,6 +5,7 @@ import {
   canOpenLounge,
   canReplySupport,
   canViewStaffPerformance,
+  canWriteWorkReport,
   resolveWorkspaceRole,
   workspaceRoleLabel,
 } from '../../../shared/utils/workspaceRole'
@@ -19,6 +20,7 @@ export default function MypageSidebar() {
     ...(canManagePeople(role) ? [{ label: '구성원 권한', to: '/mypage/admin/people' }] : []),
     ...(canViewStaffPerformance(role) ? [{ label: '직원 성과', to: '/mypage/admin/performance' }] : []),
     ...(canReplySupport(role) ? [{ label: '1:1 문의 답변', to: '/mypage/admin/support' }] : []),
+    ...(canWriteWorkReport(role) ? [{ label: '업무 보고', to: '/mypage/staff/work-reports' }] : []),
     ...(canOpenLounge(role) ? [{ label: '셀러 라운지', to: '/mypage/lounge' }] : []),
   ]
   const items = extras.length ? [...extras, ...mypageNav] : mypageNav

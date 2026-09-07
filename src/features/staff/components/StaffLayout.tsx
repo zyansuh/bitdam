@@ -28,7 +28,7 @@ export default function StaffLayout({ children, allowStaff = false }: StaffLayou
           <section className="lounge-denied">
             <h1>
               {allowStaff
-                ? '1:1 문의 답변은 직원·팀장·ADMIN만 할 수 있습니다.'
+                ? '이 메뉴는 직원·팀장·ADMIN만 사용할 수 있습니다.'
                 : '구성원 권한과 성과는 ADMIN만 볼 수 있습니다.'}
             </h1>
             <Link to="/mypage" className="lounge-denied__link">

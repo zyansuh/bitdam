@@ -8,4 +8,5 @@ export const loungeNav: LoungeNavItem[] = [
   { label: '매출리포트', to: '/mypage/lounge/reports' },
   { label: '고객관리', to: '/mypage/lounge/customers' },
   { label: '구독관리', to: '/mypage/lounge/subscriptions' },
+  { label: '업무 보고', to: '/mypage/staff/work-reports' },
 ]
