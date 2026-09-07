@@ -62,6 +62,11 @@ export function canReplySupport(role: WorkspaceRole): boolean {
   return role === 'staff' || role === 'lead'
 }
 
+export function canHearOrderAlerts(role: WorkspaceRole): boolean {
+  if (isAdminRole(role)) return true
+  return role === 'staff' || role === 'lead'
+}
+
 export function canOpenCmsStudio(role: WorkspaceRole): boolean {
   if (isAdminRole(role)) return true
   return role === 'lead'

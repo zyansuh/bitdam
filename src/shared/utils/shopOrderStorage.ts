@@ -1,6 +1,10 @@
 import type { ShopOrder } from '../types/shopOrder'
 
-const KEY = 'bitdam.shop.orders'
+export const SHOP_ORDERS_KEY = 'bitdam.shop.orders'
+export const SHOP_ORDER_EVENT = 'bitdam:shop-order'
+
+const KEY = SHOP_ORDERS_KEY
+const CHANNEL = 'bitdam.shop.orders'
 
 export function readShopOrders(): ShopOrder[] {
   try {
@@ -17,8 +21,20 @@ export function writeShopOrders(orders: ShopOrder[]): void {
   localStorage.setItem(KEY, JSON.stringify(orders))
 }
 
+function publishOrder(order: ShopOrder) {
+  window.dispatchEvent(new CustomEvent(SHOP_ORDER_EVENT, { detail: order }))
+  try {
+    const channel = new BroadcastChannel(CHANNEL)
+    channel.postMessage(order)
+    channel.close()
+  } catch {
+    // BroadcastChannel is missing in some embedded browsers.
+  }
+}
+
 export function appendShopOrder(order: ShopOrder): void {
   writeShopOrders([order, ...readShopOrders().filter((item) => item.id !== order.id)])
+  publishOrder(order)
 }
 
 export function getShopOrder(id: string | undefined): ShopOrder | undefined {
@@ -35,7 +51,8 @@ export function patchShopOrder(id: string, patch: Partial<ShopOrder>): ShopOrder
 
 export function createShopOrderId(): string {
   const now = new Date()
-  const stamp = `${String(now.getFullYear()).slice(2)}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`
-  const suffix = String(Math.floor(1000 + Math.random() * 9000))
-  return `S${stamp}-${suffix}`
+  const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`
+  const prefix = `BD-${stamp}-`
+  const sameDay = readShopOrders().filter((order) => order.id.startsWith(prefix)).length
+  return `${prefix}${String(sameDay + 1).padStart(3, '0')}`
 }
