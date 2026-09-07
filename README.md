@@ -94,8 +94,9 @@
 | `/tours` | `TourReservePage` | 권역별 양조장 정보 · 예약 창 |
 | `/breweries/:id` | `BreweryDetailPage` | 양조장 이야기 · 포함 사항 · 날짜·타임·인원 예약 카드 |
 | `/classes` | `ClassBookingPage` | 체험 클래스 필터 · 예약(로컬 상태) |
-| `/community` | `CommunityPage` | 본인 글 목록 · 분류 · 해시태그 |
+| `/community` | `CommunityPage` | 본인 글 목록(ADMIN은 전체) · 분류 · 해시태그 |
 | `/community/new` | `CommunityWritePage` | 글쓰기 · 임시저장 · 사진 첨부 |
+| `/community/:id/edit` | `CommunityEditPage` | 본인 글 수정(ADMIN은 전체) |
 | `/community/:id` | `CommunityPostPage` | 글 상세 · 좋아요 · 댓글 |
 | `/terms` | `TermsPage` | 서비스 운영정책 · 이용약관 · 개인정보 · 사업자 정보 |
 | `/privacy` | `PrivacyPage` | 개인정보처리방침 제1조~제16조 |
@@ -116,8 +117,9 @@
 | `/help/chat` | `HelpChatPage` | `/chat`으로 이동 |
 | `/notices` | `NoticeListPage` | 공지 목록 · 분류 탭 · 1~5페이지 |
 | `/notices/new` | `NoticeWritePage` | 공지 작성 · 중요 토글 |
+| `/notices/:id/edit` | `NoticeEditPage` | ADMIN 공지 수정(시드 포함) |
 | `/notices/digest` | `NoticeDigestPage` | 중요·최근 모아보기 |
-| `/notices/:id` | `NoticeDetailPage` | 공지 상세 |
+| `/notices/:id` | `NoticeDetailPage` | 공지 상세 · ADMIN 수정·삭제 |
 | `/chat` | `ChatPage` | 빚담 추천 AI · 왼쪽 대화 목록 |
 
 ### 이용자 흐름
@@ -196,7 +198,7 @@ flowchart LR
 
 ### ✍️ 커뮤니티 (`/community`)
 
-프로필(사람) 아이콘을 누르면 「커뮤니티 · 내 글 목록」이 열립니다. 로그인한 계정으로 쓴 글만 보이고, 브라우저 `localStorage`에 저장됩니다.
+프로필(사람) 아이콘을 누르면 「커뮤니티 · 내 글 목록」이 열립니다. 일반 회원은 본인 글만 보이고, **ADMIN**(`admin@bitdam.kr`)은 모든 글을 보고 수정·삭제할 수 있습니다. 브라우저 `localStorage`에 저장됩니다.
 
 | 기능 | 설명 |
 |------|------|
@@ -396,11 +398,11 @@ BITDAM/
 | **auth** | `Login` | `login.css` | LoginForm · Hero 패널 · 소셜 버튼 |
 | **catalog** | `ProductListPage` · `CategoryPage` | `catalog.css` | `SiteHeader` + 카탈로그 링크 · 필터 · 카드 |
 | **brewery** | `BreweryMapPage` · `BreweryDetailPage` · `ClassBookingPage` | `brewery-header.css` · `brewery-map.css` · `brewery-detail.css` · `class-booking.css` | `SiteHeader` + 투어 링크 · MapLibre · 예약 |
-| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 상세 · localStorage |
+| **community** | `CommunityPage` · `CommunityWritePage` · `CommunityEditPage` · `CommunityPostPage` | `community.css` | 글 목록 · 글쓰기 · 수정 · 상세 · localStorage |
 | **account** | `MypagePage` · `SettingsProfilePage` 외 | `account.css` | 마이페이지 · 개인정보 설정 |
 | **help** | `HelpCategoryPage` · `HelpChatPage` | `help.css` | 고객센터 FAQ 분류 |
 | **notify** | `NotificationsPage` | `notify.css` | 알림 센터 |
-| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·모아보기 |
+| **notice** | `NoticeListPage` · `NoticeWritePage` · `NoticeEditPage` · `NoticeDigestPage` | `notice.css` | 공지 목록·작성·ADMIN 수정·모아보기 |
 | **chat** | `ChatPage` | `chat.css` | OpenAI 추천 · 로컬 폴백 |
 | **custom** | `CustomLabelPage` | `custom.css` | 기념주 4단계 · 실시간 견적 |
 | **gift** | `GiftPage` | `shop.css` | 상품 선택 → 메시지 → 결제 (순서 강제) |
@@ -699,6 +701,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | ADMIN 공지·커뮤니티 전체 글 수정·삭제 |
 | **2026-09-07** | 직원·팀장 등급 · ADMIN 권한 부여 · 성과 보드 |
 | **2026-09-07** | 셀러 사업자 인증 모달 · 인증 후 본인 양조장만 표시 |
 | **2026-09-07** | 마이페이지 셀러 라운지 · ADMIN 전체 공방 조회 |
