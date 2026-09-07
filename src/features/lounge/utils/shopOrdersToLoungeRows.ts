@@ -17,7 +17,8 @@ export function shopOrdersToLoungeRows(): LoungeOrder[] {
       hour12: false,
     })
     return order.lines.map((line, index) => ({
-      id: `${order.id}-${index}`,
+        id: `${order.id}-${index}`,
+        shopOrderId: order.id,
       sellerId: line.sellerId,
       time,
       product: line.quantity > 1 ? `${line.name} ×${line.quantity}` : line.name,
