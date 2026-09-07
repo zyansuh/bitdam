@@ -16,25 +16,25 @@ export const mypageCertificates = [
     id: '0820',
     name: '명인 안동소주',
     desc: '저온 발효로 담근 항아리 한정 인증',
-    image: 'https://images.unsplash.com/photo-1569529465841-df988a64df86?w=400&h=480&fit=crop&q=80',
+    image: '/images/catalog/makgeolli-1.svg',
   },
   {
     id: '0644',
     name: '한산 소곡주',
     desc: '우희열 명인 시즌 항아리 디지털 증서',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=480&fit=crop&q=80',
+    image: '/images/catalog/makgeolli-1.svg',
   },
   {
     id: '0312',
     name: '삼해소주',
     desc: '세 번 내린 증류의 결을 기록한 NFT',
-    image: 'https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?w=400&h=480&fit=crop&q=80',
+    image: '/images/catalog/makgeolli-1.svg',
   },
   {
     id: '0198',
     name: '문배술',
     desc: '밀 향을 담은 국가무형유산 인증',
-    image: 'https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&h=480&fit=crop&q=80',
+    image: '/images/catalog/makgeolli-1.svg',
   },
 ]
 

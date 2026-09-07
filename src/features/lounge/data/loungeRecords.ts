@@ -9,7 +9,7 @@ import type {
 } from '../types/lounge'
 
 const BOTTLE =
-  'https://images.unsplash.com/photo-1551024601-b78d007933a0?w=400&h=400&fit=crop&q=80'
+  '/images/catalog/soju-2.svg'
 
 export const LOUNGE_ORDERS: LoungeOrder[] = [
   { id: 'S250113-1002', sellerId: 'hansan', time: '14:22', product: '한산 소곡주 생주 1.8L', buyer: '김*아', amount: 45000, status: '결제 확인' },

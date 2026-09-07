@@ -10,7 +10,7 @@ export default function HolidayGiftHero() {
       className="hgift-hero"
       style={{
         backgroundImage:
-          'url(https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&h=720&fit=crop&q=80)',
+          'url(/images/brewery-hero.svg',
       }}
     >
       <div className="hgift-hero__veil">

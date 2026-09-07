@@ -27,19 +27,19 @@ export const SUBSCRIBE_BOXES: SubscribeBox[] = [
     id: 'aug',
     month: '8월 서늘한 광주',
     title: '동해 숨결 맑은 복숭아 에디션',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=900&h=560&fit=crop&q=80',
+    image: '/images/catalog/soju-1.svg',
   },
   {
     id: 'jul',
     month: '7월 한산의 밤',
     title: '소곡주 명인 여름 에디션',
-    image: 'https://images.unsplash.com/photo-1551024601-b78d007933a0?w=900&h=560&fit=crop&q=80',
+    image: '/images/catalog/yakju-1.svg',
   },
   {
     id: 'jun',
     month: '6월 과수원 길',
     title: '못난이 자두 · 오미자 에디션',
-    image: 'https://images.unsplash.com/photo-1567696912547-6a89454f4b0a?w=900&h=560&fit=crop&q=80',
+    image: '/images/catalog/fruit-1.svg',
   },
 ]
 

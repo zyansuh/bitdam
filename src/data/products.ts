@@ -1,3 +1,4 @@
+import { catalogPhoto } from './mockImages'
 import { readSellerCatalog } from '../shared/utils/sellerCatalogStorage'
 import { isCatalogPaused } from '../shared/utils/catalogPauseStorage'
 import { readStockOverlay, writeStockOverlay } from '../shared/utils/stockStorage'
@@ -68,7 +69,8 @@ export const allProducts: Product[] = Array.from({ length: 48 }, (_, i) => {
     name: i >= PRODUCT_POOL.length ? `${base.name} ${Math.floor(i / PRODUCT_POOL.length) + 1}` : base.name,
     price: base.price + (i % 3) * 1000,
     reviewCount: Math.round(base.rating * 18) + (i % 7),
-    gallery: [base.image, base.image],
+    image: catalogPhoto(base.category, i),
+    gallery: [catalogPhoto(base.category, i), catalogPhoto(base.category, i + 1)],
     stock: i === 14 ? 0 : 12 + (i % 18),
   }
 })

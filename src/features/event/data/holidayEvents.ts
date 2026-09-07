@@ -10,7 +10,7 @@ export const HOLIDAY_EVENTS: HolidayEvent[] = [
     endsAt: '2026-10-06T23:59:59+09:00',
     entries: 8431,
     heroImage:
-      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&h=900&fit=crop&q=80',
+      '/images/catalog/soju-1.svg',
     steps: [
       '추석 한정 선물세트를 주문합니다.',
       '보름달에게 전할 소원 한 줄을 남깁니다.',
@@ -48,7 +48,7 @@ export const HOLIDAY_EVENTS: HolidayEvent[] = [
         contents: '한산 소곡주 + 안동소주 미니 + 오동나무함 + 잔 2',
         priceFrom: 89000,
         priceTo: 128000,
-        image: 'https://images.unsplash.com/photo-1551024601-b78d007933a0?w=800&h=560&fit=crop&q=80',
+        image: '/images/catalog/yakju-1.svg',
       },
       {
         id: 'family',
@@ -56,7 +56,7 @@ export const HOLIDAY_EVENTS: HolidayEvent[] = [
         contents: '약주 2병 + 보자기 + 한과 박스',
         priceFrom: 55000,
         priceTo: 89000,
-        image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=560&fit=crop&q=80',
+        image: '/images/catalog/fruit-1.svg',
       },
       {
         id: 'fruit',
@@ -64,7 +64,7 @@ export const HOLIDAY_EVENTS: HolidayEvent[] = [
         contents: '과실주 2종 + 곶감 · 호두 페어링',
         priceFrom: 42000,
         priceTo: 68000,
-        image: 'https://images.unsplash.com/photo-1567696912547-6a89454f4b0a?w=800&h=560&fit=crop&q=80',
+        image: '/images/catalog/makgeolli-1.svg',
       },
     ],
     active: true,
@@ -78,7 +78,7 @@ export const HOLIDAY_EVENTS: HolidayEvent[] = [
     endsAt: '2027-02-16T23:59:59+09:00',
     entries: 2104,
     heroImage:
-      'https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&h=900&fit=crop&q=80',
+      '/images/catalog/liqueur-1.svg',
     steps: [
       '설 한정 선물세트를 주문합니다.',
       '새해 소원을 한 줄 남깁니다.',
@@ -112,7 +112,7 @@ export const HOLIDAY_EVENTS: HolidayEvent[] = [
         contents: '증류주 + 약주 + 목함',
         priceFrom: 72000,
         priceTo: 110000,
-        image: 'https://images.unsplash.com/photo-1569529465841-df988a64df86?w=800&h=560&fit=crop&q=80',
+        image: '/images/brewery-hero.svg',
       },
     ],
     active: false,

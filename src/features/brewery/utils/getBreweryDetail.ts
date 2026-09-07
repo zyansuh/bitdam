@@ -5,7 +5,7 @@ import { breweryProfiles } from '../data/breweryProfiles'
 import type { BreweryDetail, BreweryProfile } from '../types/breweryDetail'
 
 const fallbackPhoto =
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=240&h=240&fit=crop&q=80'
+  '/images/people/master.svg'
 
 function fallbackProfile(name: string, region: string, image: string, summary: string): BreweryProfile {
   return {

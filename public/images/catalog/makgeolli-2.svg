@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-label="탁주">
+  <rect width="400" height="520" fill="#ebe4d6"/>
+  <rect x="168" y="36" width="64" height="70" rx="8" fill="#b08950"/>
+  <rect x="120" y="108" width="160" height="320" rx="28" fill="#e8d9b0"/>
+  <rect x="148" y="200" width="104" height="130" rx="8" fill="#fff8ee"/>
+  <text x="200" y="270" text-anchor="middle" fill="#2c2c2c" font-size="18" font-family="serif">탁주</text>
+</svg>
