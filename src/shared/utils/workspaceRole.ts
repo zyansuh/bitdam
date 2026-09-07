@@ -47,6 +47,11 @@ export function canViewStaffPerformance(role: WorkspaceRole): boolean {
   return isAdminRole(role)
 }
 
+export function canReplySupport(role: WorkspaceRole): boolean {
+  if (isAdminRole(role)) return true
+  return role === 'staff' || role === 'lead'
+}
+
 export function canModerateContent(role: WorkspaceRole): boolean {
   return isAdminRole(role)
 }

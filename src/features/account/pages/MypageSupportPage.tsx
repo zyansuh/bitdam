@@ -35,6 +35,11 @@ export default function MypageSupportPage() {
                 <p className="account-list__title">{ticket.title}</p>
                 <p className="account-list__meta">{ticket.createdAt}</p>
                 <p className="account-list__meta">{ticket.body}</p>
+                {ticket.replies.map((reply) => (
+                  <p key={reply.id} className="account-ok">
+                    답변 · {reply.authorName}: {reply.body}
+                  </p>
+                ))}
               </div>
             </li>
           ))}

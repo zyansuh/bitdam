@@ -4,17 +4,19 @@ import Footer from '../../../shared/components/layout/footer/Footer'
 import PageLayout from '../../../shared/components/layout/PageLayout'
 import Navbar from '../../../shared/components/navigation/Navbar'
 import { useAuth } from '../../../shared/hooks/useAuth'
-import { canOpenAdminScope, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
+import { canOpenAdminScope, canReplySupport, resolveWorkspaceRole } from '../../../shared/utils/workspaceRole'
 import AccountLoginPrompt from '../../account/components/AccountLoginPrompt'
 import StaffSidebar from './StaffSidebar'
 
 interface StaffLayoutProps {
   children: ReactNode
+  allowStaff?: boolean
 }
 
-export default function StaffLayout({ children }: StaffLayoutProps) {
+export default function StaffLayout({ children, allowStaff = false }: StaffLayoutProps) {
   const { isLoggedIn, user } = useAuth()
-  const allowed = canOpenAdminScope(resolveWorkspaceRole(user))
+  const role = resolveWorkspaceRole(user)
+  const allowed = allowStaff ? canReplySupport(role) : canOpenAdminScope(role)
 
   return (
     <PageLayout>
@@ -24,7 +26,11 @@ export default function StaffLayout({ children }: StaffLayoutProps) {
           <AccountLoginPrompt />
         ) : !allowed ? (
           <section className="lounge-denied">
-            <h1>구성원 권한과 성과는 ADMIN만 볼 수 있습니다.</h1>
+            <h1>
+              {allowStaff
+                ? '1:1 문의 답변은 직원·팀장·ADMIN만 할 수 있습니다.'
+                : '구성원 권한과 성과는 ADMIN만 볼 수 있습니다.'}
+            </h1>
             <Link to="/mypage" className="lounge-denied__link">
               마이페이지로
             </Link>
