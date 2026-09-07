@@ -4,21 +4,18 @@ import { LEARN_CATEGORIES } from '../data/learnCategories'
 import { useLearnDesk } from '../hooks/useLearnDesk'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { canEditCmsDocument } from '../../cms/utils/canEditCmsDocument'
-import { getOpenAiKey } from '../../chat/services/askBitdamModel'
 
 export default function LearnDeskPage() {
   const { user } = useAuth()
   const allowed = canEditCmsDocument(user, 'learn.desk')
   const desk = useLearnDesk()
-  const hasKey = Boolean(getOpenAiKey())
 
   return (
     <StaffLayout allowCms>
       <section className="lounge-panel">
         <h2>술 상식 하루 한 장</h2>
         <p className="staff-lead">
-          제목을 넣고 예약하면, 그 날짜가 되는 순간 방문객 허브에 글이 열립니다. 서버 크론 대신 브라우저가 오늘 날짜와 비교합니다.{' '}
-          {hasKey ? 'OpenAI 키로 초안을 받습니다.' : '키가 없으면 로컬 뼈대 초안을 넣습니다. .env의 VITE_OPENAI_API_KEY를 쓰면 모델이 씁니다.'}
+          초안은 `/api/openai`를 통합니다. 브라우저에 OpenAI 키를 넣지 마세요. Vercel·로컬 `.env`의 `OPENAI_API_KEY`만 씁니다. 카카오톡 발송은 채널 API·서버가 필요합니다.
         </p>
         {!allowed ? (
           <p>이 문서는 수정 권한이 없습니다.</p>
@@ -56,7 +53,6 @@ export default function LearnDeskPage() {
                 required
               />
             </label>
-            <p>증류·세계 술 분류는 원리와 안전만 쓰도록 모델에 못 박아 두었습니다. 공개 전에 문장을 꼭 검수하세요.</p>
             <button type="submit" className="lounge-btn" disabled={desk.busy}>
               {desk.busy ? '초안 작성 중' : '초안 만들고 예약'}
             </button>
@@ -64,10 +60,73 @@ export default function LearnDeskPage() {
           </form>
         )}
       </section>
+      {allowed ? (
+        <section className="lounge-panel">
+          <h3>오늘의 카드 고정</h3>
+          <p className="staff-lead">비우면 날짜 회전으로 돌아갑니다. 이 기기의 편집자 픽입니다.</p>
+          <form
+            className="lounge-form"
+            onSubmit={(event) => {
+              event.preventDefault()
+              desk.savePick()
+            }}
+          >
+            <label>
+              고정할 slug
+              <input
+                list="learn-slugs"
+                value={desk.pick}
+                onChange={(event) => desk.setPick(event.target.value)}
+                placeholder="how-makgeolli-is-made"
+              />
+            </label>
+            <datalist id="learn-slugs">
+              {desk.lessonSlugs.map((slug) => (
+                <option key={slug} value={slug} />
+              ))}
+            </datalist>
+            <button type="submit" className="lounge-btn">
+              픽 저장
+            </button>
+          </form>
+        </section>
+      ) : null}
+      {allowed && desk.editingSlug ? (
+        <section className="lounge-panel">
+          <h3>초안 검수 · {desk.editingSlug}</h3>
+          <form
+            className="lounge-form"
+            onSubmit={(event) => {
+              event.preventDefault()
+              desk.saveEdit()
+            }}
+          >
+            <label>
+              제목
+              <input value={desk.editTitle} onChange={(event) => desk.setEditTitle(event.target.value)} />
+            </label>
+            <label>
+              리드
+              <textarea value={desk.editLead} onChange={(event) => desk.setEditLead(event.target.value)} rows={3} />
+            </label>
+            <label>
+              본문 (빈 줄로 절 구분)
+              <textarea value={desk.editBody} onChange={(event) => desk.setEditBody(event.target.value)} rows={10} />
+            </label>
+            <label>
+              공개일
+              <input type="date" value={desk.editOn} onChange={(event) => desk.setEditOn(event.target.value)} />
+            </label>
+            <button type="submit" className="lounge-btn">
+              검수본 저장
+            </button>
+          </form>
+        </section>
+      ) : null}
       <section className="lounge-panel">
         <h3>예약·공개 목록</h3>
         <ul className="cms-list">
-          {desk.drafts.length === 0 ? <li>아직 예약된 AI 글이 없습니다. 100장의 기본 카드는 이미 허브에 있습니다.</li> : null}
+          {desk.drafts.length === 0 ? <li>아직 예약된 AI 글이 없습니다.</li> : null}
           {desk.drafts.map((item) => (
             <li key={item.slug} className="cms-list__item">
               <div>
@@ -79,6 +138,9 @@ export default function LearnDeskPage() {
                 </p>
               </div>
               <div className="cms-list__actions">
+                <button type="button" className="lounge-btn lounge-btn--ghost" onClick={() => desk.openEdit(item)}>
+                  편집
+                </button>
                 <Link to={`/learn/${item.slug}`} className="lounge-btn lounge-btn--ghost">
                   보기
                 </Link>
