@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import { hamburgerAccountLinks } from '../../../data/headerAccountLinks'
 import { getSiteMenuBranches } from '../../../data/siteMenu'
 import { useAuth } from '../../hooks/useAuth'
+import { useFocusTrap } from '../../hooks/useFocusTrap'
 import LoginLink from './LoginLink'
 import SignupLink from './SignupLink'
 import SiteMenuBranchSection from './SiteMenuBranchSection'
@@ -15,11 +17,13 @@ interface SiteHamburgerMenuProps {
 
 export default function SiteHamburgerMenu({ onClose, tone = 'light' }: SiteHamburgerMenuProps) {
   const { isLoggedIn, logout } = useAuth()
+  const menuRef = useRef<HTMLElement>(null)
+  useFocusTrap(true, menuRef)
   const root = tone === 'navy' ? 'site-menu site-menu--navy' : 'site-menu'
   const accountItems = hamburgerAccountLinks
 
   return (
-    <nav className={root} aria-label="전체 메뉴">
+    <nav id="site-hamburger-menu" ref={menuRef} className={root} aria-label="전체 메뉴">
       <div className="site-menu__inner">
         {getSiteMenuBranches().map((branch) => (
           <SiteMenuBranchSection key={branch.id} branch={branch} onClose={onClose} />
