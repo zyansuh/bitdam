@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap');
 
+/* MaruBuri is loaded from Naver's Hangeul CDN. If that host is blocked, headings
+   fall back to Pretendard via --font-heading so Hangul never uses Times. */
+
 @font-face {
   font-family: 'MaruBuri';
   src: url('https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-ExtraLight.woff2')
