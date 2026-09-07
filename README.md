@@ -76,6 +76,10 @@
 | `/deals` | `TimeSalePage` | 상시 타임 특가 · 카운트다운 · 할인 필터 |
 | `/subscribe` | `SubscribePage` | 상시 정기 구독 플랜 · 가이드 · FAQ |
 | `/corporate` | `CorporateGiftPage` | 상시 단체·기업 선물 · 수량 할인 · 견적 |
+| `/holiday/gifts` | `HolidayGiftSalePage` | 명절 선물세트 할인전 · 필터 · 카운트다운 |
+| `/events/daily` | `DailyEventPage` | 일상 복주머니 · 7일 쿠폰 · 공유 스탬프 |
+| `/holiday/tours` | `HolidayTourPage` | 명절 전용 양조장 투어 |
+| `/limited` | `LimitedEditionPage` | 크리에이터 한정판 · 테이스팅 · 펀딩 선예약 |
 | `/products` | `ProductListPage` | 검색 · 카테고리 칩 · 상세 필터 · 상품 그리드 |
 | `/category/:slug` | `CategoryPage` | 남색 헤더 · 브레드크럼 · 대표 상품 캐러셀 · 도수 필터 |
 | `/login` | `Login` | 이메일 로그인 · 카카오 로그인 · 소셜 버튼 |
@@ -396,6 +400,10 @@ BITDAM/
 | **deals** | `TimeSalePage` | `shop.css` | 상시 타임 특가 |
 | **subscribe** | `SubscribePage` | `shop.css` | 상시 빚담박스 구독 |
 | **corporate** | `CorporateGiftPage` | `shop.css` | 상시 단체·기업 선물 |
+| **holidayGift** | `HolidayGiftSalePage` | `campaign-pages.css` | 명절 세트 할인전 |
+| **dailyEvent** | `DailyEventPage` | `campaign-pages.css` | 복주머니 · 공유 스탬프 |
+| **holidayTour** | `HolidayTourPage` | `campaign-pages.css` | 명절 전용 투어 |
+| **limited** | `LimitedEditionPage` | `campaign-pages.css` | 테이스팅 · 펀딩 선예약 |
 | **brand** | `BrandStoryPage` | `brand-story.css` | 못난이 과일 · 시간이 흐를수록 |
 | **legal** | `TermsPage` · `PrivacyPage` | `policy.css` | 운영정책 · 개인정보처리방침 |
 
@@ -571,6 +579,10 @@ Few-shot을 더 넣으려면 `askBitdamModel`의 `messages` 앞에 `{ role: 'use
 | http://localhost:5173/deals | 타임 특가 |
 | http://localhost:5173/subscribe | 정기 구독 |
 | http://localhost:5173/corporate | 단체 · 기업 선물 |
+| http://localhost:5173/holiday/gifts | 명절 선물세트 할인전 |
+| http://localhost:5173/events/daily | 설날 복주머니 |
+| http://localhost:5173/holiday/tours | 명절 양조장 투어 |
+| http://localhost:5173/limited | 크리에이터 한정판 |
 | http://localhost:5173/story | 브랜드 스토리 |
 
 ---
@@ -671,6 +683,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-07** | 명절 세트전 · 복주머니 · 명절 투어 · 크리에이터 한정판 |
 | **2026-09-07** | 선물 3단계 · 추석 특별전 · 타임 특가 · 구독 · 기업선물 |
 | **2026-09-07** | 채팅 프롬프트를 정책 파일 + `buildPrompt`로 분리 |
 | **2026-09-07** | `/tours` 권역별 예약 · 기념주 도자기 병(소주·약주·과실주, 막걸리 제외) |
