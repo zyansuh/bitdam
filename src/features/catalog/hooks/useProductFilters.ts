@@ -4,6 +4,7 @@ import { listCatalogProducts } from '../../../data/products'
 import { PRICE_BOUND } from '../data/filterOptions'
 import type { ProductFilterState, SortKey } from '../types/catalog'
 import { filterProducts } from '../utils/filterProducts'
+import { parseSortKey } from '../utils/sortFromSearch'
 
 const DEFAULT_FILTERS: ProductFilterState = {
   query: '',
@@ -25,6 +26,7 @@ export function useProductFilters(overrides?: Partial<ProductFilterState>) {
   const [filters, setFilters] = useState<ProductFilterState>({
     ...DEFAULT_FILTERS,
     query: params.get('q') ?? '',
+    sort: parseSortKey(params.get('sort')),
     ...overrides,
   })
 
@@ -63,6 +65,12 @@ export function useProductFilters(overrides?: Partial<ProductFilterState>) {
       setFilters((prev) => ({ ...prev, tasteTags: toggleItem(prev.tasteTags, tag) })),
     setAbvRangeId: (abvRangeId: string | null) =>
       setFilters((prev) => ({ ...prev, abvRangeId })),
-    setSort: (sort: SortKey) => setFilters((prev) => ({ ...prev, sort })),
+    setSort: (sort: SortKey) => {
+      setFilters((prev) => ({ ...prev, sort }))
+      const next = new URLSearchParams(params)
+      if (sort === 'popular') next.delete('sort')
+      else next.set('sort', sort)
+      setParams(next, { replace: true })
+    },
   }
 }
