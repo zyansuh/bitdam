@@ -17,6 +17,7 @@ export function useMypageOrders() {
             status: order.status,
           }))
       : []
-    return [...live, ...mypageOrders]
+    if (live.length > 0) return live
+    return user ? [] : mypageOrders
   }, [user])
 }
