@@ -34,7 +34,7 @@ export default function SettingsNotificationsPage() {
         <button type="button" className="account-save" onClick={save}>
           알림 설정 저장
         </button>
-        {saved ? <p className="account-ok">저장했습니다.</p> : null}
+        {saved ? <p className="account-ok">저장했습니다. 알림 센터(`/notifications`)에 바로 반영됩니다.</p> : null}
       </section>
     </SettingsLayout>
   )

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { AuthUser } from '../../../shared/types/auth'
 import { listCommunityPosts, saveCommunityPosts } from '../api/communityApi'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import type { CommunityCategoryId, CommunityPost } from '../types/communityPost'
 
 interface UseCommunityPostsOptions {
@@ -110,13 +111,14 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
 
   function addComment(id: string, body: string) {
     if (!user || !body.trim()) return
+    const post = posts.find((item) => item.id === id)
     persist(
-      posts.map((post) =>
-        post.id === id
+      posts.map((item) =>
+        item.id === id
           ? {
-              ...post,
+              ...item,
               comments: [
-                ...post.comments,
+                ...item.comments,
                 {
                   id: crypto.randomUUID(),
                   authorName: user.nickname,
@@ -126,9 +128,21 @@ export function useCommunityPosts(user: AuthUser | null, options?: UseCommunityP
                 },
               ],
             }
-          : post,
+          : item,
       ),
     )
+    if (post && post.authorId !== user.id) {
+      appendSiteNotice(
+        makeSiteNotice({
+          kind: 'community',
+          title: `${user.nickname}님이 회원님의 글에 댓글을 남겼습니다`,
+          body: body.trim().slice(0, 80),
+          actionLabel: '댓글 확인하기',
+          actionTo: `/community/${id}`,
+          audienceId: post.authorId,
+        }),
+      )
+    }
   }
 
   function setVisibility(id: string, visibility: CommunityPost['visibility']) {

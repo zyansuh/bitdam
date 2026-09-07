@@ -2,6 +2,7 @@ import type { BreweryDetail } from '../types/breweryDetail'
 import { TOUR_GIFT_LABEL, TOUR_TIME_SLOTS } from '../data/tourBooking'
 import { useAuth } from '../../../shared/hooks/useAuth'
 import { appendBooking } from '../../../shared/utils/bookingStorage'
+import { appendSiteNotice, makeSiteNotice } from '../../notify/utils/siteNoticeStorage'
 import { useTourReservation } from '../hooks/useTourReservation'
 
 interface BreweryReserveCardProps {
@@ -91,6 +92,16 @@ export default function BreweryReserveCard({ brewery }: BreweryReserveCardProps)
             amount: booking.total,
             createdAt: new Date().toISOString(),
           })
+          appendSiteNotice(
+            makeSiteNotice({
+              kind: 'event',
+              title: `${brewery.programTitle} 예약이 접수되었습니다`,
+              body: `${brewery.name} · ${booking.dateKey} ${booking.time}`,
+              actionLabel: '예약 내역',
+              actionTo: '/mypage/reservations',
+              audienceId: user.id,
+            }),
+          )
         }}
       >
         {booking.submitted ? '예약 신청이 접수되었습니다' : '실시간 예약 신청하기'}
