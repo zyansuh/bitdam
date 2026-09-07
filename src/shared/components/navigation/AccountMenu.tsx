@@ -4,7 +4,7 @@ import { headerAccountLinks } from '../../../data/headerAccountLinks'
 import { settingsNav } from '../../../data/settingsNav'
 import { useAccountMenu } from '../../hooks/useAccountMenu'
 import { useAuth } from '../../hooks/useAuth'
-import { canManagePeople, canOpenLounge, canViewStaffPerformance, resolveWorkspaceRole } from '../../utils/workspaceRole'
+import { canManagePeople, canOpenCmsStudio, canOpenLounge, canViewStaffPerformance, resolveWorkspaceRole } from '../../utils/workspaceRole'
 import { formatUserHonorific } from '../../utils/formatUserHonorific'
 import LoginLink from './LoginLink'
 import NavbarUserAvatar from './NavbarUserAvatar'
@@ -48,6 +48,11 @@ export default function AccountMenu({ triggerClassName }: AccountMenuProps) {
           {canOpenLounge(resolveWorkspaceRole(user)) ? (
             <Link to="/mypage/lounge" className="account-menu__item" role="menuitem" onClick={closeMenu}>
               셀러 라운지
+            </Link>
+          ) : null}
+          {canOpenCmsStudio(resolveWorkspaceRole(user)) ? (
+            <Link to="/mypage/admin/content" className="account-menu__item" role="menuitem" onClick={closeMenu}>
+              콘텐츠 관리
             </Link>
           ) : null}
           {canManagePeople(resolveWorkspaceRole(user)) ? (
