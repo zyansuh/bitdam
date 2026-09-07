@@ -16,7 +16,6 @@ function mergeDemoAccounts(accounts: EmailAccount[]): EmailAccount[] {
     byEmail.set(demo.email, {
       ...existing,
       workspaceRole: demo.workspaceRole,
-      sellerId: demo.sellerId,
       nickname: existing.nickname || demo.nickname,
     })
   }
@@ -73,6 +72,17 @@ export function updateAccountPassword(accountId: string, current: string, next: 
 
 export function deleteAccount(accountId: string): void {
   writeList(readList().filter((account) => account.id !== accountId))
+}
+
+export function updateAccountWorkshop(
+  accountId: string,
+  claim: { sellerId: string; sellerBizNo: string; sellerVerified: boolean; workspaceRole: 'seller' },
+): void {
+  const accounts = readList()
+  const index = accounts.findIndex((account) => account.id === accountId)
+  if (index < 0) return
+  accounts[index] = { ...accounts[index], ...claim }
+  writeList(accounts)
 }
 
 export function createAccount(input: { email: string; password: string; nickname: string }): EmailAccount {

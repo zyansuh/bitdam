@@ -7,4 +7,6 @@ export type EmailAccount = {
   nickname: string
   workspaceRole?: WorkspaceRole
   sellerId?: string
+  sellerBizNo?: string
+  sellerVerified?: boolean
 }

@@ -9,5 +9,7 @@ export function mapAccountToUser(account: EmailAccount): AuthUser {
     provider: 'email',
     workspaceRole: account.workspaceRole ?? 'member',
     sellerId: account.sellerId,
+    sellerBizNo: account.sellerBizNo,
+    sellerVerified: account.sellerVerified,
   }
 }

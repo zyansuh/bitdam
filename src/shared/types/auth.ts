@@ -11,4 +11,6 @@ export interface AuthUser {
   provider: 'kakao' | 'email'
   workspaceRole?: WorkspaceRole
   sellerId?: string
+  sellerBizNo?: string
+  sellerVerified?: boolean
 }

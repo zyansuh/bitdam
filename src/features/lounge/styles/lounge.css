@@ -271,3 +271,67 @@
 .lounge-mypage-card__kicker {
   @apply text-xs text-gold;
 }
+
+.lounge-verify-mask {
+  @apply flex justify-center;
+}
+
+.lounge-verify {
+  @apply w-full max-w-xl rounded-2xl border border-line bg-surface p-6 shadow-lg;
+}
+
+.lounge-verify--page {
+  @apply mx-auto;
+}
+
+.lounge-verify__kicker {
+  @apply text-xs tracking-[0.2em] text-gold uppercase;
+}
+
+.lounge-verify h1 {
+  @apply mt-2 font-serif text-2xl text-navy;
+}
+
+.lounge-verify__lead {
+  @apply mt-3 mb-4 text-sm text-muted;
+}
+
+.lounge-verify__error {
+  @apply text-sm text-gold-dark;
+}
+
+.lounge-verify__hint {
+  @apply mt-4 text-xs leading-relaxed text-muted;
+}
+
+.lounge-verify__hint code {
+  @apply text-gold;
+}
+
+.lounge-match {
+  @apply mt-4 flex flex-col gap-4 rounded-xl border border-line p-4 sm:flex-row;
+}
+
+.lounge-match__photo {
+  @apply h-28 w-full rounded-lg object-cover sm:h-28 sm:w-36;
+}
+
+.lounge-match__kicker {
+  @apply text-xs text-gold;
+}
+
+.lounge-match h3 {
+  @apply font-serif text-lg text-navy;
+}
+
+.lounge-match p {
+  @apply mt-1 text-sm text-muted;
+}
+
+.lounge-match__map {
+  @apply mt-2 mr-3 inline-block text-sm text-gold;
+}
+
+.lounge-match .lounge-btn {
+  @apply mt-3;
+}

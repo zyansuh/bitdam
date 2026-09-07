@@ -21,7 +21,7 @@ const LoungeScopeContext = createContext<LoungeScopeValue | null>(null)
 export function LoungeScopeProvider({ children }: { children: ReactNode }) {
   const { user, role, allowed } = useLoungeAccess()
   const isAdmin = canOpenAdminScope(role)
-  const lockedSellerId = user?.sellerId ?? ''
+  const lockedSellerId = user?.sellerVerified ? user.sellerId ?? '' : ''
 
   const [scopeId, setScopeId] = useState(() => {
     if (!isAdmin) return lockedSellerId
