@@ -5,7 +5,7 @@ interface SafeImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string
 }
 
-export default function SafeImage({ src, fallbackSrc = MOCK_IMAGES.placeholder, alt = '', className, ...rest }: SafeImageProps) {
+export default function SafeImage({ src, fallbackSrc = MOCK_IMAGES.placeholder, alt = '빚담 이미지', className, ...rest }: SafeImageProps) {
   const [failed, setFailed] = useState(false)
   const resolved = !src || failed ? fallbackSrc : src
 

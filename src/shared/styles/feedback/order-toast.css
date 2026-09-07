@@ -3,7 +3,7 @@
 }
 
 .order-toast {
-  @apply pointer-events-auto flex gap-2 rounded-xl border border-line bg-surface p-3 shadow-lg;
+  @apply pointer-events-auto flex gap-2 rounded-xl border border-line bg-surface p-3 text-charcoal shadow-lg;
 }
 
 .order-toast__body {
