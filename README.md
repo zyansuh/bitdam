@@ -735,6 +735,7 @@ import { getProductsPage } from '../../../data/products';
 | 로그인 후 다크모드 해제 | 카카오는 `state`·쿠키·`bitdam.theme` 순으로 복구. 머지 후 하드 리프레시 |
 | 홈 스크롤 버벅임 | `html`에 `scroll-behavior: smooth`를 쓰지 않음. 해시 이동은 `scrollIntoView`만 사용 |
 | 배포에 술 상식 100장이 없음 | GitHub `main`에는 `#123`이 있습니다. Vercel Production Branch를 `main`으로 두고 최신 커밋을 **Redeploy**. 번들에 `전통 장독대에서 숙성`이 보이면 예전 빌드입니다 |
+| 스택 PR이 꼬여 보임 | 최신 줄은 `main`입니다. `#132`~`#136`은 머지하지 말고 Close. 배포는 `feat/order-detail-modal` 같은 옛 브랜치가 아니라 `main` |
 
 ---
 
@@ -763,6 +764,7 @@ import { getProductsPage } from '../../../data/products';
 
 | 날짜 | 내용 |
 |------|------|
+| **2026-09-09** | 최신 줄은 `main`. 꼬인 스택 PR `#132`~`#136`은 Close |
 | **2026-09-08** | 술 상식 글 하단 잔·도가·이어서 읽기 카드를 누르기 쉽게 개편 |
 | **2026-09-08** | 술 상식 목록 페이지네이션 · 하루 한 장씩 열리는 아카이브 |
 | **2026-09-08** | 술 상식 검색·커버·관련 도가·초안 잠금·북마크·픽·`OPENAI_API_KEY` 서버 프록시 |
